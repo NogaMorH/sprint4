@@ -43,7 +43,7 @@ export function LoginSignup(props) {
     const onUploaded = (imgUrl) => {
         setCredentials({ ...credentials, imgUrl })
     }
-    
+
     return (
         <div className="login-page">
             <p>
@@ -103,8 +103,8 @@ export function LoginSignup(props) {
                         onChange={handleChange}
                         required
                     />
-                    <ImgUploader onUploaded={onUploaded}/>                    
-                    <button >Signup!</button>
+                    <ImgUploader onUploaded={onUploaded} />
+                    <button >Signup</button>
                 </form>}
             </div>
         </div>

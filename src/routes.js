@@ -1,41 +1,26 @@
-import { HomePage } from './pages/home-page.jsx'
-import { AboutUs } from './pages/about-us.jsx'
-import { CarApp } from './pages/car-app.jsx'
-import { ReviewApp } from './pages/review-app.jsx'
-import { ChatApp } from './pages/chat-app.jsx'
-import { AdminApp } from './pages/admin-app.jsx'
+import { Home } from './pages/home.jsx'
 
 // Routes accesible from the main navigation (in AppHeader)
 const routes = [
     {
         path: '/',
-        component: <HomePage />,
-        label: 'Home 🏠',
+        component: <Home />,
     },
     {
-        path: 'car',
-        component: <CarApp />,
-        label: 'Cars'
+        path: 'template',
+        component: <TemplatePage />,
     },
     {
-        path: 'review',
-        component: <ReviewApp />,
-        label: 'Reviews'
+        path: 'board/:id',
+        component: <Board />,
     },
     {
-        path: 'chat',
-        component: <ChatApp />,
-        label: 'Chat'
+        path: 'login',
+        component: <LoginSignup />,
     },
     {
-        path: 'about',
-        component: <AboutUs />,
-        label: 'About us'
-    },
-    {
-        path: 'admin',
-        component: <AdminApp />,
-        label: 'Admin Only'
+        path: 'user/:id',
+        component: <UserProfile />,
     }
 ]
 
