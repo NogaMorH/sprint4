@@ -46,6 +46,7 @@ export function LoginSignup(props) {
     
     return (
         <div className="login-page">
+            <h1>hello from kfirrrrrrrrrrrrrrr</h1>
             <p>
                 <button className="btn-link" onClick={toggleSignup}>{!isSignup ? 'Signup' : 'Login'}</button>
             </p>
