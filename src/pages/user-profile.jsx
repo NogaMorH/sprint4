@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { loadUser } from '../store/user.actions'
 
-export function _UserDetails({ user, loadUser }) {
+export function _UserProfile({ user, loadUser }) {
 
   const params = useParams()
 
@@ -38,4 +38,4 @@ const mapDispatchToProps = {
   loadUser
 }
 
-export const UserDetails = connect(mapStateToProps, mapDispatchToProps)(_UserDetails)
+export const UserDetails = connect(mapStateToProps, mapDispatchToProps)(_UserProfile)
