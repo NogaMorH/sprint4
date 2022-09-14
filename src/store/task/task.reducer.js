@@ -1,9 +1,9 @@
 const initialState = {
     cars: [],
-    cart:[],
+    cart: [],
     lastRemovedCar: null
 }
-export function carReducer(state = initialState, action) {
+export function taskReducer(state = initialState, action) {
     var newState = state
     var cars
     var cart
@@ -14,28 +14,28 @@ export function carReducer(state = initialState, action) {
         case 'REMOVE_CAR':
             const lastRemovedCar = state.cars.find(car => car._id === action.carId)
             cars = state.cars.filter(car => car._id !== action.carId)
-            newState = { ...state, cars, lastRemovedCar}
+            newState = { ...state, cars, lastRemovedCar }
             break
         case 'ADD_CAR':
-            newState = { ...state, cars:[...state.cars, action.car]}
+            newState = { ...state, cars: [...state.cars, action.car] }
             break
         case 'UPDATE_CAR':
-            cars = state.cars.map(car => (car._id === action.car._id)? action.car : car)
-            newState = { ...state, cars}
+            cars = state.cars.map(car => (car._id === action.car._id) ? action.car : car)
+            newState = { ...state, cars }
             break
         case 'ADD_TO_CART':
-            newState = { ...state, cart:[...state.cart, action.car]}
+            newState = { ...state, cart: [...state.cart, action.car] }
             break
         case 'REMOVE_FROM_CART':
             cart = state.cart.filter(car => car._id !== action.carId)
-            newState = { ...state, cart}
+            newState = { ...state, cart }
             break
         case 'CLEAR_CART':
-            newState = { ...state, cart: []}
+            newState = { ...state, cart: [] }
             break
         case 'UNDO_REMOVE_CAR':
             if (state.lastRemovedCar) {
-                newState = { ...state, cars: [...state.cars, state.lastRemovedCar], lastRemovedCar: null}
+                newState = { ...state, cars: [...state.cars, state.lastRemovedCar], lastRemovedCar: null }
             }
             break
         default:
@@ -46,5 +46,4 @@ export function carReducer(state = initialState, action) {
     // console.log('Action:', action)
     // console.log('New State:', newState)
     return newState
-
 }

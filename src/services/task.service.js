@@ -2,8 +2,8 @@
 import { storageService } from './async-storage.service.js'
 import { utilService } from './util.service.js'
 import { userService } from './user.service.js'
-import { getActionRemoveCar, getActionAddCar, getActionUpdateCar } from '../store/car.actions.js'
-import {store} from '../store/store'
+import { getActionRemoveCar, getActionAddCar, getActionUpdateCar } from '../store/task/task.actions.js'
+import { store } from '../store/store'
 
 // This file demonstrates how to use a BroadcastChannel to notify other browser tabs 
 
@@ -11,21 +11,20 @@ const STORAGE_KEY = 'car'
 const carChannel = new BroadcastChannel('carChannel')
 
 
-;(()=>{
-    carChannel.addEventListener('message', (ev)=>{
-        store.dispatch(ev.data)
-    })
-})()
+    ; (() => {
+        carChannel.addEventListener('message', (ev) => {
+            store.dispatch(ev.data)
+        })
+    })()
 
-export const carService = {
+export const taskService = {
     query,
     getById,
     save,
     remove,
     getEmptyCar,
 }
-window.cs = carService
-
+window.cs = taskService
 
 function query(filterBy) {
     return storageService.query(STORAGE_KEY)
@@ -43,7 +42,7 @@ async function save(car) {
     if (car._id) {
         savedCar = await storageService.put(STORAGE_KEY, car)
         carChannel.postMessage(getActionUpdateCar(savedCar))
-        
+
     } else {
         // Later, owner is set by the backend
         car.owner = userService.getLoggedinUser()

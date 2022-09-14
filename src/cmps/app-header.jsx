@@ -5,7 +5,7 @@ import { Link, NavLink } from 'react-router-dom'
 import routes from '../routes'
 
 
-import { onLogin, onLogout, onSignup, loadUsers, removeUser } from '../store/user.actions.js'
+import { onLogin, onLogout, onSignup, loadUsers, removeUser } from '../store/user/user.actions.js'
 import { LoginSignup } from './login-signup.jsx'
 
 function _AppHeader({ onLogin, onSignup, onLogout, user }) {

@@ -1,6 +1,6 @@
-import { carService } from "../services/task.service.js";
-import { userService } from "../services/user.service.js";
-import { showSuccessMsg, showErrorMsg } from '../services/event-bus.service.js'
+import { taskService } from "../../services/task.service.js";
+import { userService } from "../../services/user.service.js";
+import { showSuccessMsg, showErrorMsg } from '../../services/event-bus.service.js'
 
 // Action Creators:
 export function getActionRemoveCar(carId) {
@@ -25,7 +25,7 @@ export function getActionUpdateCar(car) {
 export function loadCars() {
     return async (dispatch) => {
         try {
-            const cars = await carService.query()
+            const cars = await taskService.query()
             console.log('Cars from DB:', cars)
             dispatch({
                 type: 'SET_CARS',
@@ -42,7 +42,7 @@ export function loadCars() {
 export function removeCar(carId) {
     return async (dispatch) => {
         try {
-            await carService.remove(carId)
+            await taskService.remove(carId)
             console.log('Deleted Succesfully!');
             dispatch(getActionRemoveCar(carId))
             showSuccessMsg('Car removed')
@@ -56,7 +56,7 @@ export function removeCar(carId) {
 export function addCar(car) {
     return (dispatch) => {
 
-        carService.save(car)
+        taskService.save(car)
             .then(savedCar => {
                 console.log('Added Car', savedCar);
                 dispatch(getActionAddCar(savedCar))
@@ -71,7 +71,7 @@ export function addCar(car) {
 
 export function updateCar(car) {
     return (dispatch) => {
-        carService.save(car)
+        taskService.save(car)
             .then(savedCar => {
                 console.log('Updated Car:', savedCar);
                 dispatch(getActionUpdateCar(savedCar))
@@ -129,7 +129,7 @@ export function onRemoveCarOptimistic(carId) {
         })
         showSuccessMsg('Car removed')
 
-        carService.remove(carId)
+        taskService.remove(carId)
             .then(() => {
                 console.log('Server Reported - Deleted Succesfully');
             })

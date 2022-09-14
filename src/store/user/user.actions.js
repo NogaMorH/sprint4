@@ -1,6 +1,5 @@
-import { userService } from "../services/user.service.js";
-import { showErrorMsg } from '../services/event-bus.service.js'
-
+import { userService } from "../../services/user.service.js";
+import { showErrorMsg } from '../../services/event-bus.service.js'
 
 export function loadUsers() {
     return async dispatch => {

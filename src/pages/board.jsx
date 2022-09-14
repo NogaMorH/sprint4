@@ -2,12 +2,12 @@ import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
 
 
-import { loadCars, addCar, updateCar, removeCar, addToCart } from '../store/car.actions.js'
+import { loadCars, addCar, updateCar, removeCar, addToCart } from '../store/task/task.actions.js'
 
 import { showSuccessMsg } from '../services/event-bus.service.js'
-import { carService } from '../services/car.service.js'
+import { taskService } from '../services/task.service.js'
 
-function _CarApp({ loadCars, addCar, updateCar, removeCar, addToCart, cars }) {
+function _Board({ loadCars, addCar, updateCar, removeCar, addToCart, cars }) {
 
     useEffect(() => {
         loadCars()
@@ -17,8 +17,8 @@ function _CarApp({ loadCars, addCar, updateCar, removeCar, addToCart, cars }) {
         removeCar(carId)
     }
     const onAddCar = () => {
-        const car = carService.getEmptyCar()
-        car.vendor = prompt('Vendor?')        
+        const car = taskService.getEmptyCar()
+        car.vendor = prompt('Vendor?')
         addCar(car)
     }
     const onUpdateCar = (car) => {
@@ -26,7 +26,7 @@ function _CarApp({ loadCars, addCar, updateCar, removeCar, addToCart, cars }) {
         const carToSave = { ...car, price }
         updateCar(carToSave)
     }
-    
+
     const onAddToCart = (car) => {
         console.log(`Adding ${car.vendor} to Cart`)
         addToCart(car)
@@ -78,4 +78,4 @@ const mapDispatchToProps = {
 }
 
 
-export const CarApp = connect(mapStateToProps, mapDispatchToProps)(_CarApp)
+export const Board = connect(mapStateToProps, mapDispatchToProps)(_Board)

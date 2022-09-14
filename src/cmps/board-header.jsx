@@ -5,5 +5,4 @@ export const BoardHeader = () => {
             Hello from board header
         </div>
     )
-
 }

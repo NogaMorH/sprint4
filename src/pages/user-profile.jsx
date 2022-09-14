@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import { connect } from 'react-redux'
-import { loadUser } from '../store/user.actions'
+import { loadUser } from '../store/user/user.actions'
 
 export function _UserProfile({ user, loadUser }) {
 
@@ -38,4 +38,4 @@ const mapDispatchToProps = {
   loadUser
 }
 
-export const UserDetails = connect(mapStateToProps, mapDispatchToProps)(_UserProfile)
+export const UserProfile = connect(mapStateToProps, mapDispatchToProps)(_UserProfile)

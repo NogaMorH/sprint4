@@ -4,19 +4,15 @@
 import { createStore, applyMiddleware, combineReducers, compose } from 'redux'
 import thunk from 'redux-thunk'
 
-
-import { carReducer } from './car.reducer.js'
-import { userReducer } from './user.reducer.js'
-import { reviewReducer } from './review.reducer'
+import { taskReducer } from './task/task.reducer.js'
+import { userReducer } from './user/user.reducer.js'
 import { systemReducer } from './system.reducer'
 
 const rootReducer = combineReducers({
-    carModule: carReducer,
+    taskModule: taskReducer,
     userModule: userReducer,
     systemModule: systemReducer,
-    reviewModule: reviewReducer,
 })
-
 
 // export const store = createStore(rootReducer, applyMiddleware(thunk))
 // window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__();
