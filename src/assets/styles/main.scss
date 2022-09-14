@@ -12,16 +12,58 @@
 @import "basics/forms";
 
 
-// Views
-@import "views/about-us";
-@import "views/home-page";
-@import "views/car-app";
-@import "views/review-app";
+// Pages
+@import "pages/home";
+@import "pages/board";
+@import "pages/login-signup";
+@import "pages/user-profile";
+@import "pages/template-page";
+
 
 // Components
 @import "cmps/app-header";
 @import "cmps/app-footer";
 @import "cmps/user-msg";
+@import "cmps/board-header";
+@import "cmps/img-uploader";
+@import "cmps/board-menu";
+@import "cmps/board-side-nav";
+@import "cmps/group-actions-modal";
+@import "cmps/group-list";
+@import "cmps/group-preview";
+@import "cmps/home-demonstration";
+@import "cmps/home-hero";
+@import "cmps/login-signup";
+@import "cmps/task-list";
+@import "cmps/task-details";
+@import "cmps/task-edit-modal";
+@import "cmps/task-filter";
+@import "cmps/task-preview";
+@import "cmps/template-list";
+@import "cmps/template-preview";
+@import "cmps/user-header";
+@import "cmps/user-hero";
+@import "cmps/user-edit";
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
