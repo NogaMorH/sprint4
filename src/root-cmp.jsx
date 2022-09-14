@@ -7,7 +7,7 @@ import routes from './routes'
 
 import { AppHeader } from './cmps/app-header'
 import { AppFooter } from './cmps/app-footer'
-import { UserDetails } from './pages/user-details'
+import { UserDetails } from './pages/user-profile'
 
 export class RootCmp extends React.Component {
 
