@@ -3,34 +3,32 @@ import { userService } from "../../services/user.service.js";
 import { showSuccessMsg, showErrorMsg } from '../../services/event-bus.service.js'
 
 // Action Creators:
-export function getActionRemoveBoard(boardId) {
-    return {
-        type: 'REMOVE_CAR',
-        boardId
-    }
-}
-export function getActionAddBoard(board) {
-    return {
-        type: 'ADD_CAR',
-        board
-    }
-}
-export function getActionUpdateBoard(board) {
-    return {
-        type: 'UPDATE_CAR',
-        board
-    }
-}
+// export function getActionRemoveBoard(boardId) {
+//     return {
+//         type: 'REMOVE_CAR',
+//         boardId
+//     }
+// }
+// export function getActionAddBoard(board) {
+//     return {
+//         type: 'ADD_CAR',
+//         board
+//     }
+// }
+// export function getActionUpdateBoard(board) {
+//     return {
+//         type: 'UPDATE_CAR',
+//         board
+//     }
+// }
 
-export function loadBoards() {
+export function loadBoard(boardId) {
+    console.log('boardId from actions:', boardId)
     return async (dispatch) => {
         try {
-            const boards = await boardService.query()
-            console.log('Boards from DB:', boards)
-            dispatch({
-                type: 'SET_CARS',
-                boards
-            })
+            const board = await boardService.getBoardById(boardId)
+            console.log('Boards from DB:', board)
+            dispatch({ type: 'SET_BOARD', board })
 
         } catch (err) {
             showErrorMsg('Cannot load boards')
@@ -44,7 +42,7 @@ export function removeBoard(boardId) {
         try {
             await boardService.remove(boardId)
             console.log('Deleted Succesfully!');
-            dispatch(getActionRemoveBoard(boardId))
+            // dispatch(getActionRemoveBoard(boardId))
             showSuccessMsg('Board removed')
         } catch (err) {
             showErrorMsg('Cannot remove board')
@@ -59,7 +57,7 @@ export function addBoard(board) {
         boardService.save(board)
             .then(savedBoard => {
                 console.log('Added Board', savedBoard);
-                dispatch(getActionAddBoard(savedBoard))
+                // dispatch(getActionAddBoard(savedBoard))
                 showSuccessMsg('Board added')
             })
             .catch(err => {
@@ -74,7 +72,7 @@ export function updateBoard(board) {
         boardService.save(board)
             .then(savedBoard => {
                 console.log('Updated Board:', savedBoard);
-                dispatch(getActionUpdateBoard(savedBoard))
+                // dispatch(getActionUpdateBoard(savedBoard))
                 showSuccessMsg('Board updated')
             })
             .catch(err => {

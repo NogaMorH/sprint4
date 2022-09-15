@@ -1,4 +1,4 @@
-import { gBoard } from "../data/board"
+import { gBoards } from "../data/board"
 
 export const storageService = {
     query,
@@ -10,7 +10,7 @@ export const storageService = {
 }
 
 function query(entityType, delay = 600) {
-    var entities = JSON.parse(localStorage.getItem(entityType)) || gBoard
+    var entities = JSON.parse(localStorage.getItem(entityType)) || gBoards
 
     return new Promise((resolve, reject) => {
         setTimeout(() => {
@@ -22,10 +22,17 @@ function query(entityType, delay = 600) {
 }
 
 function get(entityType, entityId) {
+    console.log('entityId:', entityId)
     return query(entityType)
         .then(entities => {
+<<<<<<< HEAD
             console.log('entities:', entities);
             entities.find(entity => entity._id === entityId)})
+=======
+            console.log('entities:', entities)
+            return entities.find(entity => entity._id === entityId)
+        })
+>>>>>>> 1639118d9d31eb7f8af57a293b5b98ff0efaa86e
 }
 function post(entityType, newEntity) {
     newEntity._id = _makeId()

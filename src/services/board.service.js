@@ -16,21 +16,31 @@ const STORAGE_KEY = 'board'
 //         })
 //     })()
 
+// var gBoards = require('../data/board')
+// console.log('gBoards:', gBoards)
+
 export const boardService = {
     query,
+<<<<<<< HEAD
     getById,
     getTaskById,
+=======
+    getBoardById,
+>>>>>>> 1639118d9d31eb7f8af57a293b5b98ff0efaa86e
     save,
     remove,
-    getEmptyBoard,
+    // getEmptyBoard,
 }
 window.cs = boardService
 
 function query(filterBy) {
     return storageService.query(STORAGE_KEY)
 }
-function getById(boardId) {
+function getBoardById(boardId) {
+    console.log('boardId: from service', boardId)
     return storageService.get(STORAGE_KEY, boardId)
+     
+    
     // return axios.get(`/api/board/${boardId}`)
 }
 
@@ -53,12 +63,14 @@ async function save(board) {
     return savedBoard
 }
 
-function getEmptyBoard() {
-    return {
-        vendor: 'Susita-' + (Date.now() % 1000),
-        price: utilService.getRandomIntInclusive(1000, 9000),
-    }
-}
+
+
+// function getEmptyBoard() {
+//     return {
+//         vendor: 'Susita-' + (Date.now() % 1000),
+//         price: utilService.getRandomIntInclusive(1000, 9000),
+//     }
+// }
 
 async function getTaskById(boardId, groupId, taskId) {
     // const board = await storageService.get(STORAGE_KEY, boardId)
