@@ -16,7 +16,7 @@ const routes = [
         component: <TemplatePage />,
     },
     {
-        path: 'board/:id',
+        path: 'board/:boardId',
         component: <Board />,
     },
     {
