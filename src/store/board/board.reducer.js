@@ -1,47 +1,34 @@
 const initialState = {
-    cars: [],
-    cart: [],
-    lastRemovedCar: null
+    boards: [],
+    lastRemovedBoard: null
 }
-export function taskReducer(state = initialState, action) {
+export function boardReducer(state = initialState, action) {
     var newState = state
-    var cars
-    var cart
+    var boards
     switch (action.type) {
-        case 'SET_CARS':
-            newState = { ...state, cars: action.cars }
-            break
-        case 'REMOVE_CAR':
-            const lastRemovedCar = state.cars.find(car => car._id === action.carId)
-            cars = state.cars.filter(car => car._id !== action.carId)
-            newState = { ...state, cars, lastRemovedCar }
-            break
-        case 'ADD_CAR':
-            newState = { ...state, cars: [...state.cars, action.car] }
-            break
-        case 'UPDATE_CAR':
-            cars = state.cars.map(car => (car._id === action.car._id) ? action.car : car)
-            newState = { ...state, cars }
-            break
-        case 'ADD_TO_CART':
-            newState = { ...state, cart: [...state.cart, action.car] }
-            break
-        case 'REMOVE_FROM_CART':
-            cart = state.cart.filter(car => car._id !== action.carId)
-            newState = { ...state, cart }
-            break
-        case 'CLEAR_CART':
-            newState = { ...state, cart: [] }
-            break
-        case 'UNDO_REMOVE_CAR':
-            if (state.lastRemovedCar) {
-                newState = { ...state, cars: [...state.cars, state.lastRemovedCar], lastRemovedCar: null }
+        case 'SET_BOARDS':
+            return newState = { ...state, boards: action.boards }
+
+        case 'REMOVE_BOARD':
+            const lastRemovedBoard = state.boards.find(board => board._id === action.boardId)
+            boards = state.boards.filter(board => board._id !== action.boardId)
+            return newState = { ...state, boards, lastRemovedBoard }
+
+        case 'ADD_BOARD':
+            return newState = { ...state, boards: [...state.boards, action.board] }
+
+        case 'UPDATE_BOARD':
+            boards = state.boards.map(board => (board._id === action.board._id) ? action.board : board)
+            return newState = { ...state, boards }
+
+        case 'UNDO_REMOVE_BOARD':
+            if (state.lastRemovedBoard) {
+                return newState = { ...state, boards: [...state.boards, state.lastRemovedBoard], lastRemovedBoard: null }
             }
-            break
         default:
     }
     // For debug:
-    window.carState = newState
+    window.boardState = newState
     // console.log('Prev State:', state)
     // console.log('Action:', action)
     // console.log('New State:', newState)

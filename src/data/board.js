@@ -25,37 +25,37 @@
 // (later on we can place it in a modal and nested route)
 
 // Component
-const activity = {
-    "id": makeId(),
-    "txt": "Changed Color",
-    "createdAt": Date.now(),
-    "byMember": userService.getLoggedinUser(),
-    "task": task
-}
+// const activity = {
+//     "id": utilService.makeId(),
+//     "txt": "Changed Color",
+//     "createdAt": Date.now(),
+//     "byMember": userService.getLoggedinUser(),
+//     "task": "task"
+// }
 
-// Store - saveTask
-function storeSaveTask(task, activity) {
+// // Store - saveTask
+// function storeSaveTask(task, activity) {
 
-    board = boardService.saveTask(boardId, groupId, task, activity)
-    commit(board)
-}
+//     board = boardService.saveTask(boardId, groupId, task, activity)
+//     commit(board)
+// }
 
 // boardService
-function saveTask(boardId, groupId, task, activity) {
-    const board = getById(boardId)
-    // PUT /api/board/b123/task/t678
+// function saveTask(boardId, groupId, task, activity) {
+//     const board = getById(boardId)
+//     // PUT /api/board/b123/task/t678
 
-    // TODO: find the task, and update
-    board.activities.unshift(activity)
-    saveBoard(board)
-    // return board
-    // return task
-}
+//     // TODO: find the task, and update
+//     board.activities.unshift(activity)
+//     saveBoard(board)
+//     // return board
+//     // return task
+// }
 
-export const gBoard = board
-const board = {
+export const gBoard = {
     "_id": "b101",
     "title": "Trello-Sprint 4",
+    "isStarred": false,
     // "archivedAt": null,
     "createdBy": {
         "_id": "u101",
@@ -464,44 +464,44 @@ const user = {
 }
 
 // For Monday Mostly:
-// Dynamic Components: 
-// <TaskPreview> => <tr> 
+// Dynamic Components:
+// <TaskPreview> => <tr>
 //    <td v-for="(cmpType) in cmpsOrder">
 //         <component :is="cmpType" :info="getCmpInfo(cmpType)" @updated="updateTask(cmpType, $event)">
 //    </td>
 // </tr>
 
-function updateTask(cmpType, data) {
-    // Switch
-    // task.members = data;
-    // task.status = data;
+// function updateTask(cmpType, data) {
+//     // Switch
+//     // task.members = data;
+//     // task.status = data;
 
-    // dispatch to store: updateTask(task, activity)
-}
+//     // dispatch to store: updateTask(task, activity)
+// }
 
 
-const cmp1 = {
-    type: 'status-picker',
-    info: {
-        selectedStatus: 'pending',
-        statuses: [{}, {}]
-    }
-}
+// const cmp1 = {
+//     type: 'status-picker',
+//     info: {
+//         selectedStatus: 'pending',
+//         statuses: [{}, {}]
+//     }
+// }
 
-const cmp2 = {
-    type: 'member-picker',
-    info: {
-        selectedMembers: ['m1', 'm2'],
-        members: ['m1', 'm2', 'm3']
-    }
-}
+// const cmp2 = {
+//     type: 'member-picker',
+//     info: {
+//         selectedMembers: ['m1', 'm2'],
+//         members: ['m1', 'm2', 'm3']
+//     }
+// }
 
-const cmp3 = {
-    type: 'date-picker',
-    info: {
-        selectedDate: '2022-09-07',
-    }
-}
+// const cmp3 = {
+//     type: 'date-picker',
+//     info: {
+//         selectedDate: '2022-09-07',
+//     }
+// }
 
 
 // export function TaskPreview({ task }) {

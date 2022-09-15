@@ -1,102 +1,102 @@
-import { taskService } from "../../services/task.service.js";
+import { boardService } from "../../services/board.service.js";
 import { userService } from "../../services/user.service.js";
 import { showSuccessMsg, showErrorMsg } from '../../services/event-bus.service.js'
 
 // Action Creators:
-export function getActionRemoveCar(carId) {
+export function getActionRemoveBoard(boardId) {
     return {
         type: 'REMOVE_CAR',
-        carId
+        boardId
     }
 }
-export function getActionAddCar(car) {
+export function getActionAddBoard(board) {
     return {
         type: 'ADD_CAR',
-        car
+        board
     }
 }
-export function getActionUpdateCar(car) {
+export function getActionUpdateBoard(board) {
     return {
         type: 'UPDATE_CAR',
-        car
+        board
     }
 }
 
-export function loadCars() {
+export function loadBoards() {
     return async (dispatch) => {
         try {
-            const cars = await taskService.query()
-            console.log('Cars from DB:', cars)
+            const boards = await boardService.query()
+            console.log('Boards from DB:', boards)
             dispatch({
                 type: 'SET_CARS',
-                cars
+                boards
             })
 
         } catch (err) {
-            showErrorMsg('Cannot load cars')
-            console.log('Cannot load cars', err)
+            showErrorMsg('Cannot load boards')
+            console.log('Cannot load boards', err)
         }
     }
 }
 
-export function removeCar(carId) {
+export function removeBoard(boardId) {
     return async (dispatch) => {
         try {
-            await taskService.remove(carId)
+            await boardService.remove(boardId)
             console.log('Deleted Succesfully!');
-            dispatch(getActionRemoveCar(carId))
-            showSuccessMsg('Car removed')
+            dispatch(getActionRemoveBoard(boardId))
+            showSuccessMsg('Board removed')
         } catch (err) {
-            showErrorMsg('Cannot remove car')
-            console.log('Cannot remove car', err)
+            showErrorMsg('Cannot remove board')
+            console.log('Cannot remove board', err)
         }
     }
 }
 
-export function addCar(car) {
+export function addBoard(board) {
     return (dispatch) => {
 
-        taskService.save(car)
-            .then(savedCar => {
-                console.log('Added Car', savedCar);
-                dispatch(getActionAddCar(savedCar))
-                showSuccessMsg('Car added')
+        boardService.save(board)
+            .then(savedBoard => {
+                console.log('Added Board', savedBoard);
+                dispatch(getActionAddBoard(savedBoard))
+                showSuccessMsg('Board added')
             })
             .catch(err => {
-                showErrorMsg('Cannot add car')
-                console.log('Cannot add car', err)
+                showErrorMsg('Cannot add board')
+                console.log('Cannot add board', err)
             })
     }
 }
 
-export function updateCar(car) {
+export function updateBoard(board) {
     return (dispatch) => {
-        taskService.save(car)
-            .then(savedCar => {
-                console.log('Updated Car:', savedCar);
-                dispatch(getActionUpdateCar(savedCar))
-                showSuccessMsg('Car updated')
+        boardService.save(board)
+            .then(savedBoard => {
+                console.log('Updated Board:', savedBoard);
+                dispatch(getActionUpdateBoard(savedBoard))
+                showSuccessMsg('Board updated')
             })
             .catch(err => {
-                showErrorMsg('Cannot update car')
-                console.log('Cannot save car', err)
+                showErrorMsg('Cannot update board')
+                console.log('Cannot save board', err)
             })
     }
 }
 
-export function addToCart(car) {
+export function addToBoardt(board) {
     return (dispatch) => {
         dispatch({
             type: 'ADD_TO_CART',
-            car
+            board
         })
     }
 }
-export function removeFromCart(carId) {
+export function removeFromBoardt(boardId) {
     return (dispatch) => {
         dispatch({
             type: 'REMOVE_FROM_CART',
-            carId
+            boardId
         })
     }
 }
@@ -104,14 +104,14 @@ export function checkout() {
     return async (dispatch, getState) => {
         try {
             const state = getState()
-            const total = state.carModule.cart.reduce((acc, car) => acc + car.price, 0)
+            const total = state.boardModule.boardt.reduce((acc, board) => acc + board.price, 0)
             const score = await userService.changeScore(-total)
             dispatch({ type: 'SET_SCORE', score })
             dispatch({ type: 'CLEAR_CART' })
             showSuccessMsg('Charged you: $' + total.toLocaleString())
         } catch (err) {
             showErrorMsg('Cannot checkout, login first')
-            console.log('CarActions: err in checkout', err)
+            console.log('BoardActions: err in checkout', err)
         }
     }
 }
@@ -119,23 +119,23 @@ export function checkout() {
 
 // Demo for Optimistic Mutation 
 // (IOW - Assuming the server call will work, so updating the UI first)
-export function onRemoveCarOptimistic(carId) {
+export function onRemoveBoardOptimistic(boardId) {
 
     return (dispatch, getState) => {
 
         dispatch({
             type: 'REMOVE_CAR',
-            carId
+            boardId
         })
-        showSuccessMsg('Car removed')
+        showSuccessMsg('Board removed')
 
-        taskService.remove(carId)
+        boardService.remove(boardId)
             .then(() => {
                 console.log('Server Reported - Deleted Succesfully');
             })
             .catch(err => {
-                showErrorMsg('Cannot remove car')
-                console.log('Cannot load cars', err)
+                showErrorMsg('Cannot remove board')
+                console.log('Cannot load boards', err)
                 dispatch({
                     type: 'UNDO_REMOVE_CAR',
                 })

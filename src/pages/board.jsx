@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
 
 
-import { loadBoards, addBoard, updateBoard, removeBoard, addToBoardt } from '../store/board/task.actions.js'
+import { loadBoards, addBoard, updateBoard, removeBoard, addToBoardt } from '../store/board/board.actions'
 
 import { showSuccessMsg } from '../services/event-bus.service.js'
 import { boardService } from '../services/board.service'

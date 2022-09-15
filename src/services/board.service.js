@@ -1,9 +1,8 @@
-
 import { storageService } from './async-storage.service.js'
 import { utilService } from './util.service.js'
 import { userService } from './user.service.js'
-import { getActionRemoveBoard, getActionAddBoard, getActionUpdateBoard } from '../store/board/task.actions.js'
-import { store } from '../store/store'
+// import { getActionRemoveBoard, getActionAddBoard, getActionUpdateBoard } from '../store/board/board.actions'
+// import { store } from '../store/store'
 
 // This file demonstrates how to use a BroadcastChannel to notify other browser tabs 
 
