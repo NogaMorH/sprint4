@@ -1,3 +1,4 @@
+import { TaskPreview } from './task-preview'
 // import { useState } from "react"
 
 
@@ -15,17 +16,15 @@ export const TaskList = ({ tasks }) => {
     //     console.log('mashu:', mashu)
 
     //     }
-    
+
 
     return (
-        <ul>
+        <ul className="task-list">
             {tasks.map(task => (
-                <li key={task.id}>
-                    <h4>{task.title}</h4>
-                    {/* <span>{formatTime(task.dueDate)}</span> */}
-                    {/* <div>{task.memberIds.map(memberId => memberId)}</div> */}
-
+                <li>
+                    <TaskPreview task={task} />
                 </li>
+
             ))}
         </ul>
     )

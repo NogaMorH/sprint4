@@ -31,14 +31,10 @@ export const Board = () => {
     //     updateBoard(boardToSave)
     // }
 
-
-console.log('board grouppssssss:', board.groups)
 if(!board) return <div>Loading...</div>
     return (
         
         <div className='board'>
-            <h3>Boards App</h3>
-            <h1> hello from board b101</h1>
             <BoardHeader />
             <GroupList groups={board.groups} />
 
@@ -46,20 +42,3 @@ if(!board) return <div>Loading...</div>
         </div>
     )
 }
-
-
-// function mapStateToProps(state) {
-//     return {
-//         boards: state.boardModule.boards
-//     }
-// }
-// const mapDispatchToProps = {
-//     loadBoard,
-//     removeBoard,
-//     addBoard,
-//     updateBoard,
-//     addToBoardt
-// }
-
-
-// export const Board = connect(mapStateToProps, mapDispatchToProps)(_Board)
