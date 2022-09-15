@@ -1,7 +1,25 @@
 .home-hero {
-    .hero-title {
-        font-size: rem(48px);
-        font-family: charlie-text-semibold, sans-serif;
-        line-height: 1.25;
+
+    align-items: center;
+    padding-top: 120px;
+
+    .hero-text {
+        .hero-title {
+            font-size: rem(48px);
+            font-family: charlie-text-semibold, sans-serif;
+            line-height: 1.25;
+            margin-bottom: 8px;
+        }
+
+        .hero-paragraph {
+            font-size: rem(20px);
+            font-family: charlie-text-regular, sans-serif;
+            margin-bottom: 40px;
+        }
+    }
+
+    .hero-img {
+        max-width: 350px;
+        margin-left: 80px;
     }
 }

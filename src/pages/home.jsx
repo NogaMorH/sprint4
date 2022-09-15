@@ -7,8 +7,8 @@ export const Home = () => {
     return (
         <div className='main-layout home'>
             <HomeHero />
-            <HomeDemonstration />
-            <AppFooter />
+            {/* <HomeDemonstration /> */}
+            {/* <AppFooter /> */}
         </div>
     )
 }

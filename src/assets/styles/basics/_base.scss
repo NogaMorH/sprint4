@@ -46,21 +46,38 @@ ul {
     margin: 0;
 }
 
+.btn {
+    display: flex;
+    align-items: center;
+    transition: background-color .2s;
+}
+
 .btn:hover {
     cursor: pointer;
 }
 
 .btn-wide {
-    background-color: $clr6;
+    background-color: $clr8;
     color: $clr5;
     font-family: charlie-text-regular, sans-serif;
     font-size: em(19.2px);
-    padding: 8px 24px;
-    display: flex;
-    align-items: center;
+    padding: em(8px) em(24px);
     line-height: 1.5;
 }
 
 .btn-wide:hover {
     text-decoration: none;
+    background-color: $clr10;
+}
+
+.btn-primary {
+    font-family: charlie-text-regular, sans-serif;
+    background-color: $clr9;
+    font-size: em(19.2px);
+    padding: em(12px) em(16px);
+    border-radius: 0.3em;
+}
+
+.btn-primary:hover {
+    background-color: $clr11;
 }

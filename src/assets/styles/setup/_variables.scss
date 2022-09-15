@@ -1,4 +1,4 @@
-// Colors
+// Color Palette
 //App header color (when logged in)
 $clr1 :#0369a7;
 
@@ -14,14 +14,21 @@ $clr4: #fbfbfc;
 // home header bg color
 $clr5: #fff;
 
-// button clr
-$clr6: #172b4d;
-
 // home bg color
-$clr7: rgb(234, 230, 255);
+$clr6: rgb(234, 230, 255);
 
-// home text clr
-$clr8: #091e42;
+// home text color
+$clr7: #091e42;
+
+// Additional Colors
+// wide btn bg color
+$clr8: #172b4d;
+
+// btn primary bg color
+$clr9: #0065ff;
+
+$clr10: lighten($clr8, 10%);
+$clr11: darken($clr9, 10%);
 
 // Breakpoints
 $mobile-breakpoint: 460px;
