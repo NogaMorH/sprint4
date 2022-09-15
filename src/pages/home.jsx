@@ -1,7 +1,7 @@
-import logo from '../assets/img/logo.png'
+// import logo from '../assets/img/logo.png'
 import { AppFooter } from '../cmps/app-footer'
-import { HomeDemonstration } from '../cmps/home-demonstration'
-import { HomeHero } from '../cmps/home-hero'
+import { HomeDemonstration } from '../cmps/home/home-demonstration'
+import { HomeHero } from '../cmps/home/home-hero'
 
 export const Home = () => {
 

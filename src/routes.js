@@ -1,3 +1,4 @@
+import { TaskDetails } from './cmps/board/task-details.jsx'
 import { Board } from './pages/board.jsx'
 import { Home } from './pages/home.jsx'
 import { LoginSignup } from './pages/login-signup.jsx'
@@ -17,6 +18,10 @@ const routes = [
     {
         path: 'board/:id',
         component: <Board />,
+    },
+    {
+        path: 'board/:id/task/:id',
+        component: <TaskDetails />,
     },
     {
         path: 'login',

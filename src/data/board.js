@@ -52,10 +52,11 @@ function saveTask(boardId, groupId, task, activity) {
     // return task
 }
 
+export const gBoard = board
 const board = {
     "_id": "b101",
     "title": "Trello-Sprint 4",
-    "archivedAt": null,
+    // "archivedAt": null,
     "createdBy": {
         "_id": "u101",
         "fullname": "Kfir Azulay",
@@ -131,8 +132,8 @@ const board = {
                 {
                     "id": "t101",
                     "title": "Demo 1",
-                    "createdAt": 1663156800000,
                     "dueDate": 1663480800000,
+                    // "isDone": false,
                     "memberIds": ["u101", "u102", "u103"],
                     "attachment": "https://www.google.com",
                     "checklists": [
@@ -177,13 +178,11 @@ const board = {
                 {
                     "id": "t102",
                     "title": "Demo 2",
-                    "createdAt": 1663156800000,
                     "dueDate": 1663840800000
                 },
                 {
                     "id": "t103",
                     "title": "Demo 3",
-                    "createdAt": 1663156800000,
                     "dueDate": 1664439300000
                 }
             ]
@@ -191,7 +190,6 @@ const board = {
         {
             "id": "g102",
             "title": "Finish by 4pm",
-            "createdAt": 1663156800000,
             "style": {},
             "byMember": {
                 "id": "u103",
@@ -202,7 +200,6 @@ const board = {
                 {
                     "id": "t104",
                     "title": "Create Trello diagram",
-                    "createdAt": 1663156800000,
                     "dueDate": 1663160400000,
                     "labelIds": ["l101", "l103"],
                     "memberIds": ["u101", "u102", "u103"],
@@ -210,7 +207,6 @@ const board = {
                 {
                     "id": "t105",
                     "title": "Create demo data in JSON",
-                    "createdAt": 1663156800000,
                     "dueDate": 1663160400000,
                     "labelIds": ["l101", "l103"],
                     "memberIds": ["u101", "u102", "u103"],
@@ -220,7 +216,6 @@ const board = {
         {
             "id": "g103",
             "title": "Design",
-            "createdAt": 1663156800000,
             "style": {},
             "attachment": "https://www.google.com",
             "byMember": {
@@ -232,13 +227,11 @@ const board = {
                 {
                     "id": "t106",
                     "title": "Css tricks",
-                    "createdAt": 1663156800000,
                     "labelIds": ["l104"],
                 },
                 {
                     "id": "t107",
                     "title": "Color Palette variables",
-                    "createdAt": 1663156800000,
                     "labelIds": ["l101"],
                     "memberIds": ["u101"],
                     "comments": [
@@ -259,7 +252,6 @@ const board = {
         {
             "id": "g104",
             "title": "Backlog - client",
-            "createdAt": 1663156800000,
             "style": {},
             "byMember": {
                 "id": "u103",
@@ -270,7 +262,6 @@ const board = {
                 {
                     "id": "t108",
                     "title": "Create components",
-                    "createdAt": 1663156800000,
                     "labelIds": ["l104"],
                     "memberIds": ["u101", "u102", "u103"],
                     "attachment": "https://www.google.com",
