@@ -16,11 +16,11 @@ const routes = [
         component: <TemplatePage />,
     },
     {
-        path: 'board/:id',
+        path: 'board/:boardId',
         component: <Board />,
     },
     {
-        path: 'board/:id/task/:id',
+        path: 'board/:boardId/group/:groupId/task/:taskId',
         component: <TaskDetails />,
     },
     {

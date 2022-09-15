@@ -52,7 +52,7 @@
 //     // return task
 // }
 
-export const gBoard = {
+export const gBoards = [{
     "_id": "b101",
     "title": "Trello-Sprint 4",
     "isStarred": false,
@@ -117,7 +117,7 @@ export const gBoard = {
             "imgUrl": "https://www.google.com"
         }
     ],
-    "groupes": [
+    "groups": [
         {
             "id": "g101",
             "title": "Demos",
@@ -449,7 +449,7 @@ export const gBoard = {
             }
         }
     ]
-}
+}]
 const user = {
     "_id": "u101",
     "fullname": "Abi Abambi",

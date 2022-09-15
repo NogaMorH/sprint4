@@ -16,22 +16,29 @@ const STORAGE_KEY = 'board'
 //         })
 //     })()
 
+// var gBoards = require('../data/board')
+// console.log('gBoards:', gBoards)
+
 export const boardService = {
     query,
-    getById,
+    getBoardById,
     save,
     remove,
-    getEmptyBoard,
+    // getEmptyBoard,
 }
 window.cs = boardService
 
 function query(filterBy) {
     return storageService.query(STORAGE_KEY)
 }
-function getById(boardId) {
+function getBoardById(boardId) {
+    console.log('boardId: from service', boardId)
     return storageService.get(STORAGE_KEY, boardId)
+     
+    
     // return axios.get(`/api/board/${boardId}`)
 }
+
 async function remove(boardId) {
     await storageService.remove(STORAGE_KEY, boardId)
     // boardChannel.postMessage(getActionRemoveBoard(boardId))
@@ -51,12 +58,37 @@ async function save(board) {
     return savedBoard
 }
 
-function getEmptyBoard() {
-    return {
-        vendor: 'Susita-' + (Date.now() % 1000),
-        price: utilService.getRandomIntInclusive(1000, 9000),
-    }
+
+
+// function getEmptyBoard() {
+//     return {
+//         vendor: 'Susita-' + (Date.now() % 1000),
+//         price: utilService.getRandomIntInclusive(1000, 9000),
+//     }
+// }
+
+async function getTaskById(boardId, groupId, taskId) {
+    // const board = await storageService.get(STORAGE_KEY, boardId)
+    // console.log('board:', board);
+    const group = await storageService.get('groupes', groupId)
+    console.log('group:', group);
+    // const group = await board.groupes.find(group => group.id === groupId)
+    // console.log('group:', group);
+    // return await group.tasks.find(task => task.id === taskId)
+    // return axios.get(`/api/board/${boardId}`)
 }
+
+
+// function saveTask(boardId, groupId, task, activity) {
+//     const board = getById(boardId)
+//     // PUT /api/board/b123/task/t678
+
+//     // TODO: find the task, and update
+//     board.activities.unshift(activity)
+//     saveBoard(board)
+//     // return board
+//     // return task
+// }
 
 
 // TEST DATA
