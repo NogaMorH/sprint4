@@ -136,6 +136,7 @@ export const gBoards = [{
                     // "isDone": false,
                     "memberIds": ["u101", "u102", "u103"],
                     "attachment": "https://cdn3.vectorstock.com/i/1000x1000/43/32/sticker-of-a-cartoon-shocked-monkey-vector-24124332.jpg",
+                    "description": "Demo Meeting with Asaf and Yaron. Don't forget to come in a good mood 😎",
                     "checklists": [
                         {
                             "id": "YEhmF",
@@ -154,7 +155,7 @@ export const gBoards = [{
                                 {
                                     "id": "212dX",
                                     "title": "JSON data",
-                                    "isDone": false
+                                    "isDone": true
                                 },
                                 {
                                     "id": "212bX",
@@ -163,12 +164,28 @@ export const gBoards = [{
                                 },
                                 {
                                     "id": "212cX",
-                                    "title": "Basic Board- members/attachment",
+                                    "title": "Basic Board - members/attachment",
                                     "isDone": false
                                 },
                                 {
                                     "id": "212yX",
                                     "title": "Templates",
+                                    "isDone": false
+                                }
+                            ]
+                        },
+                        {
+                            "id": "YEhdF",
+                            "title": "Good Vibe😎",
+                            "todos": [
+                                {
+                                    "id": "212js",
+                                    "title": "no stress",
+                                    "isDone": false
+                                },
+                                {
+                                    "id": "212hs",
+                                    "title": "confidence",
                                     "isDone": false
                                 }
                             ]

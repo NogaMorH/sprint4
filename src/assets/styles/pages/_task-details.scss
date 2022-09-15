@@ -1,0 +1,49 @@
+.task-details {
+    width: 750px;
+    border: 1px solid black;
+    margin: auto;
+    padding-top: 100px;
+
+    >* {
+        padding-bottom: 10px;
+    }
+
+    h6 {
+        font-size: rem(12px);
+        line-height: rem(20px);
+        color: #5e6c84;
+        font-weight: 600;
+    }
+
+    #task-cover-img {
+        width: 20%;
+        margin: auto;
+    }
+
+    .members {
+
+        img {
+            width: 20px;
+        }
+    }
+
+    .date-container {
+
+        // padding: ;
+        .date {
+            background-color: rgba(9, 30, 66, 0.04);
+            border-radius: 2px;
+            padding: 6px 12px;
+
+            &:hover {
+                background-color: rgba(9, 30, 66, 0.082);
+            }
+        }
+    }
+
+    .description {
+        
+    }
+
+
+}

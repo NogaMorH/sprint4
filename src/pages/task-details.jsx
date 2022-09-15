@@ -4,6 +4,8 @@ import { useDispatch, useSelector } from 'react-redux'
 import { boardService } from '../services/board.service'
 import { loadBoard, addBoard, updateBoard, removeBoard } from '../store/board/board.actions'
 import { utilService } from '../services/util.service'
+import { Checklists } from '../cmps/board/checklists'
+import { TaskOptions } from '../cmps/board/task-options'
 
 export const TaskDetails = () => {
 
@@ -17,7 +19,7 @@ export const TaskDetails = () => {
 
     useEffect(() => {
         loadTask(boardId, groupId, taskId)
-    }, [])
+    })
 
     const loadTask = async (boardId, groupId, taskId) => {
         const task = await boardService.getTaskById(boardId, groupId, taskId)
@@ -27,29 +29,41 @@ export const TaskDetails = () => {
     }
 
     if (!board || !task) return <div>Loading...</div>
-    const { title, dueDate, memberIds, attachment, checklists } = task
+    const { title, dueDate, memberIds, attachment, checklists, description } = task
 
     const getFormatDate = (dueDate) => {
         const monthAndDay = utilService.formatMonthDay(dueDate)
         const time = utilService.formatAMPM(dueDate)
-        return monthAndDay + ' At ' + time
+        return monthAndDay + ' at ' + time
+    }
+
+    const handleChange = () => {
+        console.log('checkbox checked');
     }
 
     return (
-        <div style={{ border: '1px solid black' }}>
-            <img src={attachment} width="100" />
-            <h4>{title}</h4>
+        <div className="task-details">
+            <img id='task-cover-img' src={attachment} alt="cover" />
+            <h3 className='task-title'>{title}</h3>
             <div className="members">
-                Members
+                <h6>Members</h6>
                 {memberIds.map(memberId => (
-                    <img key={memberId} src={boardService.getMemberImgUrl(board, memberId)} width="50" />
+                    <img key={memberId} src={boardService.getMemberImgUrl(board, memberId)} alt="profile img" />
                 ))}
             </div>
-            <div className="date">
+            <div className="date-container">
+                <h6>Due date</h6>
                 <input type="checkbox" />
-                <span>{getFormatDate(dueDate)}</span>
+                <span className="date">{getFormatDate(dueDate)}</span>
                 {/* <input type="text" value={getFormatDate(dueDate)} /> */}
             </div>
+            <div className="description">
+                <h4>Description</h4>
+                <p>{description}</p>
+            </div>
+
+            <Checklists checklists={checklists} handleChange={handleChange} />
+            <TaskOptions />
         </div>
     )
 }
