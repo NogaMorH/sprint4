@@ -1,4 +1,4 @@
-import { TaskDetails } from './cmps/board/task-details.jsx'
+import { TaskDetails } from './pages/task-details.jsx'
 import { Board } from './pages/board.jsx'
 import { Home } from './pages/home.jsx'
 import { LoginSignup } from './pages/login-signup.jsx'

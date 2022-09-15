@@ -23,11 +23,11 @@ import { showSuccessMsg, showErrorMsg } from '../../services/event-bus.service.j
 // }
 
 export function loadBoard(boardId) {
-    console.log('boardId from actions:', boardId)
+    // console.log('boardId from actions:', boardId)
     return async (dispatch) => {
         try {
             const board = await boardService.getBoardById(boardId)
-            console.log('Boards from DB:', board)
+            // console.log('Boards from DB:', board)
             dispatch({ type: 'SET_BOARD', board })
 
         } catch (err) {

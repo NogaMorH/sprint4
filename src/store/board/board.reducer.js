@@ -1,5 +1,5 @@
 const initialState = {
-    board: {},
+    board: null,
     lastRemovedBoard: null
 }
 export function boardReducer(state = initialState, action) {

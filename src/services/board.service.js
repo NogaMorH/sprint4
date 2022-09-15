@@ -22,20 +22,28 @@ const STORAGE_KEY = 'board'
 export const boardService = {
     query,
     getBoardById,
+    getTaskById,
     save,
     remove,
-    // getEmptyBoard,
+    getMemberImgUrl
 }
 window.cs = boardService
 
 function query(filterBy) {
     return storageService.query(STORAGE_KEY)
 }
+
 function getBoardById(boardId) {
-    console.log('boardId: from service', boardId)
     return storageService.get(STORAGE_KEY, boardId)
-     
-    
+
+    // return axios.get(`/api/board/${boardId}`)
+}
+
+async function getTaskById(boardId, groupId, taskId) {
+    const board = await storageService.get(STORAGE_KEY, boardId)
+    const group = board.groups.find(group => group.id === groupId)
+    return group.tasks.find(task => task.id === taskId)
+
     // return axios.get(`/api/board/${boardId}`)
 }
 
@@ -43,6 +51,7 @@ async function remove(boardId) {
     await storageService.remove(STORAGE_KEY, boardId)
     // boardChannel.postMessage(getActionRemoveBoard(boardId))
 }
+
 async function save(board) {
     var savedBoard
     if (board._id) {
@@ -58,42 +67,10 @@ async function save(board) {
     return savedBoard
 }
 
-
-
-// function getEmptyBoard() {
-//     return {
-//         vendor: 'Susita-' + (Date.now() % 1000),
-//         price: utilService.getRandomIntInclusive(1000, 9000),
-//     }
-// }
-
-async function getTaskById(boardId, groupId, taskId) {
-    // const board = await storageService.get(STORAGE_KEY, boardId)
-    // console.log('board:', board);
-    const group = await storageService.get('groupes', groupId)
-    console.log('group:', group);
-    // const group = await board.groupes.find(group => group.id === groupId)
-    // console.log('group:', group);
-    // return await group.tasks.find(task => task.id === taskId)
-    // return axios.get(`/api/board/${boardId}`)
+function getMemberImgUrl(board, memberId) {
+    const url = board.members.find(member => member._id === memberId).imgUrl
+    return url
 }
-
-
-// function saveTask(boardId, groupId, task, activity) {
-//     const board = getById(boardId)
-//     // PUT /api/board/b123/task/t678
-
-//     // TODO: find the task, and update
-//     board.activities.unshift(activity)
-//     saveBoard(board)
-//     // return board
-//     // return task
-// }
-
 
 // TEST DATA
 // storageService.post(STORAGE_KEY, {vendor: 'Subali Rahok 2', price: 980}).then(x => console.log(x))
-
-
-
-
