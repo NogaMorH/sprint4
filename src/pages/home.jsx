@@ -1,4 +1,3 @@
-import logo from '../assets/img/logo.png'
 import { AppFooter } from '../cmps/app-footer'
 import { HomeDemonstration } from '../cmps/home-demonstration'
 import { HomeHero } from '../cmps/home-hero'
