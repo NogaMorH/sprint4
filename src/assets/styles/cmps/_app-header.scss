@@ -10,6 +10,11 @@
         font-family: charlie-text-bold, sans-serif;
         font-size: em(30px);
         padding: 6.5px 6.5px 6.5px 16px;
+
+        img {
+            max-width: rem(22px);
+            margin-right: rem(6px);
+        }
     }
 
     &:hover {

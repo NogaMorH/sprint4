@@ -1,9 +1,13 @@
-import { Link } from "react-router-dom"
+import { Link } from 'react-router-dom'
+import logo from '../assets/img/trello-logo.png'
 
 export const AppHeader = () => {
     return (
         <div className='flex app-header'>
-            <div className='logo'>Trello</div>
+            <div className='logo'>
+                <img src={logo} />
+                Trello
+            </div>
             {/* <nav></nav> */}
             <div className='flex header-btns'>
                 <Link to='login' className='login-link'>Log in</Link>
