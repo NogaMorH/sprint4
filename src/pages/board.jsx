@@ -2,58 +2,58 @@ import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
 
 
-import { loadCars, addCar, updateCar, removeCar, addToCart } from '../store/task/task.actions.js'
+import { loadBoards, addBoard, updateBoard, removeBoard, addToBoardt } from '../store/board/board.actions'
 
 import { showSuccessMsg } from '../services/event-bus.service.js'
-import { taskService } from '../services/task.service.js'
+import { boardService } from '../services/board.service'
 
-function _Board({ loadCars, addCar, updateCar, removeCar, addToCart, cars }) {
+function _Board({ loadBoards, addBoard, updateBoard, removeBoard, addToBoardt, boards }) {
 
     useEffect(() => {
-        loadCars()
+        loadBoards()
     }, [])
 
-    const onRemoveCar = (carId) => {
-        removeCar(carId)
+    const onRemoveBoard = (boardId) => {
+        removeBoard(boardId)
     }
-    const onAddCar = () => {
-        const car = taskService.getEmptyCar()
-        car.vendor = prompt('Vendor?')
-        addCar(car)
+    const onAddBoard = () => {
+        const board = boardService.getEmptyBoard()
+        board.vendor = prompt('Vendor?')
+        addBoard(board)
     }
-    const onUpdateCar = (car) => {
+    const onUpdateBoard = (board) => {
         const price = +prompt('New price?')
-        const carToSave = { ...car, price }
-        updateCar(carToSave)
+        const boardToSave = { ...board, price }
+        updateBoard(boardToSave)
     }
 
-    const onAddToCart = (car) => {
-        console.log(`Adding ${car.vendor} to Cart`)
-        addToCart(car)
-        showSuccessMsg('Added to Cart')
+    const onAddToBoardt = (board) => {
+        console.log(`Adding ${board.vendor} to Boardt`)
+        addToBoardt(board)
+        showSuccessMsg('Added to Boardt')
     }
 
     return (
         <div>
-            <h3>Cars App</h3>
+            <h3>Boards App</h3>
             <main>
 
-                <button onClick={onAddCar}>Add Car ⛐</button>
+                <button onClick={onAddBoard}>Add Board ⛐</button>
 
-                <ul className="car-list">
+                <ul className="board-list">
 
-                    {cars.map(car =>
-                        <li className="car-preview" key={car._id}>
-                            <h4>{car.vendor}</h4>
+                    {boards.map(board =>
+                        <li className="board-preview" key={board._id}>
+                            <h4>{board.vendor}</h4>
                             <h1>⛐</h1>
-                            <p>Price: <span>${car.price.toLocaleString()}</span></p>
-                            <p>Owner: <span>{car.owner && car.owner.fullname}</span></p>
+                            <p>Price: <span>${board.price.toLocaleString()}</span></p>
+                            <p>Owner: <span>{board.owner && board.owner.fullname}</span></p>
                             <div>
-                                <button onClick={() => { onRemoveCar(car._id) }}>x</button>
-                                <button onClick={() => { onUpdateCar(car) }}>Edit</button>
+                                <button onClick={() => { onRemoveBoard(board._id) }}>x</button>
+                                <button onClick={() => { onUpdateBoard(board) }}>Edit</button>
                             </div>
 
-                            <button className="buy" onClick={() => { onAddToCart(car) }}>Add to Cart</button>
+                            <button className="buy" onClick={() => { onAddToBoardt(board) }}>Add to Boardt</button>
                         </li>)
                     }
 
@@ -66,15 +66,15 @@ function _Board({ loadCars, addCar, updateCar, removeCar, addToCart, cars }) {
 
 function mapStateToProps(state) {
     return {
-        cars: state.carModule.cars
+        boards: state.boardModule.boards
     }
 }
 const mapDispatchToProps = {
-    loadCars,
-    removeCar,
-    addCar,
-    updateCar,
-    addToCart
+    loadBoards,
+    removeBoard,
+    addBoard,
+    updateBoard,
+    addToBoardt
 }
 
 

@@ -4,12 +4,12 @@
 import { createStore, applyMiddleware, combineReducers, compose } from 'redux'
 import thunk from 'redux-thunk'
 
-import { taskReducer } from './task/task.reducer.js'
+import { boardReducer } from './board/board.reducer.js'
 import { userReducer } from './user/user.reducer.js'
 import { systemReducer } from './system.reducer'
 
 const rootReducer = combineReducers({
-    taskModule: taskReducer,
+    boardModule: boardReducer,
     userModule: userReducer,
     systemModule: systemReducer,
 })
