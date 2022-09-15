@@ -2,33 +2,25 @@
     box-sizing: border-box;
 }
 
-::selection {
-    background-color: $clr1;
-    color: $clr6;
-}
-
 html {
     font-family: montserrat;
-    line-height: 1.6;
-    color: $clr2;
 }
 
 body {
-    font-size: rem(18px);
     margin: 0;
-    max-width: 1024px;
-    margin: auto;
+    padding: 0;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
     font-family: caveat;
     margin: 0 0 0.6em;
     line-height: 1;
-}
-
-
-section, main, footer {
-    padding: 5px;
+    font-weight: 400;
 }
 
 img {
@@ -41,8 +33,51 @@ p {
 
 a {
     text-decoration: none;
+    color: inherit;
 }
+
 a:hover {
     text-decoration: underline;
 }
 
+ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.btn {
+    display: flex;
+    align-items: center;
+    transition: background-color .2s;
+}
+
+.btn:hover {
+    cursor: pointer;
+}
+
+.btn-wide {
+    background-color: $clr8;
+    color: $clr5;
+    font-family: charlie-text-regular, sans-serif;
+    font-size: em(19.2px);
+    padding: em(8px) em(24px);
+    line-height: 1.5;
+}
+
+.btn-wide:hover {
+    text-decoration: none;
+    background-color: $clr10;
+}
+
+.btn-primary {
+    font-family: charlie-text-regular, sans-serif;
+    background-color: $clr9;
+    font-size: em(19.2px);
+    padding: em(12px) em(16px);
+    border-radius: 0.3em;
+}
+
+.btn-primary:hover {
+    background-color: $clr11;
+}
