@@ -1,3 +1,9 @@
 .board {
     overflow-x: scroll;
+    overflow-y: hidden;
+    height: 100vh;
+    padding-top: rem(60px);
+    margin-bottom: rem(8px);
+    padding-bottom: 8px;
+
 }

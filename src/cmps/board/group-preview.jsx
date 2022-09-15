@@ -7,7 +7,11 @@ export const GroupPreview = ({ group }) => {
             <h3>{group.title}</h3>
             <div>...</div>
             </div>
+            {/* {board.tasks.labelsId && <div className="group-labels">
+
+            </div>} */}
             <TaskList tasks={group.tasks} />
+            
         </div>
     )
 }

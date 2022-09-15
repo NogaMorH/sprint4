@@ -1,0 +1,27 @@
+.task-preview-container {
+    // width: 96%;
+    // margin: auto;
+
+
+
+
+    .task-preview {
+        overflow: hidden;
+        padding: 6px 8px 2px;
+        z-index: 10;
+        cursor: pointer;
+        background-color: $clr5;
+        margin-bottom: 8px;
+        border-radius: 4px;
+
+        .task-title {
+            font-family: charlie-text-regular;
+         
+        }
+
+        .task-badge-container {
+        
+            
+        }
+    }
+}
