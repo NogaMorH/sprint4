@@ -21,12 +21,7 @@ const STORAGE_KEY = 'board'
 
 export const boardService = {
     query,
-<<<<<<< HEAD
-    getById,
-    getTaskById,
-=======
     getBoardById,
->>>>>>> 1639118d9d31eb7f8af57a293b5b98ff0efaa86e
     save,
     remove,
     // getEmptyBoard,
