@@ -31,8 +31,7 @@ window.cs = boardService
 function query(filterBy) {
     return storageService.query(STORAGE_KEY)
 }
-function getBoardById(boardId) {
-    console.log('boardId: from service', boardId)
+async function getBoardById(boardId) {
     return storageService.get(STORAGE_KEY, boardId)
      
     
