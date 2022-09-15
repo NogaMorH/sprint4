@@ -31,14 +31,16 @@ export const Board = () => {
     //     updateBoard(boardToSave)
     // }
 
-if(!board) return <div>Loading...</div>
+    if (!board) return <div>Loading...</div>
     return (
-        
-        <div className='board'>
-            <BoardHeader />
-            <GroupList groups={board.groups} />
 
-
-        </div>
+        <main className='board '>
+            <div className='board-header-container'>
+                <BoardHeader />
+            </div>
+            <div className="board-layout">
+                <GroupList groups={board.groups} />
+            </div>
+        </main>
     )
 }

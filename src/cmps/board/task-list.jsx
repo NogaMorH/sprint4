@@ -4,7 +4,6 @@ import { TaskPreview } from './task-preview'
 
 export const TaskList = ({ tasks }) => {
     // get members ids from the board.members and get only the members url
-    // const board = useSelector(state => state.boardModule.board)
 
     // const [date, setDate] = useState(new Date())
 
@@ -21,7 +20,7 @@ export const TaskList = ({ tasks }) => {
     return (
         <ul className="task-list">
             {tasks.map(task => (
-                <li>
+                <li key={task.id}>
                     <TaskPreview task={task} />
                 </li>
 
