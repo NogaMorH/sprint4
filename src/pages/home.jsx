@@ -5,7 +5,7 @@ import { HomeHero } from '../cmps/home/home-hero'
 export const Home = () => {
 
     return (
-        <div>
+        <div className='home'>
             <HomeHero />
             <HomeDemonstration />
             <AppFooter />
