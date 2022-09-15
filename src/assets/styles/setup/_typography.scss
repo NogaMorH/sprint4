@@ -4,13 +4,18 @@
 }
 
 @font-face {
-    font-family: charlie-bold;
+    font-family: charlie-text-bold;
     src: url(../../fonts/charlie/CharlieText-Bold.ttf);
 }
 
 @font-face {
-    font-family: charlie-regular;
+    font-family: charlie-text-regular;
     src: url(../../fonts/charlie/CharlieText-Regular.ttf);
+}
+
+@font-face {
+    font-family: charlie-text-semibold;
+    src: url(../../fonts/charlie/CharlieDisplay-Semibold.ttf);
 }
 
 @font-face {

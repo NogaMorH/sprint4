@@ -2,9 +2,10 @@
     justify-content: space-between;
     align-items: stretch;
     background-color: $clr5;
+    color: $clr8;
 
     .logo {
-        font-family: charlie-bold, sans-serif;
+        font-family: charlie-text-bold, sans-serif;
         font-size: em(30px);
         padding: 6.5px 6.5px 6.5px 16px;
     }
