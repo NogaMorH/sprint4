@@ -99,22 +99,22 @@ export const gBoards = [{
         {
             "_id": "u101",
             "fullname": "Kfir Azulay",
-            "imgUrl": "https://www.google.com"
+            "imgUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRWuGm_F7huJCuDQAkElfFMabLcJORdFDNing&usqp=CAU"
         },
         {
             "_id": "u102",
             "fullname": "Noga Mor-Havilio",
-            "imgUrl": "https://www.google.com"
+            "imgUrl": "https://static.xx.fbcdn.net/assets/?revision=816167972411634&name=desktop-creating-an-account-icon&density=1"
         },
         {
             "_id": "u103",
             "fullname": "Rebecca Krukover",
-            "imgUrl": "https://www.google.com"
+            "imgUrl": "https://cdn.pixabay.com/photo/2017/06/13/12/53/profile-2398782_1280.png"
         },
         {
             "_id": "u104",
             "fullname": "Elon B",
-            "imgUrl": "https://www.google.com"
+            "imgUrl": "https://t3.ftcdn.net/jpg/03/46/83/96/360_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg"
         }
     ],
     "groups": [
@@ -135,7 +135,7 @@ export const gBoards = [{
                     "dueDate": 1663480800000,
                     // "isDone": false,
                     "memberIds": ["u101", "u102", "u103"],
-                    "attachment": "https://www.google.com",
+                    "attachment": "https://cdn3.vectorstock.com/i/1000x1000/43/32/sticker-of-a-cartoon-shocked-monkey-vector-24124332.jpg",
                     "checklists": [
                         {
                             "id": "YEhmF",
