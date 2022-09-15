@@ -2,7 +2,9 @@
     justify-content: space-between;
     align-items: stretch;
     background-color: $clr5;
-    color: $clr8;
+    color: $clr7;
+    position: fixed;
+    width: 100%;
 
     .logo {
         font-family: charlie-text-bold, sans-serif;
@@ -12,5 +14,18 @@
 
     &:hover {
         box-shadow: rgb(9 30 66 / 15%) 0px 0.5rem 1rem 0px;
+    }
+
+    .header-btns {
+        .login-link {
+            display: flex;
+            align-items: center;
+            padding: 7px;
+            font-family: charlie-text-regular, sans-serif;
+        }
+
+        .btn-wide {
+            margin-left: 7px;
+        }
     }
 }
