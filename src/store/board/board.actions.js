@@ -84,22 +84,6 @@ export function updateBoard(board) {
     }
 }
 
-export function addToBoardt(board) {
-    return (dispatch) => {
-        dispatch({
-            type: 'ADD_TO_CART',
-            board
-        })
-    }
-}
-export function removeFromBoardt(boardId) {
-    return (dispatch) => {
-        dispatch({
-            type: 'REMOVE_FROM_CART',
-            boardId
-        })
-    }
-}
 export function checkout() {
     return async (dispatch, getState) => {
         try {

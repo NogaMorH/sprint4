@@ -2,12 +2,12 @@ import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
 
 
-import { loadBoards, addBoard, updateBoard, removeBoard, addToBoardt } from '../store/board/board.actions'
+import { loadBoards, addBoard, updateBoard, removeBoard } from '../store/board/board.actions'
 
 import { showSuccessMsg } from '../services/event-bus.service.js'
 import { boardService } from '../services/board.service'
 
-function _Board({ loadBoards, addBoard, updateBoard, removeBoard, addToBoardt, boards }) {
+function _Board({ loadBoards, addBoard, updateBoard, removeBoard, boards }) {
 
     useEffect(() => {
         loadBoards()
@@ -25,12 +25,6 @@ function _Board({ loadBoards, addBoard, updateBoard, removeBoard, addToBoardt, b
         const price = +prompt('New price?')
         const boardToSave = { ...board, price }
         updateBoard(boardToSave)
-    }
-
-    const onAddToBoardt = (board) => {
-        console.log(`Adding ${board.vendor} to Boardt`)
-        addToBoardt(board)
-        showSuccessMsg('Added to Boardt')
     }
 
     return (
@@ -52,8 +46,6 @@ function _Board({ loadBoards, addBoard, updateBoard, removeBoard, addToBoardt, b
                                 <button onClick={() => { onRemoveBoard(board._id) }}>x</button>
                                 <button onClick={() => { onUpdateBoard(board) }}>Edit</button>
                             </div>
-
-                            <button className="buy" onClick={() => { onAddToBoardt(board) }}>Add to Boardt</button>
                         </li>)
                     }
 
@@ -73,8 +65,7 @@ const mapDispatchToProps = {
     loadBoards,
     removeBoard,
     addBoard,
-    updateBoard,
-    addToBoardt
+    updateBoard
 }
 
 
