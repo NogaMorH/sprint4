@@ -25,6 +25,7 @@ export const boardService = {
     getTaskById,
     save,
     remove,
+    removeTask,
     getMemberImgUrl
 }
 window.cs = boardService
@@ -70,6 +71,18 @@ async function save(board) {
 function getMemberImgUrl(board, memberId) {
     const url = board.members.find(member => member._id === memberId).imgUrl
     return url
+}
+
+async function removeTask(board, groupId, taskId) {
+    try {
+        const group = board.groups.find(group => group.id === groupId)
+        const tasks = group.tasks.filter(task => task.id !== taskId)
+        group.tasks = tasks
+        await storageService.put(STORAGE_KEY, board)
+        return board
+    } catch(err) {
+        console.log('Remove task has failed:', err);
+    }
 }
 
 // TEST DATA

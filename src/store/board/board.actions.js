@@ -70,6 +70,22 @@ export function saveTask(boardId, groupId, task) {
     }
 }
 
+export function removeTask(groupId, taskId) {
+    return async (dispatch, getState) => {
+        try {
+            const board = getState().boardModule.board
+            console.log('board:', board);
+            const updatedBoard = await boardService.removeTask(board, groupId, taskId)
+            console.log('Deleted Succesfully!');
+            dispatch({ type: 'UPDATE_BOARD', updatedBoard })
+            showSuccessMsg('Task removed')
+        } catch (err) {
+            showErrorMsg('Cannot remove task')
+            console.log('Cannot remove task', err)
+        }
+    }
+}
+
 // export function updateBoard(board) {
 //     return (dispatch) => {
 //         boardService.save(board)
