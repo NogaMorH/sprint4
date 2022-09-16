@@ -39,7 +39,6 @@ function query(filterBy) {
 
 function getBoardById(boardId) {
     return storageService.get(STORAGE_KEY, boardId)
-
     // return axios.get(`/api/board/${boardId}`)
 }
 
