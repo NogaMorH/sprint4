@@ -74,7 +74,7 @@ export const TaskDetails = () => {
             <img id='task-cover-img' src={attachment} alt="cover" />
             <h3 className='task-title'>{title}</h3>
 
-            <div className="members">
+            <div className="member-avatar">
                 <h6>Members</h6>
                 {memberIds.map(memberId => (
                     <img key={memberId} src={boardService.getMemberImgUrl(board, memberId)} alt="profile img" />

@@ -13,18 +13,33 @@
 
         .task-title {
             font-family: san-francisco;
+            font-size: rem(14px);
 
         }
 
-        .task-badge-container {}
+        .task-badge-container {
+            justify-content: space-around;
+            max-width: 75%;
 
 
-            .task-preview-members {
-                img {
-                    width: 20px;
-                    float: right;
-                }
+            .task-badge {
+                width: rem(13px);
+                font-size: rem(12px);
             }
-        
+
+        }
+
+        // > *:not(:first-child) {
+        //     margin-inline-start: 15px;
+        // }
+
     }
+
+    .member-avatar {
+        img {
+            width: rem(28px);
+            float: right;
+        }
+    }
+
 }
