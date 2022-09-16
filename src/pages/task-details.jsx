@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { boardService } from '../services/board.service'
-import { loadBoard, addBoard, updateBoard, removeBoard } from '../store/board/board.actions'
+import { loadBoard, removeTask, addBoard, updateBoard, removeBoard } from '../store/board/board.actions'
 import { utilService } from '../services/util.service'
 import { TaskAction } from '../cmps/board/task-action'
 import { Checklist } from '../cmps/task-details/checklist'
@@ -25,7 +25,7 @@ export const TaskDetails = () => {
         const task = await boardService.getTaskById(boardId, groupId, taskId)
         // console.log('task:', task);
         // dispatch - update board
-        setTask(task)
+        // setTask(task)
     }
 
     const getFormatDate = (dueDate) => {
@@ -67,6 +67,9 @@ export const TaskDetails = () => {
                     <Checklist key={checklist.id} checklist={checklist} />
                 ))}
             </div>
+            
+            {/* remove button for testing */}
+            <button onClick={() => dispatch(removeTask(groupId, taskId))}>remove</button>
 
             <TaskAction />
         </div>
