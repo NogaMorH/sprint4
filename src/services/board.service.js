@@ -31,7 +31,7 @@ export const boardService = {
     removeGroup,
     updateGroupTitle
 }
-window.cs = boardService
+// window.cs = boardService
 
 function query(filterBy) {
     return storageService.query(STORAGE_KEY)
