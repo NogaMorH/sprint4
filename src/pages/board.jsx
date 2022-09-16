@@ -15,6 +15,10 @@ export const Board = () => {
 
     useEffect(() => {
         dispatch(loadBoard(params.boardId))
+    }, [])
+
+    useEffect(() => {
+        console.log('board from did update:', board)
     }, [board])
 
 

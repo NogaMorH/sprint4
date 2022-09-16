@@ -110,6 +110,7 @@ export function removeGroup(groupId) {
         try {
             const board = getState().boardModule.board
             const updatedBoard = await boardService.removeGroup(board, groupId)
+            console.log('updatedBoard from action:', updatedBoard)
             console.log('Deleted seuccesfully')
             dispatch({ type: 'UPDATE_BOARD', updatedBoard })
             showSuccessMsg('Group removed')
