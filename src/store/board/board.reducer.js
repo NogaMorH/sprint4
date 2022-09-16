@@ -27,11 +27,12 @@ export function boardReducer(state = initialState, action) {
         //         return newState = { ...state, boards: [...state.boards, state.lastRemovedBoard], lastRemovedBoard: null }
         //     }
         default:
+            return state
     }
     // For debug:
     window.boardState = newState
     // console.log('Prev State:', state)
     // console.log('Action:', action)
-    // console.log('New State:', newState)
+    console.log('New State:', newState)
     return newState
 }

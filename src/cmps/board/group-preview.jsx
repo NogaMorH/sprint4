@@ -5,6 +5,10 @@ import { FormAdd } from './form-add'
 import { GroupActionModal } from './group-action-modal'
 import { TaskList } from './task-list'
 import { removeGroup } from "../../store/board/board.actions"
+import { useDispatch } from 'react-redux'
+// import { useEffect } from 'react'
+
+
 
 export const GroupPreview = ({ group }) => {
 

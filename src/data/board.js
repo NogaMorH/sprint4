@@ -135,7 +135,10 @@ export const gBoards = [{
                     "dueDate": 1663480800000,
                     // "isDone": false,
                     "memberIds": ["u101", "u102", "u103"],
-                    "attachment": "https://live.staticflickr.com/968/41338960465_162e7b16a6_b.jpg",
+                    "attachment": {
+                        "url": "https://images.unsplash.com/photo-1570288685280-7802a8f8c4fa?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTF8fG1vbmtleXxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=800&q=60",
+                        "isCover": true
+                    },
                     "description": "Demo Meeting with Asaf and Yaron. \nDon't forget to come in a good mood 😎",
                     "checklists": [
                         {
