@@ -2,7 +2,7 @@ import { useState } from "react"
 import { useDispatch } from "react-redux"
 import { setIsFormAddOpen } from "../../store/board/board.actions"
 
-export const GroupActionModal = ({ groupId }) => {
+export const GroupActionModal = ({ groupId, onRemoveGroup }) => {
 
     const dispatch = useDispatch()
 

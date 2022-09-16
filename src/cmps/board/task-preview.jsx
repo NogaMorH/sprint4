@@ -18,11 +18,16 @@ export const TaskPreview = ({ task }) => {
         return monthAndDay
     }
     const { title, dueDate, memberIds, attachment } = task
-    if (!task ) return <div>Loading...</div>
+    const { url, isCover } = task.attachment
+    console.log('isCover:', isCover)
+    if (!task) return <div>Loading...</div>
     return (
-        <section className="task-preview-container">
+        <section className='task-preview-container'>
             <div className='task-preview'>
                 <h4 className='task-title'>{title}</h4>
+                {isCover 
+                ?  <img src={url} alt="" />
+                : <div className='task-attachment'></div>}
                 <div className="task-badge">
                     {dueDate && <span>{getFormatDate(task.dueDate)}</span>}
                 </div>
@@ -31,6 +36,7 @@ export const TaskPreview = ({ task }) => {
                         <img key={memberId} src={boardService.getMemberImgUrl(board, memberId)} alt="profile img" />
                     ))}
                 </div>
+
 
             </div>
         </section>
