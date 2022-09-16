@@ -1,11 +1,45 @@
+import { useEffect, useState } from "react"
 import { Todo } from "./todo"
 
-export const Checklist = ({ checklist }) => {
+export const Checklist = ({ checklist, updateChecklists }) => {
 
-    const { title, todos } = checklist
+    const [currChecklist, setChecklist] = useState(checklist)
+    let { title, todos } = currChecklist
+    const [currTodos, setTodos] = useState(todos)
 
-    const handleChange = () => {
-        console.log('checkbox checked');
+    useEffect(() => {
+        // console.log('currTodos:', currTodos);
+        // update Checklist with todos
+        setChecklist(prevChecklist => ({ ...prevChecklist, todos: currTodos }))
+    }, [currTodos])
+
+    useEffect(() => {
+        // update Checklist-list
+        updateChecklists(currChecklist)
+    }, [currChecklist])
+
+    // console.log('currChecklist:', currChecklist);
+
+    const updateTodos = (todo) => {
+        // update Todos with todo
+        setTodos(prevTodos => (
+            prevTodos.map(currTodo => {
+                if (currTodo.id === todo.id) {
+                    return todo
+                }
+                return currTodo
+            })
+        ))
+    }
+
+    const removeTodo = (todoId) => {
+        console.log('remove');
+        const todos = currTodos.filter(currTodo => currTodo.id !== todoId)
+        setTodos(todos)
+    }
+
+    const addTodo = () => {
+        // console.log('add todo:' );
     }
 
     return (
@@ -13,10 +47,11 @@ export const Checklist = ({ checklist }) => {
             <h4>{title}</h4>
             <button>Delete</button>
             <ul className="todo-list">
-                {todos.map(todo => (
-                    <Todo key={todo.id} todo={todo} handleChange={handleChange} />
+                {currTodos.map(todo => (
+                    <Todo key={todo.id} todo={todo} updateTodos={updateTodos} removeTodo={removeTodo} />
                 ))}
             </ul>
+            <button id="todo-list-add-btn" onClick={addTodo}>Add an item</button>
         </div>
     )
 }
