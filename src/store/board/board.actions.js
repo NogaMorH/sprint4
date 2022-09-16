@@ -96,6 +96,15 @@ export function removeTask(groupId, taskId) {
     }
 }
 
+export function setIsFormAddOpen(groupId, isAddGroup) {
+    return (dispatch) => {
+        // console.log('groupId:', groupId)
+        // console.log('isAddGroup:', isAddGroup)
+        dispatch({ type: 'SET_FORM_ADD_GROUP_ID', groupId })
+        dispatch({ type: 'SET_FORM_ADD_IS_ADD_GROUP', isAddGroup })
+    }
+}
+
 export function removeGroup(groupId) {
     return async (dispatch, getState) => {
         try {
