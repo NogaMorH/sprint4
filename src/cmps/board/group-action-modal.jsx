@@ -18,7 +18,6 @@ export const GroupActionModal = ({ groupId, onRemoveGroup }) => {
             <div className='btns-container'>
                 <button className='btn btn-action' onClick={openAddForm}>Add card</button>
                 <button className='btn btn-action' onClick={onRemoveGroup}>Delete list</button>
-
             </div>
         </div>
     )

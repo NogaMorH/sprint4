@@ -15,9 +15,11 @@ export const Board = () => {
 
     useEffect(() => {
         dispatch(loadBoard(params.boardId))
+    }, [])
+
+    useEffect(() => {
+        console.log('board from did update:', board)
     }, [board])
-
-
 
     // const onRemoveBoard = (boardId) => {
     //     dispatch(removeBoard(boardId))
@@ -39,7 +41,7 @@ export const Board = () => {
 
         <main className='board '>
             <div className='board-header-container'>
-                <BoardHeader board={board}/>
+                <BoardHeader board={board} />
             </div>
             <div className="board-layout">
                 <GroupList groups={board.groups} />

@@ -39,7 +39,7 @@ export function removeBoard(boardId) {
     return async (dispatch) => {
         try {
             await boardService.remove(boardId)
-            console.log('Deleted Succesfully!');
+            console.log('Deleted Successfully!');
             // dispatch(getActionRemoveBoard(boardId))
             showSuccessMsg('Board removed')
         } catch (err) {
@@ -86,7 +86,7 @@ export function removeTask(groupId, taskId) {
             const board = getState().boardModule.board
             console.log('board:', board);
             const updatedBoard = await boardService.removeTask(board, groupId, taskId)
-            console.log('Deleted Succesfully!');
+            console.log('Deleted Successfully!');
             dispatch({ type: 'UPDATE_BOARD', updatedBoard })
             showSuccessMsg('Task removed')
         } catch (err) {
@@ -106,8 +106,10 @@ export function setIsFormAddOpen(groupId, isAddGroup) {
 }
 
 export function setModalGroupId(groupId) {
-    return (dispatch) => {
-        dispatch({ type: 'SET_IS_GROUP_MODAL_OPEN', groupId })
+    return (dispatch, getState) => {
+        const modalGroupId = getState().systemModule.modalGroupId
+        const groupIdToDispatch = (modalGroupId === groupId) ? null : groupId
+        dispatch({ type: 'SET_MODAL_GROUP_ID', groupIdToDispatch })
     }
 }
 
@@ -116,7 +118,7 @@ export function removeGroup(groupId) {
         try {
             const board = getState().boardModule.board
             const updatedBoard = await boardService.removeGroup(board, groupId)
-            console.log('Deleted seuccesfully')
+            console.log('Deleted successfully')
             dispatch({ type: 'UPDATE_BOARD', updatedBoard })
             showSuccessMsg('Group removed')
 
@@ -124,6 +126,24 @@ export function removeGroup(groupId) {
         } catch (err) {
             showErrorMsg('Cannot remove group')
             console.log('Cannot remove task', err)
+        }
+    }
+}
+
+export function setTitleGroupId(groupId) {
+    return (dispatch) => {
+        dispatch({ type: 'SET_TITLE_GROUP_ID', groupId })
+    }
+}
+
+export function updateGroupTitle(groupId, title) {
+    return async (dispatch, getState) => {
+        try {
+            const board = getState().boardModule.board
+            const updatedBoard = await boardService.updateGroupTitle(board, groupId, title)
+            dispatch({ type: 'UPDATE_BOARD', updatedBoard })
+        } catch (err) {
+            console.log('Update group title has failed in board actions:', err)
         }
     }
 }

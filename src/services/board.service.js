@@ -28,9 +28,10 @@ export const boardService = {
     removeTask,
     getMemberImgUrl,
     saveTask,
-    removeGroup
+    removeGroup,
+    updateGroupTitle
 }
-window.cs = boardService
+// window.cs = boardService
 
 function query(filterBy) {
     return storageService.query(STORAGE_KEY)
@@ -76,7 +77,7 @@ async function saveTask(board, groupId, task) {
     } else {
         try {
             task.id = utilService.makeId()
-            const group = board.groups.find(group => group.id === groupId)
+            const group = _getGroup(board, groupId)
             group.tasks.push(task)
             await storageService.put(STORAGE_KEY, board)
             return board
@@ -93,7 +94,7 @@ function getMemberImgUrl(board, memberId) {
 
 async function removeTask(board, groupId, taskId) {
     try {
-        const group = board.groups.find(group => group.id === groupId)
+        const group = _getGroup(board, groupId)
         const tasks = group.tasks.filter(task => task.id !== taskId)
         group.tasks = tasks
         await storageService.put(STORAGE_KEY, board)
@@ -113,6 +114,18 @@ async function removeGroup(board, groupId) {
     } catch (err) {
         console.log('Remove group has failed', err)
     }
+}
+
+async function updateGroupTitle(board, groupId, title) {
+    const group = _getGroup(board, groupId)
+    group.title = title
+    await storageService.put(STORAGE_KEY, board)
+    return board
+}
+
+function _getGroup(board, groupId) {
+    const group = board.groups.find(group => group.id === groupId)
+    return group
 }
 
 // TEST DATA

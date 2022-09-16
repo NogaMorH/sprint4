@@ -135,8 +135,7 @@ export const gBoards = [{
                     "dueDate": 1663480800000,
                     // "isDone": false,
                     "memberIds": ["u101", "u102", "u103"],
-                    "attachment":
-                    {
+                    "attachment": {
                         "url": "https://images.unsplash.com/photo-1570288685280-7802a8f8c4fa?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTF8fG1vbmtleXxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=800&q=60",
                         "isCover": true
                     },

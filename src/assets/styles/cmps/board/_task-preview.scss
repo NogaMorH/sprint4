@@ -2,9 +2,6 @@
     // width: 96%;
     // margin: auto;
 
-
-
-
     .task-preview {
         overflow: hidden;
         padding: 6px 8px 2px;
@@ -20,5 +17,14 @@
         }
 
         .task-badge-container {}
+
+
+            .task-preview-members {
+                img {
+                    width: 20px;
+                    float: right;
+                }
+            }
+        
     }
 }
