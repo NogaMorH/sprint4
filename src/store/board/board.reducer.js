@@ -1,7 +1,7 @@
 const initialState = {
-    board: null,
-    lastRemovedBoard: null
+    board: null
 }
+
 export function boardReducer(state = initialState, action) {
     var newState = state
     var board
@@ -17,9 +17,9 @@ export function boardReducer(state = initialState, action) {
         // case 'ADD_BOARD':
         //     return newState = { ...state, boards: [...state.boards, action.board] }
 
-        // case 'UPDATE_BOARD':
-        //     boards = state.boards.map(board => (board._id === action.board._id) ? action.board : board)
-        //     return newState = { ...state, boards }
+        case 'UPDATE_BOARD':
+            // boards = state.boards.map(board => (board._id === action.board._id) ? action.board : board)
+            return newState = { board: action.updatedBoard }
 
         // case 'UNDO_REMOVE_BOARD':
         //     if (state.lastRemovedBoard) {

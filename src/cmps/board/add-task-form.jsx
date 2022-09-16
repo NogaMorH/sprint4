@@ -8,7 +8,6 @@ export const AddTaskForm = ({ setIsAddTaskOpen, groupId }) => {
 
     const dispatch = useDispatch()
     const [task, handleChange] = useForm({ title: '' })
-    const params = useParams()
 
     useEffect(() => {
         console.log('task:', task)
@@ -17,8 +16,7 @@ export const AddTaskForm = ({ setIsAddTaskOpen, groupId }) => {
     const addTask = (ev) => {
         ev.preventDefault()
         console.log('task:', task)
-        const { boardId } = params
-        dispatch(saveTask(boardId, groupId, task))
+        dispatch(saveTask(groupId, task))
     }
 
     return (
