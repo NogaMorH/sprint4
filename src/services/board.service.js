@@ -27,7 +27,8 @@ export const boardService = {
     remove,
     removeTask,
     getMemberImgUrl,
-    saveTask
+    saveTask,
+    removeGroup
 }
 window.cs = boardService
 
@@ -97,8 +98,20 @@ async function removeTask(board, groupId, taskId) {
         group.tasks = tasks
         await storageService.put(STORAGE_KEY, board)
         return board
-    } catch(err) {
+    } catch (err) {
         console.log('Remove task has failed:', err);
+    }
+}
+
+async function removeGroup(board, groupId) {
+    try {
+        const groups = board.groups.filter(group => group.id !== groupId)
+        console.log('groups:', groups)
+        board.groups = groups
+        await storageService.put(STORAGE_KEY, board)
+        return board
+    } catch (err) {
+        console.log('Remove group has failed', err)
     }
 }
 

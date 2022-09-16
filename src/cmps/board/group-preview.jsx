@@ -1,10 +1,21 @@
 import { useState } from 'react'
 import { AddTaskForm } from './add-task-form'
+import { BoardMenu } from './board-menu'
 import { GroupActionModal } from './group-action-modal'
 import { TaskList } from './task-list'
+import { removeGroup } from "../../store/board/board.actions"
+import { useDispatch } from 'react-redux'
+import { useEffect } from 'react'
+
+
 
 export const GroupPreview = ({ group }) => {
 
+    // useEffect(() => {
+    //     console.log('group:', group)
+    // }, [group])
+
+    const dispatch = useDispatch()
     const [isEditModalOpen, setIsEditModalOpen] = useState(false)
     const [isAddTaskOpen, setIsAddTaskOpen] = useState(false)
 
@@ -19,6 +30,11 @@ export const GroupPreview = ({ group }) => {
         document.removeEventListener('click', closeEditModal)
     }
 
+    const onRemoveGroup = () => {
+        dispatch(removeGroup(group.id))
+    }
+
+
     return (
         <div className='group-preview flex column'>
             <div className='group-title-container'>
@@ -27,9 +43,10 @@ export const GroupPreview = ({ group }) => {
                 </div>
                 <button className='btn' onClick={openEditModal}>...</button>
             </div>
-            {isEditModalOpen && <GroupActionModal setIsAddTaskOpen={setIsAddTaskOpen} />}
+            {isEditModalOpen && <GroupActionModal setIsAddTaskOpen={setIsAddTaskOpen} onRemoveGroup={onRemoveGroup} />}
             {isAddTaskOpen && <AddTaskForm setIsAddTaskOpen={setIsAddTaskOpen} groupId={group.id} />}
             <TaskList tasks={group.tasks} />
+
 
         </div>
     )

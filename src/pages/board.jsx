@@ -17,9 +17,12 @@ export const Board = () => {
         dispatch(loadBoard(params.boardId))
     }, [board])
 
+
+
     // const onRemoveBoard = (boardId) => {
     //     dispatch(removeBoard(boardId))
     // }
+
     // const onAddBoard = () => {
     //     const board = boardService.getEmptyBoard()
     //     board.vendor = prompt('Vendor?')
