@@ -22,11 +22,13 @@ export const TaskDetails = () => {
 
     useEffect(() => {
         if (!currChecklists) return
+        // DEBUG - not working:
         setTask(prevTask => {
             // console.log('prevTask:', prevTask);
             // console.log('currChecklists:', currChecklists);
             return { ...prevTask, checklists: currChecklists }
         })
+        // the same:
         // setTask(prevTask => ({ ...prevTask, checklists: currChecklists }))
 
     }, [currChecklists])
@@ -55,9 +57,7 @@ export const TaskDetails = () => {
     const { title, dueDate, memberIds, attachment, checklists, description } = task
 
     const updateChecklists = (checklist) => {
-        // console.log('checklist:', checklist);
         setChecklists(checklists)
-        // if (!currChecklists) return
         // update Checklists-List with checklist
         setChecklists(prevChecklists => (
             prevChecklists.map(currChecklist => {
@@ -71,7 +71,15 @@ export const TaskDetails = () => {
 
     return (
         <div className="task-details">
-            <img id='task-cover-img' src={attachment} alt="cover" />
+            {attachment && attachment.isCover
+                ?
+                <img id='task-cover-img' src={attachment.url} alt="cover" />
+                :
+                <div>
+                    <h4>Attachments</h4>
+                    <a href={attachment.url} target="_blank">Link</a>
+                </div>
+            }
             <h3 className='task-title'>{title}</h3>
 
             <div className="members">
