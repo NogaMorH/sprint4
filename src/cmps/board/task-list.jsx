@@ -16,15 +16,28 @@ export const TaskList = ({ tasks }) => {
 
     //     }
 
+    //onAddTask = () => {
+        //on click adds a task to task list and renders the option to write task content
+        //default task content is a text area place holder - "Enter a title for this card..."
+        //when i press enter opens another task and an X button to close the new task
+        //two way data binding
+
+    // }
+
 
     return (
-        <ul className="task-list">
-            {tasks.map(task => (
-                <li key={task.id}>
-                    <TaskPreview task={task} />
-                </li>
+        <div className="task-list-container">
+            <ul className="task-list">
+                {tasks.map(task => (
+                    <li key={task.id}>
+                        <TaskPreview task={task} />
+                    </li>
 
-            ))}
-        </ul>
+                ))}
+            </ul>
+            <div className="add-task-container">
+                <button className="btn btn-add-task">Add a card</button>
+            </div>
+        </div>
     )
 }

@@ -1,0 +1,20 @@
+.task-list-container {
+
+    .task-list {
+        overflow-x: hidden;
+        overflow-y: auto;
+        margin: 0 4px;
+
+
+
+    }
+}
+
+.add-task-container {
+    height: rem(38px);
+    max-height: rem(38px);
+    display: flex;
+    align-items: center;
+
+
+}

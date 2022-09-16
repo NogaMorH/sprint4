@@ -30,6 +30,7 @@ export const GroupPreview = ({ group }) => {
             {isEditModalOpen && <GroupActionModal setIsAddTaskOpen={setIsAddTaskOpen} />}
             {isAddTaskOpen && <AddTaskForm setIsAddTaskOpen={setIsAddTaskOpen} groupId={group.id} />}
             <TaskList tasks={group.tasks} />
+
         </div>
     )
 }

@@ -13,7 +13,6 @@
     "react-scripts": "5.0.1",
     "redux": "^4.2.0",
     "redux-thunk": "^2.4.1",
-    "sass": "^1.54.9",
     "socket.io-client": "^4.5.2",
     "web-vitals": "^2.1.4",
     "workbox-background-sync": "^6.5.4",
@@ -52,5 +51,10 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "sass": "^1.54.9",
+    "sass-loader": "^13.0.2",
+    "webpack": "^5.74.0"
   }
 }

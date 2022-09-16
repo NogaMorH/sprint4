@@ -36,7 +36,7 @@ export const Board = () => {
 
         <main className='board '>
             <div className='board-header-container'>
-                <BoardHeader />
+                <BoardHeader board={board}/>
             </div>
             <div className="board-layout">
                 <GroupList groups={board.groups} />
