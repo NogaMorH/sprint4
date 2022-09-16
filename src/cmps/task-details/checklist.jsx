@@ -1,14 +1,14 @@
 import { useEffect, useState } from "react"
+import { utilService } from "../../services/util.service"
 import { Todo } from "./todo"
 
-export const Checklist = ({ checklist, updateChecklists }) => {
+export const Checklist = ({ checklist, updateChecklists, removeChecklist }) => {
 
     const [currChecklist, setChecklist] = useState(checklist)
     let { title, todos } = currChecklist
     const [currTodos, setTodos] = useState(todos)
 
     useEffect(() => {
-        // console.log('currTodos:', currTodos);
         // update Checklist with todos
         setChecklist(prevChecklist => ({ ...prevChecklist, todos: currTodos }))
     }, [currTodos])
@@ -17,8 +17,6 @@ export const Checklist = ({ checklist, updateChecklists }) => {
         // update Checklist-list
         updateChecklists(currChecklist)
     }, [currChecklist])
-
-    // console.log('currChecklist:', currChecklist);
 
     const updateTodos = (todo) => {
         // update Todos with todo
@@ -33,19 +31,20 @@ export const Checklist = ({ checklist, updateChecklists }) => {
     }
 
     const removeTodo = (todoId) => {
-        console.log('remove');
         const todos = currTodos.filter(currTodo => currTodo.id !== todoId)
         setTodos(todos)
+        // const updatedTodos = currTodos.filter(currTodo => currTodo.id !== todoId)
+        // setTodos(updatedTodos)
     }
 
     const addTodo = () => {
-        // console.log('add todo:' );
+        setTodos(prevTodos => ([...prevTodos, { id: utilService.makeId(), title: '', isDone: false }]))
     }
 
     return (
         <div className="checklist">
             <h4>{title}</h4>
-            <button>Delete</button>
+            <button onClick={() => removeChecklist(currChecklist.id)}>Delete</button>
             <ul className="todo-list">
                 {currTodos.map(todo => (
                     <Todo key={todo.id} todo={todo} updateTodos={updateTodos} removeTodo={removeTodo} />

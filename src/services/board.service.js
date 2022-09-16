@@ -31,7 +31,7 @@ export const boardService = {
     removeGroup,
     updateGroupTitle
 }
-window.cs = boardService
+// window.cs = boardService
 
 function query(filterBy) {
     return storageService.query(STORAGE_KEY)
@@ -39,7 +39,6 @@ function query(filterBy) {
 
 function getBoardById(boardId) {
     return storageService.get(STORAGE_KEY, boardId)
-
     // return axios.get(`/api/board/${boardId}`)
 }
 

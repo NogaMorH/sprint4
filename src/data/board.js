@@ -241,7 +241,6 @@ export const gBoards = [{
             "id": "g103",
             "title": "Design",
             "style": {},
-            "attachment": "https://www.google.com",
             "byMember": {
                 "id": "u103",
                 "fullname": "Rebecca Krukover",
@@ -291,7 +290,7 @@ export const gBoards = [{
                     "description": "",
                     "labelIds": ["l104"],
                     "memberIds": ["u101", "u102", "u103"],
-                    "attachment": "https://www.google.com",
+                    "attachment": { "url": "https://www.google.com", "isCover": false },
                     "checklists": [
                         {
                             "id": "YEhwF",

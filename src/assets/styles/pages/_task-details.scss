@@ -1,11 +1,20 @@
 .task-details {
-    width: 750px;
+    width: 770px;
+    background-color: $clr12;
     border: 1px solid black;
     margin: auto;
     padding-top: 100px;
+    border-radius: 0.4%;
+    margin-bottom: 80px;
 
     >* {
         padding-bottom: 24px;
+    }
+
+    .task-title {
+        font-size: rem(20px);
+        font-family: san-francisco-medium, sans-serif;
+        color: $clr8;
     }
 
     h6 {

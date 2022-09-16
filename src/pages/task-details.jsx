@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { boardService } from '../services/board.service'
-import { loadBoard, removeTask, addBoard, updateBoard, removeBoard } from '../store/board/board.actions'
+import { loadBoard, removeTask, addBoard, updateBoard, removeBoard, saveTask } from '../store/board/board.actions'
 import { utilService } from '../services/util.service'
 import { TaskAction } from '../cmps/board/task-action'
 import { Checklist } from '../cmps/task-details/checklist'
@@ -18,22 +18,20 @@ export const TaskDetails = () => {
 
     useEffect(() => {
         loadTask(boardId, groupId, taskId)
-    })
+    }, [])
 
     useEffect(() => {
         if (!currChecklists) return
-        setTask(prevTask => {
-            // console.log('prevTask:', prevTask);
-            // console.log('currChecklists:', currChecklists);
-            return { ...prevTask, checklists: currChecklists }
-        })
-        // setTask(prevTask => ({ ...prevTask, checklists: currChecklists }))
+        console.log('currChecklists:', currChecklists);
+        setTask(prevTask => ({ ...prevTask, checklists: currChecklists }))
 
     }, [currChecklists])
 
     useEffect(() => {
-        // console.log('task:', task);
-        // dispatch()
+        console.log('task:', task);
+        if (!task) return
+        // DEBUG
+        // dispatch(saveTask(groupId, task))
     }, [task])
 
     const loadTask = async (boardId, groupId, taskId) => {
@@ -55,9 +53,7 @@ export const TaskDetails = () => {
     const { title, dueDate, memberIds, attachment, checklists, description } = task
 
     const updateChecklists = (checklist) => {
-        // console.log('checklist:', checklist);
         setChecklists(checklists)
-        // if (!currChecklists) return
         // update Checklists-List with checklist
         setChecklists(prevChecklists => (
             prevChecklists.map(currChecklist => {
@@ -69,9 +65,22 @@ export const TaskDetails = () => {
         ))
     }
 
+    const removeChecklist = (checklistId) => {
+        const updatedChecklists = currChecklists.filter(currChecklist => currChecklist.id !== checklistId)
+        setChecklists(updatedChecklists)
+    }
+
     return (
         <div className="task-details">
-            <img id='task-cover-img' src={attachment} alt="cover" />
+            {attachment && attachment.isCover
+                ?
+                <img id='task-cover-img' src={attachment.url} alt="cover" />
+                :
+                <div>
+                    <h4>Attachments</h4>
+                    <a href={attachment.url} target="_blank">Link</a>
+                </div>
+            }
             <h3 className='task-title'>{title}</h3>
 
             <div className="member-avatar">
@@ -96,12 +105,13 @@ export const TaskDetails = () => {
 
             <div className="checklist-list">
                 {checklists.map(checklist => (
-                    <Checklist key={checklist.id} checklist={checklist} updateChecklists={updateChecklists} />
+                    <Checklist key={checklist.id}
+                        checklist={checklist}
+                        updateChecklists={updateChecklists}
+                        removeChecklist={removeChecklist}
+                    />
                 ))}
             </div>
-
-            {/* remove button for testing */}
-            {/* <button onClick={() => dispatch(removeTask(groupId, taskId))}>remove</button> */}
 
             <TaskAction />
         </div>

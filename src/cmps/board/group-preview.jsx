@@ -61,7 +61,7 @@ export const GroupPreview = ({ group }) => {
             <div className='group-title-container'>
                 {titleGroupId === id
                     ? <textarea name='title' value={groupTitle} className='group-title-edit'
-                        onChange={handleChange} onBlur={onUpdateTitle}></textarea>
+                        onChange={handleChange} onBlur={onUpdateTitle} autoFocus></textarea>
                     : <div className='group-title' onClick={onEditGroupTitle}>
                         <h3>{title}</h3>
                     </div>
@@ -70,7 +70,7 @@ export const GroupPreview = ({ group }) => {
             </div>
             {modalGroupId === id && <GroupActionModal groupId={id} onRemoveGroup={onRemoveGroup} />}
             {formAdd.groupId === id && <FormAdd groupId={id} />}
-            <TaskList tasks={tasks} />
+            <TaskList tasks={tasks} groupId={id} />
         </div>
     )
 }
