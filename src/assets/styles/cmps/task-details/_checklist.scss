@@ -1,0 +1,29 @@
+.checklist {
+    margin-bottom: 24px;
+
+    h4 {
+        display: inline;
+    }
+
+    button {
+        color: inherit;
+        background-color: rgba(9, 30, 66, 0.04);
+        border-radius: 3px;
+        padding: 6px 12px;
+
+        &:hover {
+            background-color: rgba(9, 30, 66, 0.090);
+        }
+    }
+
+    .todo-list {
+        >* {
+            padding: 6px 0;
+
+            &:hover {
+                background-color: rgba(9, 30, 66, 0.04);
+                border-radius: 3px;
+            }
+        }
+    }
+}

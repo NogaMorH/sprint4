@@ -99,12 +99,12 @@ export const gBoards = [{
         {
             "_id": "u101",
             "fullname": "Kfir Azulay",
-            "imgUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRWuGm_F7huJCuDQAkElfFMabLcJORdFDNing&usqp=CAU"
+            "imgUrl": "https://cdn.pixabay.com/photo/2017/06/13/12/53/profile-2398782_1280.png"
         },
         {
             "_id": "u102",
             "fullname": "Noga Mor-Havilio",
-            "imgUrl": "https://static.xx.fbcdn.net/assets/?revision=816167972411634&name=desktop-creating-an-account-icon&density=1"
+            "imgUrl": "https://cdn.pixabay.com/photo/2017/06/13/12/53/profile-2398782_1280.png"
         },
         {
             "_id": "u103",
@@ -114,7 +114,7 @@ export const gBoards = [{
         {
             "_id": "u104",
             "fullname": "Elon B",
-            "imgUrl": "https://t3.ftcdn.net/jpg/03/46/83/96/360_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg"
+            "imgUrl": "https://cdn.pixabay.com/photo/2017/06/13/12/53/profile-2398782_1280.png"
         }
     ],
     "groups": [
@@ -135,8 +135,8 @@ export const gBoards = [{
                     "dueDate": 1663480800000,
                     // "isDone": false,
                     "memberIds": ["u101", "u102", "u103"],
-                    "attachment": "https://cdn3.vectorstock.com/i/1000x1000/43/32/sticker-of-a-cartoon-shocked-monkey-vector-24124332.jpg",
-                    "description": "Demo Meeting with Asaf and Yaron. Don't forget to come in a good mood 😎",
+                    "attachment": "https://live.staticflickr.com/968/41338960465_162e7b16a6_b.jpg",
+                    "description": "Demo Meeting with Asaf and Yaron. \nDon't forget to come in a good mood 😎",
                     "checklists": [
                         {
                             "id": "YEhmF",
@@ -176,7 +176,7 @@ export const gBoards = [{
                         },
                         {
                             "id": "YEhdF",
-                            "title": "Good Vibe😎",
+                            "title": "Good Vibes😎",
                             "todos": [
                                 {
                                     "id": "212js",
@@ -195,12 +195,14 @@ export const gBoards = [{
                 {
                     "id": "t102",
                     "title": "Demo 2",
-                    "dueDate": 1663840800000
+                    "dueDate": 1663840800000,
+                    "description": ""
                 },
                 {
                     "id": "t103",
                     "title": "Demo 3",
-                    "dueDate": 1664439300000
+                    "dueDate": 1664439300000,
+                    "description": ""
                 }
             ]
         },
@@ -218,6 +220,7 @@ export const gBoards = [{
                     "id": "t104",
                     "title": "Create Trello diagram",
                     "dueDate": 1663160400000,
+                    "description": "",
                     "labelIds": ["l101", "l103"],
                     "memberIds": ["u101", "u102", "u103"],
                 },
@@ -225,6 +228,7 @@ export const gBoards = [{
                     "id": "t105",
                     "title": "Create demo data in JSON",
                     "dueDate": 1663160400000,
+                    "description": "",
                     "labelIds": ["l101", "l103"],
                     "memberIds": ["u101", "u102", "u103"],
                 }
@@ -244,11 +248,13 @@ export const gBoards = [{
                 {
                     "id": "t106",
                     "title": "Css tricks",
+                    "description": "",
                     "labelIds": ["l104"],
                 },
                 {
                     "id": "t107",
                     "title": "Color Palette variables",
+                    "description": "",
                     "labelIds": ["l101"],
                     "memberIds": ["u101"],
                     "comments": [
@@ -279,6 +285,7 @@ export const gBoards = [{
                 {
                     "id": "t108",
                     "title": "Create components",
+                    "description": "",
                     "labelIds": ["l104"],
                     "memberIds": ["u101", "u102", "u103"],
                     "attachment": "https://www.google.com",

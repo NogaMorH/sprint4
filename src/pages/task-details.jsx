@@ -4,8 +4,8 @@ import { useDispatch, useSelector } from 'react-redux'
 import { boardService } from '../services/board.service'
 import { loadBoard, addBoard, updateBoard, removeBoard } from '../store/board/board.actions'
 import { utilService } from '../services/util.service'
-import { Checklists } from '../cmps/board/checklists'
-import { TaskOptions } from '../cmps/board/task-options'
+import { TaskAction } from '../cmps/board/task-action'
+import { Checklist } from '../cmps/task-details/checklist'
 
 export const TaskDetails = () => {
 
@@ -28,42 +28,47 @@ export const TaskDetails = () => {
         setTask(task)
     }
 
-    if (!board || !task) return <div>Loading...</div>
-    const { title, dueDate, memberIds, attachment, checklists, description } = task
-
     const getFormatDate = (dueDate) => {
         const monthAndDay = utilService.formatMonthDay(dueDate)
         const time = utilService.formatAMPM(dueDate)
         return monthAndDay + ' at ' + time
     }
 
-    const handleChange = () => {
-        console.log('checkbox checked');
-    }
+    if (!board || !task) return <div>Loading...</div>
+    const { title, dueDate, memberIds, attachment, checklists, description } = task
 
     return (
         <div className="task-details">
             <img id='task-cover-img' src={attachment} alt="cover" />
             <h3 className='task-title'>{title}</h3>
+
             <div className="members">
                 <h6>Members</h6>
                 {memberIds.map(memberId => (
                     <img key={memberId} src={boardService.getMemberImgUrl(board, memberId)} alt="profile img" />
                 ))}
             </div>
+
             <div className="date-container">
                 <h6>Due date</h6>
                 <input type="checkbox" />
                 <span className="date">{getFormatDate(dueDate)}</span>
                 {/* <input type="text" value={getFormatDate(dueDate)} /> */}
             </div>
+
             <div className="description">
                 <h4>Description</h4>
-                <p>{description}</p>
+                <button>Edit</button>
+                <pre>{description}</pre>
             </div>
 
-            <Checklists checklists={checklists} handleChange={handleChange} />
-            <TaskOptions />
+            <div className="checklist-list">
+                {checklists.map(checklist => (
+                    <Checklist key={checklist.id} checklist={checklist} />
+                ))}
+            </div>
+
+            <TaskAction />
         </div>
     )
 }

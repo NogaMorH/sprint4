@@ -5,7 +5,7 @@
     padding-top: 100px;
 
     >* {
-        padding-bottom: 10px;
+        padding-bottom: 24px;
     }
 
     h6 {
@@ -16,8 +16,10 @@
     }
 
     #task-cover-img {
-        width: 20%;
-        margin: auto;
+        height: 150px;
+        object-fit: contain;
+        padding: 0;
+        background-color: #5e6c84b2;
     }
 
     .members {
@@ -29,21 +31,31 @@
 
     .date-container {
 
-        // padding: ;
         .date {
             background-color: rgba(9, 30, 66, 0.04);
-            border-radius: 2px;
+            border-radius: 3px;
             padding: 6px 12px;
 
             &:hover {
-                background-color: rgba(9, 30, 66, 0.082);
+                background-color: rgba(9, 30, 66, 0.090);
             }
         }
     }
 
     .description {
-        
+        h4 {
+            display: inline;
+        }
+
+        button {
+            color: inherit;
+            background-color: rgba(9, 30, 66, 0.04);
+            border-radius: 3px;
+            padding: 6px 12px;
+
+            &:hover {
+                background-color: rgba(9, 30, 66, 0.090);
+            }
+        }
     }
-
-
 }
