@@ -1,22 +1,40 @@
-import { useState } from 'react'
-import { AddTaskForm } from './add-task-form'
+import { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { setModalGroupId } from '../../store/board/board.actions'
+import { FormAdd } from './form-add'
 import { GroupActionModal } from './group-action-modal'
 import { TaskList } from './task-list'
+import { removeGroup } from "../../store/board/board.actions"
 
 export const GroupPreview = ({ group }) => {
 
-    const [isEditModalOpen, setIsEditModalOpen] = useState(false)
-    const [isAddTaskOpen, setIsAddTaskOpen] = useState(false)
+    // useEffect(() => {
+    //     console.log('group:', group)
+    // }, [group])
 
-    const openEditModal = (ev) => {
+    const dispatch = useDispatch()
+    const [isEditModalOpen, setIsEditModalOpen] = useState(false)
+    const formAdd = useSelector(state => state.systemModule.formAdd)
+    const modalGroupId = useSelector(state => state.systemModule.modalGroupId)
+    // const [isAddTaskOpen, setIsAddTaskOpen] = useState(false)
+
+    // useEffect(() => {
+    //     isFormAddOpen()
+    // }, [formAdd])
+
+    const openGroupModal = (ev) => {
         ev.stopPropagation()
-        setIsEditModalOpen(true)
-        document.addEventListener('click', closeEditModal)
+        dispatch(setModalGroupId(group.id))
+        document.addEventListener('click', closeGroupModal)
     }
 
-    const closeEditModal = () => {
-        setIsEditModalOpen(false)
-        document.removeEventListener('click', closeEditModal)
+    const closeGroupModal = () => {
+        dispatch(setModalGroupId(null))
+        document.removeEventListener('click', closeGroupModal)
+    }
+
+    const onRemoveGroup = () => {
+        dispatch(removeGroup(group.id))
     }
 
     return (
@@ -25,12 +43,11 @@ export const GroupPreview = ({ group }) => {
                 <div className='group-title'>
                     <h3>{group.title}</h3>
                 </div>
-                <button className='btn' onClick={openEditModal}>...</button>
+                <button className='btn' onClick={openGroupModal}>...</button>
             </div>
-            {isEditModalOpen && <GroupActionModal setIsAddTaskOpen={setIsAddTaskOpen} />}
-            {isAddTaskOpen && <AddTaskForm setIsAddTaskOpen={setIsAddTaskOpen} groupId={group.id} />}
+            {modalGroupId === group.id && <GroupActionModal groupId={group.id} onRemoveGroup={onRemoveGroup} />}
+            {formAdd.groupId === group.id && <FormAdd groupId={group.id} />}
             <TaskList tasks={group.tasks} />
-
         </div>
     )
 }

@@ -96,6 +96,38 @@ export function removeTask(groupId, taskId) {
     }
 }
 
+export function setIsFormAddOpen(groupId, isAddGroup) {
+    return (dispatch) => {
+        // console.log('groupId:', groupId)
+        // console.log('isAddGroup:', isAddGroup)
+        dispatch({ type: 'SET_FORM_ADD_GROUP_ID', groupId })
+        dispatch({ type: 'SET_FORM_ADD_IS_ADD_GROUP', isAddGroup })
+    }
+}
+
+export function setModalGroupId(groupId) {
+    return (dispatch) => {
+        dispatch({ type: 'SET_IS_GROUP_MODAL_OPEN', groupId })
+    }
+}
+
+export function removeGroup(groupId) {
+    return async (dispatch, getState) => {
+        try {
+            const board = getState().boardModule.board
+            const updatedBoard = await boardService.removeGroup(board, groupId)
+            console.log('Deleted seuccesfully')
+            dispatch({ type: 'UPDATE_BOARD', updatedBoard })
+            showSuccessMsg('Group removed')
+
+
+        } catch (err) {
+            showErrorMsg('Cannot remove group')
+            console.log('Cannot remove task', err)
+        }
+    }
+}
+
 // export function updateBoard(board) {
 //     return (dispatch) => {
 //         boardService.save(board)
