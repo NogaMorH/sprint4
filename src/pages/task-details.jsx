@@ -11,21 +11,35 @@ export const TaskDetails = () => {
 
     let board = useSelector(state => state.boardModule.board)
     const [task, setTask] = useState(null)
+    const [currChecklists, setChecklists] = useState(null)
     const dispatch = useDispatch()
     const params = useParams()
     const { boardId, groupId, taskId } = params
-
-    if (!board) dispatch(loadBoard(boardId)).then(currBoard => board = currBoard)
 
     useEffect(() => {
         loadTask(boardId, groupId, taskId)
     })
 
+    useEffect(() => {
+        if (!currChecklists) return
+        setTask(prevTask => {
+            // console.log('prevTask:', prevTask);
+            // console.log('currChecklists:', currChecklists);
+            return { ...prevTask, checklists: currChecklists }
+        })
+        // setTask(prevTask => ({ ...prevTask, checklists: currChecklists }))
+
+    }, [currChecklists])
+
+    useEffect(() => {
+        // console.log('task:', task);
+        // dispatch()
+    }, [task])
+
     const loadTask = async (boardId, groupId, taskId) => {
         const task = await boardService.getTaskById(boardId, groupId, taskId)
-        // console.log('task:', task);
-        // dispatch - update board
-        // setTask(task)
+        setTask(task)
+        // dispatch - update board ????
     }
 
     const getFormatDate = (dueDate) => {
@@ -34,8 +48,26 @@ export const TaskDetails = () => {
         return monthAndDay + ' at ' + time
     }
 
+    // temporary for task-details page
+    if (!board) dispatch(loadBoard(boardId)).then(currBoard => board = currBoard)
     if (!board || !task) return <div>Loading...</div>
+
     const { title, dueDate, memberIds, attachment, checklists, description } = task
+
+    const updateChecklists = (checklist) => {
+        // console.log('checklist:', checklist);
+        setChecklists(checklists)
+        // if (!currChecklists) return
+        // update Checklists-List with checklist
+        setChecklists(prevChecklists => (
+            prevChecklists.map(currChecklist => {
+                if (currChecklist.id === checklist.id) {
+                    return checklist
+                }
+                return currChecklist
+            })
+        ))
+    }
 
     return (
         <div className="task-details">
@@ -64,12 +96,12 @@ export const TaskDetails = () => {
 
             <div className="checklist-list">
                 {checklists.map(checklist => (
-                    <Checklist key={checklist.id} checklist={checklist} />
+                    <Checklist key={checklist.id} checklist={checklist} updateChecklists={updateChecklists} />
                 ))}
             </div>
-            
+
             {/* remove button for testing */}
-            <button onClick={() => dispatch(removeTask(groupId, taskId))}>remove</button>
+            {/* <button onClick={() => dispatch(removeTask(groupId, taskId))}>remove</button> */}
 
             <TaskAction />
         </div>
