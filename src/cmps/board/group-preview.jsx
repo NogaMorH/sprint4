@@ -7,11 +7,6 @@ import { TaskList } from './task-list'
 import { removeGroup } from "../../store/board/board.actions"
 import dotsSvg from '../../assets/img/dots.svg'
 
-
-
-
-
-
 export const GroupPreview = ({ group }) => {
 
     const dispatch = useDispatch()
@@ -66,8 +61,8 @@ export const GroupPreview = ({ group }) => {
                         <h3>{title}</h3>
                     </div>
                 }
-                <button className='btn btn-open-modal' onClick={openGroupModal}><img src={dotsSvg} alt="" /></button>
-            </div>
+                    <button className='btn btn-open-modal' onClick={openGroupModal}><img src={dotsSvg} alt="" /></button>
+                </div>
             {modalGroupId === id && <GroupActionModal groupId={id} onRemoveGroup={onRemoveGroup} />}
             {formAdd.groupId === id && <FormAdd groupId={id} />}
             <TaskList tasks={tasks} groupId={id} />
