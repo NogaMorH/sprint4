@@ -50,8 +50,7 @@ export function removeBoard(boardId) {
 }
 
 export function addBoard(board) {
-    return (dispatch) => {
-
+    return (dispatch, getState) => {
         boardService.save(board)
             .then(savedBoard => {
                 console.log('Added Board', savedBoard);
@@ -65,20 +64,26 @@ export function addBoard(board) {
     }
 }
 
-export function updateBoard(board) {
+export function saveTask(boardId, groupId, task) {
     return (dispatch) => {
-        boardService.save(board)
-            .then(savedBoard => {
-                console.log('Updated Board:', savedBoard);
-                // dispatch(getActionUpdateBoard(savedBoard))
-                showSuccessMsg('Board updated')
-            })
-            .catch(err => {
-                showErrorMsg('Cannot update board')
-                console.log('Cannot save board', err)
-            })
+        boardService.saveTask(task)
     }
 }
+
+// export function updateBoard(board) {
+//     return (dispatch) => {
+//         boardService.save(board)
+//             .then(savedBoard => {
+//                 console.log('Updated Board:', savedBoard);
+//                 // dispatch(getActionUpdateBoard(savedBoard))
+//                 showSuccessMsg('Board updated')
+//             })
+//             .catch(err => {
+//                 showErrorMsg('Cannot update board')
+//                 console.log('Cannot save board', err)
+//             })
+//     }
+// }
 
 // export function checkout() {
 //     return async (dispatch, getState) => {

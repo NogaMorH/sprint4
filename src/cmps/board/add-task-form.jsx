@@ -1,27 +1,30 @@
 import { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
+import { useParams } from 'react-router-dom'
 import { useForm } from '../../hooks/useForm'
-import { updateBoard } from '../../store/board/board.actions'
+import { saveTask } from '../../store/board/board.actions'
 
-export const AddTaskForm = ({ setIsAddTaskOpen }) => {
+export const AddTaskForm = ({ setIsAddTaskOpen, groupId }) => {
 
     const dispatch = useDispatch()
-    const [fields, handleChange] = useForm({ title: '' })
+    const [task, handleChange] = useForm({ title: '' })
+    const params = useParams()
 
     useEffect(() => {
-        console.log('fields:', fields)
-    }, [fields])
+        console.log('task:', task)
+    }, [task])
 
     const addTask = (ev) => {
         ev.preventDefault()
-        console.log('fields:', fields)
-        // dispatch(updateBoard())
+        console.log('task:', task)
+        const { boardId } = params
+        dispatch(saveTask(boardId, groupId, task))
     }
 
     return (
         <form className='add-task-form' onSubmit={addTask}>
             <textarea placeholder='Enter a title for this card...' className='card-title'
-                name='title' onChange={handleChange}>
+                name='title' onChange={handleChange} value={task.title}>
             </textarea>
             <button>Add</button>
             <button onClick={() => setIsAddTaskOpen(false)}>x</button>

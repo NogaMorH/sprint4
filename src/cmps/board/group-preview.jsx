@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { AddTaskForm } from './add-task-form'
-import { TaskEditModal } from './task-edit-modal'
+import { GroupActionModal } from './group-action-modal'
 import { TaskList } from './task-list'
 
 export const GroupPreview = ({ group }) => {
@@ -27,8 +27,8 @@ export const GroupPreview = ({ group }) => {
                 </div>
                 <button className='btn' onClick={openEditModal}>...</button>
             </div>
-            {isEditModalOpen && <TaskEditModal setIsAddTaskOpen={setIsAddTaskOpen} />}
-            {isAddTaskOpen && <AddTaskForm setIsAddTaskOpen={setIsAddTaskOpen} />}
+            {isEditModalOpen && <GroupActionModal setIsAddTaskOpen={setIsAddTaskOpen} />}
+            {isAddTaskOpen && <AddTaskForm setIsAddTaskOpen={setIsAddTaskOpen} groupId={group.id} />}
             <TaskList tasks={group.tasks} />
         </div>
     )

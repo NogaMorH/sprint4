@@ -1,9 +1,9 @@
 import { useState } from "react"
 
-export const TaskEditModal = ({ setIsAddTaskOpen }) => {
+export const GroupActionModal = ({ setIsAddTaskOpen }) => {
 
     return (
-        <div>
+        <div className='group-action-modal'>
             <div>
                 list actions
             </div>
