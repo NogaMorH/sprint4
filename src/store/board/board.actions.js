@@ -50,7 +50,7 @@ export function removeBoard(boardId) {
 }
 
 export function addBoard(board) {
-    return (dispatch, getState) => {
+    return (dispatch) => {
         boardService.save(board)
             .then(savedBoard => {
                 console.log('Added Board', savedBoard);
@@ -64,9 +64,19 @@ export function addBoard(board) {
     }
 }
 
-export function saveTask(boardId, groupId, task) {
-    return (dispatch) => {
-        boardService.saveTask(task)
+export function saveTask(groupId, task) {
+    return (dispatch, getState) => {
+        try {
+            const board = getState().boardModule.board
+            console.log('board:', board)
+            boardService.saveTask(board, groupId, task)
+                .then(updatedBoard => {
+                    console.log('updatedBoard:', updatedBoard)
+                    dispatch('UPDATE_BOARD', updatedBoard)
+                })
+        } catch (err) {
+            console.error('Save task in board actions has failed:', err)
+        }
     }
 }
 

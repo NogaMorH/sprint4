@@ -25,7 +25,8 @@ export const boardService = {
     getTaskById,
     save,
     remove,
-    getMemberImgUrl
+    getMemberImgUrl,
+    saveTask
 }
 window.cs = boardService
 
@@ -65,6 +66,22 @@ async function save(board) {
         // boardChannel.postMessage(getActionAddBoard(savedBoard))
     }
     return savedBoard
+}
+
+async function saveTask(board, groupId, task) {
+    if (task.id) {
+        console.log('update task')
+    } else {
+        try {
+            task.id = utilService.makeId()
+            const group = board.groups.find(group => group.id === groupId)
+            group.tasks.push(task)
+            await storageService.put(STORAGE_KEY, board)
+            return board
+        } catch (err) {
+            console.log('Save task from board service has failed:', err)
+        }
+    }
 }
 
 function getMemberImgUrl(board, memberId) {
