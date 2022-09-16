@@ -18,7 +18,7 @@ export const TaskDetails = () => {
 
     useEffect(() => {
         loadTask(boardId, groupId, taskId)
-    })
+    }, [])
 
     useEffect(() => {
         if (!currChecklists) return
@@ -68,7 +68,7 @@ export const TaskDetails = () => {
             })
         ))
     }
-
+    console.log('attachment:', attachment)
     return (
         <div className="task-details">
             {attachment && attachment.isCover

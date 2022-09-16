@@ -20,6 +20,9 @@ $clr6: rgb(234, 230, 255);
 // home text color
 $clr7: #091e42;
 
+// task-details bg color
+$clr12: #f4f5f7;
+
 // Additional Colors
 // wide btn bg color
 $clr8: #172b4d;
@@ -27,11 +30,13 @@ $clr8: #172b4d;
 // btn primary bg color
 $clr9: #0065ff;
 
+// wide btn bg color hover
 $clr10: lighten($clr8, 10%);
+
+// btn primary bg color hover
 $clr11: darken($clr9, 10%);
 
 // Breakpoints
 $mobile-breakpoint: 460px;
 $narrow-breakpoint: 720px;
 $normal-breakpoint: 960px;
-
