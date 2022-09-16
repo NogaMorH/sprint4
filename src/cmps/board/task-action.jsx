@@ -1,6 +1,7 @@
-export const TaskOptions = () => {
+export const TaskAction = () => {
+
     return (
-        <div className="task-options">
+        <div className="task-action">
             <button>Members</button>
             <button>Labels</button>
             <button>Checklist</button>
