@@ -50,8 +50,7 @@ export function removeBoard(boardId) {
 }
 
 export function addBoard(board) {
-    return (dispatch) => {
-
+    return (dispatch, getState) => {
         boardService.save(board)
             .then(savedBoard => {
                 console.log('Added Board', savedBoard);
@@ -65,36 +64,42 @@ export function addBoard(board) {
     }
 }
 
-export function updateBoard(board) {
+export function saveTask(boardId, groupId, task) {
     return (dispatch) => {
-        boardService.save(board)
-            .then(savedBoard => {
-                console.log('Updated Board:', savedBoard);
-                // dispatch(getActionUpdateBoard(savedBoard))
-                showSuccessMsg('Board updated')
-            })
-            .catch(err => {
-                showErrorMsg('Cannot update board')
-                console.log('Cannot save board', err)
-            })
+        boardService.saveTask(task)
     }
 }
 
-export function checkout() {
-    return async (dispatch, getState) => {
-        try {
-            const state = getState()
-            const total = state.boardModule.boardt.reduce((acc, board) => acc + board.price, 0)
-            const score = await userService.changeScore(-total)
-            dispatch({ type: 'SET_SCORE', score })
-            dispatch({ type: 'CLEAR_CART' })
-            showSuccessMsg('Charged you: $' + total.toLocaleString())
-        } catch (err) {
-            showErrorMsg('Cannot checkout, login first')
-            console.log('BoardActions: err in checkout', err)
-        }
-    }
-}
+// export function updateBoard(board) {
+//     return (dispatch) => {
+//         boardService.save(board)
+//             .then(savedBoard => {
+//                 console.log('Updated Board:', savedBoard);
+//                 // dispatch(getActionUpdateBoard(savedBoard))
+//                 showSuccessMsg('Board updated')
+//             })
+//             .catch(err => {
+//                 showErrorMsg('Cannot update board')
+//                 console.log('Cannot save board', err)
+//             })
+//     }
+// }
+
+// export function checkout() {
+//     return async (dispatch, getState) => {
+//         try {
+//             const state = getState()
+//             const total = state.boardModule.boardt.reduce((acc, board) => acc + board.price, 0)
+//             const score = await userService.changeScore(-total)
+//             dispatch({ type: 'SET_SCORE', score })
+//             dispatch({ type: 'CLEAR_CART' })
+//             showSuccessMsg('Charged you: $' + total.toLocaleString())
+//         } catch (err) {
+//             showErrorMsg('Cannot checkout, login first')
+//             console.log('BoardActions: err in checkout', err)
+//         }
+//     }
+// }
 
 
 // Demo for Optimistic Mutation 
