@@ -4,13 +4,18 @@ import { setModalGroupId } from '../../store/board/board.actions'
 import { FormAdd } from './form-add'
 import { GroupActionModal } from './group-action-modal'
 import { TaskList } from './task-list'
+import { removeGroup } from "../../store/board/board.actions"
 
 export const GroupPreview = ({ group }) => {
 
+    // useEffect(() => {
+    //     console.log('group:', group)
+    // }, [group])
+
+    const dispatch = useDispatch()
     const [isEditModalOpen, setIsEditModalOpen] = useState(false)
     const formAdd = useSelector(state => state.systemModule.formAdd)
     const modalGroupId = useSelector(state => state.systemModule.modalGroupId)
-    const dispatch = useDispatch()
     // const [isAddTaskOpen, setIsAddTaskOpen] = useState(false)
 
     // useEffect(() => {
@@ -20,14 +25,16 @@ export const GroupPreview = ({ group }) => {
     const openGroupModal = (ev) => {
         ev.stopPropagation()
         dispatch(setModalGroupId(group.id))
-        // setIsEditModalOpen(true)
         document.addEventListener('click', closeGroupModal)
     }
 
     const closeGroupModal = () => {
         dispatch(setModalGroupId(null))
-        // setIsEditModalOpen(false)
         document.removeEventListener('click', closeGroupModal)
+    }
+
+    const onRemoveGroup = () => {
+        dispatch(removeGroup(group.id))
     }
 
     return (
@@ -38,7 +45,7 @@ export const GroupPreview = ({ group }) => {
                 </div>
                 <button className='btn' onClick={openGroupModal}>...</button>
             </div>
-            {modalGroupId === group.id && <GroupActionModal groupId={group.id} />}
+            {modalGroupId === group.id && <GroupActionModal groupId={group.id} onRemoveGroup={onRemoveGroup} />}
             {formAdd.groupId === group.id && <FormAdd groupId={group.id} />}
             <TaskList tasks={group.tasks} />
         </div>

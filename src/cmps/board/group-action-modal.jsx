@@ -2,7 +2,7 @@ import { useState } from "react"
 import { useDispatch } from "react-redux"
 import { setIsFormAddOpen } from "../../store/board/board.actions"
 
-export const GroupActionModal = ({ groupId }) => {
+export const GroupActionModal = ({ groupId, onRemoveGroup }) => {
 
     const dispatch = useDispatch()
 
@@ -17,6 +17,8 @@ export const GroupActionModal = ({ groupId }) => {
             </div>
             <div className='btns-container'>
                 <button className='btn btn-action' onClick={openAddForm}>Add card</button>
+                <button className='btn btn-action' onClick={onRemoveGroup}>Delete list</button>
+
             </div>
         </div>
     )
