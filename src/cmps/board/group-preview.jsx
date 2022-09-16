@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
+import { setModalGroupId, setTitleGroupId, updateGroupTitle } from '../../store/board/board.actions'
 import { FormAdd } from './form-add'
 import { GroupActionModal } from './group-action-modal'
 import { TaskList } from './task-list'
@@ -11,55 +12,63 @@ import { useDispatch } from 'react-redux'
 
 export const GroupPreview = ({ group }) => {
 
-    // useEffect(() => {
-    //     console.log('group:', group)
-    // }, [group])
-
     const dispatch = useDispatch()
-    const [isEditModalOpen, setIsEditModalOpen] = useState(false)
     const formAdd = useSelector(state => state.systemModule.formAdd)
+    const modalGroupId = useSelector(state => state.systemModule.modalGroupId)
+    const titleGroupId = useSelector(state => state.systemModule.titleGroupId)
+    const [groupTitle, setTitle] = useState(group.title)
     // const [isAddTaskOpen, setIsAddTaskOpen] = useState(false)
 
     // useEffect(() => {
     //     isFormAddOpen()
     // }, [formAdd])
 
-    const openEditModal = (ev) => {
+    const openGroupModal = (ev) => {
         ev.stopPropagation()
-        setIsEditModalOpen(true)
-        document.addEventListener('click', closeEditModal)
+        dispatch(setModalGroupId(group.id))
+        document.addEventListener('click', closeGroupModal)
     }
 
-    const closeEditModal = () => {
-        setIsEditModalOpen(false)
-        document.removeEventListener('click', closeEditModal)
+    const closeGroupModal = () => {
+        dispatch(setModalGroupId(null))
+        document.removeEventListener('click', closeGroupModal)
     }
 
     const onRemoveGroup = () => {
         dispatch(removeGroup(group.id))
     }
 
-
-    const isFormAddOpen = () => {
-        console.log('formAdd:', formAdd)
-        // console.log('formAdd.groupId:', formAdd.groupId)
-        console.log('group.id:', group.id)
-        return formAdd.groupId === group.id
+    const onEditGroupTitle = () => {
+        if (titleGroupId === group.id) return
+        dispatch(setTitleGroupId(group.id))
     }
 
+    const handleChange = ({ target }) => {
+        const value = target.value
+        setTitle(value)
+    }
+
+    const onUpdateTitle = () => {
+        dispatch(setTitleGroupId(null))
+        dispatch(updateGroupTitle(group.id, groupTitle))
+    }
+
+    const { id, title, tasks } = group
     return (
         <div className='group-preview flex column'>
             <div className='group-title-container'>
-                <div className='group-title'>
-                    <h3>{group.title}</h3>
-                </div>
-                <button className='btn' onClick={openEditModal}>...</button>
+                {titleGroupId === id
+                    ? <textarea name='title' value={groupTitle} className='group-title-edit'
+                        onChange={handleChange} onBlur={onUpdateTitle}></textarea>
+                    : <div className='group-title' onClick={onEditGroupTitle}>
+                        <h3>{title}</h3>
+                    </div>
+                }
+                <button className='btn' onClick={openGroupModal}>...</button>
             </div>
-            {isEditModalOpen && <GroupActionModal groupId={group.id} onRemoveGroup={onRemoveGroup} />}
-            {formAdd.groupId === group.id && <FormAdd groupId={group.id} />}
-            <TaskList tasks={group.tasks} />
-
-
+            {modalGroupId === id && <GroupActionModal groupId={id} onRemoveGroup={onRemoveGroup} />}
+            {formAdd.groupId === id && <FormAdd groupId={id} />}
+            <TaskList tasks={tasks} />
         </div>
     )
 }

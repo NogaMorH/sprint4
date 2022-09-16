@@ -4,7 +4,9 @@ const initialState = {
   formAdd: {
     groupId: null,
     isAddGroup: false
-  }
+  },
+  modalGroupId: null,
+  titleGroupId: null
 }
 
 export function systemReducer(state = initialState, action = {}) {
@@ -13,6 +15,10 @@ export function systemReducer(state = initialState, action = {}) {
       return { ...state, formAdd: { groupId: action.groupId } }
     case 'SET_FORM_ADD_IS_ADD_GROUP':
       return { ...state, formAdd: { isAddGroup: action.isAddGroup } }
+    case 'SET_MODAL_GROUP_ID':
+      return { ...state, modalGroupId: action.groupIdToDispatch }
+    case 'SET_TITLE_GROUP_ID':
+      return { ...state, titleGroupId: action.groupId }
     //   case 'LOADING_START':
     //     return { ...state, isLoading: true }
     //   case 'LOADING_DONE':
