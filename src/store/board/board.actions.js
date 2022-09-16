@@ -80,21 +80,21 @@ export function updateBoard(board) {
     }
 }
 
-export function checkout() {
-    return async (dispatch, getState) => {
-        try {
-            const state = getState()
-            const total = state.boardModule.boardt.reduce((acc, board) => acc + board.price, 0)
-            const score = await userService.changeScore(-total)
-            dispatch({ type: 'SET_SCORE', score })
-            dispatch({ type: 'CLEAR_CART' })
-            showSuccessMsg('Charged you: $' + total.toLocaleString())
-        } catch (err) {
-            showErrorMsg('Cannot checkout, login first')
-            console.log('BoardActions: err in checkout', err)
-        }
-    }
-}
+// export function checkout() {
+//     return async (dispatch, getState) => {
+//         try {
+//             const state = getState()
+//             const total = state.boardModule.boardt.reduce((acc, board) => acc + board.price, 0)
+//             const score = await userService.changeScore(-total)
+//             dispatch({ type: 'SET_SCORE', score })
+//             dispatch({ type: 'CLEAR_CART' })
+//             showSuccessMsg('Charged you: $' + total.toLocaleString())
+//         } catch (err) {
+//             showErrorMsg('Cannot checkout, login first')
+//             console.log('BoardActions: err in checkout', err)
+//         }
+//     }
+// }
 
 
 // Demo for Optimistic Mutation 
