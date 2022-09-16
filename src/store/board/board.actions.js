@@ -105,6 +105,12 @@ export function setIsFormAddOpen(groupId, isAddGroup) {
     }
 }
 
+export function setModalGroupId(groupId) {
+    return (dispatch) => {
+        dispatch({ type: 'SET_IS_GROUP_MODAL_OPEN', groupId })
+    }
+}
+
 // export function updateBoard(board) {
 //     return (dispatch) => {
 //         boardService.save(board)
