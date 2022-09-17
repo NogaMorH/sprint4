@@ -27,7 +27,6 @@ export function loadBoard(boardId) {
         try {
             const board = await boardService.getBoardById(boardId)
             dispatch({ type: 'SET_BOARD', board })
-
         } catch (err) {
             showErrorMsg('Cannot load boards')
             console.log('Cannot load boards', err)
@@ -65,20 +64,32 @@ export function addBoard(board) {
 }
 
 export function saveTask(groupId, task) {
-    return (dispatch, getState) => {
+    return async (dispatch, getState) => {
         try {
             const board = getState().boardModule.board
             console.log('board:', board)
-            boardService.saveTask(board, groupId, task)
-                .then(updatedBoard => {
-                    console.log('updatedBoard:', updatedBoard)
-                    dispatch('UPDATE_BOARD', updatedBoard)
-                })
+            const updatedBoard = await boardService.saveTask(board, groupId, task)
+            console.log('updatedBoard:', updatedBoard)
+            dispatch({ type: 'UPDATE_BOARD', updatedBoard })
         } catch (err) {
             console.error('Save task in board actions has failed:', err)
         }
     }
 }
+
+// export function saveToy(toy) {
+//     return async (dispatch) => {
+//         try {
+//             const savedToy = await toyService.save(toy)
+//             if (toy._id) dispatch({ type: 'UPDATE_TOY', savedToy })
+//             else dispatch({ type: 'ADD_TOY', savedToy })
+//             return savedToy
+//         } catch (err) {
+//             console.log('err:', err)
+//             throw err
+//         }
+//     }
+// }
 
 export function removeTask(groupId, taskId) {
     return async (dispatch, getState) => {

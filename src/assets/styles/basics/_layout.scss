@@ -1,19 +1,13 @@
-.main-layout {
-    display: grid;
-    grid-template-columns:
-        minmax(30px, 1fr) minmax(auto, 1140px) minmax(30px, 1fr);
-
-    >*:not(.full) {
-        grid-column: 2;
-    }
-
-    >*.full {
-        grid-column: 1 /-1;
-    }
+.home-layout {
+    @include main-layout(minmax(30px, 1fr), minmax(auto, 1140px), minmax(30px, 1fr))
 }
 
 .board-layout {
     padding: 5px 3px 0px 8px
+}
+
+.task-details-layout {
+    @include main-layout(minmax(8px, 16px), 1fr, minmax(8px, 16px))
 }
 
 // @include for-narrow-layout {
