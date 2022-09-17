@@ -83,7 +83,15 @@ async function save(board) {
 
 async function saveTask(board, groupId, task) {
     if (task.id) {
-        console.log('update task')
+        try {
+            const group = _getGroup(board, groupId)
+            const idx = group.tasks.findIndex(currTask => currTask.id === task.id)
+            group.tasks.splice(idx, 1, task)
+            await storageService.put(STORAGE_KEY, board)
+            return board
+        } catch (err) {
+            console.log('Save task from board service has failed:', err)
+        }
     } else {
         try {
             task.id = utilService.makeId()
@@ -137,7 +145,6 @@ async function removeTask(board, groupId, taskId) {
 async function removeGroup(board, groupId) {
     try {
         const groups = board.groups.filter(group => group.id !== groupId)
-        console.log('groups:', groups)
         board.groups = groups
         const newBoard = await storageService.put(STORAGE_KEY, board)
         const updatedBoard = { ...newBoard }
