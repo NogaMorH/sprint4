@@ -1,7 +1,7 @@
 .board {
     overflow-x: scroll;
     overflow-y: hidden;
-    height: 100vh;
+    height: calc(100vh - 44px);
     width: 100%;
     position: absolute;
     bottom: 0;
@@ -10,7 +10,7 @@
     left: 0;
     margin-bottom: rem(8px);
     padding-bottom: 8px;
-    background-image: url(https://i.pinimg.com/originals/9e/53/67/9e53674b2ae6719742eb11bdba4e4da8.jpg);
+    background-image: url(https://images.unsplash.com/photo-1659183591938-9753dee61d4d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80);
     background-repeat: no-repeat;
     background-size: cover;
     font-family: san-francisco-light, sans-serif;

@@ -40,6 +40,7 @@ ul {
     margin: 0;
 }
 
+button,
 .btn {
     display: flex;
     align-items: center;
@@ -83,9 +84,6 @@ ul {
     color: $clr8;
     border-radius: 3px;
     font-size: rem(14px);
-    height: 28px;
-    padding-right: 9px;
-    padding-left: 9px;
 
     &:hover {
         background-color: $clr16;

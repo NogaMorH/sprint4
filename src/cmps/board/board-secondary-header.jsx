@@ -14,19 +14,23 @@ export const BoardSecondaryHeader = ({ board }) => {
     const { members } = board
     if (!board) return
     return (
-        <header className="board-secondary-header">
-            <span className="board-title">{board.title}</span>
-            <button>{board.createdBy.fullname}</button>
-            <span className="member-avatar">
-                {board.members && board.members.map(member => (
-                    <img key={member._id} src={boardService.getMemberImgUrl(board, member._id)} alt="profile img" />
-                ))}
-            </span>
+        <header className='board-secondary-header'>
+            <div className='header-main-content'>
+                <span className="board-title">{board.title}</span>
+                <button className='btn btn-transparent creator'>{board.createdBy.fullname}</button>
+                <span className='divider'></span>
+                <span className="member-avatars">
+                    {board.members && board.members.map(member => (
+                        <img key={member._id} src={boardService.getMemberImgUrl(board, member._id)}
+                            alt="profile img" className='member-avatar' />
+                    ))}
+                </span>
+            </div>
             {/* <span><TaskFilter onChangeFilter={onChangeFilter} /></span> */}
-            <button className="btn">Filter</button>
-
-            <span><button>... Show menu</button></span>
-
+            <div className='filter-container'>
+                {/* <button className="btn">Filter</button> */}
+                {/* <button className='btn btn-transparent'>... Show menu</button> */}
+            </div>
         </header>
     )
 }

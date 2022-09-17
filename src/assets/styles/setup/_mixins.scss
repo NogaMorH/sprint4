@@ -102,5 +102,10 @@
             color: $clr9;
         }
     }
+}
 
+@mixin btn-transparent-size {
+    height: 32px;
+    padding-left: 12px;
+    padding-right: 12px;
 }
