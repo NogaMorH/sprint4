@@ -22,7 +22,6 @@ const STORAGE_KEY = 'board'
 export const boardService = {
     query,
     getBoardById,
-    getTaskById,
     save,
     remove,
     removeTask,
@@ -30,7 +29,8 @@ export const boardService = {
     saveTask,
     removeGroup,
     updateGroupTitle,
-    getGroup
+    getGroup,
+    getTask
 }
 // window.cs = boardService
 
@@ -49,14 +49,6 @@ function query(filterBy) {
 
 function getBoardById(boardId) {
     return storageService.get(STORAGE_KEY, boardId)
-    // return axios.get(`/api/board/${boardId}`)
-}
-
-async function getTaskById(boardId, groupId, taskId) {
-    const board = await storageService.get(STORAGE_KEY, boardId)
-    const group = board.groups.find(group => group.id === groupId)
-    return group.tasks.find(task => task.id === taskId)
-
     // return axios.get(`/api/board/${boardId}`)
 }
 
@@ -83,7 +75,7 @@ async function save(board) {
 async function saveTask(board, groupId, task) {
     if (task.id) {
         try {
-            const group = _getGroup(board, groupId)
+            const group = getGroup(board, groupId)
             const idx = group.tasks.findIndex(currTask => currTask.id === task.id)
             group.tasks.splice(idx, 1, task)
             await storageService.put(STORAGE_KEY, board)
@@ -141,10 +133,14 @@ async function updateGroupTitle(board, groupId, title) {
 }
 
 function getGroup(board, groupId) {
-    console.log('board:', board)
-    console.log('groupId:', groupId)
     const group = board.groups.find(group => group.id === groupId)
     return group
+}
+
+function getTask(board, groupId, taskId) {
+    const group = board.groups.find(group => group.id === groupId)
+    const task = group.tasks.find(task => task.id === taskId)
+    return task
 }
 
 // TEST DATA

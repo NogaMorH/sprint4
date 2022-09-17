@@ -135,10 +135,20 @@ export const gBoards = [{
                     "dueDate": 1663480800000,
                     // "isDone": false,
                     "memberIds": ["u101", "u102", "u103"],
-                    "attachment": {
-                        "url": "https://images.unsplash.com/photo-1570288685280-7802a8f8c4fa?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTF8fG1vbmtleXxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=800&q=60",
-                        "isCover": true
-                    },
+                    "attachments": [
+                        {
+                            "url": "https://images.unsplash.com/photo-1570288685280-7802a8f8c4fa?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTF8fG1vbmtleXxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=800&q=60",
+                            "isCover": true
+                        },
+                        {
+                            "url": "https://css-tricks.com/",
+                            "isCover": false
+                        },
+                        {
+                            "url": "https://css-tricks.com/",
+                            "isCover": false
+                        }
+                    ],
                     "description": "Demo Meeting with Asaf and Yaron. \nDon't forget to come in a good mood 😎",
                     "checklists": [
                         {
@@ -167,7 +177,7 @@ export const gBoards = [{
                                 },
                                 {
                                     "id": "212cX",
-                                    "title": "Basic Board - members/attachment",
+                                    "title": "Basic Board - members/attachments",
                                     "isDone": false
                                 },
                                 {
@@ -206,22 +216,40 @@ export const gBoards = [{
                     "title": "Demo 3",
                     "dueDate": 1664439300000,
                     "description": ""
-                }, 
+                },
                 {
                     "id": "t104",
-                    "title": "Demo 3",
+                    "title": "Demo 4",
                     "dueDate": 1664439300000,
                     "description": ""
                 },
                 {
                     "id": "t105",
-                    "title": "Demo 3",
+                    "title": "Demo 5",
                     "dueDate": 1664439300000,
                     "description": ""
                 },
                 {
                     "id": "t106",
-                    "title": "Demo 3",
+                    "title": "Demo 6",
+                    "dueDate": 1664439300000,
+                    "description": ""
+                },
+                {
+                    "id": "t107",
+                    "title": "Demo 7",
+                    "dueDate": 1664439300000,
+                    "description": ""
+                },
+                {
+                    "id": "t108",
+                    "title": "Demo 8",
+                    "dueDate": 1664439300000,
+                    "description": ""
+                },
+                {
+                    "id": "t109",
+                    "title": "Demo 9",
                     "dueDate": 1664439300000,
                     "description": ""
                 }
@@ -308,7 +336,7 @@ export const gBoards = [{
                     "description": "",
                     "labelIds": ["l104"],
                     "memberIds": ["u101", "u102", "u103"],
-                    "attachment": { "url": "https://www.google.com", "isCover": false },
+                    "attachments": [{ "url": "https://www.google.com", "isCover": false }],
                     "checklists": [
                         {
                             "id": "YEhwF",
