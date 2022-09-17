@@ -1,21 +1,40 @@
+import { useEffect } from 'react'
 import { Link } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 import logo from '../assets/img/trello-logo.png'
-import { useSelector } from 'react-redux'
+// import { useRouteMatch } from "react-router-dom";
 
 export const AppHeader = () => {
+
+    const params = useParams()
+
+    useEffect(() => {
+        console.log('match:', params)
+    }, [params])
+
+    const getHeaderClass = () => {
+        console.log('params:', params)
+        console.log('params.boardId:', params.boardId)
+        if (params.boardId) return 'board-header'
+        else return 'home-header'
+    }
+
     return (
-        <div className='flex app-header'>
-            <div className='logo'>
-                <img src={logo} />
-                Trello
+        <header className={`flex app-header board-header`}>
+            <div className='header-main-container'>
+                <Link to='/' className='logo'>
+                    <img src={logo} />
+                    Trello
+                </Link>
             </div>
+            <button className='btn btn-transparent btn-create'>Create</button>
             {/* <nav></nav> */}
-            <div className='flex header-btns'>
+            <div className='flex header-links'>
                 <Link to='login' className='login-link'>Log in</Link>
                 <Link to='login' className='login-link'>Sign up</Link>
-                <Link to='template' className='btn btn-wide'>Go to your boards</Link>
+                {/* <Link to='template' className='btn btn-wide'>Go to your boards</Link> */}
             </div>
-        </div>
+        </header>
     )
 }
 

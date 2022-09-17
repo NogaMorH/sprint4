@@ -77,20 +77,6 @@ export function saveTask(groupId, task) {
     }
 }
 
-// export function saveToy(toy) {
-//     return async (dispatch) => {
-//         try {
-//             const savedToy = await toyService.save(toy)
-//             if (toy._id) dispatch({ type: 'UPDATE_TOY', savedToy })
-//             else dispatch({ type: 'ADD_TOY', savedToy })
-//             return savedToy
-//         } catch (err) {
-//             console.log('err:', err)
-//             throw err
-//         }
-//     }
-// }
-
 export function removeTask(groupId, taskId) {
     return async (dispatch, getState) => {
         try {

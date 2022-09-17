@@ -1,13 +1,13 @@
-.board-header {
+.board-header:not(.app-header) {
     display: flex;
     justify-content: space-between;
     padding: 8px 4px 4px 12px;
-    background: #0000;;
+    background: #0000;
+    ;
     z-index: 10;
     height: 40px;
-    
-    // background-color: #12284b;
 
+    // background-color: #12284b;
 
     .board-title {
         font-size: rem(18px);
