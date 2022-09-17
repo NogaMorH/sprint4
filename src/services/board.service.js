@@ -30,11 +30,21 @@ export const boardService = {
     saveTask,
     removeGroup,
     updateGroupTitle,
-    getGroup
+    getGroup,
+    saveGroup
 }
 // window.cs = boardService
 
 function query(filterBy) {
+    // const {tasks} = board.groups
+    // console.log('filterBy:', filterBy)
+    // if (filterBy) {
+    //     const { task } = filterBy
+    //     if(task) {
+    //         const regex = new RegExp(task, 'i')
+    //         tasks = tasks.filter(task => regex.text(task.title))
+    //     }
+    // }
     return storageService.query(STORAGE_KEY)
 }
 
@@ -73,7 +83,15 @@ async function save(board) {
 
 async function saveTask(board, groupId, task) {
     if (task.id) {
-        console.log('update task')
+        try {
+            const group = _getGroup(board, groupId)
+            const idx = group.tasks.findIndex(currTask => currTask.id === task.id)
+            group.tasks.splice(idx, 1, task)
+            await storageService.put(STORAGE_KEY, board)
+            return board
+        } catch (err) {
+            console.log('Save task from board service has failed:', err)
+        }
     } else {
         try {
             task.id = utilService.makeId()
@@ -85,6 +103,25 @@ async function saveTask(board, groupId, task) {
         } catch (err) {
             console.log('Save task from board service has failed:', err)
         }
+    }
+}
+
+async function saveGroup(board, group) {
+    console.log('group from service:', group)
+    try {
+        group.id = utilService.makeId()
+        group.createdAt = Date.now()
+        group.style = { color: "#EF7564" }
+        group.tasks = []
+        // group.byMember = {}
+
+        board.groups.push(group)
+        const newBoard = await storageService.put(STORAGE_KEY, board)
+        console.log('newBoard:', newBoard)
+        const updatedBoard = { ...newBoard }
+        return updatedBoard
+    } catch (err) {
+        console.log('Save group from board service has failed:', err)
     }
 }
 
@@ -108,10 +145,10 @@ async function removeTask(board, groupId, taskId) {
 async function removeGroup(board, groupId) {
     try {
         const groups = board.groups.filter(group => group.id !== groupId)
-        console.log('groups:', groups)
         board.groups = groups
-        await storageService.put(STORAGE_KEY, board)
-        return board
+        const newBoard = await storageService.put(STORAGE_KEY, board)
+        const updatedBoard = { ...newBoard }
+        return updatedBoard
     } catch (err) {
         console.log('Remove group has failed', err)
     }
@@ -130,6 +167,7 @@ function getGroup(board, groupId) {
     const group = board.groups.find(group => group.id === groupId)
     return group
 }
+
 
 // TEST DATA
 // storageService.post(STORAGE_KEY, {vendor: 'Subali Rahok 2', price: 980}).then(x => console.log(x))

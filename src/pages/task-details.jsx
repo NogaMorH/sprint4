@@ -21,25 +21,20 @@ export const TaskDetails = () => {
         loadTask(boardId, groupId, taskId)
     }, [])
 
-    useEffect(() => {
-        if (!currChecklists) return
-        console.log('currChecklists:', currChecklists);
-        setTask(prevTask => ({ ...prevTask, checklists: currChecklists }))
-
-    }, [currChecklists])
-
-    useEffect(() => {
-        console.log('task:', task);
-        if (!task) return
-        // DEBUG
-        // dispatch(saveTask(groupId, task))
-    }, [task])
-
     const loadTask = async (boardId, groupId, taskId) => {
         const task = await boardService.getTaskById(boardId, groupId, taskId)
         setTask(task)
-        // dispatch - update board ????
     }
+
+    useEffect(() => {
+        if (!currChecklists) return
+        setTask(prevTask => ({ ...prevTask, checklists: currChecklists }))
+    }, [currChecklists])
+
+    useEffect(() => {
+        if (!task) return
+        dispatch(saveTask(groupId, task))
+    }, [task])
 
     const getFormatDate = (dueDate) => {
         const monthAndDay = utilService.formatMonthDay(dueDate)

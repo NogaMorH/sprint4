@@ -1,11 +1,10 @@
 import { TaskPreview } from './task-preview'
 // import { useState } from "react"
+import plus from '../../assets/img/plus.svg'
 
 
 export const TaskList = ({ tasks, groupId }) => {
-
-    // get members ids from the board.members and get only the members url
-
+    if(!tasks) return <div></div>
     return (
         <div className="task-list-container">
             <ul className="task-list">

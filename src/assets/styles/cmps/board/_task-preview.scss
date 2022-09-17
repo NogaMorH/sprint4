@@ -12,33 +12,40 @@
         white-space: normal;
         border-radius: 4px;
 
-        .task-title {
-            font-family: san-francisco-light;
-            font-size: rem(14px);
-            font-weight: 700;
+        .task-preview-details {
+            margin-inline-start: 8px;
+            margin-top: 3px;
 
-        }
+            .task-title {
+                font-family: san-francisco-light;
+                font-size: rem(14px);
+                font-weight: 700;
 
-        .task-badge-container {
-            justify-content: space-around;
-            max-width: 75%;
-            font-family: san-francisco-light;
-            font-size: rem(12px);
+            }
 
-            .task-badge {
-                width: rem(13px);
+            .task-badge-container {
+                max-width: 75%;
+                font-family: san-francisco-light;
+                font-size: rem(12px);
+                height: 28px;
+                align-items: center;
+
+                .task-badge {
+                    width: rem(13px);
+                    margin-inline-end: 5px;
+                }
+
+                .task-due-date {
+                    margin-inline-end: 5px;
+                }
             }
         }
 
-        // > *:not(:first-child) {
-        //     margin-inline-start: 15px;
-        // }
-    }
-
-    .member-avatar {
-        img {
-            width: rem(28px);
-            float: right;
+        .member-avatar {
+            img {
+                width: rem(28px);
+                float: right;
+            }
         }
     }
 }

@@ -17,11 +17,10 @@ export const Board = () => {
         dispatch(loadBoard(params.boardId))
     }, [params.boardId])
 
-    useEffect(() => {
-        if (!board) return
-        console.log('board from did update:', board)
-        document.title = board.title
-    }, [board])
+    // useEffect(() => {
+    //     if (!board) return
+    //     console.log('board from did update:', board)
+    // }, [board])
 
     // const onRemoveBoard = (boardId) => {
     //     dispatch(removeBoard(boardId))
@@ -31,11 +30,6 @@ export const Board = () => {
     //     const board = boardService.getEmptyBoard()
     //     board.vendor = prompt('Vendor?')
     //     addBoard(board)
-    // }
-    // const onUpdateBoard = (board) => {
-    //     const price = +prompt('New price?')
-    //     const boardToSave = { ...board, price }
-    //     updateBoard(boardToSave)
     // }
 
     if (!board) return <div>Loading...</div>

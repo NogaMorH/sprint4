@@ -6,20 +6,26 @@ export const Checklist = ({ checklist, updateChecklists, removeChecklist }) => {
 
     const [currChecklist, setChecklist] = useState(checklist)
     let { title, todos } = currChecklist
+    const [currTitle, setTitle] = useState(title)
     const [currTodos, setTodos] = useState(todos)
 
+    // update Checklis's title
     useEffect(() => {
-        // update Checklist with todos
+        setChecklist(prevChecklist => ({ ...prevChecklist, title: currTitle }))
+    }, [currTitle])
+
+    // update Checklist's' todos
+    useEffect(() => {
         setChecklist(prevChecklist => ({ ...prevChecklist, todos: currTodos }))
     }, [currTodos])
 
+    // update Checklist-list
     useEffect(() => {
-        // update Checklist-list
         updateChecklists(currChecklist)
     }, [currChecklist])
 
+    // update Todos with todo
     const updateTodos = (todo) => {
-        // update Todos with todo
         setTodos(prevTodos => (
             prevTodos.map(currTodo => {
                 if (currTodo.id === todo.id) {
@@ -30,20 +36,22 @@ export const Checklist = ({ checklist, updateChecklists, removeChecklist }) => {
         ))
     }
 
-    const removeTodo = (todoId) => {
-        const todos = currTodos.filter(currTodo => currTodo.id !== todoId)
-        setTodos(todos)
-        // const updatedTodos = currTodos.filter(currTodo => currTodo.id !== todoId)
-        // setTodos(updatedTodos)
-    }
-
     const addTodo = () => {
         setTodos(prevTodos => ([...prevTodos, { id: utilService.makeId(), title: '', isDone: false }]))
     }
 
+    const removeTodo = (todoId) => {
+        const updatedTodos = currTodos.filter(currTodo => currTodo.id !== todoId)
+        setTodos(updatedTodos)
+    }
+
+    const handleTitleChange = ({ target }) => {
+        setTitle(target.value)
+    }
+
     return (
         <div className="checklist">
-            <h4>{title}</h4>
+            <input type="text" name="title" placeholder="Todo..." value={currTitle} onChange={handleTitleChange} />
             <button onClick={() => removeChecklist(currChecklist.id)}>Delete</button>
             <ul className="todo-list">
                 {currTodos.map(todo => (
