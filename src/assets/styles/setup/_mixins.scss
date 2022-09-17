@@ -72,3 +72,40 @@
         grid-column: 1 /-1;
     }
 }
+
+@mixin header {
+    justify-content: space-between;
+    align-items: stretch;
+    width: 100%;
+
+    .logo {
+        font-family: charlie-text-bold, sans-serif;
+        padding: 6.5px 6.5px 6.5px 16px;
+
+        img {
+            margin-right: rem(6px);
+        }
+    }
+}
+
+.header-links {
+    .login-link {
+        display: flex;
+        align-items: center;
+        padding: 7px;
+        font-family: charlie-text-regular, sans-serif;
+        font-size: rem(15.5px);
+        color: inherit;
+        transition: color .2s;
+
+        &:hover {
+            color: $clr9;
+        }
+    }
+}
+
+@mixin btn-transparent-size {
+    height: 32px;
+    padding-left: 12px;
+    padding-right: 12px;
+}

@@ -1,0 +1,33 @@
+.board-main-header {
+    @include header;
+    height: 44px;
+    background-color: #b7c4e6;
+
+    .header-main-container {
+        align-items: center;
+
+        .logo {
+            font-size: 1.34em;
+            max-height: 44px;
+            display: flex;
+            align-items: center;
+            color: $clr14;
+            margin-inline-end: 15px;
+
+            img {
+                max-width: 0.975rem;
+                margin-top: 2px;
+            }
+        }
+
+        .btn-create {
+            height: 28px;
+            padding-right: 9px;
+            padding-left: 9px;
+        }
+    }
+
+    .header-links {
+        padding-inline-end: 5px;
+    }
+}

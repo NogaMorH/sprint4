@@ -12,6 +12,19 @@
     max-height: rem(38px);
     display: flex;
     align-items: center;
+    border-radius: 3px;
+    
+    .btn-add-task {
+        color: #5e6c84;
+        font-size: rem(14px);
 
-
+    &:hover {
+        background-color: #d9dbe2;
+    }
+        .plus-icon {
+            margin-inline-end: 9px;
+            height: 100%;
+            width: rem(20px);
+        }
+    }
 }

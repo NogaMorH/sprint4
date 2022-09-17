@@ -40,15 +40,16 @@ ul {
     margin: 0;
 }
 
+button,
 .btn {
     display: flex;
     align-items: center;
     transition: background-color .2s;
     border: none;
-}
 
-.btn:hover {
-    cursor: pointer;
+    &:hover {
+        cursor: pointer;
+    }
 }
 
 .btn-wide {
@@ -56,13 +57,13 @@ ul {
     color: $clr5;
     font-family: charlie-text-regular, sans-serif;
     font-size: em(19.2px);
-    padding: em(8px) em(24px);
+    padding: 0.8em em(24px);
     line-height: 1.5;
-}
 
-.btn-wide:hover {
-    text-decoration: none;
-    background-color: $clr10;
+    &:hover {
+        text-decoration: none;
+        background-color: $clr10;
+    }
 }
 
 .btn-primary {
@@ -71,12 +72,20 @@ ul {
     font-size: em(19.2px);
     padding: em(12px) em(16px);
     border-radius: 0.3em;
-}
+    color: $clr5;
 
-.btn-primary:hover {
-    background-color: $clr11;
+    &:hover {
+        background-color: $clr11;
+    }
 }
 
 .btn-transparent {
     background-color: $clr13;
+    color: $clr8;
+    border-radius: 3px;
+    font-size: rem(14px);
+
+    &:hover {
+        background-color: $clr16;
+    }
 }

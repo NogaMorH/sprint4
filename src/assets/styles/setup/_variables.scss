@@ -23,6 +23,12 @@ $clr7: #091e42;
 // task-details bg color
 $clr12: #f4f5f7;
 
+// logo in board header
+$clr14: #42526E;
+
+// board secondary header bg color
+$clr15: #ffffff3d;
+
 // Additional Colors
 // wide btn bg color
 $clr8: #172b4d;
@@ -38,6 +44,9 @@ $clr11: darken($clr9, 10%);
 
 // btn-transparent bg color
 $clr13: #0000001a;
+
+// btn-transparent bg color hover
+$clr16: #00000033;
 // Breakpoints
 $mobile-breakpoint: 460px;
 $narrow-breakpoint: 720px;

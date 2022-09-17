@@ -36,11 +36,11 @@ export const TaskPreview = ({ task, groupId }) => {
                                 <img src={descriptionIcon} alt="description icon" />
                             </div>
                             }
-                        </div>
-                        <div className="member-avatar">
-                            {memberIds && memberIds.map(memberId => (
-                                <img key={memberId} src={boardService.getMemberImgUrl(board, memberId)} alt="profile img" />
-                            ))}
+                            <div className="member-avatar">
+                                {memberIds && memberIds.map(memberId => (
+                                    <img key={memberId} src={boardService.getMemberImgUrl(board, memberId)} alt="profile img" />
+                                ))}
+                            </div>
                         </div>
                     </div>
                 </div>

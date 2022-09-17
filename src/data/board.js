@@ -137,7 +137,7 @@ export const gBoards = [{
                     "memberIds": ["u101", "u102", "u103"],
                     "attachments": [
                         {
-                            "url": "https://images.unsplash.com/photo-1570288685280-7802a8f8c4fa?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTF8fG1vbmtleXxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=800&q=60",
+                            "url": "https://cdn.thenewstack.io/media/2022/05/600b72f9-react-1024x680.png",
                             "isCover": true
                         },
                         {
