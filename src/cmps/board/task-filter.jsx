@@ -1,7 +1,20 @@
+import { useFormRegister } from '../../hooks/useFormRegister'
+
 export const TaskFilter = () => {
-    return (
-        <div>
-            task filter
-        </div>
-    )
+
+    // const board = useSelector(state => state.boardModule.board)
+    // const [register] = useFormRegister({
+    //     task: ''
+    // })
+
+    // return (
+    //     <section className="task-filter-container flex">
+    //         <form className="task-filter">
+    //             <section>
+    //                 <label htmlFor="task">Name</label>
+    //                 <input {...register('task', 'text')} />
+    //             </section>
+    //         </form>
+    //     </section>
+    // )
 }

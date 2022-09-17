@@ -1,10 +1,11 @@
-.group-preview{
+.group-preview {
 
     margin-inline-end: 10px;
     padding: 0 rem(4px);
     flex: 1 1 auto;
     width: 272px;
     height: fit-content;
+    max-height: 100%;
     margin: 0 4px;
     background-color: #ebecf0;
     border-radius: 3px;
@@ -12,14 +13,28 @@
     .group-title {
         display: flex;
         justify-content: space-between;
-        margin: 3px 8px 0 6px;
+        ;
+        margin: 8px 8px 0 6px;
         padding: 3px 0;
         line-height: rem(20px);
         cursor: pointer;
-        // font-size: rem(14px);
-
+        font-size: rem(14px);
+        font-family: san-francisco-medium;
     }
 
+    .group-title-container {
+        display: flex;
+        justify-content: space-between;
 
+        .btn-open-modal {
+            background-color: #ebecf0;
+            border-radius: 3px;
+            margin: 3px 8px 0 6px;
+            padding: 2px 0;
 
+            & :hover {
+                background-color: #091e4214;
+            }
+        }
+    }
 }

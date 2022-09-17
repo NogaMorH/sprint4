@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { boardService } from '../services/board.service'
-import { loadBoard, removeTask, addBoard, updateBoard, removeBoard } from '../store/board/board.actions'
+import { loadBoard, removeTask, addBoard, updateBoard, removeBoard, saveTask } from '../store/board/board.actions'
 import { utilService } from '../services/util.service'
 import { TaskAction } from '../cmps/board/task-action'
 import { Checklist } from '../cmps/task-details/checklist'
@@ -23,20 +23,16 @@ export const TaskDetails = () => {
 
     useEffect(() => {
         if (!currChecklists) return
-        // DEBUG - not working:
-        setTask(prevTask => {
-            // console.log('prevTask:', prevTask);
-            // console.log('currChecklists:', currChecklists);
-            return { ...prevTask, checklists: currChecklists }
-        })
-        // the same:
-        // setTask(prevTask => ({ ...prevTask, checklists: currChecklists }))
+        console.log('currChecklists:', currChecklists);
+        setTask(prevTask => ({ ...prevTask, checklists: currChecklists }))
 
     }, [currChecklists])
 
     useEffect(() => {
-        // console.log('task:', task);
-        // dispatch()
+        console.log('task:', task);
+        if (!task) return
+        // DEBUG
+        // dispatch(saveTask(groupId, task))
     }, [task])
 
     const loadTask = async (boardId, groupId, taskId) => {
@@ -69,7 +65,12 @@ export const TaskDetails = () => {
             })
         ))
     }
-    console.log('attachment:', attachment)
+
+    const removeChecklist = (checklistId) => {
+        const updatedChecklists = currChecklists.filter(currChecklist => currChecklist.id !== checklistId)
+        setChecklists(updatedChecklists)
+    }
+
     return (
         <div className="task-details-layout task-details">
             <div className='full task-details-cover'>
@@ -90,7 +91,7 @@ export const TaskDetails = () => {
                 </div>
                 <div>in list {boardService.getGroup(board, groupId).title}</div>
 
-                <div className="members">
+                <div className="member-avatar">
                     <h6>Members</h6>
                     {memberIds.map(memberId => (
                         <img key={memberId} src={boardService.getMemberImgUrl(board, memberId)} alt="profile img" />
@@ -112,7 +113,11 @@ export const TaskDetails = () => {
 
                 <div className="checklist-list">
                     {checklists.map(checklist => (
-                        <Checklist key={checklist.id} checklist={checklist} updateChecklists={updateChecklists} />
+                        <Checklist key={checklist.id}
+                            checklist={checklist}
+                            updateChecklists={updateChecklists}
+                            removeChecklist={removeChecklist}
+                        />
                     ))}
                 </div>
 
