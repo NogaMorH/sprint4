@@ -19,7 +19,7 @@ export function boardReducer(state = initialState, action) {
 
         case 'UPDATE_BOARD':
             // boards = state.boards.map(board => (board._id === action.board._id) ? action.board : board)
-            console.log('action.updatedBoard:', action.updatedBoard)
+            // console.log('action.updatedBoard:', action.updatedBoard)
             return { board: action.updatedBoard }
 
         // case 'UNDO_REMOVE_BOARD':

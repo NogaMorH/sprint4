@@ -81,7 +81,7 @@ export function saveTask(groupId, task) {
     return async (dispatch, getState) => {
         try {
             const board = getState().boardModule.board
-            console.log('board:', board)
+            // console.log('board:', board)
             const updatedBoard = await boardService.saveTask(board, groupId, task)
             // console.log('updatedBoard:', updatedBoard)
             dispatch({ type: 'UPDATE_BOARD', updatedBoard })

@@ -15,15 +15,17 @@ export const TaskPreview = ({ task, groupId }) => {
         return monthAndDay
     }
 
-    const { title, dueDate, memberIds, description } = task
+    const { title, dueDate, memberIds, description, attachments } = task
     if (!task) return <div>Loading...</div>
     return (
         <section className='task-preview-container'>
             <Link to={`/board/${board._id}/group/${groupId}/task/${task.id}`}>
                 <div className='task-preview'>
-                    {task.attachment && task.attachment.isCover &&
-                        < img src={task.attachment.url} alt="" />
-                    }
+                    {attachments && attachments.map((attachment, idx) => {
+                        if (attachment.isCover) {
+                            return <img key={idx} className='task-cover-img' src={attachment.url} alt="cover" />
+                        }
+                    })}
                     <div className="task-preview-details">
                         <h4 className='task-title'>{title}</h4>
                         <div className="task-badge-container flex">
@@ -34,11 +36,11 @@ export const TaskPreview = ({ task, groupId }) => {
                                 <img src={descriptionIcon} alt="description icon" />
                             </div>
                             }
-                        </div>
-                        <div className="member-avatar">
-                            {memberIds && memberIds.map(memberId => (
-                                <img key={memberId} src={boardService.getMemberImgUrl(board, memberId)} alt="profile img" />
-                            ))}
+                            <div className="member-avatar">
+                                {memberIds && memberIds.map(memberId => (
+                                    <img key={memberId} src={boardService.getMemberImgUrl(board, memberId)} alt="profile img" />
+                                ))}
+                            </div>
                         </div>
                     </div>
                 </div>

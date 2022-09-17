@@ -22,7 +22,6 @@ const STORAGE_KEY = 'board'
 export const boardService = {
     query,
     getBoardById,
-    getTaskById,
     save,
     remove,
     removeTask,
@@ -31,6 +30,7 @@ export const boardService = {
     removeGroup,
     updateGroupTitle,
     getGroup,
+    getTask,
     saveGroup
 }
 // window.cs = boardService
@@ -50,14 +50,6 @@ function query(filterBy) {
 
 function getBoardById(boardId) {
     return storageService.get(STORAGE_KEY, boardId)
-    // return axios.get(`/api/board/${boardId}`)
-}
-
-async function getTaskById(boardId, groupId, taskId) {
-    const board = await storageService.get(STORAGE_KEY, boardId)
-    const group = board.groups.find(group => group.id === groupId)
-    return group.tasks.find(task => task.id === taskId)
-
     // return axios.get(`/api/board/${boardId}`)
 }
 
@@ -162,12 +154,15 @@ async function updateGroupTitle(board, groupId, title) {
 }
 
 function getGroup(board, groupId) {
-    console.log('board:', board)
-    console.log('groupId:', groupId)
     const group = board.groups.find(group => group.id === groupId)
     return group
 }
 
+function getTask(board, groupId, taskId) {
+    const group = board.groups.find(group => group.id === groupId)
+    const task = group.tasks.find(task => task.id === taskId)
+    return task
+}
 
 // TEST DATA
 // storageService.post(STORAGE_KEY, {vendor: 'Subali Rahok 2', price: 980}).then(x => console.log(x))

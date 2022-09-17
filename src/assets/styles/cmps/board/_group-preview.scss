@@ -9,14 +9,14 @@
     max-width: 272px;
     margin: 0 4px;
     background-color: #ebecf0;
-    // overflow-y: auto;
-    // overflow-x: hidden;
+    overflow-y: auto;
+    overflow-x: hidden;
     border-radius: 3px;
 
     .group-title {
         display: flex;
         justify-content: space-between;
-        margin: 8px 8px 0 6px;
+        margin: 6px 8px 0 11px;
         padding: 3px 0;
         cursor: pointer;
 
@@ -34,7 +34,7 @@
         .btn-open-modal {
             background-color: #ebecf0;
             border-radius: 3px;
-            margin: 3px 8px 0 6px;
+            margin: 0px 4px 3px 1px;
             padding: 2px 0;
 
             & :hover {

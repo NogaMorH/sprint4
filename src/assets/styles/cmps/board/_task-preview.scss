@@ -4,13 +4,13 @@
 
     .task-preview {
         overflow: hidden;
-        padding: 6px 6px 4px;
-        z-index: 10;
-        cursor: pointer;
+        padding: 0px 11px 0px 5px;
+
         background-color: $clr5;
         margin-bottom: 8px;
         white-space: normal;
         border-radius: 4px;
+        height:fit-content ;
 
         .task-preview-details {
             margin-inline-start: 8px;
@@ -24,11 +24,12 @@
             }
 
             .task-badge-container {
-                max-width: 75%;
+                max-width:100%;
                 font-family: san-francisco-light;
                 font-size: rem(12px);
                 height: 28px;
                 align-items: center;
+                position: relative;
 
                 .task-badge {
                     width: rem(13px);
@@ -38,14 +39,20 @@
                 .task-due-date {
                     margin-inline-end: 5px;
                 }
+
+                .member-avatar {
+                     position: absolute;
+                        right: 0;
+                       
+                    img {
+                        float: right;
+                        width: rem(28px);
+                       
+                    }
             }
         }
 
-        .member-avatar {
-            img {
-                width: rem(28px);
-                float: right;
-            }
+     
         }
     }
 }
