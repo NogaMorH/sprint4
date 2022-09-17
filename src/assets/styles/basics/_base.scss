@@ -2,13 +2,11 @@
     box-sizing: border-box;
 }
 
-html {
-    font-family: montserrat;
-}
-
 body {
     margin: 0;
     padding: 0;
+    position: relative;
+
 }
 
 h1,
@@ -34,10 +32,6 @@ p {
 a {
     text-decoration: none;
     color: inherit;
-}
-
-a:hover {
-    text-decoration: underline;
 }
 
 ul {

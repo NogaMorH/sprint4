@@ -34,6 +34,15 @@ export const boardService = {
 // window.cs = boardService
 
 function query(filterBy) {
+    // const {tasks} = board.groups
+    // console.log('filterBy:', filterBy)
+    // if (filterBy) {
+    //     const { task } = filterBy
+    //     if(task) {
+    //         const regex = new RegExp(task, 'i')
+    //         tasks = tasks.filter(task => regex.text(task.title))
+    //     }
+    // }
     return storageService.query(STORAGE_KEY)
 }
 

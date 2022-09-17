@@ -1,5 +1,5 @@
 const initialState = {
-    board: null
+    board: null,
 }
 
 export function boardReducer(state = initialState, action) {
@@ -21,6 +21,8 @@ export function boardReducer(state = initialState, action) {
             // boards = state.boards.map(board => (board._id === action.board._id) ? action.board : board)
             console.log('action.updatedBoard:', action.updatedBoard)
             return newState = { board: action.updatedBoard }
+        // case 'SET_FILTER_BY':
+        //     return newState = { ...state, filterBy: { ...action.filterBy } }
 
         // case 'UNDO_REMOVE_BOARD':
         //     if (state.lastRemovedBoard) {

@@ -148,6 +148,13 @@ export function updateGroupTitle(groupId, title) {
     }
 }
 
+// export function setFilterBy(filterBy) {
+//     console.log('filterBy from action:', filterBy)
+//     return (dispatch) => {
+//         dispatch({ type: 'SET_FILTER_BY', filterBy })
+//     }
+// }
+
 // export function updateBoard(board) {
 //     return (dispatch) => {
 //         boardService.save(board)

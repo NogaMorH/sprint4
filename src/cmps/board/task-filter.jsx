@@ -11,8 +11,8 @@ export const TaskFilter = () => {
     //     <section className="task-filter-container flex">
     //         <form className="task-filter">
     //             <section>
-    //                 <label htmlFor="task">Name</label>
-    //                 <input {...register('task', 'text')} />
+    //                 <label htmlFor="task"></label>
+    //                 <input placeholder='Enter a keyword...'{...register('task', 'text')} />
     //             </section>
     //         </form>
     //     </section>

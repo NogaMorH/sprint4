@@ -30,11 +30,6 @@ export const Board = () => {
     //     board.vendor = prompt('Vendor?')
     //     addBoard(board)
     // }
-    // const onUpdateBoard = (board) => {
-    //     const price = +prompt('New price?')
-    //     const boardToSave = { ...board, price }
-    //     updateBoard(boardToSave)
-    // }
 
     if (!board) return <div>Loading...</div>
     return (
