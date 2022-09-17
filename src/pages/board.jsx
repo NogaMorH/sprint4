@@ -1,11 +1,11 @@
 import { useEffect } from 'react'
-import { connect } from 'react-redux'
 import { useDispatch, useSelector } from 'react-redux'
 import { loadBoard, addBoard, updateBoard, removeBoard } from '../store/board/board.actions'
 import { boardService } from '../services/board.service'
-import { BoardHeader } from '../cmps/board/board-header'
 import { GroupList } from '../cmps/board/group-list'
 import { useParams } from 'react-router-dom'
+import { BoardMainHeader } from '../cmps/board/board-main-header'
+import { BoardSecondaryHeader } from '../cmps/board/board-secondary-header'
 // import { showSuccessMsg } from '../services/event-bus.service.js'
 
 export const Board = () => {
@@ -34,13 +34,14 @@ export const Board = () => {
 
     if (!board) return <div>Loading...</div>
     return (
-        <main className='board '>
-            <div className='board-header-container'>
-                <BoardHeader board={board} />
-            </div>
-            <div className="board-layout">
-                <GroupList groups={board.groups} />
-            </div>
-        </main>
+        <div className='board-page'>
+            <BoardMainHeader />
+            <main className='board'>
+                <BoardSecondaryHeader board={board} />
+                <div className='board-layout group-list-container'>
+                    <GroupList groups={board.groups} />
+                </div>
+            </main>
+        </div>
     )
 }

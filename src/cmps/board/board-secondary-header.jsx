@@ -3,7 +3,7 @@ import { boardService } from "../../services/board.service"
 // import { setFilterBy } from "../../store/board/board.actions"
 // import { TaskFilter } from "./task-filter"
 
-export const BoardHeader = ({ board }) => {
+export const BoardSecondaryHeader = ({ board }) => {
 
     // const dispatch = useDispatch()
 
@@ -12,9 +12,9 @@ export const BoardHeader = ({ board }) => {
     //     dispatch(loadBoard())
     // }
     const { members } = board
-    if (!board ) return
+    if (!board) return
     return (
-        <nav className="board-header">
+        <header className="board-secondary-header">
             <span className="board-title">{board.title}</span>
             <button>{board.createdBy.fullname}</button>
             <span className="member-avatar">
@@ -27,6 +27,6 @@ export const BoardHeader = ({ board }) => {
 
             <span><button>... Show menu</button></span>
 
-        </nav>
+        </header>
     )
 }

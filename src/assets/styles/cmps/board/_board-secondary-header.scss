@@ -1,8 +1,8 @@
-.board-header:not(.app-header) {
+.board-secondary-header {
     display: flex;
     justify-content: space-between;
     padding: 8px 4px 4px 12px;
-    background: #0000;
+    background: $clr15;
     z-index: 10;
     height: 40px;
 
@@ -13,6 +13,7 @@
         font-weight: 700;
         line-height: rem(32px);
         padding: 0 rem(12px);
+        color: $clr8;
     }
 
     .member-avatar {
