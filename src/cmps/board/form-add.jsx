@@ -31,20 +31,17 @@ export const FormAdd = ({ groupId }) => {
         formAdd.isAddGroup
             ? <form className='form-add' onSubmit={addGroup}>
                 <textarea placeholder='Enter list title...' className='group-title'
-                    name='title' onChange={handleChange} value={form.title}>
+                    name='title' onChange={handleChange} value={form.title} autoFocus>
                 </textarea>
                 <button className='btn'>Add list</button>
                 <button>X</button>
-
             </form>
-
             : <form className='form-add' onSubmit={addTask}>
                 <textarea placeholder='Enter a title for this card...' className='card-title'
-                    name='title' onChange={handleChange} value={form.title}>
+                    name='title' onChange={handleChange} value={form.title} autoFocus>
                 </textarea>
                 <button>Add</button>
             </form>
-
     )
 }
 

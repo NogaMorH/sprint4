@@ -84,7 +84,7 @@ async function save(board) {
 async function saveTask(board, groupId, task) {
     if (task.id) {
         try {
-            const group = _getGroup(board, groupId)
+            const group = getGroup(board, groupId)
             const idx = group.tasks.findIndex(currTask => currTask.id === task.id)
             group.tasks.splice(idx, 1, task)
             await storageService.put(STORAGE_KEY, board)
