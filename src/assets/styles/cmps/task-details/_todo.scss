@@ -1,8 +1,30 @@
 .todo {
+    height: 37px;
+    width: 540px;
 
-    .todo-txt {
-        display: inline;
-        min-height: rem(20px);
-        padding: 20px 0;
+    input[name=isDone] {
+        position: absolute;
     }
+
+    input[name=title] {
+        width: 400px;
+        outline: none;
+        font-family: san-francisco-light, sans-serif;
+        font-size: rem(14px);
+        line-height: rem(20px);
+        padding-left: 34px;
+    }
+
+    .todo-remove-btn {
+        display: none;
+    }
+
+    &:hover {
+        .todo-remove-btn {
+            display: inline;
+            line-height: 10px;
+            margin-left: 100px;
+        }
+    }
+
 }
