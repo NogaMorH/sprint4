@@ -30,7 +30,8 @@ export const boardService = {
     removeGroup,
     updateGroupTitle,
     getGroup,
-    getTask
+    getTask,
+    saveGroup
 }
 // window.cs = boardService
 
@@ -97,6 +98,25 @@ async function saveTask(board, groupId, task) {
     }
 }
 
+async function saveGroup(board, group) {
+    console.log('group from service:', group)
+    try {
+        group.id = utilService.makeId()
+        group.createdAt = Date.now()
+        group.style = { color: "#EF7564" }
+        group.tasks = []
+        // group.byMember = {}
+
+        board.groups.push(group)
+        const newBoard = await storageService.put(STORAGE_KEY, board)
+        console.log('newBoard:', newBoard)
+        const updatedBoard = { ...newBoard }
+        return updatedBoard
+    } catch (err) {
+        console.log('Save group from board service has failed:', err)
+    }
+}
+
 function getMemberImgUrl(board, memberId) {
     const url = board.members.find(member => member._id === memberId).imgUrl
     return url
@@ -118,8 +138,9 @@ async function removeGroup(board, groupId) {
     try {
         const groups = board.groups.filter(group => group.id !== groupId)
         board.groups = groups
-        await storageService.put(STORAGE_KEY, board)
-        return board
+        const newBoard = await storageService.put(STORAGE_KEY, board)
+        const updatedBoard = { ...newBoard }
+        return updatedBoard
     } catch (err) {
         console.log('Remove group has failed', err)
     }

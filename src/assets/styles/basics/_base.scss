@@ -44,6 +44,7 @@ ul {
     display: flex;
     align-items: center;
     transition: background-color .2s;
+    border: none;
 }
 
 .btn:hover {
@@ -74,4 +75,8 @@ ul {
 
 .btn-primary:hover {
     background-color: $clr11;
+}
+
+.btn-transparent {
+    background-color: $clr13;
 }
