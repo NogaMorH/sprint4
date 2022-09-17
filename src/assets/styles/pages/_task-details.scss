@@ -6,64 +6,84 @@
     padding-top: 100px;
     border-radius: 0.4%;
     margin-bottom: 80px;
+    font-family: san-francisco-light, sans-serif;
 
     >* {
-        padding-bottom: 24px;
+        margin-bottom: 24px;
     }
 
-    .task-title {
-        font-size: rem(20px);
-        font-family: san-francisco-medium, sans-serif;
-        color: $clr8;
-    }
-
-    h6 {
-        font-size: rem(12px);
-        line-height: rem(20px);
-        color: #5e6c84;
-        font-weight: 600;
-    }
-
-    #task-cover-img {
-        height: 150px;
-        object-fit: contain;
-        padding: 0;
-        background-color: #5e6c84b2;
-    }
-
-    .members {
-
-        img {
-            width: 20px;
+    .task-details-cover {
+        .task-cover-img {
+            height: 150px;
+            object-fit: contain;
+            padding: 0;
+            background-color: #5e6c84b2;
         }
     }
 
-    .date-container {
+    .task-details-content {
+        >* {
+            display: flex;
+        }
 
-        .date {
-            background-color: rgba(9, 30, 66, 0.04);
-            border-radius: 3px;
-            padding: 6px 12px;
+        .task-title-container {
+            display: flex;
+            align-items: flex-start;
 
-            &:hover {
-                background-color: rgba(9, 30, 66, 0.090);
+            .card-icon {
+                width: 20px;
+            }
+
+            .task-title {
+                font-size: rem(20px);
+                font-family: san-francisco-medium, sans-serif;
+                color: $clr8;
+                display: inline;
+                padding-inline-start: 10px;
             }
         }
-    }
 
-    .description {
-        h4 {
-            display: inline;
+        .members {
+            h6 {
+                font-size: rem(12px);
+                line-height: rem(20px);
+                color: #5e6c84;
+                font-weight: 600;
+            }
         }
 
-        button {
-            color: inherit;
-            background-color: rgba(9, 30, 66, 0.04);
-            border-radius: 3px;
-            padding: 6px 12px;
+        .members {
+            img {
+                width: 20px;
+            }
+        }
 
-            &:hover {
-                background-color: rgba(9, 30, 66, 0.090);
+        .date-container {
+            .date {
+                background-color: rgba(9, 30, 66, 0.04);
+                border-radius: 3px;
+                padding: 6px 12px;
+
+                &:hover {
+                    background-color: rgba(9, 30, 66, 0.090);
+                }
+            }
+        }
+
+        .description {
+            h4 {
+                display: inline;
+            }
+
+            button {
+                color: inherit;
+                background-color: rgba(9, 30, 66, 0.04);
+                border-radius: 3px;
+                padding: 6px 12px;
+
+                &:hover {
+                    background-color: rgba(9, 30, 66, 0.090);
+                }
             }
         }
     }
