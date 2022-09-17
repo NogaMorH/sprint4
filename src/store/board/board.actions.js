@@ -68,11 +68,11 @@ export function saveTask(groupId, task) {
     return (dispatch, getState) => {
         try {
             const board = getState().boardModule.board
-            console.log('board:', board)
+            // console.log('board:', board);
             boardService.saveTask(board, groupId, task)
                 .then(updatedBoard => {
-                    console.log('updatedBoard:', updatedBoard)
-                    dispatch('UPDATE_BOARD', updatedBoard)
+                    // console.log('updatedBoard:', updatedBoard)
+                    dispatch({ type: 'UPDATE_BOARD', updatedBoard })
                 })
         } catch (err) {
             console.error('Save task in board actions has failed:', err)
