@@ -63,33 +63,33 @@ export function addBoard(board) {
     }
 }
 
+export function saveGroup(group) {
+    return async (dispatch, getState) => {
+        try {
+            const board = getState().boardModule.board
+            console.log('board:', board)
+            const updatedBoard = await boardService.saveGroup(board, group)
+            console.log('updatedBoard save group:', updatedBoard)
+            dispatch({ type: 'UPDATE_BOARD', updatedBoard })
+        } catch (err) {
+            console.error('Save group in board actions has failed:', err)
+        }
+    }
+}
+
 export function saveTask(groupId, task) {
     return async (dispatch, getState) => {
         try {
             const board = getState().boardModule.board
             console.log('board:', board)
             const updatedBoard = await boardService.saveTask(board, groupId, task)
-            console.log('updatedBoard:', updatedBoard)
+            // console.log('updatedBoard:', updatedBoard)
             dispatch({ type: 'UPDATE_BOARD', updatedBoard })
         } catch (err) {
             console.error('Save task in board actions has failed:', err)
         }
     }
 }
-
-// export function saveToy(toy) {
-//     return async (dispatch) => {
-//         try {
-//             const savedToy = await toyService.save(toy)
-//             if (toy._id) dispatch({ type: 'UPDATE_TOY', savedToy })
-//             else dispatch({ type: 'ADD_TOY', savedToy })
-//             return savedToy
-//         } catch (err) {
-//             console.log('err:', err)
-//             throw err
-//         }
-//     }
-// }
 
 export function removeTask(groupId, taskId) {
     return async (dispatch, getState) => {
@@ -158,6 +158,7 @@ export function updateGroupTitle(groupId, title) {
         }
     }
 }
+
 
 // export function setFilterBy(filterBy) {
 //     console.log('filterBy from action:', filterBy)

@@ -13,7 +13,6 @@ export const BoardHeader = ({ board }) => {
     // }
     const { members } = board
     if (!board ) return
-    console.log('members:', members)
     return (
         <nav className="board-header">
             <span className="board-title">{board.title}</span>
