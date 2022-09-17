@@ -27,7 +27,6 @@ export function loadBoard(boardId) {
         try {
             const board = await boardService.getBoardById(boardId)
             dispatch({ type: 'SET_BOARD', board })
-
         } catch (err) {
             showErrorMsg('Cannot load boards')
             console.log('Cannot load boards', err)
@@ -65,15 +64,13 @@ export function addBoard(board) {
 }
 
 export function saveTask(groupId, task) {
-    return (dispatch, getState) => {
+    return async (dispatch, getState) => {
         try {
             const board = getState().boardModule.board
-            // console.log('board:', board);
-            boardService.saveTask(board, groupId, task)
-                .then(updatedBoard => {
-                    // console.log('updatedBoard:', updatedBoard)
-                    dispatch({ type: 'UPDATE_BOARD', updatedBoard })
-                })
+            console.log('board:', board)
+            const updatedBoard = await boardService.saveTask(board, groupId, task)
+            console.log('updatedBoard:', updatedBoard)
+            dispatch({ type: 'UPDATE_BOARD', updatedBoard })
         } catch (err) {
             console.error('Save task in board actions has failed:', err)
         }
@@ -147,6 +144,13 @@ export function updateGroupTitle(groupId, title) {
         }
     }
 }
+
+// export function setFilterBy(filterBy) {
+//     console.log('filterBy from action:', filterBy)
+//     return (dispatch) => {
+//         dispatch({ type: 'SET_FILTER_BY', filterBy })
+//     }
+// }
 
 // export function updateBoard(board) {
 //     return (dispatch) => {

@@ -6,6 +6,7 @@ import { loadBoard, removeTask, addBoard, updateBoard, removeBoard, saveTask } f
 import { utilService } from '../services/util.service'
 import { TaskAction } from '../cmps/board/task-action'
 import { Checklist } from '../cmps/task-details/checklist'
+import cardIcon from '../assets/img/card.svg'
 
 export const TaskDetails = () => {
 
@@ -66,48 +67,58 @@ export const TaskDetails = () => {
     }
 
     return (
-        <div className="task-details">
-            {attachment && attachment.isCover
-                ?
-                <img id='task-cover-img' src={attachment.url} alt="cover" />
-                :
-                <div>
-                    <h4>Attachments</h4>
-                    <a href={attachment.url} target="_blank">Link</a>
+        <div className="task-details-layout task-details">
+            <div className='full task-details-cover'>
+                {attachment && attachment.isCover
+                    ?
+                    <img className='task-cover-img' src={attachment.url} alt="cover" />
+                    :
+                    <div>
+                        <h4>Attachments</h4>
+                        <a href={attachment.url} target="_blank">Link</a>
+                    </div>
+                }
+            </div>
+            <main className='task-details-content'>
+                <div className='task-title-container'>
+                    <img src={cardIcon} alt='' className='card-icon' />
+                    <h3 className='task-title'>{title}</h3>
                 </div>
-            }
-            <h3 className='task-title'>{title}</h3>
+                <div>in list {boardService.getGroup(board, groupId).title}</div>
 
-            <div className="members">
-                <h6>Members</h6>
-                {memberIds.map(memberId => (
-                    <img key={memberId} src={boardService.getMemberImgUrl(board, memberId)} alt="profile img" />
-                ))}
-            </div>
+                <div className="member-avatar">
+                    <h6>Members</h6>
+                    {memberIds.map(memberId => (
+                        <img key={memberId} src={boardService.getMemberImgUrl(board, memberId)} alt="profile img" />
+                    ))}
+                </div>
 
-            <div className="date-container">
-                <h6>Due date</h6>
-                <input type="checkbox" />
-                <span className="date">{getFormatDate(dueDate)}</span>
-                {/* <input type="text" value={getFormatDate(dueDate)} /> */}
-            </div>
+                <div className="date-container">
+                    <h6>Due date</h6>
+                    <input type="checkbox" />
+                    <span className="date">{getFormatDate(dueDate)}</span>
+                    {/* <input type="text" value={getFormatDate(dueDate)} /> */}
+                </div>
 
-            <div className="description">
-                <h4>Description</h4>
-                <button>Edit</button>
-                <pre>{description}</pre>
-            </div>
+                <div className="description">
+                    <h4>Description</h4>
+                    <button>Edit</button>
+                    <pre>{description}</pre>
+                </div>
 
-            <div className="checklist-list">
-                {checklists.map(checklist => (
-                    <Checklist key={checklist.id}
-                        checklist={checklist}
-                        updateChecklists={updateChecklists}
-                        removeChecklist={removeChecklist}
-                    />
-                ))}
-            </div>
+                <div className="checklist-list">
+                    {checklists.map(checklist => (
+                        <Checklist key={checklist.id}
+                            checklist={checklist}
+                            updateChecklists={updateChecklists}
+                            removeChecklist={removeChecklist}
+                        />
+                    ))}
+                </div>
 
+                {/* remove button for testing */}
+                {/* <button onClick={() => dispatch(removeTask(groupId, taskId))}>remove</button> */}
+            </main>
             <TaskAction />
         </div>
     )

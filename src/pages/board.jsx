@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import { useEffect } from 'react'
 import { connect } from 'react-redux'
 import { useDispatch, useSelector } from 'react-redux'
 import { loadBoard, addBoard, updateBoard, removeBoard } from '../store/board/board.actions'
@@ -15,10 +15,12 @@ export const Board = () => {
 
     useEffect(() => {
         dispatch(loadBoard(params.boardId))
-    }, [])
+    }, [params.boardId])
 
     useEffect(() => {
+        if (!board) return
         console.log('board from did update:', board)
+        document.title = board.title
     }, [board])
 
     // const onRemoveBoard = (boardId) => {
@@ -30,15 +32,9 @@ export const Board = () => {
     //     board.vendor = prompt('Vendor?')
     //     addBoard(board)
     // }
-    // const onUpdateBoard = (board) => {
-    //     const price = +prompt('New price?')
-    //     const boardToSave = { ...board, price }
-    //     updateBoard(boardToSave)
-    // }
 
     if (!board) return <div>Loading...</div>
     return (
-
         <main className='board '>
             <div className='board-header-container'>
                 <BoardHeader board={board} />

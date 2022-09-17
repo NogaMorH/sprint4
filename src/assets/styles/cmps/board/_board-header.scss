@@ -2,17 +2,22 @@
     display: flex;
     justify-content: space-between;
     padding: 8px 4px 4px 12px;
-    background: #0000;;
+    background: #0000;
+    ;
     z-index: 10;
     height: 40px;
-    
+
     // background-color: #12284b;
-
-
     .board-title {
         font-size: rem(18px);
         font-weight: 700;
         line-height: rem(32px);
         padding: 0 rem(12px);
+    }
+
+    .member-avatar {
+        img {
+            width: rem(28px);
+        }
     }
 }
