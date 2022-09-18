@@ -24,7 +24,6 @@ export const FormAdd = ({ groupId }) => {
     const addGroup = (ev) => {
         ev.preventDefault()
         dispatch(saveGroup(form))
-
     }
 
     return (
@@ -42,7 +41,10 @@ export const FormAdd = ({ groupId }) => {
                 </textarea>
                 <button>Add</button>
             </form>
+    
+    
     )
+
 }
 
 
