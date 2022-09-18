@@ -42,7 +42,7 @@ function delay(ms = 1500) {
 
 function formatMonthDay(ms) {
     const date = new Date(ms)
-    const month = date.toLocaleString('default', { month: 'short' })
+    const month = date.toLocaleString('en-US', { month: 'short' })
     const day = date.getDate()
     return month + ' ' + day
 }

@@ -1,5 +1,19 @@
 .form-add {
-    .card-title {
-        resize: none;
+    .card-title-container {
+        border-radius: 3px;
+        padding: 2px;
+
+        .card-title {
+            resize: none;
+            overflow: hidden;
+            overflow-wrap: break-word;
+            max-height: 162px;
+            min-height: 54px;
+            border: none;
+
+            &:focus-visible {
+                outline: none;
+            }
+        }
     }
 }
