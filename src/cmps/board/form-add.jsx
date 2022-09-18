@@ -41,8 +41,6 @@ export const FormAdd = ({ groupId }) => {
                 </textarea>
                 <button>Add</button>
             </form>
-    
-    
     )
 
 }

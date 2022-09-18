@@ -1,0 +1,32 @@
+.group-action-modal {
+    width: rem(272px);
+    position: absolute;
+    overflow: hidden;
+    height: fit-content;
+    z-index: 200;
+    border-radius: 1px;
+    background-color: #ffffff;
+
+
+    .btns-container {
+        margin-bottom: 10px;
+
+        .btn-action {
+            background: none;
+            margin-inline-start: 10px;
+            margin-bottom: 10px;
+        }
+
+    }
+
+    .action-modal-title {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        padding: 5px;
+        border-bottom: 1px solid #dfe2e6;
+        margin-bottom: 6px;
+        line-height: rem(40px);
+        font-size: rem(14px);
+    }
+}
