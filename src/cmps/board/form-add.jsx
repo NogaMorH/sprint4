@@ -42,12 +42,10 @@ export const FormAdd = ({ groupId }) => {
                 <button>X</button>
             </form>
             : <form className='form-add' onSubmit={addTask}>
-                <div className='card-title-container'>
-                    <textarea placeholder='Enter a title for this card...' className='card-title'
-                        name='title' onChange={handleChange} value={form.title} autoFocus>
-                    </textarea>
-                </div>
-                <button>Add</button>
+                <textarea placeholder='Enter a title for this card...' className='card-title'
+                    name='title' onChange={handleChange} value={form.title} autoFocus>
+                </textarea>
+                <button onClick={addTask} className='btn btn-primary-board'>Add card</button>
             </form>
     )
 

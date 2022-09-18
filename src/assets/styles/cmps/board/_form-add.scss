@@ -1,19 +1,23 @@
 .form-add {
-    .card-title-container {
+
+    .card-title {
+        resize: none;
+        overflow: hidden;
+        overflow-wrap: break-word;
+        max-height: 162px;
+        min-height: 54px;
+        border: none;
         border-radius: 3px;
-        padding: 2px;
+        font-family: san-francisco-light, sans-serif;
+        width: 100%;
+        font-size: em(13px);
+        padding: 6px 8px 2px;
+        box-shadow: 0 1px 0 $clr17;
+        color: $clr8;
 
-        .card-title {
-            resize: none;
-            overflow: hidden;
-            overflow-wrap: break-word;
-            max-height: 162px;
-            min-height: 54px;
+        &:focus-visible {
+            outline: none;
             border: none;
-
-            &:focus-visible {
-                outline: none;
-            }
         }
     }
 }
