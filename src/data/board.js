@@ -62,7 +62,7 @@ export const gBoards = [{
         "fullname": "Kfir Azulay",
         "imgUrl": "http://some-img"
     },
-    "style": { "background-image": "url(https://www.google.com/imgres?imgurl=https%3A%2F%2Fwww.w3schools.com%2Fcss%2Fimg_lights.jpg&imgrefurl=https%3A%2F%2Fwww.w3schools.com%2Fcss%2Fcss3_images.asp&tbnid=kwgHAQqTiLQXLM&vet=12ahUKEwjW5p2J0ZT6AhULgc4BHa10Ac0QMygEegUIARDHAQ..i&docid=2bZLA8JdC6ZaTM&w=600&h=400&itg=1&q=image&ved=2ahUKEwjW5p2J0ZT6AhULgc4BHa10Ac0QMygEegUIARDHAQ)" },
+    // "style": { "background-image": "url(https://www.google.com/imgres?imgurl=https%3A%2F%2Fwww.w3schools.com%2Fcss%2Fimg_lights.jpg&imgrefurl=https%3A%2F%2Fwww.w3schools.com%2Fcss%2Fcss3_images.asp&tbnid=kwgHAQqTiLQXLM&vet=12ahUKEwjW5p2J0ZT6AhULgc4BHa10Ac0QMygEegUIARDHAQ..i&docid=2bZLA8JdC6ZaTM&w=600&h=400&itg=1&q=image&ved=2ahUKEwjW5p2J0ZT6AhULgc4BHa10Ac0QMygEegUIARDHAQ)" },
     "labels": [
         {
             "id": "l101",
@@ -137,12 +137,8 @@ export const gBoards = [{
                     "memberIds": ["u101", "u102", "u103"],
                     "attachments": [
                         {
-                            "url": "https://cdn.thenewstack.io/media/2022/05/600b72f9-react-1024x680.png",
+                            "url": "https://trello.com/1/cards/632603fbf6acc8003771698a/attachments/632604094ac46301cd75ec3c/download/600b72f9-react-1024x680.png",
                             "isCover": true
-                        },
-                        {
-                            "url": "https://css-tricks.com/",
-                            "isCover": false
                         },
                         {
                             "url": "https://css-tricks.com/",
@@ -216,42 +212,6 @@ export const gBoards = [{
                     "title": "Demo 3",
                     "dueDate": 1664439300000,
                     "description": ""
-                },
-                {
-                    "id": "t104",
-                    "title": "Demo 4",
-                    "dueDate": 1664439300000,
-                    "description": ""
-                },
-                {
-                    "id": "t105",
-                    "title": "Demo 5",
-                    "dueDate": 1664439300000,
-                    "description": ""
-                },
-                {
-                    "id": "t106",
-                    "title": "Demo 6",
-                    "dueDate": 1664439300000,
-                    "description": ""
-                },
-                {
-                    "id": "t107",
-                    "title": "Demo 7",
-                    "dueDate": 1664439300000,
-                    "description": ""
-                },
-                {
-                    "id": "t108",
-                    "title": "Demo 8",
-                    "dueDate": 1664439300000,
-                    "description": ""
-                },
-                {
-                    "id": "t109",
-                    "title": "Demo 9",
-                    "dueDate": 1664439300000,
-                    "description": ""
                 }
             ]
         },
@@ -297,6 +257,12 @@ export const gBoards = [{
                     "id": "t106",
                     "title": "Css tricks",
                     "description": "",
+                    "attachments": [
+                        {
+                            "url": "https://css-tricks.com/",
+                            "isCover": false
+                        }
+                    ],
                     "labelIds": ["l104"],
                 },
                 {
@@ -336,7 +302,7 @@ export const gBoards = [{
                     "description": "",
                     "labelIds": ["l104"],
                     "memberIds": ["u101", "u102", "u103"],
-                    "attachments": [{ "url": "https://www.google.com", "isCover": false }],
+                    "attachments": [{ "url": "https://css-tricks.com/", "isCover": false }],
                     "checklists": [
                         {
                             "id": "YEhwF",

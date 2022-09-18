@@ -142,7 +142,7 @@ export const TaskDetails = () => {
                                 <div key={idx} className="attachment">
                                     {/* remove the ! from the boolean - exists only for testing */}
                                     {/* {console.log('checkURL:', checkURL(attachment.url))} */}
-                                    {!checkURL(attachment.url) ?
+                                    {checkURL(attachment.url) ?
                                         <div>
                                             <img src={attachment.url} alt="attachment" />
                                             <button onClick={() => toggleCover(idx)}>{attachment.isCover ? 'Remove cover' : 'Make cover'}</button>

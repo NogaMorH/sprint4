@@ -42,7 +42,7 @@
             height: 150px;
             object-fit: contain;
             padding: 0;
-            background-color: #5e6c845b;
+            background-color: #2c2c2c;
         }
     }
 
@@ -122,6 +122,12 @@
                     margin-right: 20px;
                     margin-bottom: 0;
                 }
+
+            }
+
+            pre {
+                font-family: inherit;
+                font-size: rem(14px);
             }
         }
 
@@ -136,13 +142,9 @@
                 margin-bottom: 10px;
                 padding: 10px;
 
-                div {
-                    display: inline;
-
-                    img {
-                        width: rem(50px);
-                        margin-right: 20px;
-                    }
+                img {
+                    width: rem(100px);
+                    margin-right: 20px;
                 }
 
                 button {
