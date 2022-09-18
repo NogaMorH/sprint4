@@ -1,12 +1,13 @@
 .group-action-modal {
     width: rem(272px);
     position: absolute;
+    left: 240px;
+    top: 40px;
     overflow: hidden;
     height: fit-content;
     z-index: 200;
     border-radius: 1px;
     background-color: #ffffff;
-
 
     .btns-container {
         margin-bottom: 10px;

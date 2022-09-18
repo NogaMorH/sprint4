@@ -118,9 +118,16 @@ export function setIsFormAddOpen(groupId, isAddGroup) {
 
 export function setModalGroupId(groupId) {
     return (dispatch, getState) => {
-        const modalGroupId = getState().systemModule.modalGroupId
-        const groupIdToDispatch = (modalGroupId === groupId) ? null : groupId
-        dispatch({ type: 'SET_MODAL_GROUP_ID', groupIdToDispatch })
+        // console.log('groupId:', groupId)
+        // const modalGroupId = getState().systemModule.modalGroupId
+        // const groupIdToDispatch = (modalGroupId === groupId) ? null : groupId
+        dispatch({ type: 'SET_MODAL_GROUP_ID', groupId })
+    }
+}
+
+export function setModalTaskId(taskId) {
+    return (dispatch) => {
+        dispatch({ type: 'SET_MODAL_TASK_ID', taskId })
     }
 }
 
