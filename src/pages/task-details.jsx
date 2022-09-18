@@ -2,12 +2,12 @@ import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { boardService } from '../services/board.service'
-import { loadBoard, removeTask, addBoard, updateBoard, removeBoard, saveTask } from '../store/board/board.actions'
+import { loadBoard, saveTask } from '../store/board/board.actions'
 import { utilService } from '../services/util.service'
 import { TaskSideBar } from '../cmps/board/task-sidebar'
-import cardIcon from '../assets/img/card.svg'
 import { Attachment } from '../cmps/task-details/attachment'
 import { ChecklistList } from '../cmps/task-details/checklist-list'
+import { BiCreditCardFront } from 'react-icons/bi'
 
 export const TaskDetails = () => {
 
@@ -56,8 +56,9 @@ export const TaskDetails = () => {
             </div>
 
             <div className='task-title'>
-                {/* <img src={cardIcon} alt='' className='card-icon' /> */}
+                <span className='task-title-icon'><BiCreditCardFront /></span>
                 <h3 className='task-title-header'>{title}</h3>
+                {/* <input className='task-title-header' type="text" value={title}/> */}
                 <div className='task-title-subtitle'>in list {boardService.getGroup(board, groupId).title}</div>
             </div>
 

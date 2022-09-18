@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react"
 import { TodoList } from "./todo-list"
+import { TbCheckbox } from 'react-icons/tb'
 
 export const Checklist = ({ checklist, updateChecklists, removeChecklist }) => {
 
@@ -26,7 +27,7 @@ export const Checklist = ({ checklist, updateChecklists, removeChecklist }) => {
     return (
         <div className="checklist">
             <div className="checklist-title">
-                {/* <span>add task icon</span> */}
+                <span className="checklist-title-icon"><TbCheckbox /></span>
                 <input type="text" name="title" placeholder="Todo..." value={currTitle} onChange={handleTitleChange} />
                 <button onClick={() => removeChecklist(currChecklist.id)}>Delete</button>
             </div>

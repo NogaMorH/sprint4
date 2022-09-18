@@ -1,5 +1,10 @@
 .todo {
-    height: 37px;
+    padding: 6px 0;
+
+    &:hover {
+        background-color: rgba(9, 30, 66, 0.04);
+        border-radius: 3px;
+    }
 
     input[name=isDone] {
         position: absolute;
@@ -11,7 +16,7 @@
         font-family: san-francisco-light, sans-serif;
         font-size: rem(14px);
         line-height: rem(20px);
-        padding-left: 34px;
+        padding-left: 33px;
     }
 
     .todo-remove-btn {
@@ -22,7 +27,6 @@
         .todo-remove-btn {
             display: inline;
             line-height: 10px;
-            margin-left: 100px;
         }
     }
 
