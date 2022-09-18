@@ -34,9 +34,6 @@
 @import "cmps/board/task-edit-modal";
 @import "cmps/board/task-filter";
 @import "cmps/board/task-preview";
-@import "cmps/task-details/task-sidebar";
-@import "cmps/task-details/checklist";
-@import "cmps/task-details/todo";
 @import "cmps/board/form-add.scss";
 // home
 @import "cmps/home/home-header";
@@ -49,3 +46,10 @@
 @import "cmps/user-profile/user-header";
 @import "cmps/user-profile/user-hero";
 @import "cmps/user-profile/user-edit";
+// task-details
+@import "cmps/task-details/task-sidebar";
+@import "cmps/task-details/attachment";
+@import "cmps/task-details/checklist-list";
+@import "cmps/task-details/checklist";
+@import "cmps/task-details/todo-list";
+@import "cmps/task-details/todo";

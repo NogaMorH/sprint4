@@ -7,7 +7,7 @@
 }
 
 .task-details-layout {
-    @include main-layout(minmax(8px, 16px), 1fr, minmax(8px, 16px))
+    @include main-layout(minmax(8px, 23px), 1fr, minmax(8px, 16px))
 }
 
 // @include for-narrow-layout {

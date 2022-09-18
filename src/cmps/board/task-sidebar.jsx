@@ -7,6 +7,7 @@ export const TaskSideBar = () => {
             <button>Checklist</button>
             <button>Dates</button>
             <button>Attachment</button>
+            <button>Archive</button>
         </div>
     )
 }

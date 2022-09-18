@@ -137,10 +137,17 @@ export const gBoards = [{
                     "memberIds": ["u101", "u102", "u103"],
                     "attachments": [
                         {
+                            "name": "React",
                             "url": "https://trello.com/1/cards/632603fbf6acc8003771698a/attachments/632604094ac46301cd75ec3c/download/600b72f9-react-1024x680.png",
                             "isCover": true
                         },
                         {
+                            "name": "Attachment",
+                            "url": "https://www.pngitem.com/pimgs/m/520-5208614_curso-programacin-front-end-completo-transparent-html-css.png",
+                            "isCover": false
+                        },
+                        {
+                            "name": "Attachment",
                             "url": "https://css-tricks.com/",
                             "isCover": false
                         }
@@ -259,6 +266,7 @@ export const gBoards = [{
                     "description": "",
                     "attachments": [
                         {
+                            "name": "Attachment",
                             "url": "https://css-tricks.com/",
                             "isCover": false
                         }
@@ -302,7 +310,7 @@ export const gBoards = [{
                     "description": "",
                     "labelIds": ["l104"],
                     "memberIds": ["u101", "u102", "u103"],
-                    "attachments": [{ "url": "https://css-tricks.com/", "isCover": false }],
+                    "attachments": [{ "name": "Attachment", "url": "https://css-tricks.com/", "isCover": false }],
                     "checklists": [
                         {
                             "id": "YEhwF",
