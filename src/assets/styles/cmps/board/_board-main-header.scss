@@ -5,6 +5,8 @@
 
     .header-main-container {
         align-items: center;
+        padding-top: 6px;
+        padding-bottom: 6px;
 
         .logo {
             font-size: 1.34em;
@@ -13,6 +15,7 @@
             align-items: center;
             color: $clr14;
             margin-inline-end: 15px;
+            line-height: 1.5;
 
             img {
                 max-width: 0.975rem;

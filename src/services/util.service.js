@@ -58,3 +58,5 @@ function formatAMPM(ms) {
     var strTime = hours + ':' + minutes + ' ' + ampm
     return strTime
 }
+
+

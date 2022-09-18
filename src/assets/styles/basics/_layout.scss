@@ -3,7 +3,7 @@
 }
 
 .board-layout {
-    padding: 0px 3px 0px 24px
+    @include main-layout(16px, 1fr, 4px)
 }
 
 .task-details-layout {

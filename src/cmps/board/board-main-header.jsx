@@ -3,7 +3,7 @@ import boardLogo from '../../assets/img/board-logo.svg'
 
 export const BoardMainHeader = () => {
     return (
-        <header className='flex board-main-header'>
+        <header className='flex full board-layout board-main-header'>
             <div className='flex header-main-container'>
                 <Link to='/' className='logo'>
                     <img src={boardLogo} alt='logo' />
