@@ -13,7 +13,7 @@ export const HomeHeader = () => {
             <div className='flex header-links'>
                 <Link to='login' className='login-link'>Log in</Link>
                 <Link to='login' className='login-link'>Sign up</Link>
-                <Link to='template' className='btn btn-wide'>Go to your boards</Link>
+                <Link to='board/b101' className='btn btn-wide'>Go to your boards</Link>
             </div>
         </header>
     )

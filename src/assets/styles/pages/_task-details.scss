@@ -4,12 +4,37 @@
     border: 1px solid black;
     margin: auto;
     padding-top: 100px;
-    border-radius: 0.4%;
+    border-radius: 3px;
     margin-bottom: 80px;
     font-family: san-francisco-light, sans-serif;
+    color: $clr8;
+    line-height: 20px;
 
-    >* {
-        margin-bottom: 24px;
+    h4 {
+        line-height: rem(20px);
+        font-family: san-francisco-medium, sans-serif;
+    }
+
+    h6 {
+        font-size: rem(12px);
+        line-height: rem(20px);
+        font-family: inherit;
+        color: #5e6c84;
+        font-weight: 600;
+    }
+
+    button {
+        border: none;
+        color: inherit;
+        background-color: rgba(9, 30, 66, 0.04);
+        border-radius: 3px;
+        padding: 6px 12px;
+        font-family: inherit;
+        line-height: 20px;
+
+        &:hover {
+            background-color: rgba(9, 30, 66, 0.090);
+        }
     }
 
     .task-details-cover {
@@ -17,75 +42,143 @@
             height: 150px;
             object-fit: contain;
             padding: 0;
-            background-color: #5e6c84b2;
+            background-color: #2c2c2c;
         }
     }
 
     .task-details-content {
         >* {
             display: flex;
+            flex-direction: column;
+            margin-bottom: 24px;
         }
 
         .task-title-container {
             display: flex;
             align-items: flex-start;
+            margin-top: 10px;
+            margin-bottom: 15px;
 
-            .card-icon {
-                width: 20px;
-            }
+            // .card-icon {
+            //     width: 20px;
+            // }
 
             .task-title {
                 font-size: rem(20px);
                 font-family: san-francisco-medium, sans-serif;
-                color: $clr8;
                 display: inline;
-                padding-inline-start: 10px;
+                margin-bottom: 8px;
+
+                &::before {
+                    content: url(../../img/card.svg);
+                    display: inline-block;
+                    width: 24px;
+                    margin-right: 10px;
+                }
+            }
+
+            .task-subtitle {
+                font-size: rem(14px);
+                margin-left: 34px;
             }
         }
 
         .members {
-            h6 {
-                font-size: rem(12px);
-                line-height: rem(20px);
-                color: #5e6c84;
-                font-weight: 600;
-            }
-        }
+            margin-left: 34px;
+            margin-bottom: 10px;
 
-        .member-avatar {
+            &-profile-img {
 
-            img {
-                width: 20px;
+                img {
+                    width: rem(30px);
+                    margin-right: 5px;
+                    border-radius: 50%;
+                }
             }
         }
 
         .date-container {
-            .date {
-                background-color: rgba(9, 30, 66, 0.04);
-                border-radius: 3px;
-                padding: 6px 12px;
+            margin-left: 34px;
 
-                &:hover {
-                    background-color: rgba(9, 30, 66, 0.090);
+            .date {
+                display: flex;
+
+                button {
+                    line-height: rem(20px);
+                    margin-left: 5px;
                 }
             }
+
         }
 
         .description {
-            h4 {
-                display: inline;
+            margin-left: 34px;
+
+            &-header {
+                display: flex;
+                align-items: center;
+
+
+                h4 {
+                    margin-right: 20px;
+                    margin-bottom: 0;
+                }
+
             }
 
-            button {
-                color: inherit;
-                background-color: rgba(9, 30, 66, 0.04);
-                border-radius: 3px;
-                padding: 6px 12px;
+            pre {
+                font-family: inherit;
+                font-size: rem(14px);
+            }
+        }
+
+        .attachment-container {
+            margin-left: 34px;
+            font-family: inherit;
+
+            .attachment {
+                display: flex;
+                align-items: center;
+                width: 506px;
+                margin-bottom: 10px;
+                padding: 10px;
+
+                img {
+                    width: rem(100px);
+                    margin-right: 20px;
+                }
+
+                button {
+                    padding: 0;
+                    background-color: transparent;
+                    text-decoration: underline;
+                    color: #5e6c84;
+                    margin-right: 20px;
+
+                    &:hover {
+                        color: $clr8;
+                    }
+                }
+
+                a {
+                    text-decoration: underline;
+                    font-family: inherit;
+                    font-weight: 600;
+                }
 
                 &:hover {
-                    background-color: rgba(9, 30, 66, 0.090);
+                    background-color: rgba(9, 30, 66, 0.04);
+                    border-radius: 3px;
                 }
             }
+
+            .add-attachment-btn {
+                align-self: flex-start;
+            }
+        }
+
+        .checklist-list>*:not(:last-child) {
+            margin-bottom: 24px;
         }
     }
 }

@@ -1,22 +1,33 @@
 .checklist {
-    margin-bottom: 24px;
 
-    h4 {
-        display: inline;
+    input {
+        background-color: transparent;
+        border: none;
     }
 
-    button {
-        color: inherit;
-        background-color: rgba(9, 30, 66, 0.04);
-        border-radius: 3px;
-        padding: 6px 12px;
+    &-title {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 10px;
 
-        &:hover {
-            background-color: rgba(9, 30, 66, 0.090);
+        input[name=title] {
+            width: 400px;
+            outline: none;
+            color: inherit;
+            font-family: san-francisco-medium, sans-serif;
+            line-height: rem(20px);
+            padding-left: 34px;
+        }
+
+        button {
+            align-self: flex-end;
+            margin-right: 196px;
         }
     }
 
     .todo-list {
+        margin-bottom: 10px;
+
         >* {
             padding: 6px 0;
 
@@ -25,5 +36,9 @@
                 border-radius: 3px;
             }
         }
+    }
+
+    &-add-todo-btn {
+        margin-left: 34px;
     }
 }
