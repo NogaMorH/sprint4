@@ -1,38 +1,19 @@
-import { useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import { useParams } from 'react-router-dom'
-import logo from '../assets/img/trello-logo.png'
+import homeLogo from '../../assets/img/home-logo.svg'
 // import { useRouteMatch } from "react-router-dom";
 
-export const AppHeader = () => {
-
-    const params = useParams()
-
-    useEffect(() => {
-        console.log('match:', params)
-    }, [params])
-
-    const getHeaderClass = () => {
-        console.log('params:', params)
-        console.log('params.boardId:', params.boardId)
-        if (params.boardId) return 'board-header'
-        else return 'home-header'
-    }
+export const HomeHeader = () => {
 
     return (
-        <header className={`flex app-header board-header`}>
-            <div className='header-main-container'>
-                <Link to='/' className='logo'>
-                    <img src={logo} />
-                    Trello
-                </Link>
-            </div>
-            <button className='btn btn-transparent btn-create'>Create</button>
-            {/* <nav></nav> */}
+        <header className='flex home-header'>
+            <Link to='/' className='logo'>
+                <img src={homeLogo} alt='logo' />
+                Trello
+            </Link>
             <div className='flex header-links'>
                 <Link to='login' className='login-link'>Log in</Link>
                 <Link to='login' className='login-link'>Sign up</Link>
-                {/* <Link to='template' className='btn btn-wide'>Go to your boards</Link> */}
+                <Link to='board/b101' className='btn btn-wide'>Go to your boards</Link>
             </div>
         </header>
     )

@@ -19,7 +19,7 @@ export const Todo = ({ todo, updateTodos, removeTodo }) => {
         <li className="todo">
             <input type="checkbox" name="isDone" onChange={handleChange} checked={isDone} />
             <input type="text" name="title" placeholder="Todo..." value={title} onChange={handleChange} />
-            <button id="todo-remove-btn" onClick={() => removeTodo(id)}>Remove</button>
+            <button className="todo-remove-btn" onClick={() => removeTodo(id)}>x</button>
         </li>
     )
 }

@@ -51,14 +51,16 @@ export const Checklist = ({ checklist, updateChecklists, removeChecklist }) => {
 
     return (
         <div className="checklist">
-            <input type="text" name="title" placeholder="Todo..." value={currTitle} onChange={handleTitleChange} />
-            <button onClick={() => removeChecklist(currChecklist.id)}>Delete</button>
+            <div className="checklist-title">
+                <input type="text" name="title" placeholder="Todo..." value={currTitle} onChange={handleTitleChange} />
+                <button onClick={() => removeChecklist(currChecklist.id)}>Delete</button>
+            </div>
             <ul className="todo-list">
                 {currTodos.map(todo => (
                     <Todo key={todo.id} todo={todo} updateTodos={updateTodos} removeTodo={removeTodo} />
                 ))}
             </ul>
-            <button id="todo-list-add-btn" onClick={addTodo}>Add an item</button>
+            <button className="checklist-add-todo-btn" onClick={addTodo}>Add an item</button>
         </div>
     )
 }

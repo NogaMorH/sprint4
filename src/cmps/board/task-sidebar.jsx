@@ -1,7 +1,7 @@
-export const TaskAction = () => {
+export const TaskSideBar = () => {
 
     return (
-        <div className="task-action">
+        <div className="task-sidebar">
             <button>Members</button>
             <button>Labels</button>
             <button>Checklist</button>
