@@ -10,6 +10,36 @@
         white-space: normal;
         border-radius: 4px;
         height: fit-content;
+        position: relative;
+
+        .task-edit-icon {
+            display: none;
+            // font-size: 16px;
+            height: rem(25px);
+            line-height: rem(20px);
+            width: rem(25px);
+            z-index: 10;
+            position: absolute;
+            right: 3px;
+            top: 2px;
+            border-radius: 3px;
+
+            &:hover {
+                display: inline-block;
+                justify-content: center;
+                align-items: center;
+                background: #f4f5f7;
+            }
+        }
+
+        &:hover {
+            .task-edit-icon {
+                display: inline-block;
+                // background: none;
+                color: #42526e;
+                padding: 5px;
+            }
+        }
 
         .task-preview-details {
             margin-inline-start: 8px;
@@ -19,7 +49,7 @@
                 font-family: san-francisco-light;
                 font-size: rem(14px);
                 font-weight: 700;
-                margin: 4px 0px 15px 0px;
+                margin: 4px 0px 15px -4px;
 
 
             }

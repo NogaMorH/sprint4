@@ -1,8 +1,7 @@
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useForm } from '../../hooks/useForm'
-import { saveTask, setIsFormAddOpen } from '../../store/board/board.actions'
-import { saveGroup } from '../../store/board/board.actions'
+import { saveTask, setIsFormAddOpen, saveGroup } from '../../store/board/board.actions'
 
 export const FormAdd = ({ groupId }) => {
 
@@ -32,23 +31,16 @@ export const FormAdd = ({ groupId }) => {
     }
 
     return (
-        formAdd.isAddGroup
-            ? <form className='form-add' onSubmit={addGroup}>
-                <div className='title'>
-                    <input placeholder='Enter list title...' className='group-title'
-                        name='title' onChange={handleChange} value={form.title} autoFocus />
-                </div>
-                <button className='btn'>Add list</button>
-                <button>X</button>
-            </form>
-            : <form className='form-add' onSubmit={addTask}>
-                <textarea placeholder='Enter a title for this card...' className='card-title'
-                    name='title' onChange={handleChange} value={form.title} autoFocus>
-                </textarea>
-                <button onClick={addTask} className='btn btn-primary-board'>Add card</button>
-            </form>
+        <form className='form-add' onSubmit={formAdd.isAddGroup ? addGroup : addTask}>
+            <div className='title'>
+                <textarea placeholder={formAdd.isAddGroup ? 'Enter list title...' : 'Enter a title for this card...'} className='group-title'
+                    name='title' onChange={handleChange} value={form.title} autoFocus />
+                <textarea />
+            </div>
+            <button className='btn'>{formAdd.isAddGroup ? 'Add list' : 'Add card'}</button>
+            <button onClick={closeForm}>X</button>
+        </form >
     )
-
 }
 
 

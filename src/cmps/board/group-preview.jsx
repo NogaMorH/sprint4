@@ -15,8 +15,14 @@ export const GroupPreview = ({ group }) => {
     const titleGroupId = useSelector(state => state.systemModule.titleGroupId)
     const [groupTitle, setTitle] = useState(group.title)
 
-    const openGroupModal = (ev) => {
+    const toggleGroupModal = (ev) => {
         ev.stopPropagation()
+        // console.log('ev:', ev)
+        if (modalGroupId === group.id) {
+            // console.log('modalGroupId:', modalGroupId)
+            return closeGroupModal()
+           
+        }
         dispatch(setModalGroupId(group.id))
         document.addEventListener('click', closeGroupModal)
     }
@@ -60,7 +66,7 @@ export const GroupPreview = ({ group }) => {
                         <h3>{title}</h3>
                     </div>
                 }
-                <button className='btn btn-open-modal' onClick={openGroupModal}><img src={dotsIcon} alt="" /></button>
+                <button className='btn btn-open-modal' onClick={toggleGroupModal}><img src={dotsIcon} alt="" /></button>
             </div>
             {modalGroupId === id && <GroupActionModal groupId={id} onRemoveGroup={onRemoveGroup}
                 openAddForm={openAddForm} />}

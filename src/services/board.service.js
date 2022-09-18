@@ -127,8 +127,9 @@ async function removeTask(board, groupId, taskId) {
         const group = getGroup(board, groupId)
         const tasks = group.tasks.filter(task => task.id !== taskId)
         group.tasks = tasks
-        await storageService.put(STORAGE_KEY, board)
-        return board
+        const newdBoard = await storageService.put(STORAGE_KEY, board)
+        const updatedBoard = { ...newdBoard }
+        return updatedBoard
     } catch (err) {
         console.log('Remove task has failed:', err);
     }
