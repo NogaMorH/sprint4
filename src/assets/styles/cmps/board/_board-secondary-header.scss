@@ -1,9 +1,12 @@
+.board-secondary-header-container {
+    background: $clr15;
+}
+
 .board-secondary-header {
     display: flex;
     justify-content: space-between;
     padding-top: 8px;
     padding-bottom: 12px;
-    background: $clr15;
     z-index: 10;
     color: $clr8;
     align-items: center;
@@ -16,7 +19,6 @@
             font-size: rem(18px);
             font-weight: 700;
             line-height: rem(32px);
-            padding: 0 rem(12px);
             font-family: san-francisco-medium, sans-serif;
             margin-inline-end: 15px;
         }
