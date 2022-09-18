@@ -8,6 +8,13 @@
         background-color: #00000034;
         border-radius: 3px;
 
+        .plus-icon {
+            margin-inline-start: 6px;
+            margin-inline-end: 6px;
+            // height: 100%;
+            width: rem(16px);
+        }
+
         &:hover {
             background-color: #00000040;
         }

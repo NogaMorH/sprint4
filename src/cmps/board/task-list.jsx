@@ -1,7 +1,7 @@
 import { TaskPreview } from './task-preview'
 import { HiPlus } from 'react-icons/hi'
 // import { useState } from "react"
-import plus from '../../assets/img/plus.svg'
+
 
 
 export const TaskList = ({ tasks, groupId }) => {
