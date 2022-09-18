@@ -10,13 +10,19 @@
         justify-content: space-between;
         margin-bottom: 10px;
 
+        &-icon {
+            font-size: rem(20px);
+            margin-top: 5px;
+            color: #42526e;
+        }
+
         input[name=title] {
             width: 400px;
             outline: none;
             color: inherit;
             font-family: san-francisco-medium, sans-serif;
             line-height: rem(20px);
-            padding-left: 34px;
+            font-size: rem(16px);
         }
     }
 }

@@ -36,9 +36,9 @@ export const Board = () => {
     return (
         <div className='board-layout board-page'>
             <BoardMainHeader />
-            <main className='board'>
+            <main className='board-layout board'>
                 <BoardSecondaryHeader board={board} />
-                <div className='board-layout group-list-container'>
+                <div className='group-list-container'>
                     <GroupList groups={board.groups} />
                 </div>
             </main>

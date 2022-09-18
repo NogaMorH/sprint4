@@ -5,7 +5,7 @@ import { FormAdd } from './form-add'
 import { GroupActionModal } from './group-action-modal'
 import { TaskList } from './task-list'
 import { removeGroup } from "../../store/board/board.actions"
-import dotsIcon from '../../assets/img/dots.svg'
+import { HiOutlineDotsHorizontal } from 'react-icons/hi'
 
 export const GroupPreview = ({ group }) => {
 
@@ -21,7 +21,7 @@ export const GroupPreview = ({ group }) => {
         if (modalGroupId === group.id) {
             // console.log('modalGroupId:', modalGroupId)
             return closeGroupModal()
-           
+
         }
         dispatch(setModalGroupId(group.id))
         document.addEventListener('click', closeGroupModal)
@@ -66,7 +66,9 @@ export const GroupPreview = ({ group }) => {
                         <h3>{title}</h3>
                     </div>
                 }
-                <button className='btn btn-open-modal' onClick={toggleGroupModal}><img src={dotsIcon} alt="" /></button>
+                <button className='btn btn-open-modal' onClick={toggleGroupModal}>
+                    <HiOutlineDotsHorizontal />
+                </button>
             </div>
             {modalGroupId === id && <GroupActionModal groupId={id} onRemoveGroup={onRemoveGroup}
                 openAddForm={openAddForm} />}

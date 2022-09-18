@@ -13,6 +13,7 @@
     h4 {
         line-height: rem(20px);
         font-family: san-francisco-medium, sans-serif;
+        margin-left: 33px;
     }
 
     h6 {
@@ -53,27 +54,23 @@
         margin-top: 10px;
         margin-bottom: 15px;
 
-        // .card-icon {
-        //     width: 20px;
-        // }
+        &-icon {
+            position: absolute;
+            font-size: 24px;
+            color: #42526e;
+        }
 
         &-header {
             font-size: rem(20px);
             font-family: san-francisco-medium, sans-serif;
-            display: inline;
+            margin-top: 2px;
             margin-bottom: 8px;
-
-            &::before {
-                content: url(../../img/card.svg);
-                display: inline-block;
-                width: 20px;
-                margin-right: 15px;
-            }
+            margin-left: 33px;
         }
 
         &-subtitle {
             font-size: rem(14px);
-            margin-left: 35px;
+            margin-left: 33px;
         }
     }
 
@@ -90,7 +87,7 @@
             }
 
             .members {
-                margin-left: 35px;
+                margin-left: 33px;
                 margin-bottom: 10px;
 
                 &-profile-img {
@@ -104,7 +101,7 @@
             }
 
             .date-container {
-                margin-left: 35px;
+                margin-left: 33px;
 
                 .date {
                     display: flex;
@@ -118,12 +115,10 @@
             }
 
             .description {
-                margin-left: 35px;
-
+                
                 &-header {
                     display: flex;
                     align-items: center;
-
 
                     h4 {
                         margin-right: 8px;
@@ -133,10 +128,10 @@
                     button {
                         font-size: rem(14px);
                     }
-
                 }
 
                 pre {
+                    margin-left: 33px;
                     font-family: inherit;
                     font-size: rem(14px);
                 }
