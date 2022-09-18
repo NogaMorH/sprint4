@@ -18,27 +18,5 @@
             line-height: rem(20px);
             padding-left: 34px;
         }
-
-        button {
-            align-self: flex-end;
-            margin-right: 196px;
-        }
-    }
-
-    .todo-list {
-        margin-bottom: 10px;
-
-        >* {
-            padding: 6px 0;
-
-            &:hover {
-                background-color: rgba(9, 30, 66, 0.04);
-                border-radius: 3px;
-            }
-        }
-    }
-
-    &-add-todo-btn {
-        margin-left: 34px;
     }
 }
