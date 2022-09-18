@@ -166,6 +166,25 @@ export function updateGroupTitle(groupId, title) {
     }
 }
 
+export function setTitleTaskId(taskId) {
+    // console.log('taskId from set title task id:', taskId)
+    return (dispatch) => {
+        dispatch({ type: 'SET_TITLE_TASK_ID', taskId })
+    }
+}
+export function updateTaskTitle(taskId, title) {
+    // console.log('taskId from update title:', taskId)
+    // console.log('title:', title)
+    return async (dispatch, getState) => {
+        try {
+            const board = getState().boardModule.board
+            const updatedBoard = await boardService.updateTaskTitle(board, taskId, title)
+            dispatch({ type: 'UPDATE_BOARD', updatedBoard })
+        } catch (err) {
+            console.log('Update task title has failed in board actions:', err)
+        }
+    }
+}
 
 // export function setFilterBy(filterBy) {
 //     console.log('filterBy from action:', filterBy)

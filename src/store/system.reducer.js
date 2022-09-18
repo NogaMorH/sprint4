@@ -8,6 +8,7 @@ const initialState = {
   modalGroupId: null,
   titleGroupId: null,
   modalTaskId: null,
+  titleTaskId: null
 }
 
 export function systemReducer(state = initialState, action = {}) {
@@ -22,6 +23,8 @@ export function systemReducer(state = initialState, action = {}) {
       return { ...state, titleGroupId: action.groupId }
     case 'SET_MODAL_TASK_ID':
       return { ...state, modalTaskId: action.taskId }
+      case 'SET_TITLE_TASK_ID':
+        return { ...state, titleTaskId: action.taskId }
     //   case 'LOADING_START':
     //     return { ...state, isLoading: true }
     //   case 'LOADING_DONE':

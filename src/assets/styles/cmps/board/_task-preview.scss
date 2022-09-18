@@ -3,7 +3,6 @@
     // margin: auto;
 
     .task-preview {
-        overflow: hidden;
         padding: 0px 4px 0px 5px;
         background-color: $clr5;
         margin-bottom: 8px;
@@ -11,6 +10,7 @@
         border-radius: 4px;
         height: fit-content;
         position: relative;
+        cursor: pointer;
 
         .task-edit-icon {
             display: none;

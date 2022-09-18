@@ -6,13 +6,14 @@ import { useNavigate } from 'react-router-dom'
 import { setModalTaskId } from '../../store/board/board.actions'
 import { TaskEditModal } from './task-edit-modal'
 import descriptionIcon from '../../assets/img/description.svg'
-import clockIcon from '../../assets/img/clock.svg'
+// import clockIcon from '../../assets/img/clock.svg'
+import { BsClock } from 'react-icons/bs'
 import { useState } from 'react'
 
 export const TaskPreview = ({ task, groupId }) => {
     const board = useSelector(state => state.boardModule.board)
     const modalTaskId = useSelector(state => state.systemModule.modalTaskId)
-    const [taskTitle, setTitle] = useState(task.title)
+    const [isEditModalOpen, setIsEditModalOpen] = useState(false)
 
     const dispatch = useDispatch()
     const navigate = useNavigate()
@@ -20,6 +21,13 @@ export const TaskPreview = ({ task, groupId }) => {
     const getFormatDate = (dueDate) => {
         const monthAndDay = utilService.formatMonthDay(dueDate)
         return monthAndDay
+    }
+
+    const handleClick = (ev) => {
+        // console.log('ev:', ev)
+        ev.stopPropagation()
+        setIsEditModalOpen(current => !current)
+
     }
 
     const toggleTaskEditModal = (ev) => {
@@ -32,7 +40,8 @@ export const TaskPreview = ({ task, groupId }) => {
 
     }
 
-    const closeTaskEditModal = () => {
+    const closeTaskEditModal = (ev) => {
+        ev.stopPropagation()
         dispatch(setModalTaskId(null))
         document.removeEventListener('click', closeTaskEditModal)
     }
@@ -53,12 +62,13 @@ export const TaskPreview = ({ task, groupId }) => {
                 })}
                 <div className="task-preview-details">
                     <h4 className="task-title">{title}</h4>
-
-                    <button className="btn task-edit-icon" onClick={toggleTaskEditModal}><BiPencil /></button>
-                    {modalTaskId === id && <TaskEditModal task={task} groupId={groupId} />}
+                    <div className={isEditModalOpen ? 'main-screen' : ''} onClick={handleClick}>
+                        <button className="btn task-edit-icon" onClick={toggleTaskEditModal}><BiPencil /></button>
+                        {modalTaskId === id && <TaskEditModal task={task} groupId={groupId} closeTaskEditModal={closeTaskEditModal} />}
+                    </div>
                     <div className="task-badge-container flex">
                         {dueDate &&
-                            <span className='task-due-date'><img className='task-badge' src={clockIcon} alt="clock icon" />{getFormatDate(task.dueDate)}</span>
+                            <span className='task-due-date'><BsClock className='task-badge' />{getFormatDate(task.dueDate)}</span>
                         }
                         {description && <div className='task-badge'>
                             <img src={descriptionIcon} alt="description icon" />

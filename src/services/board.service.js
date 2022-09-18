@@ -31,7 +31,8 @@ export const boardService = {
     updateGroupTitle,
     getGroup,
     getTask,
-    saveGroup
+    saveGroup,
+    updateTaskTitle
 }
 // window.cs = boardService
 
@@ -150,6 +151,18 @@ async function removeGroup(board, groupId) {
 async function updateGroupTitle(board, groupId, title) {
     const group = getGroup(board, groupId)
     group.title = title
+    await storageService.put(STORAGE_KEY, board)
+    return board
+}
+
+async function updateTaskTitle(board, taskId, title) {
+    //not working!!!
+    // console.log('board: service', board)
+    // console.log('groupId: service', groupId)
+    // console.log('taskId service', taskId)
+    // console.log('title: service', title)
+    // const task = getTask(board, groupId, taskId)
+    // task.title = title
     await storageService.put(STORAGE_KEY, board)
     return board
 }

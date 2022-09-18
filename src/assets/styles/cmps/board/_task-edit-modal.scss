@@ -1,6 +1,4 @@
 .task-edit-modal {
-    // background-clip: padding-box;
-    // background-color: #f4f5f7;
     // background-origin: initial;
     // border-radius: 3px;
     // opacity: .8;
@@ -8,14 +6,47 @@
     // position: absolute;
     // right: 2px;
     // top: 2px;
-    // visibility: hidden;
     // z-index: 40;
-    
-    background-color: red;
+
+    background-color: transparent;
     width: 240px;
-    height: 200px;
+    height: fit-content;
     position: absolute;
-    left: 0;
+    left: 240px;
     top: 0;
-    z-index: 1000;
+    z-index: 40;
+
+    .dark-btn {
+        background: #0009;
+        border: none;
+        border-radius: 3px;
+        color: #e6e6e6;
+        font-size: rem(14px);
+        margin: 0px 0 5px 24px;
+        padding: 6px 12px 6px 8px;
+        width: fit-content;
+
+        &:hover {
+            transform: translateX(5px);
+            background: #000c;
+            color: #fff;
+        }
+    }
+
+    .edit-modal-icon {
+        font-size: rem(14px);
+        // margin: 0px 7px 0 0;
+        margin-right: 7px;
+    }
 }
+
+//     .btn-close {
+//         color: #fff9;
+//         padding: 9px;
+//         position: absolute;
+//         right: 0;
+//         top: 0;
+//         transition-duration: .15s;
+//         transition-property: transform, color;
+//     }
+// }
