@@ -13,8 +13,8 @@ export const GroupList = ({ groups }) => {
 
     const onAddGroup = () => {
         dispatch(setIsFormAddOpen(null, true))
-
     }
+
 
     if (!groups) return <div>Loading....</div>
     return (
@@ -23,7 +23,7 @@ export const GroupList = ({ groups }) => {
                 <GroupPreview key={group.id} group={group} />)}
             {formAdd.isAddGroup
                 ? <FormAdd />
-                : <button className='btn btn-add-group' onClick={onAddGroup}><HiPlus className='plus-icon'/>Add another list</button>
+                : <button className='btn btn-add-group' onClick={onAddGroup}><HiPlus className='plus-icon' />Add another list</button>
             }
         </div>
     )

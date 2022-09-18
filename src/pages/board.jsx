@@ -34,7 +34,7 @@ export const Board = () => {
 
     if (!board) return <div>Loading...</div>
     return (
-        <div className='board-page'>
+        <div className='board-layout board-page'>
             <BoardMainHeader />
             <main className='board'>
                 <BoardSecondaryHeader board={board} />

@@ -1,6 +1,6 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { setModalGroupId, setTitleGroupId, updateGroupTitle } from '../../store/board/board.actions'
+import { setIsFormAddOpen, setModalGroupId, setTitleGroupId, updateGroupTitle } from '../../store/board/board.actions'
 import { FormAdd } from './form-add'
 import { GroupActionModal } from './group-action-modal'
 import { TaskList } from './task-list'
@@ -14,14 +14,15 @@ export const GroupPreview = ({ group }) => {
     const modalGroupId = useSelector(state => state.systemModule.modalGroupId)
     const titleGroupId = useSelector(state => state.systemModule.titleGroupId)
     const [groupTitle, setTitle] = useState(group.title)
-    // const [isAddTaskOpen, setIsAddTaskOpen] = useState(false)
 
-    // useEffect(() => {
-    //     isFormAddOpen()
-    // }, [formAdd])
-
-    const openGroupModal = (ev) => {
+    const toggleGroupModal = (ev) => {
         ev.stopPropagation()
+        // console.log('ev:', ev)
+        if (modalGroupId === group.id) {
+            // console.log('modalGroupId:', modalGroupId)
+            return closeGroupModal()
+           
+        }
         dispatch(setModalGroupId(group.id))
         document.addEventListener('click', closeGroupModal)
     }
@@ -50,6 +51,10 @@ export const GroupPreview = ({ group }) => {
         dispatch(updateGroupTitle(group.id, groupTitle))
     }
 
+    const openAddForm = () => {
+        dispatch(setIsFormAddOpen(group.id, false))
+    }
+
     const { id, title, tasks } = group
     return (
         <div className='flex column group-preview '>
@@ -61,11 +66,12 @@ export const GroupPreview = ({ group }) => {
                         <h3>{title}</h3>
                     </div>
                 }
-                <button className='btn btn-open-modal' onClick={openGroupModal}><img src={dotsIcon} alt="" /></button>
+                <button className='btn btn-open-modal' onClick={toggleGroupModal}><img src={dotsIcon} alt="" /></button>
             </div>
-            {modalGroupId === id && <GroupActionModal groupId={id} onRemoveGroup={onRemoveGroup} />}
+            {modalGroupId === id && <GroupActionModal groupId={id} onRemoveGroup={onRemoveGroup}
+                openAddForm={openAddForm} />}
             {formAdd.groupId === id && <FormAdd groupId={id} />}
-            <TaskList tasks={tasks} groupId={id} />
+            <TaskList tasks={tasks} groupId={id} openAddForm={openAddForm} />
         </div>
     )
 }

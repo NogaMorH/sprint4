@@ -1,0 +1,21 @@
+.task-edit-modal {
+    // background-clip: padding-box;
+    // background-color: #f4f5f7;
+    // background-origin: initial;
+    // border-radius: 3px;
+    // opacity: .8;
+    // padding: 4px;
+    // position: absolute;
+    // right: 2px;
+    // top: 2px;
+    // visibility: hidden;
+    // z-index: 40;
+    
+    background-color: red;
+    width: 240px;
+    height: 200px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 1000;
+}

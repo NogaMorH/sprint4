@@ -1,7 +1,8 @@
 .board-secondary-header {
     display: flex;
     justify-content: space-between;
-    padding: 8px 4px 12px 24px;
+    padding-top: 8px;
+    padding-bottom: 12px;
     background: $clr15;
     z-index: 10;
     color: $clr8;
@@ -41,17 +42,17 @@
                 align-items: center;
                 border-radius: 50%;
 
-                &:nth-child(2) {
-                    transform: translateX(-5px);
-                }
+                // &:nth-child(2) {
+                //     transform: translateX(-5px);
+                // }
 
-                &:nth-child(3) {
-                    transform: translateX(-10px);
-                }
+                // &:nth-child(3) {
+                //     transform: translateX(-10px);
+                // }
 
-                &:nth-child(4) {
-                    transform: translateX(-15px);
-                }
+                // &:nth-child(4) {
+                //     transform: translateX(-15px);
+                // }
             }
         }
     }

@@ -1,5 +1,5 @@
 .board {
-    overflow-x: scroll;
+    overflow-x: auto;
     overflow-y: hidden;
     height: calc(100vh - 44px);
     width: 100%;
@@ -14,4 +14,22 @@
     background-repeat: no-repeat;
     background-size: cover;
     font-family: san-francisco-light, sans-serif;
+}
+
+::-webkit-scrollbar {
+    // background: black;
+    // border: 1px solid black;
+    width: 10px;
+    height: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: rgba(38, 38, 38, 0.426);
+}
+
+
+::-webkit-scrollbar-thumb {
+    background-color: rgba(240, 240, 245, 0.367);
+    border-radius: 7px;
+    // background-clip: content-box;
 }
