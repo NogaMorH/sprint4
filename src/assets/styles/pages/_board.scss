@@ -23,19 +23,17 @@
 
 
 ::-webkit-scrollbar {
-    // background: black;
-    // border: 1px solid black;
     width: 10px;
     height: 10px;
 }
 
 ::-webkit-scrollbar-track {
-    background: rgba(38, 38, 38, 0.426);
+    background: rgb(128 125 145 / 55%);
+    border-radius: 7px;
 }
 
-
 ::-webkit-scrollbar-thumb {
-    background-color: rgba(240, 240, 245, 0.367);
+    background-color: rgb(240 240 245 / 62%);
     border-radius: 7px;
     // background-clip: content-box;
 }
