@@ -6,6 +6,7 @@ import { GroupActionModal } from './group-action-modal'
 import { TaskList } from './task-list'
 import { removeGroup } from "../../store/board/board.actions"
 import { HiOutlineDotsHorizontal } from 'react-icons/hi'
+import { HiPlus } from 'react-icons/hi'
 
 export const GroupPreview = ({ group }) => {
 
@@ -66,14 +67,21 @@ export const GroupPreview = ({ group }) => {
                         <h3>{title}</h3>
                     </div>
                 }
-                <button className='btn btn-open-modal' onClick={toggleGroupModal}>
-                    <HiOutlineDotsHorizontal />
-                </button>
+                <div className='flex btn-container'>
+                    <button className='btn btn-open-modal' onClick={toggleGroupModal}>
+                        <HiOutlineDotsHorizontal />
+                    </button>
+                </div>
             </div>
             {modalGroupId === id && <GroupActionModal groupId={id} onRemoveGroup={onRemoveGroup}
                 openAddForm={openAddForm} />}
             {formAdd.groupId === id && <FormAdd groupId={id} />}
             <TaskList tasks={tasks} groupId={id} openAddForm={openAddForm} />
+            {formAdd.groupId !== id && <div className="add-task-container">
+                <button className="btn btn-add-task" onClick={openAddForm}><HiPlus className='plus-icon' />
+                    Add a card
+                </button>
+            </div>}
         </div>
     )
 }

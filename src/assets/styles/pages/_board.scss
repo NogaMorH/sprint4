@@ -1,8 +1,8 @@
 .board-page {
-
     height: 100vh;
 
     .board {
+        grid-template-rows: auto 1fr;
         overflow-x: auto;
         overflow-y: hidden;
         height: calc(100vh - 44px);
@@ -18,22 +18,39 @@
         background-repeat: no-repeat;
         background-size: cover;
         font-family: san-francisco-light, sans-serif;
+        font-size: rem(13px);
+
     }
 }
 
+.black-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #0009;
+    z-index: 20;
+    // inset: 0 0 0 0;
+    // background-color: black;
+    cursor: pointer;
+}
 
 ::-webkit-scrollbar {
-    width: 10px;
-    height: 10px;
+    width: 15px;
+    height: 18px;
+    // background-color: blue;
 }
 
 ::-webkit-scrollbar-track {
-    background: rgb(128 125 145 / 55%);
+    background: rgba(128, 125, 145, 0);
     border-radius: 7px;
 }
 
 ::-webkit-scrollbar-thumb {
     background-color: rgb(240 240 245 / 62%);
-    border-radius: 7px;
-    // background-clip: content-box;
+    border-radius: 10px;
+    border: 5px solid rgba(255, 255, 255, 0);
+    background-clip: padding-box;
+    width: 8px;
 }

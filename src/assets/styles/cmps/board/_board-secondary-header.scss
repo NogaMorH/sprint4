@@ -1,68 +1,55 @@
 .board-secondary-header-container {
     background: $clr15;
-}
 
-.board-secondary-header {
-    display: flex;
-    justify-content: space-between;
-    padding-top: 8px;
-    padding-bottom: 12px;
-    z-index: 10;
-    color: $clr8;
-    align-items: center;
-
-    .header-main-content {
+    .board-secondary-header {
         display: flex;
+        justify-content: space-between;
+        padding-top: 7px;
+        padding-bottom: 9px;
+        color: $clr8;
         align-items: center;
 
-        .board-title {
-            font-size: rem(18px);
-            font-weight: 700;
-            line-height: rem(32px);
-            font-family: san-francisco-medium, sans-serif;
-            margin-inline-end: 15px;
-        }
-
-        .creator {
-            @include btn-transparent-size;
-        }
-
-        .divider {
-            border-left: 1px solid #0003;
-            float: left;
-            height: 16px;
-            margin: 8px 8px 12px 8px;
-        }
-
-        .member-avatars {
+        .header-main-content {
             display: flex;
-            margin-inline-start: 4px;
+            align-items: center;
 
-            .member-avatar {
-                width: rem(28px);
+            .board-title {
+                font-size: rem(18px);
+                font-weight: 700;
+                line-height: rem(32px);
+                font-family: san-francisco-medium, sans-serif;
+                margin-inline-end: 15px;
+            }
+
+            .creator {
+                @include btn-transparent-size;
+            }
+
+            .divider {
+                border-left: 1px solid #0003;
+                float: left;
+                height: 16px;
+                margin: 8px 8px 12px 8px;
+            }
+
+            .member-avatars {
                 display: flex;
-                align-items: center;
-                border-radius: 50%;
+                margin-inline-start: 4px;
 
-                // &:nth-child(2) {
-                //     transform: translateX(-5px);
-                // }
-
-                // &:nth-child(3) {
-                //     transform: translateX(-10px);
-                // }
-
-                // &:nth-child(4) {
-                //     transform: translateX(-15px);
-                // }
+                .member-avatar {
+                    width: rem(28px);
+                    display: flex;
+                    align-items: center;
+                    border-radius: 50%;
+                }
             }
         }
-    }
 
-    .filter-container {
+        .filter-container {
 
-        .btn-transparent {
-            @include btn-transparent-size;
+            .btn-transparent {
+                @include btn-transparent-size;
+            }
         }
     }
 }

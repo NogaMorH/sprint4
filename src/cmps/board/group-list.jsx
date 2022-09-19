@@ -1,12 +1,11 @@
-import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { GroupPreview } from './group-preview'
 import { setIsFormAddOpen } from '../../store/board/board.actions'
 import { FormAdd } from './form-add'
-import { HiPlus } from 'react-icons/hi'
+import { BsPlusLg } from 'react-icons/bs'
 
 
-export const GroupList = ({ groups }) => {
+export const GroupList = ({ groups, provided }) => {
     const formAdd = useSelector(state => state.systemModule.formAdd)
     const dispatch = useDispatch()
 
@@ -18,12 +17,15 @@ export const GroupList = ({ groups }) => {
 
     if (!groups) return <div>Loading....</div>
     return (
-        <div className="group-list flex">
+        <div className="flex group-list">
             {groups.map(group =>
                 <GroupPreview key={group.id} group={group} />)}
+                {/* {provided.placeholder} */}
             {formAdd.isAddGroup
                 ? <FormAdd />
-                : <button className='btn btn-add-group' onClick={onAddGroup}><HiPlus className='plus-icon' />Add another list</button>
+                : <button className='btn btn-add-group' onClick={onAddGroup}>
+                    <BsPlusLg className='plus-icon' />Add another list
+                </button>
             }
         </div>
     )

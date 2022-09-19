@@ -1,6 +1,8 @@
 import { TaskPreview } from './task-preview'
 import { HiPlus } from 'react-icons/hi'
 import { useSelector } from 'react-redux'
+import { Droppable } from 'react-beautiful-dnd'
+
 
 export const TaskList = ({ tasks, groupId, openAddForm }) => {
 
@@ -9,6 +11,7 @@ export const TaskList = ({ tasks, groupId, openAddForm }) => {
     if (!tasks) return <div></div>
 
     return (
+        // <Droppable droppableId={groupId}>
         <div className="task-list-container">
             <ul className="task-list">
                 {tasks.map(task => (
@@ -23,5 +26,6 @@ export const TaskList = ({ tasks, groupId, openAddForm }) => {
                 </button>
             </div>}
         </div>
+        // </Droppable>
     )
 }

@@ -1,16 +1,21 @@
 .task-preview-container {
-    // width: 96%;
-    // margin: auto;
 
     .task-preview {
         overflow: hidden;
-        padding: 0px 4px 0px 5px;
+        // padding: 6px 8px 2px;
         background-color: $clr5;
         margin-bottom: 8px;
         white-space: normal;
         border-radius: 4px;
         height: fit-content;
         position: relative;
+        word-break: break-word;
+        box-shadow: 0 1px 0 $clr17;
+        color: $clr8;
+
+        .task-cover-img {
+            height: 163.33333333333334px;
+        }
 
         .task-edit-icon {
             display: none;
@@ -42,16 +47,14 @@
         }
 
         .task-preview-details {
-            margin-inline-start: 8px;
-            margin-top: 3px;
+            padding: 6px 8px 2px;
+
+            // margin-inline-start: 8px;
+            // margin-top: 3px;
 
             .task-title {
                 font-family: san-francisco-light;
-                font-size: rem(14px);
-                font-weight: 700;
-                margin: 4px 0px 15px -4px;
-
-
+                line-height: lh(20px, 13px);
             }
 
             .task-badge-container {
@@ -84,8 +87,6 @@
                     }
                 }
             }
-
-
         }
     }
 }
