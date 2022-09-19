@@ -20,11 +20,6 @@ export const TaskList = ({ tasks, groupId, openAddForm }) => {
                     </li>
                 ))}
             </ul>
-            {formAdd.groupId !== groupId && <div className="add-task-container">
-                <button className="btn btn-add-task" onClick={openAddForm}><HiPlus className='plus-icon' />
-                    Add a card
-                </button>
-            </div>}
         </div>
         // </Droppable>
     )
