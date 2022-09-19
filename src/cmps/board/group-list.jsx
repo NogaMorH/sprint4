@@ -5,7 +5,7 @@ import { FormAdd } from './form-add'
 import { BsPlusLg } from 'react-icons/bs'
 
 
-export const GroupList = ({ groups }) => {
+export const GroupList = ({ groups, provided }) => {
     const formAdd = useSelector(state => state.systemModule.formAdd)
     const dispatch = useDispatch()
 
@@ -20,6 +20,7 @@ export const GroupList = ({ groups }) => {
         <div className="flex group-list">
             {groups.map(group =>
                 <GroupPreview key={group.id} group={group} />)}
+                {/* {provided.placeholder} */}
             {formAdd.isAddGroup
                 ? <FormAdd />
                 : <button className='btn btn-add-group' onClick={onAddGroup}>

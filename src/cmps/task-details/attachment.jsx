@@ -1,3 +1,7 @@
+import { FiCreditCard } from 'react-icons/fi'
+import { ImArrowUpRight2 } from 'react-icons/im'
+import { GrAttachment } from 'react-icons/gr'
+
 export const Attachment = ({ attachments, updateTask }) => {
 
     const checkURL = (url) => {
@@ -29,6 +33,7 @@ export const Attachment = ({ attachments, updateTask }) => {
 
     return (
         <div className="attachment-container">
+            <span className='attachment-icon'><GrAttachment /></span>
             <h4>Attachments</h4>
 
             {attachments.map((attachment, idx) => {
@@ -42,25 +47,27 @@ export const Attachment = ({ attachments, updateTask }) => {
                                 {checkURL(url) ?
                                     <img src={url} alt="attachment" />
                                     :
-                                    <span>{/* add pin icon */}pin icon</span>
+                                    <span className='attachment-img-icon'><GrAttachment /></span>
                                 }
                             </div>
 
                             <div className="attachment-info">
                                 <h5 className="name">{name}</h5>
-                                {/* <span className="link"><a href={url}>add link arrow icon</a></span> */}
+                                <span className='link-icon'><ImArrowUpRight2 /></span>
 
                                 <div className="actions">
                                     Added 2 hours ago -
-                                    <button className="actions-remove-btn" onClick={(ev) => removeAttachment(ev, idx)}>Delete</button>
+                                    <button className="actions-remove-btn hover-btn"
+                                        onClick={(ev) => removeAttachment(ev, idx)}>Delete</button>
                                     -
-                                    <button className="actions-edit-btn" onClick={(ev) => editAttachmentName(ev, idx)}>Edit</button>
+                                    <button className="actions-edit-btn hover-btn"
+                                        onClick={(ev) => editAttachmentName(ev, idx)}>Edit</button>
                                 </div>
 
                                 {checkURL(url) &&
-                                    <div className="make-cover">
-                                        {/* <span>add card icon</span> */}
-                                        <button onClick={(ev) => toggleCover(ev, idx)}>
+                                    <div className="make-cover hover-btn">
+                                        <span className='make-cover-icon'><FiCreditCard /></span>
+                                        <button className='make-cover-btn' onClick={(ev) => toggleCover(ev, idx)}>
                                             {isCover ? 'Remove cover' : 'Make cover'}
                                         </button>
                                     </div>

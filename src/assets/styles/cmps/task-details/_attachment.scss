@@ -1,11 +1,15 @@
 .attachment-container {
-    margin-left: 34px;
-    font-family: inherit;
+    position: relative;
     width: 512px;
-
+    
+    .attachment-icon {
+        position: absolute;
+        font-size: rem(18px);
+    }
+    
     .attachment {
         display: flex;
-        align-items: center;
+        margin-left: 33px;
         margin-bottom: 10px;
         color: #5e6c84;
 
@@ -14,7 +18,12 @@
             border-radius: 3px;
         }
 
+        .hover-btn:hover {
+            color: #172B4D;
+        }
+
         &-img {
+            position: relative;
             width: 112px;
             height: 80px;
             background-color: #091e420a;
@@ -23,6 +32,14 @@
             img {
                 height: 100%;
                 object-fit: contain;
+            }
+
+            &-icon {
+                position: absolute;
+                top: 30px;
+                left: 48px;
+                font-size: rem(18px);
+                // cannot change the icon color !
             }
         }
 
@@ -50,6 +67,16 @@
                 padding-right: 3px;
             }
 
+            .link-icon {
+                font-size: rem(9px);
+                color: #42526e;
+                margin-left: 5px;
+
+                &:hover {
+                    color: #172B4D;
+                }
+            }
+
             .actions {
                 margin-bottom: 8px;
 
@@ -62,16 +89,25 @@
                 }
             }
 
-            // .make-cover {
+            .make-cover {
 
-            // }
+                &-icon {
+                    position: absolute;
+                    font-size: 13px;
+                    margin-top: 2px;
+                }
 
+                &-btn {
+                    margin-left: 20px;
+                }
+            }
         }
     }
 
     .add-attachment-btn {
         align-self: flex-start;
         margin: 8px 0;
+        margin-left: 33px;
         font-size: rem(14px);
     }
 }

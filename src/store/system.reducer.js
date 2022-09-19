@@ -8,6 +8,8 @@ const initialState = {
   modalGroupId: null,
   titleGroupId: null,
   modalTaskId: null,
+  // titleTaskId: null,
+  isBlackScreenOpen: false
 }
 
 export function systemReducer(state = initialState, action = {}) {
@@ -22,6 +24,8 @@ export function systemReducer(state = initialState, action = {}) {
       return { ...state, titleGroupId: action.groupId }
     case 'SET_MODAL_TASK_ID':
       return { ...state, modalTaskId: action.taskId }
+    case 'SET_TOGGLE_BLACK_SCREEN':
+      return { ...state, isBlackScreenOpen: !state.isBlackScreenOpen }
     //   case 'LOADING_START':
     //     return { ...state, isLoading: true }
     //   case 'LOADING_DONE':
