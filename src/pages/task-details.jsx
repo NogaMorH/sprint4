@@ -2,9 +2,11 @@ import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { boardService } from '../services/board.service'
-import { loadBoard, saveTask } from '../store/board/board.actions'
-import { utilService } from '../services/util.service'
+import { loadBoard, updateTask } from '../store/board/board.actions'
 import { TaskSideBar } from '../cmps/board/task-sidebar'
+import { Members } from '../cmps/task-details/members'
+import { DueDate } from '../cmps/task-details/dueDate'
+import { Description } from '../cmps/task-details/description'
 import { Attachment } from '../cmps/task-details/attachment'
 import { ChecklistList } from '../cmps/task-details/checklist-list'
 import { BiCreditCardFront } from 'react-icons/bi'
@@ -12,7 +14,7 @@ import { BiCreditCardFront } from 'react-icons/bi'
 export const TaskDetails = () => {
 
     const board = useSelector(state => state.boardModule.board)
-    const [task, setTask] = useState(null)
+    const [taskTitle, setTaskTitle] = useState('')
     const dispatch = useDispatch()
     const params = useParams()
     const { boardId, groupId, taskId } = params
@@ -23,27 +25,26 @@ export const TaskDetails = () => {
 
     useEffect(() => {
         if (!board) return
-        const task = boardService.getTask(board, groupId, taskId)
-        setTask(task)
+        setTaskTitle(title)
     }, [board])
 
     useEffect(() => {
-        if (!task) return
-        dispatch(saveTask(groupId, task))
-    }, [task])
+        if (!board) return
+        dispatch(updateTask(groupId, taskId, 'title', taskTitle))
+    }, [taskTitle])
 
-    if (!task) return <div>Loading...</div>
+    const handleTitleChange = ({ target }) => {
+        setTaskTitle(target.value)
+    }
+
+    if (!board) return <div>Loading...</div>
+    // const { title, dueDate, memberIds, attachments, checklists, description } = boardService.getTask(board, groupId, taskId)
+    const group = board.groups.find(group => group.id === groupId)
+    const task = group.tasks.find(task => task.id === taskId)
+    // console.log('----------------------------');
+    // console.log('board:', board);
+    // console.log('task:', task);
     const { title, dueDate, memberIds, attachments, checklists, description } = task
-
-    const updateTask = (name, value) => {
-        setTask(prevTask => ({ ...prevTask, [name]: value }))
-    }
-
-    const getFormatDate = (dueDate) => {
-        const monthAndDay = utilService.formatMonthDay(dueDate)
-        const time = utilService.formatAMPM(dueDate)
-        return monthAndDay + ' at ' + time
-    }
 
     return (
         <div className="task-details-layout task-details-container">
@@ -57,49 +58,21 @@ export const TaskDetails = () => {
 
             <div className='task-title'>
                 <span className='task-title-icon'><BiCreditCardFront /></span>
-                <h3 className='task-title-header'>{title}</h3>
-                {/* <input className='task-title-header' type="text" value={title}/> */}
+                <input className='task-title-header' type="text" value={taskTitle} onChange={handleTitleChange} />
                 <div className='task-title-subtitle'>in list {boardService.getGroup(board, groupId).title}</div>
             </div>
 
             <main className='task-details'>
                 <div className="task-details-content">
+                    {memberIds && <Members board={board} memberIds={memberIds} />}
 
-                    {memberIds &&
-                        <div className="members">
-                            <h6>Members</h6>
-                            <div className="members-profile-img">
-                                {memberIds.map(memberId => (
-                                    <img key={memberId} src={boardService.getMemberImgUrl(board, memberId)} alt="profile img" />
-                                ))}
-                            </div>
-                        </div>
-                    }
+                    {dueDate && <DueDate dueDate={dueDate} />}
 
-                    {dueDate &&
-                        <div className="date-container">
-                            <h6>Due date</h6>
-                            <div className="date">
-                                <input type="checkbox" />
-                                <button>{getFormatDate(dueDate)}</button>
-                            </div>
-                            {/* <input type="text" value={getFormatDate(dueDate)} /> */}
-                        </div>
-                    }
+                    <Description description={description} />
 
-                    <div className="description">
-                        <div className="description-header">
-                            <h4>Description</h4>
-                            {description &&
-                                <button>Edit</button>
-                            }
-                        </div>
-                        <pre>{description}</pre>
-                    </div>
+                    {attachments && <Attachment attachments={attachments} />}
 
-                    {attachments && <Attachment attachments={attachments} updateTask={updateTask} />}
-
-                    {checklists && <ChecklistList checklists={checklists} updateTask={updateTask} />}
+                    {checklists && <ChecklistList checklists={checklists} />}
                 </div>
 
                 <TaskSideBar />

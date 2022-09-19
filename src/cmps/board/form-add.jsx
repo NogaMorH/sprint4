@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useForm } from '../../hooks/useForm'
-import { saveTask, setIsFormAddOpen, saveGroup } from '../../store/board/board.actions'
+import { setIsFormAddOpen, saveGroup, addTask } from '../../store/board/board.actions'
 
 export const FormAdd = ({ groupId }) => {
 
@@ -13,10 +13,10 @@ export const FormAdd = ({ groupId }) => {
         console.log('task:', form)
     }, [form])
 
-    const addTask = (ev) => {
+    const onAddTask = (ev) => {
         ev.preventDefault()
         console.log('task:', form)
-        dispatch(saveTask(groupId, form))
+        dispatch(addTask(groupId, form))
         closeForm()
     }
 
@@ -31,7 +31,7 @@ export const FormAdd = ({ groupId }) => {
     }
 
     return (
-        <form className='form-add' onSubmit={formAdd.isAddGroup ? addGroup : addTask}>
+        <form className='form-add' onSubmit={formAdd.isAddGroup ? addGroup : onAddTask}>
             <div className='title'>
                 <textarea placeholder={formAdd.isAddGroup ? 'Enter list title...' : 'Enter a title for this card...'} className='group-title'
                     name='title' onChange={handleChange} value={form.title} autoFocus />

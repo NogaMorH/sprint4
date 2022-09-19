@@ -1,0 +1,13 @@
+.members {
+    margin-left: 33px;
+    margin-bottom: 15px;
+
+    &-profile-img {
+
+        img {
+            width: rem(30px);
+            margin-right: 5px;
+            border-radius: 50%;
+        }
+    }
+}

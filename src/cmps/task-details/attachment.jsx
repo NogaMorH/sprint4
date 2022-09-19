@@ -1,8 +1,17 @@
 import { FiCreditCard } from 'react-icons/fi'
 import { ImArrowUpRight2 } from 'react-icons/im'
 import { GrAttachment } from 'react-icons/gr'
+import { useDispatch } from 'react-redux'
+import { useParams } from 'react-router-dom'
+import { updateTask } from '../../store/board/board.actions'
+import { useState } from 'react'
 
-export const Attachment = ({ attachments, updateTask }) => {
+export const Attachment = ({ attachments }) => {
+
+    const [isEditOpen, setIsEditOpen] = useState(false)
+    const dispatch = useDispatch()
+    const params = useParams()
+    const { groupId, taskId } = params
 
     const checkURL = (url) => {
         return (url.match(/\.(jpeg|jpg|gif|png)$/) != null)
@@ -17,17 +26,21 @@ export const Attachment = ({ attachments, updateTask }) => {
             if (index === attachmentIdx) return
             if (attachment.isCover) attachment.isCover = false
         })
-        updateTask('attachments', attachments)
+        dispatch(updateTask(groupId, taskId, 'attachments', attachments))
     }
 
     const removeAttachment = (ev, attachmentIdx) => {
         ev.preventDefault()
         const updatedAttachments = attachments.filter((attachment, idx) => idx !== attachmentIdx)
-        updateTask('attachments', updatedAttachments)
+        dispatch(updateTask(groupId, taskId, 'attachments', updatedAttachments))
     }
 
     const editAttachmentName = (ev, attachmentIdx) => {
         ev.preventDefault()
+        setIsEditOpen(!isEditOpen)
+    }
+
+    const handleChange = () => {
 
     }
 
@@ -74,11 +87,25 @@ export const Attachment = ({ attachments, updateTask }) => {
                                 }
                             </div>
                         </div>
+
+                        {isEditOpen &&
+                            <div className="edit-attachment-modal">
+                                <div className="modal-header">
+                                    <span>Edit attachment</span>
+                                    <span>x</span>
+                                </div>
+                                <label>
+                                    Link name <br />
+                                    <input type="text" value={name} onChange={handleChange} />
+                                </label>
+                                <button>Update</button>
+                            </div>
+                        }
                     </a>
                 )
             })}
 
-            <button className='add-attachment-btn' >Add an attachment</button>
+            <button className='add-attachment-btn'>Add an attachment</button>
         </div>
     )
 }
