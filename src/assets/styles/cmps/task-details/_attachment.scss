@@ -9,6 +9,7 @@
     
     .attachment {
         display: flex;
+        align-items: center;
         margin-left: 33px;
         margin-bottom: 10px;
         color: #5e6c84;
@@ -19,7 +20,7 @@
         }
 
         .hover-btn:hover {
-            color: #172B4D;
+            color: $clr8;
         }
 
         &-img {
@@ -63,7 +64,7 @@
                 font-family: san-francisco-medium, sans-serif;
                 font-size: rem(13px);
                 font-weight: 700;
-                color: #172B4D;
+                color: $clr8;
                 padding-right: 3px;
             }
 
@@ -73,7 +74,7 @@
                 margin-left: 5px;
 
                 &:hover {
-                    color: #172B4D;
+                    color: $clr8;
                 }
             }
 
@@ -102,6 +103,11 @@
                 }
             }
         }
+    }
+
+    .edit-attachment-modal {
+        border: 1px solid $clr8;
+        border-radius: 3px;
     }
 
     .add-attachment-btn {

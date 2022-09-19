@@ -67,9 +67,7 @@ export function saveGroup(group) {
     return async (dispatch, getState) => {
         try {
             const board = getState().boardModule.board
-            console.log('board:', board)
             const updatedBoard = await boardService.saveGroup(board, group)
-            console.log('updatedBoard save group:', updatedBoard)
             dispatch({ type: 'UPDATE_BOARD', updatedBoard })
         } catch (err) {
             console.error('Save group in board actions has failed:', err)
@@ -77,16 +75,29 @@ export function saveGroup(group) {
     }
 }
 
-export function saveTask(groupId, task) {
+export function updateTask(groupId, taskId, name, value) {
     return async (dispatch, getState) => {
         try {
             const board = getState().boardModule.board
-            // console.log('board:', board)
+            let task = boardService.getTask(board, groupId, taskId)
+            task = { ...task, [name]: value }
+            // console.log('task:', task);
             const updatedBoard = await boardService.saveTask(board, groupId, task)
-            // console.log('updatedBoard:', updatedBoard)
             dispatch({ type: 'UPDATE_BOARD', updatedBoard })
         } catch (err) {
-            console.error('Save task in board actions has failed:', err)
+            console.error('Update task in board actions has failed:', err)
+        }
+    }
+}
+
+export function addTask(groupId, task) {
+    return async (dispatch, getState) => {
+        try {
+            const board = getState().boardModule.board
+            const updatedBoard = await boardService.saveTask(board, groupId, task)
+            dispatch({ type: 'UPDATE_BOARD', updatedBoard })
+        } catch (err) {
+            console.error('Add task in board actions has failed:', err)
         }
     }
 }
@@ -95,7 +106,6 @@ export function removeTask(groupId, taskId) {
     return async (dispatch, getState) => {
         try {
             const board = getState().boardModule.board
-            console.log('board:', board);
             const updatedBoard = await boardService.removeTask(board, groupId, taskId)
             console.log('Deleted Successfully!');
             dispatch({ type: 'UPDATE_BOARD', updatedBoard })
@@ -109,8 +119,6 @@ export function removeTask(groupId, taskId) {
 
 export function setIsFormAddOpen(groupId, isAddGroup) {
     return (dispatch) => {
-        // console.log('groupId:', groupId)
-        // console.log('isAddGroup:', isAddGroup)
         dispatch({ type: 'SET_FORM_ADD_GROUP_ID', groupId })
         dispatch({ type: 'SET_FORM_ADD_IS_ADD_GROUP', isAddGroup })
     }

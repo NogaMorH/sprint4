@@ -1,12 +1,21 @@
 import { useEffect, useState } from "react"
+import { useDispatch } from "react-redux"
+import { useParams } from "react-router-dom"
+import { updateTask } from "../../store/board/board.actions"
 import { Checklist } from "./checklist"
 
-export const ChecklistList = ({ checklists, updateTask }) => {
+export const ChecklistList = ({ checklists }) => {
 
     const [currChecklists, setChecklists] = useState(checklists)
+    const dispatch = useDispatch()
+    const params = useParams()
+    const { groupId, taskId } = params
+
+    // console.log('checklists from props:', checklists);
 
     useEffect(() => {
-        updateTask('checklists', currChecklists)
+        // console.log('updated-checklists:', currChecklists);
+        dispatch(updateTask(groupId, taskId, 'checklists', currChecklists))
     }, [currChecklists])
 
     const updateChecklists = (checklist) => {

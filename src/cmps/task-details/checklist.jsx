@@ -16,19 +16,21 @@ export const Checklist = ({ checklist, updateChecklists, removeChecklist }) => {
         updateChecklists(currChecklist)
     }, [currChecklist])
 
-    const updateChecklist = (name, value) => {
-        setChecklist(prevChecklist => ({ ...prevChecklist, [name]: value }))
-    }
-
     const handleTitleChange = ({ target }) => {
         setTitle(target.value)
+    }
+
+    const updateChecklist = (name, value) => {
+        setChecklist(prevChecklist => ({ ...prevChecklist, [name]: value }))
     }
 
     return (
         <div className="checklist">
             <div className="checklist-title">
-                <span className="checklist-title-icon"><TbCheckbox /></span>
-                <input type="text" name="title" placeholder="Todo..." value={currTitle} onChange={handleTitleChange} />
+                <label>
+                    <span className="checklist-title-icon"><TbCheckbox /></span>
+                    <input type="text" name="title" placeholder="Todo..." value={currTitle} onChange={handleTitleChange} />
+                </label>
                 <button onClick={() => removeChecklist(currChecklist.id)}>Delete</button>
             </div>
 

@@ -17,12 +17,13 @@
         }
 
         input[name=title] {
+            margin-left: 10px;
             width: 400px;
             outline: none;
             color: inherit;
             font-family: san-francisco-medium, sans-serif;
             line-height: rem(20px);
-            font-size: rem(16px);
+            font-size: rem(15.5px);
         }
     }
 }
