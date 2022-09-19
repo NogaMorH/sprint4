@@ -1,10 +1,8 @@
 .task-preview-container {
-    // width: 96%;
-    // margin: auto;
 
     .task-preview {
         overflow: hidden;
-        padding: 0px 4px 0px 5px;
+        // padding: 6px 8px 2px;
         background-color: $clr5;
         margin-bottom: 8px;
         white-space: normal;
@@ -42,16 +40,14 @@
         }
 
         .task-preview-details {
-            margin-inline-start: 8px;
-            margin-top: 3px;
+            padding: 6px 8px 2px;
+
+            // margin-inline-start: 8px;
+            // margin-top: 3px;
 
             .task-title {
                 font-family: san-francisco-light;
                 font-size: rem(14px);
-                font-weight: 700;
-                margin: 4px 0px 15px -4px;
-
-
             }
 
             .task-badge-container {
@@ -84,8 +80,6 @@
                     }
                 }
             }
-
-
         }
     }
 }

@@ -18,7 +18,7 @@ export const GroupList = ({ groups }) => {
 
     if (!groups) return <div>Loading....</div>
     return (
-        <div className="group-list flex">
+        <div className="flex group-list">
             {groups.map(group =>
                 <GroupPreview key={group.id} group={group} />)}
             {formAdd.isAddGroup

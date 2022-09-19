@@ -1,6 +1,6 @@
 .group-preview {
-    margin-inline-end: 10px;
-    padding: 0 rem(4px);
+
+    margin-right: 4px;
     height: fit-content;
     max-height: 83%;
     width: 272px;
@@ -8,36 +8,63 @@
     border-radius: 3px;
     position: relative;
 
+    &:not(:first-child) {
+        margin-left: 4px;
+    }
+
     .group-title-container {
-        display: flex;
-        justify-content: space-between;
+        padding: 6px 36px 6px 8px;
+        position: relative;
 
         .group-title {
-            display: flex;
-            justify-content: space-between;
-            margin: 6px 8px 0 11px;
-            padding: 3px 0;
             cursor: pointer;
             flex-grow: 1;
+            padding: 4px 8px;
 
             h3 {
                 font-family: san-francisco-medium, sans-serif;
                 font-size: rem(14px);
                 line-height: rem(20px);
+                margin-bottom: 0;
+                color: $clr8;
             }
         }
-    }
 
-    .btn-open-modal {
-        background-color: #ebecf0;
-        border-radius: 3px;
-        margin: 0px 4px 3px 1px;
-        padding: 2px 0;
-        font-size: 16px;
-        color: $clr20;
+        .group-title-edit {
+            color: $clr8;
+            padding: 4px 8px;
+            resize: none;
+            border-radius: 3px;
+            font-family: san-francisco-light;
 
-        & :hover {
-            background-color: #091e4214;
+            &:focus-visible {
+                border: none;
+                outline: none;
+            }
+
+            &:focus {
+                box-shadow: inset 0 0 0 2px $clr18;
+            }
+        }
+
+        .btn-container {
+            align-items: center;
+            position: absolute;
+            right: 6px;
+            top: 6px;
+
+            .btn-open-modal {
+                background-color: #ebecf0;
+                border-radius: 3px;
+                padding: 6px;
+                font-size: 16px;
+                color: $clr20;
+                aspect-ratio: 1 / 1;
+
+                &:hover {
+                    background-color: #091e4214;
+                }
+            }
         }
     }
 }
