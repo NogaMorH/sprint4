@@ -6,7 +6,7 @@ import { FormAdd } from './form-add'
 import { HiPlus } from 'react-icons/hi'
 
 
-export const GroupList = ({ groups }) => {
+export const GroupList = ({ groups, provided }) => {
     const formAdd = useSelector(state => state.systemModule.formAdd)
     const dispatch = useDispatch()
 
@@ -21,6 +21,7 @@ export const GroupList = ({ groups }) => {
         <div className="group-list flex">
             {groups.map(group =>
                 <GroupPreview key={group.id} group={group} />)}
+                {/* {provided.placeholder} */}
             {formAdd.isAddGroup
                 ? <FormAdd />
                 : <button className='btn btn-add-group' onClick={onAddGroup}><HiPlus className='plus-icon' />Add another list</button>

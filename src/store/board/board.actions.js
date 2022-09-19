@@ -127,6 +127,7 @@ export function setModalGroupId(groupId) {
 
 export function setModalTaskId(taskId) {
     return (dispatch) => {
+        // console.log('taskId frim set modal action:', taskId)
         dispatch({ type: 'SET_MODAL_TASK_ID', taskId })
     }
 }
@@ -167,14 +168,14 @@ export function updateGroupTitle(groupId, title) {
 }
 
 export function setTitleTaskId(taskId) {
-    // console.log('taskId from set title task id:', taskId)
+    console.log('taskId from set title task id:', taskId)
     return (dispatch) => {
         dispatch({ type: 'SET_TITLE_TASK_ID', taskId })
     }
 }
-export function updateTaskTitle(taskId, title) {
-    // console.log('taskId from update title:', taskId)
-    // console.log('title:', title)
+export function updateTask(taskId, title) {
+    console.log('taskId from  action update ', taskId)
+    console.log('title: from action update', title)
     return async (dispatch, getState) => {
         try {
             const board = getState().boardModule.board
@@ -183,6 +184,12 @@ export function updateTaskTitle(taskId, title) {
         } catch (err) {
             console.log('Update task title has failed in board actions:', err)
         }
+    }
+}
+
+export function toggleBlackScreen () {
+    return (dispatch) => {
+        dispatch({ type: 'SET_TOGGLE_BLACK_SCREEN' })
     }
 }
 
