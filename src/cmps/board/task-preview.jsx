@@ -17,6 +17,8 @@ export const TaskPreview = ({ task, groupId }) => {
     const dispatch = useDispatch()
     const navigate = useNavigate()
 
+    const { title, dueDate, memberIds, description, attachments, id } = task
+
     const getFormatDate = (dueDate) => {
         const monthAndDay = utilService.formatMonthDay(dueDate)
         return monthAndDay
@@ -24,10 +26,10 @@ export const TaskPreview = ({ task, groupId }) => {
 
     const toggleTaskEditModal = (ev) => {
         ev.stopPropagation()
-        if (modalTaskId === task.id) {
+        if (modalTaskId === id) {
             return closeTaskEditModal()
         }
-        dispatch(setModalTaskId(task.id))
+        dispatch(setModalTaskId(id))
         document.addEventListener('click', closeTaskEditModal)
 
     }
@@ -38,10 +40,14 @@ export const TaskPreview = ({ task, groupId }) => {
     }
 
     const openTaskDetails = () => {
-        navigate(`/board/${board._id}/group/${groupId}/task/${task.id}`)
+        navigate(`/board/${board._id}/group/${groupId}/task/${id}`)
     }
 
-    const { title, dueDate, memberIds, description, attachments, id } = task
+    const isBadge = () => {
+        if (dueDate || description || memberIds || attachments) return true
+        else return false
+    }
+
     if (!task) return <div>Loading...</div>
     return (
         <section className='task-preview-container'>
@@ -56,20 +62,21 @@ export const TaskPreview = ({ task, groupId }) => {
 
                     <button className="btn task-edit-icon" onClick={toggleTaskEditModal}><BiPencil /></button>
                     {modalTaskId === id && <TaskEditModal task={task} groupId={groupId} />}
-                    <div className="task-badge-container flex">
-                        {dueDate &&
-                            <span className='task-due-date'><img className='task-badge' src={clockIcon} alt="clock icon" />{getFormatDate(task.dueDate)}</span>
-                        }
-                        {description && <div className='task-badge'>
-                            <img src={descriptionIcon} alt="description icon" />
-                        </div>
-                        }
-                        <div className="member-avatar">
-                            {memberIds && memberIds.map(memberId => (
-                                <img key={memberId} src={boardService.getMemberImgUrl(board, memberId)} alt="profile img" />
-                            ))}
-                        </div>
-                    </div>
+                    {isBadge() &&
+                        <div className="task-badge-container flex">
+                            {dueDate &&
+                                <span className='task-due-date'><img className='task-badge' src={clockIcon} alt="clock icon" />{getFormatDate(task.dueDate)}</span>
+                            }
+                            {description && <div className='task-badge'>
+                                <img src={descriptionIcon} alt="description icon" />
+                            </div>
+                            }
+                            <div className="member-avatar">
+                                {memberIds && memberIds.map(memberId => (
+                                    <img key={memberId} src={boardService.getMemberImgUrl(board, memberId)} alt="profile img" />
+                                ))}
+                            </div>
+                        </div>}
                 </div>
             </div>
         </section>

@@ -1,9 +1,8 @@
-import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { GroupPreview } from './group-preview'
 import { setIsFormAddOpen } from '../../store/board/board.actions'
 import { FormAdd } from './form-add'
-import { HiPlus } from 'react-icons/hi'
+import { BsPlusLg } from 'react-icons/bs'
 
 
 export const GroupList = ({ groups }) => {
@@ -23,7 +22,9 @@ export const GroupList = ({ groups }) => {
                 <GroupPreview key={group.id} group={group} />)}
             {formAdd.isAddGroup
                 ? <FormAdd />
-                : <button className='btn btn-add-group' onClick={onAddGroup}><HiPlus className='plus-icon' />Add another list</button>
+                : <button className='btn btn-add-group' onClick={onAddGroup}>
+                    <BsPlusLg className='plus-icon' />Add another list
+                </button>
             }
         </div>
     )
