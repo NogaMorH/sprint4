@@ -32,7 +32,8 @@ export const boardService = {
     getGroup,
     getTask,
     saveGroup,
-    updateTaskTitle
+    updateTaskTitle,
+    moveTask
 }
 // window.cs = boardService
 
@@ -163,8 +164,8 @@ async function updateTaskTitle(board, taskId, title) {
     // console.log('title: service', title)
     // const task = getTask(board, groupId, taskId)
     // task.title = title
-    await storageService.put(STORAGE_KEY, board)
-    return board
+    // await storageService.put(STORAGE_KEY, board)
+    // return board
 }
 
 function getGroup(board, groupId) {
@@ -176,6 +177,25 @@ function getTask(board, groupId, taskId) {
     const group = board.groups.find(group => group.id === groupId)
     const task = group.tasks.find(task => task.id === taskId)
     return task
+}
+
+async function moveTask(board, newBoard) {
+    console.log('newBoard:', newBoard)
+    try {
+        // const group = board.groups.find(group => group.id === source.droppableId)
+        // const newBoard = {
+        //     ...board,
+        //     groups:
+        //         board.groups.map(group => group.id === newGroup.id ? newGroup : group)
+        // }
+
+        await storageService.put(STORAGE_KEY, newBoard)
+        return newBoard
+
+    } catch (err) {
+        console.log('Move task from board service has failed:', err)
+
+    }
 }
 
 // TEST DATA

@@ -187,9 +187,23 @@ export function updateTask(taskId, title) {
     }
 }
 
-export function toggleBlackScreen () {
+export function toggleBlackScreen() {
     return (dispatch) => {
         dispatch({ type: 'SET_TOGGLE_BLACK_SCREEN' })
+    }
+}
+
+export function moveTask(newBoard) {
+    return async (dispatch, getState) => {
+        try {
+            const board = getState().boardModule.board
+            const updatedBoard = await boardService.moveTask(board, newBoard)
+            dispatch({ type: 'UPDATE_BOARD', updatedBoard })
+
+        } catch (err) {
+            console.log('Move task title has failed in board actions:', err)
+
+        }
     }
 }
 

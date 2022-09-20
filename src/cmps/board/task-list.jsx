@@ -11,21 +11,25 @@ export const TaskList = ({ tasks, groupId, openAddForm }) => {
     if (!tasks) return <div></div>
 
     return (
-        // <Droppable droppableId={groupId}>
-            <div className="task-list-container">
-                <ul className="task-list">
-                    {tasks.map(task => (
-                        <li key={task.id}>
-                            <TaskPreview task={task} groupId={groupId} />
-                        </li>
-                    ))}
-                </ul>
-                {formAdd.groupId !== groupId && <div className="add-task-container">
-                    <button className="btn btn-add-task" onClick={openAddForm}><HiPlus className='plus-icon' />
-                        Add a card
-                    </button>
-                </div>}
-            </div>
-        // </Droppable>
+
+        <div className="task-list-container">
+            <Droppable droppableId={groupId}>
+                {provided => (
+                    <ul className="task-list" ref={provided.innerRef} {...provided.droppableProps}>
+                        {tasks.map((task, index) => (
+                            <li key={task.id}>
+                                <TaskPreview task={task} groupId={groupId} index={index} />
+                            </li>
+                        ))}
+                        {provided.placeholder}
+                    </ul>
+                )}
+            </Droppable>
+            {formAdd.groupId !== groupId && <div className="add-task-container">
+                <button className="btn btn-add-task" onClick={openAddForm}><HiPlus className='plus-icon' />
+                    Add a card
+                </button>
+            </div>}
+        </div>
     )
 }
