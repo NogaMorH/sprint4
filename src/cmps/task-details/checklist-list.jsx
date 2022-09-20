@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react"
 import { useDispatch } from "react-redux"
 import { useParams } from "react-router-dom"
 import { updateTask } from "../../store/board/board.actions"
@@ -6,29 +5,24 @@ import { Checklist } from "./checklist"
 
 export const ChecklistList = ({ checklists }) => {
 
-    const [currChecklists, setChecklists] = useState(checklists)
     const dispatch = useDispatch()
     const params = useParams()
     const { groupId, taskId } = params
 
-    useEffect(() => {
-        dispatch(updateTask(groupId, taskId, 'checklists', currChecklists))
-    }, [currChecklists])
-
     const updateChecklists = (checklist) => {
-        setChecklists(prevChecklists => (
-            prevChecklists.map(currChecklist => {
-                if (currChecklist.id === checklist.id) {
-                    return checklist
-                }
-                return currChecklist
-            })
-        ))
+        const updatedChecklists = checklists.map(currChecklist => {
+            if (currChecklist.id === checklist.id) {
+                return checklist
+            }
+            return currChecklist
+        })
+
+        dispatch(updateTask(groupId, taskId, 'checklists', updatedChecklists))
     }
 
     const removeChecklist = (checklistId) => {
-        const updatedChecklists = currChecklists.filter(currChecklist => currChecklist.id !== checklistId)
-        setChecklists(updatedChecklists)
+        const updatedChecklists = checklists.filter(currChecklist => currChecklist.id !== checklistId)
+        dispatch(updateTask(groupId, taskId, 'checklists', updatedChecklists))
     }
 
     return (

@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react"
 import { useDispatch } from "react-redux"
 import { useParams } from "react-router-dom"
 import { updateTask } from "../../store/board/board.actions"
+import { GrTextAlignFull } from 'react-icons/gr'
 
 export const Description = ({ description }) => {
 
@@ -21,10 +22,10 @@ export const Description = ({ description }) => {
     const onBlur = (ev) => {
         if (!ev.relatedTarget || ev.relatedTarget.className === 'save-btn') {
             dispatch(updateTask(groupId, taskId, 'description', updatedDescription))
-            console.log(' Task description saved!');
+            console.log(' Task description saved!')
         } else {
             setDescription(description)
-            console.log('Task description canceled!');
+            console.log('Task description canceled!')
         }
         setFocused(false)
     }
@@ -50,6 +51,7 @@ export const Description = ({ description }) => {
     return (
         <div className="description">
             <div className="description-header">
+                <span className="description-header-icon"><GrTextAlignFull /></span>
                 <h4>Description</h4>
                 {description && !focused &&
                     <button className="edit-btn" onClick={focusRef}>Edit</button>

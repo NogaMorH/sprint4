@@ -32,7 +32,7 @@ export const boardService = {
     getGroup,
     getTask,
     saveGroup,
-    moveTask,
+    updateBoard,
     duplicateGroup
 }
 // window.cs = boardService
@@ -166,7 +166,7 @@ function getTask(board, groupId, taskId) {
     return task
 }
 
-async function moveTask(board, newBoard) {
+async function updateBoard(board, newBoard) {
     // console.log('newBoard:', newBoard)
     try {
         // const group = board.groups.find(group => group.id === source.droppableId)
