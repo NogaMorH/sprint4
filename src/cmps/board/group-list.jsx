@@ -35,7 +35,7 @@ export const GroupList = ({ groups, provided }) => {
         newTasks.splice(index, 1)
         newTasks.splice(destination.index, 0, draggableId)
         console.log('draggableId:', draggableId)
-        
+
         const newGroup = {
             ...group,
             tasks: newTasks
@@ -68,12 +68,13 @@ export const GroupList = ({ groups, provided }) => {
                 {groups.map(group =>
                     <GroupPreview key={group.id} group={group} />)}
                 {/* {provided.placeholder} */}
-            {formAdd.isAddGroup
-                ? <FormAdd />
-                : <button className='btn btn-add-group' onClick={onAddGroup}>
-                    <BsPlusLg className='plus-icon' />Add another list
-                </button>
-            }
-        </div>
+                {formAdd.isAddGroup
+                    ? <FormAdd />
+                    : <button className='btn btn-add-group' onClick={onAddGroup}>
+                        <BsPlusLg className='plus-icon' />Add another list
+                    </button>
+                }
+            </div>
+        </DragDropContext>
     )
 }
