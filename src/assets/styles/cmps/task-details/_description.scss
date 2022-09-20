@@ -8,6 +8,13 @@
         padding: 8px 0;
         margin-bottom: 4px;
 
+        &-icon {
+            position: absolute;
+            margin-top: 2px;
+            font-size: rem(19px);
+            color: $clr14;
+        }
+
         h4 {
             margin-right: 8px;
             margin-bottom: 0;
@@ -21,6 +28,7 @@
     textarea {
         resize: none;
         overflow-y: hidden;
+        // min-height: 56px;
         width: 512px;
         margin-left: 33px;
         padding-bottom: 10px;
@@ -47,7 +55,7 @@
         }
 
         &:focus {
-            height: 108px;
+            height: 108px; // not working because of handleTextHeight(ref) when cmp did mount
             padding: 8px 12px;
             background-color: white;
             outline-color: $clr18;

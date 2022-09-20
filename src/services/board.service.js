@@ -32,7 +32,6 @@ export const boardService = {
     getGroup,
     getTask,
     saveGroup,
-    updateTaskTitle,
     moveTask,
     duplicateGroup
 }

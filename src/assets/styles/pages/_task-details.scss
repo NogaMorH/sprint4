@@ -57,7 +57,7 @@
         &-icon {
             position: absolute;
             font-size: 21px;
-            color: #42526e;
+            color: $clr14;
             margin-top: 7px;
         }
 
@@ -90,13 +90,8 @@
 
         &-content {
 
-            >* {
-                display: flex;
-                flex-direction: column;
-
-                &:not(:nth-child(-n + 2)) {
-                    margin-bottom: 24px;
-                }
+            >*:not(:nth-child(-n + 2)) {
+                margin-bottom: 24px;
             }
         }
 

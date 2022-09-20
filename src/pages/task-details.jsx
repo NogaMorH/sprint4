@@ -7,7 +7,7 @@ import { TaskSideBar } from '../cmps/board/task-sidebar'
 import { Members } from '../cmps/task-details/members'
 import { DueDate } from '../cmps/task-details/dueDate'
 import { Description } from '../cmps/task-details/description'
-import { Attachment } from '../cmps/task-details/attachment'
+import { AttachmentList } from '../cmps/task-details/attachment-list'
 import { ChecklistList } from '../cmps/task-details/checklist-list'
 import { BiCreditCardFront } from 'react-icons/bi'
 
@@ -64,7 +64,7 @@ export const TaskDetails = () => {
 
                     <Description description={description} />
 
-                    {attachments && <Attachment attachments={attachments} />}
+                    {attachments && <AttachmentList attachments={attachments} />}
 
                     {checklists && <ChecklistList checklists={checklists} />}
                 </div>
