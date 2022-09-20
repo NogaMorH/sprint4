@@ -1,0 +1,21 @@
+.attachment-list {
+    position: relative;
+    width: 512px;
+
+    &-header {
+
+        .attachment-icon {
+            position: absolute;
+            font-size: rem(18px);
+            color: $clr14;
+        }
+    }
+
+    .add-attachment-btn {
+        align-self: flex-start;
+        margin: 8px 0;
+        margin-left: 33px;
+        font-size: rem(14px);
+    }
+
+}

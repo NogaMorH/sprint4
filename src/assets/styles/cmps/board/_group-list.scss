@@ -1,7 +1,15 @@
 .group-list-container {
-    overflow: hidden;
     height: 100%;
+    overflow-y: hidden;
+    overflow-x: auto;
     display: flex;
+
+    .group-list {
+        height: 100%;
+        align-items: flex-start;
+
+      
+    }
 
     .btn-add-group {
         min-width: 272px;
@@ -25,10 +33,5 @@
         }
     }
 
-    .group-list {
-        height: 100%;
-        align-items: flex-start;
-
-      
-    }
+    
 }
