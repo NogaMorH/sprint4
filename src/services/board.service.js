@@ -33,7 +33,8 @@ export const boardService = {
     getTask,
     saveGroup,
     updateTaskTitle,
-    moveTask
+    moveTask,
+    duplicateGroup
 }
 // window.cs = boardService
 
@@ -196,6 +197,19 @@ async function moveTask(board, newBoard) {
         console.log('Move task from board service has failed:', err)
 
     }
+}
+
+async function duplicateGroup(board, groupId) {
+    const group = board.groups.find(group => group.id === groupId)
+    const newGroup = { ...group, id: utilService.makeId() }
+    const idx = board.groups.findIndex(currGroup => currGroup.id === groupId)
+    console.log(' idx:',  idx)
+    board.groups.splice(idx, 0, newGroup)
+    // splice(idx, 1, task)
+    console.log('newboard:', board)
+    const newBoard = await storageService.put(STORAGE_KEY, board)
+    const updatedBoard = { ...newBoard }
+    return updatedBoard
 }
 
 // TEST DATA

@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux'
 import { Droppable } from 'react-beautiful-dnd'
 
 
-export const TaskList = ({ tasks, groupId, openAddForm }) => {
+export const TaskList = ({ tasks, groupId }) => {
 
     const formAdd = useSelector(state => state.systemModule.formAdd)
 
@@ -25,11 +25,6 @@ export const TaskList = ({ tasks, groupId, openAddForm }) => {
                     </ul>
                 )}
             </Droppable>
-            {formAdd.groupId !== groupId && <div className="add-task-container">
-                <button className="btn btn-add-task" onClick={openAddForm}><HiPlus className='plus-icon' />
-                    Add a card
-                </button>
-            </div>}
         </div>
     )
 }

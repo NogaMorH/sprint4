@@ -1,5 +1,5 @@
 .group-action-modal {
-    width: rem(272px);
+    width: rem(304px);
     position: absolute;
     left: 240px;
     top: 40px;
@@ -11,24 +11,40 @@
     z-index: 100;
 
     .btns-container {
-        padding: 6px 0px 7px 0px;
+        padding: 0px 2.5px 12px;
 
         .btn-action {
             background: none;
-            margin-inline-start: 10px;
-            margin-bottom: 10px;
+            padding: 6px 12px;
+            color: #384a68;
         }
-
     }
 
     .action-modal-title {
-        width: 100%;
         display: flex;
         justify-content: center;
-        padding: 5px;
+        color: #5e6c84;
         border-bottom: 1px solid #dfe2e6;
+        margin: 0 12px;
         margin-bottom: 6px;
         line-height: rem(40px);
         font-size: rem(14px);
+        position: relative;
+        z-index: 5;
+
+        .close-icon {
+            position: absolute;
+            right: 0;
+            top: 3.5px;
+            z-index: 10;
+            width: 16px;
+            font-size: 18px;
+            color: #6b778c;
+            cursor: pointer;
+
+            &:hover {
+                color: #172b4d;
+            }
+        }
     }
 }

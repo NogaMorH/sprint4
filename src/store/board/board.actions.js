@@ -181,19 +181,19 @@ export function setTitleTaskId(taskId) {
         dispatch({ type: 'SET_TITLE_TASK_ID', taskId })
     }
 }
-export function updateTask(taskId, title) {
-    console.log('taskId from  action update ', taskId)
-    console.log('title: from action update', title)
-    return async (dispatch, getState) => {
-        try {
-            const board = getState().boardModule.board
-            const updatedBoard = await boardService.updateTaskTitle(board, taskId, title)
-            dispatch({ type: 'UPDATE_BOARD', updatedBoard })
-        } catch (err) {
-            console.log('Update task title has failed in board actions:', err)
-        }
-    }
-}
+// export function updateTask(taskId, title) {
+//     console.log('taskId from  action update ', taskId)
+//     console.log('title: from action update', title)
+//     return async (dispatch, getState) => {
+//         try {
+//             const board = getState().boardModule.board
+//             const updatedBoard = await boardService.updateTaskTitle(board, taskId, title)
+//             dispatch({ type: 'UPDATE_BOARD', updatedBoard })
+//         } catch (err) {
+//             console.log('Update task title has failed in board actions:', err)
+//         }
+//     }
+// }
 
 export function toggleBlackScreen() {
     return (dispatch) => {
@@ -207,10 +207,22 @@ export function moveTask(newBoard) {
             const board = getState().boardModule.board
             const updatedBoard = await boardService.moveTask(board, newBoard)
             dispatch({ type: 'UPDATE_BOARD', updatedBoard })
-
         } catch (err) {
             console.log('Move task title has failed in board actions:', err)
 
+        }
+    }
+}
+
+export function duplicateGroup(groupId) {
+    return async (dispatch, getState) => {
+        try {
+            const board = getState().boardModule.board
+            const updatedBoard = await boardService.duplicateGroup(board, groupId)
+            dispatch({ type: 'UPDATE_BOARD', updatedBoard })
+
+        } catch (err) {
+            console.log('Duplicate group title has failed in board actions:', err)
         }
     }
 }
