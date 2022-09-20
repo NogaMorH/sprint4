@@ -181,21 +181,22 @@ export function setTitleTaskId(taskId) {
         dispatch({ type: 'SET_TITLE_TASK_ID', taskId })
     }
 }
-export function updateTask(taskId, title) {
-    console.log('taskId from  action update ', taskId)
-    console.log('title: from action update', title)
-    return async (dispatch, getState) => {
-        try {
-            const board = getState().boardModule.board
-            const updatedBoard = await boardService.updateTaskTitle(board, taskId, title)
-            dispatch({ type: 'UPDATE_BOARD', updatedBoard })
-        } catch (err) {
-            console.log('Update task title has failed in board actions:', err)
-        }
-    }
-}
 
-export function toggleBlackScreen () {
+// export function updateTask(taskId, title) {
+//     console.log('taskId from  action update ', taskId)
+//     console.log('title: from action update', title)
+//     return async (dispatch, getState) => {
+//         try {
+//             const board = getState().boardModule.board
+//             const updatedBoard = await boardService.updateTaskTitle(board, taskId, title)
+//             dispatch({ type: 'UPDATE_BOARD', updatedBoard })
+//         } catch (err) {
+//             console.log('Update task title has failed in board actions:', err)
+//         }
+//     }
+// }
+
+export function toggleBlackScreen() {
     return (dispatch) => {
         dispatch({ type: 'SET_TOGGLE_BLACK_SCREEN' })
     }

@@ -1,32 +1,37 @@
 .board-main-header {
-    @include header;
     height: 44px;
     background-color: #b7c4e6;
+    height: fit-content;
 
     .header-main-container {
+        @include header;
         align-items: center;
-        padding-top: 6px;
-        padding-bottom: 6px;
+        padding-top: 3.5px;
+        padding-bottom: 3.5px;
 
-        .logo {
-            font-size: 1.34em;
-            max-height: 44px;
+        .logo-container {
             display: flex;
             align-items: center;
-            color: $clr14;
-            margin-inline-end: 15px;
-            line-height: 1.5;
 
-            img {
-                max-width: 0.975rem;
-                margin-top: 2px;
+            .logo {
+                font-size: 1.34em;
+                display: flex;
+                align-items: center;
+                color: $clr14;
+                margin-inline-end: 15px;
+                line-height: 1.5;
+
+                img {
+                    max-width: 0.975rem;
+                    margin-top: 2px;
+                }
             }
-        }
 
-        .btn-create {
-            height: 28px;
-            padding-right: 9px;
-            padding-left: 9px;
+            .btn-create {
+                height: 28px;
+                padding-right: 9px;
+                padding-left: 9px;
+            }
         }
     }
 

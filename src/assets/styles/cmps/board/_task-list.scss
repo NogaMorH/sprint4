@@ -1,9 +1,8 @@
 .task-list-container {
-    // overflow-x: hidden;
-    // overflow-y: auto;
+    flex-grow: 1;
+    overflow-y: auto;
 
     .task-list {
-        // margin: 0 4px;
         padding: 0 8px;
     }
 

@@ -54,8 +54,7 @@ export const TaskPreview = ({ task, groupId }) => {
     if (!task) return <div>Loading...</div>
     return (
         // <Draggable draggableId={task.id}>
-        // <section className='task-preview-container'>
-        <div className='task-preview' onClick={openTaskDetails}>
+        <section className='task-preview' onClick={openTaskDetails}>
             {attachments && attachments.map((attachment, idx) => {
                 if (attachment.isCover) {
                     return <img key={idx} className='task-cover-img' src={attachment.url} alt="cover" />
@@ -63,11 +62,13 @@ export const TaskPreview = ({ task, groupId }) => {
             })}
             <div className="task-preview-details">
                 <h4 className="task-title">{title}</h4>
-                <button className="btn task-edit-icon" onClick={openTaskEditModal}><BiPencil /></button>
+                <button className="btn task-edit-icon" onClick={openTaskEditModal}>
+                    <BiPencil />
+                </button>
                 {modalTaskId === id &&
                     <TaskEditModal task={task} groupId={groupId} closeTaskEditModal={closeTaskEditModal} />}
                 {isBadge() &&
-                    <div className="task-badge-container flex">
+                    <div className="flex task-badge-container">
                         {dueDate &&
                             <span className='task-due-date'>
                                 <BsClock className='task-badge' />
@@ -78,6 +79,7 @@ export const TaskPreview = ({ task, groupId }) => {
                             <img src={descriptionIcon} alt="description icon" />
                         </div>
                         }
+                        { }
                         <div className="member-avatar">
                             {memberIds && memberIds.map(memberId => (
                                 <img key={memberId} src={boardService.getMemberImgUrl(board, memberId)}
@@ -86,7 +88,6 @@ export const TaskPreview = ({ task, groupId }) => {
                         </div>
                     </div>}
             </div>
-        </div>
-        // </section>
+        </section>
     )
 }
