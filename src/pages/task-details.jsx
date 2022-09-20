@@ -25,11 +25,12 @@ export const TaskDetails = () => {
 
     useEffect(() => {
         if (!board) return
+        console.log('title:', title);
         setTaskTitle(title)
     }, [board])
 
     useEffect(() => {
-        if (!board) return
+        if (!board || !taskTitle) return
         dispatch(updateTask(groupId, taskId, 'title', taskTitle))
     }, [taskTitle])
 
