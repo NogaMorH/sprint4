@@ -38,13 +38,7 @@ export const TaskDetails = () => {
     }
 
     if (!board) return <div>Loading...</div>
-    // const { title, dueDate, memberIds, attachments, checklists, description } = boardService.getTask(board, groupId, taskId)
-    const group = board.groups.find(group => group.id === groupId)
-    const task = group.tasks.find(task => task.id === taskId)
-    // console.log('----------------------------');
-    // console.log('board:', board);
-    // console.log('task:', task);
-    const { title, dueDate, memberIds, attachments, checklists, description } = task
+    const { title, dueDate, memberIds, attachments, checklists, description } = boardService.getTask(board, groupId, taskId)
 
     return (
         <div className="task-details-layout task-details-container">

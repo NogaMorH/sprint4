@@ -75,13 +75,12 @@ export function saveGroup(group) {
     }
 }
 
-export function updateTask(groupId, taskId, name, value) {
+export function updateTask(groupId, taskId, key, value) {
     return async (dispatch, getState) => {
         try {
             const board = getState().boardModule.board
             let task = boardService.getTask(board, groupId, taskId)
-            task = { ...task, [name]: value }
-            // console.log('task:', task);
+            task = { ...task, [key]: value }
             const updatedBoard = await boardService.saveTask(board, groupId, task)
             dispatch({ type: 'UPDATE_BOARD', updatedBoard })
         } catch (err) {
@@ -181,21 +180,21 @@ export function setTitleTaskId(taskId) {
         dispatch({ type: 'SET_TITLE_TASK_ID', taskId })
     }
 }
-export function updateTask(taskId, title) {
-    console.log('taskId from  action update ', taskId)
-    console.log('title: from action update', title)
-    return async (dispatch, getState) => {
-        try {
-            const board = getState().boardModule.board
-            const updatedBoard = await boardService.updateTaskTitle(board, taskId, title)
-            dispatch({ type: 'UPDATE_BOARD', updatedBoard })
-        } catch (err) {
-            console.log('Update task title has failed in board actions:', err)
-        }
-    }
-}
+// export function updateTask(taskId, title) {
+//     console.log('taskId from  action update ', taskId)
+//     console.log('title: from action update', title)
+//     return async (dispatch, getState) => {
+//         try {
+//             const board = getState().boardModule.board
+//             const updatedBoard = await boardService.updateTaskTitle(board, taskId, title)
+//             dispatch({ type: 'UPDATE_BOARD', updatedBoard })
+//         } catch (err) {
+//             console.log('Update task title has failed in board actions:', err)
+//         }
+//     }
+// }
 
-export function toggleBlackScreen () {
+export function toggleBlackScreen() {
     return (dispatch) => {
         dispatch({ type: 'SET_TOGGLE_BLACK_SCREEN' })
     }

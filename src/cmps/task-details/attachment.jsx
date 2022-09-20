@@ -1,10 +1,10 @@
 import { FiCreditCard } from 'react-icons/fi'
 import { ImArrowUpRight2 } from 'react-icons/im'
 import { GrAttachment } from 'react-icons/gr'
+import { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { useParams } from 'react-router-dom'
 import { updateTask } from '../../store/board/board.actions'
-import { useState } from 'react'
 
 export const Attachment = ({ attachments }) => {
 
