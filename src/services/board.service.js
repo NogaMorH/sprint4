@@ -109,7 +109,6 @@ async function saveGroup(board, group) {
         group.style = { color: "#EF7564" }
         group.tasks = []
         // group.byMember = {}
-
         board.groups.push(group)
         const newBoard = await storageService.put(STORAGE_KEY, board)
         console.log('newBoard:', newBoard)
@@ -154,19 +153,7 @@ async function updateGroupTitle(board, groupId, title) {
     const group = getGroup(board, groupId)
     group.title = title
     await storageService.put(STORAGE_KEY, board)
-    return {...board}
-}
-
-async function updateTaskTitle(board, taskId, title) {
-    //not working!!!
-    // console.log('board: service', board)
-    // console.log('groupId: service', groupId)
-    // console.log('taskId service', taskId)
-    // console.log('title: service', title)
-    // const task = getTask(board, groupId, taskId)
-    // task.title = title
-    // await storageService.put(STORAGE_KEY, board)
-    // return board
+    return { ...board }
 }
 
 function getGroup(board, groupId) {

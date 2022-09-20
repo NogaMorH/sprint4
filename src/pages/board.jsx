@@ -38,9 +38,9 @@ export const Board = () => {
     if (!board) return <div>Loading...</div>
     return (
             <div className='board-layout board-page'>
-                <div className={isBlackScreenOpen ? "black-screen" : ''}></div>
+                <div className={isBlackScreenOpen ? 'black-screen' : 'disabled-black-screen'}></div>
                 <BoardMainHeader />
-                <main className='board-layout board'>
+                <main className='full board-layout board-layout board'>
                     <BoardSecondaryHeader board={board} />
                     <div className='group-list-container'>
                         <GroupList groups={board.groups} />

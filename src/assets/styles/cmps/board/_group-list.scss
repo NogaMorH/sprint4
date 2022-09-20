@@ -1,6 +1,10 @@
 .group-list-container {
+    overflow: hidden;
+    height: 100%;
 
     .group-list {
+        height: 100%;
+        align-items: flex-start;
 
         .btn-add-group {
             min-width: 272px;
