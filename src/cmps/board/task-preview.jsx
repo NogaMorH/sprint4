@@ -26,9 +26,6 @@ export const TaskPreview = ({ task, groupId, index }) => {
 
     const openTaskEditModal = (ev) => {
         ev.stopPropagation()
-        // if (modalTaskId === task.id) {
-        //     return closeTaskEditModal()
-        // }
         dispatch(setModalTaskId(task.id))
         dispatch(toggleBlackScreen())
         document.addEventListener('click', closeTaskEditModal)
@@ -68,11 +65,14 @@ export const TaskPreview = ({ task, groupId, index }) => {
                         <div className="task-preview-details">
                             <h4 className="task-title">{title}</h4>
                             <button className="btn task-edit-icon" onClick={openTaskEditModal}><BiPencil /></button>
-                            {modalTaskId === id && <TaskEditModal task={task} groupId={groupId} closeTaskEditModal={closeTaskEditModal} />}
+                            {modalTaskId === id &&
+                                <TaskEditModal task={task} groupId={groupId} closeTaskEditModal={closeTaskEditModal} />}
 
                             <div className="task-badge-container flex">
                                 {dueDate &&
-                                    <span className='task-due-date'><BsClock className='task-badge' />{getFormatDate(task.dueDate)}</span>
+                                    <span className='task-due-date'><BsClock className='task-badge' />
+                                        {getFormatDate(task.dueDate)}
+                                    </span>
                                 }
                                 {description && <div className='task-badge'>
                                     <img src={descriptionIcon} alt="description icon" />
@@ -80,7 +80,8 @@ export const TaskPreview = ({ task, groupId, index }) => {
                                 }
                                 <div className="member-avatar">
                                     {memberIds && memberIds.map(memberId => (
-                                        <img key={memberId} src={boardService.getMemberImgUrl(board, memberId)} alt="profile img" />
+                                        <img key={memberId} src={boardService.getMemberImgUrl(board, memberId)}
+                                            alt="profile img" />
                                     ))}
                                 </div>
                             </div>
