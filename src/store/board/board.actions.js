@@ -180,6 +180,13 @@ export function setTitleTaskId(taskId) {
         dispatch({ type: 'SET_TITLE_TASK_ID', taskId })
     }
 }
+
+export function setModalAttachmentIdx(idx) {
+    return (dispatch) => {
+        dispatch({ type: 'SET_MODAL_ATTACHMENT_IDX', idx })
+    }
+}
+
 // export function updateTask(taskId, title) {
 //     console.log('taskId from  action update ', taskId)
 //     console.log('title: from action update', title)
