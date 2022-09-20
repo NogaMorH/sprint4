@@ -11,10 +11,7 @@ export const ChecklistList = ({ checklists }) => {
     const params = useParams()
     const { groupId, taskId } = params
 
-    // console.log('checklists from props:', checklists);
-
     useEffect(() => {
-        // console.log('updated-checklists:', currChecklists);
         dispatch(updateTask(groupId, taskId, 'checklists', currChecklists))
     }, [currChecklists])
 

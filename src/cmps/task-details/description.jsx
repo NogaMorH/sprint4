@@ -1,4 +1,4 @@
-import { useRef, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import { useDispatch } from "react-redux"
 import { useParams } from "react-router-dom"
 import { updateTask } from "../../store/board/board.actions"
@@ -7,10 +7,14 @@ export const Description = ({ description }) => {
 
     const [updatedDescription, setDescription] = useState(description)
     const [focused, setFocused] = useState(false)
-    const ref = useRef(null)
     const dispatch = useDispatch()
+    const ref = useRef(null)
     const params = useParams()
     const { groupId, taskId } = params
+
+    useEffect(() => {
+        handleTextHeight(ref.current)
+    }, [])
 
     const onFocus = () => setFocused(true)
 
@@ -29,9 +33,14 @@ export const Description = ({ description }) => {
         setDescription(target.value)
     }
 
-    const handleKeyDown = ({ target }) => {
-        target.style.height = 'inherit'
-        target.style.height = `${target.scrollHeight}px`
+    const handleTextHeight = (ev) => {
+        if (ev.target) {
+            ev.target.style.height = 'inherit'
+            ev.target.style.height = `${ev.target.scrollHeight}px`
+        } else {
+            ev.style.height = 'inherit'
+            ev.style.height = `${ev.scrollHeight}px`
+        }
     }
 
     const focusRef = () => {
@@ -53,7 +62,7 @@ export const Description = ({ description }) => {
                 onBlur={onBlur}
                 value={updatedDescription}
                 onChange={handleChange}
-                onKeyDown={handleKeyDown}
+                onKeyDown={handleTextHeight}
                 ref={ref}
             />
 

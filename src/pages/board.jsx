@@ -6,7 +6,6 @@ import { GroupList } from '../cmps/board/group-list'
 import { useParams } from 'react-router-dom'
 import { BoardMainHeader } from '../cmps/board/board-main-header'
 import { BoardSecondaryHeader } from '../cmps/board/board-secondary-header'
-import { DragDropContext } from 'react-beautiful-dnd'
 
 // import { showSuccessMsg } from '../services/event-bus.service.js'
 
@@ -21,9 +20,6 @@ export const Board = () => {
     }, [params.boardId])
 
 
-    const onDragEnd = result => {
-        //Todo: reorder our groups
-    }
     // useEffect(() => {
     //     if (!board) return
     //     console.log('board from did update:', board)
@@ -41,7 +37,6 @@ export const Board = () => {
 
     if (!board) return <div>Loading...</div>
     return (
-        <DragDropContext>
             <div className='board-layout board-page'>
                 <div className={isBlackScreenOpen ? 'black-screen' : 'disabled-black-screen'}></div>
                 <BoardMainHeader />
@@ -52,7 +47,6 @@ export const Board = () => {
                     </div>
                 </main>
             </div>
-        </DragDropContext>
 
     )
 }

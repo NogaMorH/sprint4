@@ -10,7 +10,7 @@ import { BsClock } from 'react-icons/bs'
 import { Draggable } from 'react-beautiful-dnd'
 
 
-export const TaskPreview = ({ task, groupId }) => {
+export const TaskPreview = ({ task, groupId, index }) => {
     const board = useSelector(state => state.boardModule.board)
     const modalTaskId = useSelector(state => state.systemModule.modalTaskId)
 
@@ -53,41 +53,41 @@ export const TaskPreview = ({ task, groupId }) => {
 
     if (!task) return <div>Loading...</div>
     return (
-        // <Draggable draggableId={task.id}>
-        <section className='task-preview' onClick={openTaskDetails}>
-            {attachments && attachments.map((attachment, idx) => {
-                if (attachment.isCover) {
-                    return <img key={idx} className='task-cover-img' src={attachment.url} alt="cover" />
-                }
-            })}
-            <div className="task-preview-details">
-                <h4 className="task-title">{title}</h4>
-                <button className="btn task-edit-icon" onClick={openTaskEditModal}>
-                    <BiPencil />
-                </button>
-                {modalTaskId === id &&
-                    <TaskEditModal task={task} groupId={groupId} closeTaskEditModal={closeTaskEditModal} />}
-                {isBadge() &&
-                    <div className="flex task-badge-container">
-                        {dueDate &&
-                            <span className='task-due-date'>
-                                <BsClock className='task-badge' />
-                                {getFormatDate(task.dueDate)}
-                            </span>
-                        }
-                        {description && <div className='task-badge'>
-                            <img src={descriptionIcon} alt="description icon" />
+        <Draggable key={id} draggableId={id} index={index}>
+            {(provided) => (
+                <section className='task-preview-container'
+                    {...provided.draggableProps}
+                    {...provided.dragHandleProps}
+                    ref={provided.innerRef}>
+                    <div className='task-preview' onClick={openTaskDetails}>
+                        {attachments && attachments.map((attachment, idx) => {
+                            if (attachment.isCover) {
+                                return <img key={idx} className='task-cover-img' src={attachment.url} alt="cover" />
+                            }
+                        })}
+                        <div className="task-preview-details">
+                            <h4 className="task-title">{title}</h4>
+                            <button className="btn task-edit-icon" onClick={openTaskEditModal}><BiPencil /></button>
+                            {modalTaskId === id && <TaskEditModal task={task} groupId={groupId} closeTaskEditModal={closeTaskEditModal} />}
+
+                            <div className="task-badge-container flex">
+                                {dueDate &&
+                                    <span className='task-due-date'><BsClock className='task-badge' />{getFormatDate(task.dueDate)}</span>
+                                }
+                                {description && <div className='task-badge'>
+                                    <img src={descriptionIcon} alt="description icon" />
+                                </div>
+                                }
+                                <div className="member-avatar">
+                                    {memberIds && memberIds.map(memberId => (
+                                        <img key={memberId} src={boardService.getMemberImgUrl(board, memberId)} alt="profile img" />
+                                    ))}
+                                </div>
+                            </div>
                         </div>
-                        }
-                        { }
-                        <div className="member-avatar">
-                            {memberIds && memberIds.map(memberId => (
-                                <img key={memberId} src={boardService.getMemberImgUrl(board, memberId)}
-                                    alt="profile img" />
-                            ))}
-                        </div>
-                    </div>}
-            </div>
-        </section>
+                    </div>
+                </section >
+            )}
+        </Draggable>
     )
 }

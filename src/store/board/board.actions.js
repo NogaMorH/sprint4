@@ -75,13 +75,12 @@ export function saveGroup(group) {
     }
 }
 
-export function updateTask(groupId, taskId, name, value) {
+export function updateTask(groupId, taskId, key, value) {
     return async (dispatch, getState) => {
         try {
             const board = getState().boardModule.board
             let task = boardService.getTask(board, groupId, taskId)
-            task = { ...task, [name]: value }
-            // console.log('task:', task);
+            task = { ...task, [key]: value }
             const updatedBoard = await boardService.saveTask(board, groupId, task)
             dispatch({ type: 'UPDATE_BOARD', updatedBoard })
         } catch (err) {
@@ -182,6 +181,12 @@ export function setTitleTaskId(taskId) {
     }
 }
 
+export function setModalAttachmentIdx(idx) {
+    return (dispatch) => {
+        dispatch({ type: 'SET_MODAL_ATTACHMENT_IDX', idx })
+    }
+}
+
 // export function updateTask(taskId, title) {
 //     console.log('taskId from  action update ', taskId)
 //     console.log('title: from action update', title)
@@ -199,6 +204,20 @@ export function setTitleTaskId(taskId) {
 export function toggleBlackScreen() {
     return (dispatch) => {
         dispatch({ type: 'SET_TOGGLE_BLACK_SCREEN' })
+    }
+}
+
+export function moveTask(newBoard) {
+    return async (dispatch, getState) => {
+        try {
+            const board = getState().boardModule.board
+            const updatedBoard = await boardService.moveTask(board, newBoard)
+            dispatch({ type: 'UPDATE_BOARD', updatedBoard })
+
+        } catch (err) {
+            console.log('Move task title has failed in board actions:', err)
+
+        }
     }
 }
 

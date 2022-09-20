@@ -32,7 +32,7 @@ export const boardService = {
     getGroup,
     getTask,
     saveGroup,
-    updateTaskTitle
+    moveTask
 }
 // window.cs = boardService
 
@@ -81,7 +81,7 @@ async function saveTask(board, groupId, task) {
             const idx = group.tasks.findIndex(currTask => currTask.id === task.id)
             group.tasks.splice(idx, 1, task)
             await storageService.put(STORAGE_KEY, board)
-            return board
+            return { ...board }
         } catch (err) {
             console.log('Save task from board service has failed:', err)
         }
@@ -107,7 +107,6 @@ async function saveGroup(board, group) {
         group.style = { color: "#EF7564" }
         group.tasks = []
         // group.byMember = {}
-
         board.groups.push(group)
         const newBoard = await storageService.put(STORAGE_KEY, board)
         console.log('newBoard:', newBoard)
@@ -152,19 +151,7 @@ async function updateGroupTitle(board, groupId, title) {
     const group = getGroup(board, groupId)
     group.title = title
     await storageService.put(STORAGE_KEY, board)
-    return board
-}
-
-async function updateTaskTitle(board, taskId, title) {
-    //not working!!!
-    // console.log('board: service', board)
-    // console.log('groupId: service', groupId)
-    // console.log('taskId service', taskId)
-    // console.log('title: service', title)
-    // const task = getTask(board, groupId, taskId)
-    // task.title = title
-    await storageService.put(STORAGE_KEY, board)
-    return board
+    return { ...board }
 }
 
 function getGroup(board, groupId) {
@@ -176,6 +163,25 @@ function getTask(board, groupId, taskId) {
     const group = board.groups.find(group => group.id === groupId)
     const task = group.tasks.find(task => task.id === taskId)
     return task
+}
+
+async function moveTask(board, newBoard) {
+    console.log('newBoard:', newBoard)
+    try {
+        // const group = board.groups.find(group => group.id === source.droppableId)
+        // const newBoard = {
+        //     ...board,
+        //     groups:
+        //         board.groups.map(group => group.id === newGroup.id ? newGroup : group)
+        // }
+
+        await storageService.put(STORAGE_KEY, newBoard)
+        return newBoard
+
+    } catch (err) {
+        console.log('Move task from board service has failed:', err)
+
+    }
 }
 
 // TEST DATA
