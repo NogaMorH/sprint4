@@ -4,14 +4,13 @@ import { useSelector } from 'react-redux'
 import { Droppable } from 'react-beautiful-dnd'
 
 
-export const TaskList = ({ tasks, groupId, openAddForm }) => {
+export const TaskList = ({ tasks, groupId }) => {
 
     const formAdd = useSelector(state => state.systemModule.formAdd)
 
     if (!tasks) return <div></div>
 
     return (
-
         <div className="task-list-container">
             <Droppable droppableId={groupId} key={groupId}>
                 {provided => (

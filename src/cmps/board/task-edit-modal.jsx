@@ -18,15 +18,15 @@ export const TaskEditModal = ({ task, groupId, closeTaskEditModal }) => {
 
     const onUpdateTask = (ev) => {
         ev.stopPropagation()
-        dispatch(setTitleTaskId(null))
-        dispatch(updateTask(task.id, taskTitle))
+        dispatch(setTitleTaskId(task.id))
+        dispatch(updateTask(groupId ,task.id, title, taskTitle))
     }
-
+    
     const handleFocus = (ev) => ev.target.select()
-
+    
     const onEditTaskTitle = () => {
         // if (modalTaskId === task.id) return
-        dispatch(setTitleTaskId(task.id))
+        dispatch(setTitleTaskId(null))
     }
 
     const handleChange = ({ target }) => {

@@ -11,53 +11,61 @@ export const GroupList = ({ groups, provided }) => {
     const formAdd = useSelector(state => state.systemModule.formAdd)
     const dispatch = useDispatch()
 
-
     const onAddGroup = () => {
         dispatch(setIsFormAddOpen(null, true))
     }
 
-
     const onDragEnd = (result) => {
-        console.log('result:', result)
 
-        //Todo: reorder our groups
         const { destination, source, draggableId } = result
         const { droppableId, index } = source
-        // console.log('draggableId:', draggableId)
         if (!destination) return
 
         if (destination.droppableId === droppableId &&
             destination.index === index) return
 
         const group = board.groups.find(group => group.id === droppableId)
-        const newTasks = [...group.tasks]
-        console.log('newTasks:', newTasks)
-        newTasks.splice(index, 1)
-        newTasks.splice(destination.index, 0, draggableId)
-        console.log('draggableId:', draggableId)
+        const task = group.tasks.find(task => task.id === draggableId)
 
-        const newGroup = {
-            ...group,
-            tasks: newTasks
+        const start = board.groups.find(group => group.id === droppableId)
+        const finish = board.groups.find(group => group.id === destination.droppableId)
+        let newGroup
+        if (start === finish) {
+            group.tasks.splice(index, 1)
+            group.tasks.splice(destination.index, 0, task)
+
+            newGroup = {
+                ...group,
+                tasks: group.tasks
+            }
+
+        } else {
+
+            const sourceTasks = start.tasks
+            const currTask = sourceTasks.find((task, idx) => index === idx)
+            sourceTasks.splice(index, 1)
+            console.log('start:', start)
+            const sourceGroup = {
+                ...start,
+                tasks: sourceTasks
+            }
+
+            const destinationTasks = finish.tasks
+            destinationTasks.splice(destination.index, 0, currTask)
+            newGroup = {
+                ...finish,
+                tasks: destinationTasks
+            }
+
         }
+        console.log('newGroup:', newGroup)
 
         const newBoard = {
             ...board,
             groups:
                 board.groups.map(group => group.id === newGroup.id ? newGroup : group)
         }
-        console.log('newBoard:', newBoard)
-        console.log('draggableId:', draggableId)
-        console.log('droppableId:', droppableId)
         dispatch(moveTask(newBoard))
-
-
-        // const group = groups.find(group => group.id === source.droppableId)
-        // console.log('source.droppableId:', source.droppableId)
-        // console.log('group:', group) 
-        // const taskIds = group.tasks.map(task => task.id)
-        // console.log('newTasksIds:', taskIds)
-        // console.log('group.tasks:', group.tasks)
 
     }
 

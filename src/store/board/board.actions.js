@@ -77,6 +77,10 @@ export function saveGroup(group) {
 
 export function updateTask(groupId, taskId, key, value) {
     return async (dispatch, getState) => {
+        // console.log('groupId:', groupId)
+        // console.log('taskId:', taskId)
+        // console.log('name:', name)
+        // console.log('value:', value)
         try {
             const board = getState().boardModule.board
             let task = boardService.getTask(board, groupId, taskId)
@@ -187,20 +191,6 @@ export function setModalAttachmentIdx(idx) {
     }
 }
 
-// export function updateTask(taskId, title) {
-//     console.log('taskId from  action update ', taskId)
-//     console.log('title: from action update', title)
-//     return async (dispatch, getState) => {
-//         try {
-//             const board = getState().boardModule.board
-//             const updatedBoard = await boardService.updateTaskTitle(board, taskId, title)
-//             dispatch({ type: 'UPDATE_BOARD', updatedBoard })
-//         } catch (err) {
-//             console.log('Update task title has failed in board actions:', err)
-//         }
-//     }
-// }
-
 export function toggleBlackScreen() {
     return (dispatch) => {
         dispatch({ type: 'SET_TOGGLE_BLACK_SCREEN' })
@@ -213,10 +203,22 @@ export function moveTask(newBoard) {
             const board = getState().boardModule.board
             const updatedBoard = await boardService.moveTask(board, newBoard)
             dispatch({ type: 'UPDATE_BOARD', updatedBoard })
-
         } catch (err) {
             console.log('Move task title has failed in board actions:', err)
 
+        }
+    }
+}
+
+export function duplicateGroup(groupId) {
+    return async (dispatch, getState) => {
+        try {
+            const board = getState().boardModule.board
+            const updatedBoard = await boardService.duplicateGroup(board, groupId)
+            dispatch({ type: 'UPDATE_BOARD', updatedBoard })
+
+        } catch (err) {
+            console.log('Duplicate group title has failed in board actions:', err)
         }
     }
 }
