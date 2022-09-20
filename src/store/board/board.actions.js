@@ -200,6 +200,20 @@ export function toggleBlackScreen() {
     }
 }
 
+export function moveTask(newBoard) {
+    return async (dispatch, getState) => {
+        try {
+            const board = getState().boardModule.board
+            const updatedBoard = await boardService.moveTask(board, newBoard)
+            dispatch({ type: 'UPDATE_BOARD', updatedBoard })
+
+        } catch (err) {
+            console.log('Move task title has failed in board actions:', err)
+
+        }
+    }
+}
+
 // export function setFilterBy(filterBy) {
 //     console.log('filterBy from action:', filterBy)
 //     return (dispatch) => {
