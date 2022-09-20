@@ -30,7 +30,8 @@
         background-color: transparent;
         border: none;
         border-radius: 3px;
-        
+        white-space: pre-wrap;
+
         &.blank {
             min-height: 56px;
             padding: 8px 12px;

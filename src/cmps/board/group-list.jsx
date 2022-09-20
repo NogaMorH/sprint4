@@ -16,7 +16,7 @@ export const GroupList = ({ groups, provided }) => {
     }
 
     const onDragEnd = (result) => {
-        
+
         const { destination, source, draggableId } = result
         const { droppableId, index } = source
         if (!destination) return

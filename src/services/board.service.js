@@ -83,7 +83,7 @@ async function saveTask(board, groupId, task) {
             const idx = group.tasks.findIndex(currTask => currTask.id === task.id)
             group.tasks.splice(idx, 1, task)
             await storageService.put(STORAGE_KEY, board)
-            return board
+            return { ...board }
         } catch (err) {
             console.log('Save task from board service has failed:', err)
         }
@@ -154,7 +154,7 @@ async function updateGroupTitle(board, groupId, title) {
     const group = getGroup(board, groupId)
     group.title = title
     await storageService.put(STORAGE_KEY, board)
-    return board
+    return {...board}
 }
 
 async function updateTaskTitle(board, taskId, title) {

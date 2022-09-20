@@ -1,14 +1,17 @@
 import { FiCreditCard } from 'react-icons/fi'
 import { ImArrowUpRight2 } from 'react-icons/im'
+import { IoCloseOutline } from 'react-icons/io5'
 import { GrAttachment } from 'react-icons/gr'
+import { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { useParams } from 'react-router-dom'
-import { updateTask } from '../../store/board/board.actions'
-import { useState } from 'react'
+import { setModalAttachmentIdx, updateTask } from '../../store/board/board.actions'
+import { useSelector } from 'react-redux'
 
 export const Attachment = ({ attachments }) => {
 
-    const [isEditOpen, setIsEditOpen] = useState(false)
+    const [attachmentName, setName] = useState('')
+    const modalAttachmnetIdx = useSelector(state => state.systemModule.modalAttachmnetIdx)
     const dispatch = useDispatch()
     const params = useParams()
     const { groupId, taskId } = params
@@ -35,13 +38,37 @@ export const Attachment = ({ attachments }) => {
         dispatch(updateTask(groupId, taskId, 'attachments', updatedAttachments))
     }
 
-    const editAttachmentName = (ev, attachmentIdx) => {
-        ev.preventDefault()
-        setIsEditOpen(!isEditOpen)
+    const toggleEditModal = (ev, idx) => {
+        ev.preventDefault() // prevent default for link element(line 76)(not working with propagation!)
+        ev.stopPropagation() // propagation for click event listener(line 50)
+
+        if (modalAttachmnetIdx === idx) {
+            return closeEditModal()
+        }
+        dispatch(setModalAttachmentIdx(idx))
+        document.addEventListener('click', closeEditModal)
+    }
+
+    const closeEditModal = () => {
+        dispatch(setModalAttachmentIdx(null))
+        document.removeEventListener('click', closeEditModal)
+    }
+
+    const stopPropagation = (ev) => {
+        ev.preventDefault() // prevent default for link element(line 76)(not working with propagation!)
+        ev.stopPropagation() // propagation for click event listener(line 50)
     }
 
     const handleChange = () => {
+        setName()
+    }
 
+    const updatedName = (idx) => {
+
+    }
+
+    const addAttachment = () => {
+        // open the same modal of Task SideBar
     }
 
     return (
@@ -74,7 +101,7 @@ export const Attachment = ({ attachments }) => {
                                         onClick={(ev) => removeAttachment(ev, idx)}>Delete</button>
                                     -
                                     <button className="actions-edit-btn hover-btn"
-                                        onClick={(ev) => editAttachmentName(ev, idx)}>Edit</button>
+                                        onClick={(ev) => toggleEditModal(ev, idx)}>Edit</button>
                                 </div>
 
                                 {checkURL(url) &&
@@ -86,26 +113,29 @@ export const Attachment = ({ attachments }) => {
                                     </div>
                                 }
                             </div>
-                        </div>
 
-                        {isEditOpen &&
-                            <div className="edit-attachment-modal">
-                                <div className="modal-header">
-                                    <span>Edit attachment</span>
-                                    <span>x</span>
+                            {modalAttachmnetIdx === idx &&
+                                <div className="attachment-modal" onClick={stopPropagation}>
+                                    <div className="attachment-modal-header">
+                                        <span>Edit attachment</span>
+                                        <span className='close-icon'><IoCloseOutline /></span>
+                                    </div>
+
+                                    <div className="attachment-modal-content">
+                                        <label>
+                                            Link name <br />
+                                            <input type="text" value={name} onChange={handleChange} />
+                                        </label>
+                                        <button className='update-btn' onClick={() => updatedName(idx)}>Update</button>
+                                    </div>
                                 </div>
-                                <label>
-                                    Link name <br />
-                                    <input type="text" value={name} onChange={handleChange} />
-                                </label>
-                                <button>Update</button>
-                            </div>
-                        }
+                            }
+                        </div>
                     </a>
                 )
             })}
 
-            <button className='add-attachment-btn'>Add an attachment</button>
-        </div>
+            <button className='add-attachment-btn' onClick={addAttachment}>Add an attachment</button>
+        </div >
     )
 }
