@@ -32,6 +32,7 @@ export const GroupList = ({ groups, provided }) => {
 
         const group = board.groups.find(group => group.id === droppableId)
         const newTasks = [...group.tasks]
+        console.log('newTasks:', newTasks)
         newTasks.splice(index, 1)
         newTasks.splice(destination.index, 0, draggableId)
         console.log('draggableId:', draggableId)
@@ -47,6 +48,7 @@ export const GroupList = ({ groups, provided }) => {
                 board.groups.map(group => group.id === newGroup.id ? newGroup : group)
         }
         console.log('newBoard:', newBoard)
+        console.log('draggableId:', draggableId)
         console.log('droppableId:', droppableId)
         dispatch(moveTask(newBoard))
 

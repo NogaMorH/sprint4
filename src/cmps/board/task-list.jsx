@@ -13,7 +13,7 @@ export const TaskList = ({ tasks, groupId, openAddForm }) => {
     return (
 
         <div className="task-list-container">
-            <Droppable droppableId={groupId}>
+            <Droppable droppableId={groupId} key={groupId}>
                 {provided => (
                     <ul className="task-list" ref={provided.innerRef} {...provided.droppableProps}>
                         {tasks.map((task, index) => (

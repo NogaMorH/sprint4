@@ -47,7 +47,7 @@ export const TaskPreview = ({ task, groupId, index }) => {
     const { title, dueDate, memberIds, description, attachments, id } = task
     if (!task) return <div>Loading...</div>
     return (
-        <Draggable draggableId={id} index={index}>
+        <Draggable key={id} draggableId={id} index={index}>
             {(provided) => (
                 <section className='task-preview-container'
                     {...provided.draggableProps}

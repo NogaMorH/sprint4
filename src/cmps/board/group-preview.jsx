@@ -55,6 +55,7 @@ export const GroupPreview = ({ group }) => {
         dispatch(setIsFormAddOpen(group.id, false))
     }
 
+    
     const { id, title, tasks } = group
     return (
         <div className='flex column group-preview '>
