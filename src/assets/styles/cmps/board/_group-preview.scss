@@ -1,8 +1,7 @@
 .group-preview {
     max-height: 100%;
     margin-right: 4px;
-    overflow: hidden;
-    width: 272px;
+    min-width: 272px;
     background-color: #ebecf0;
     border-radius: 3px;
     position: relative;
@@ -64,6 +63,12 @@
                     background-color: #091e4214;
                 }
             }
+        }
+    }
+
+    .add-task-container {
+        .btn-add-task {
+            width: 100%;
         }
     }
 }

@@ -1,6 +1,7 @@
 .group-list-container {
-    overflow: hidden;
     height: 100%;
+    overflow-y: hidden;
+    overflow-x: auto;
 
     .group-list {
         height: 100%;

@@ -5,15 +5,14 @@ import { BiPencil } from 'react-icons/bi'
 import { useNavigate } from 'react-router-dom'
 import { toggleBlackScreen, setModalTaskId } from '../../store/board/board.actions'
 import { TaskEditModal } from './task-edit-modal'
-import descriptionIcon from '../../assets/img/description.svg'
-import { BsClock } from 'react-icons/bs'
+import { FiClock } from 'react-icons/fi'
+import { GrTextAlignFull } from 'react-icons/gr'
 import { Draggable } from 'react-beautiful-dnd'
-
+import { ImAttachment } from 'react-icons/im'
 
 export const TaskPreview = ({ task, groupId, index }) => {
     const board = useSelector(state => state.boardModule.board)
     const modalTaskId = useSelector(state => state.systemModule.modalTaskId)
-
     const dispatch = useDispatch()
     const navigate = useNavigate()
 
@@ -56,6 +55,9 @@ export const TaskPreview = ({ task, groupId, index }) => {
                     {...provided.draggableProps}
                     {...provided.dragHandleProps}
                     ref={provided.innerRef}>
+                    {modalTaskId === id &&
+                        <TaskEditModal task={task} groupId={groupId}
+                            closeTaskEditModal={closeTaskEditModal} />}
                     <div className='task-preview' onClick={openTaskDetails}>
                         {attachments && attachments.map((attachment, idx) => {
                             if (attachment.isCover) {
@@ -64,27 +66,40 @@ export const TaskPreview = ({ task, groupId, index }) => {
                         })}
                         <div className="task-preview-details">
                             <h4 className="task-title">{title}</h4>
-                            <button className="btn task-edit-icon" onClick={openTaskEditModal}><BiPencil /></button>
-                            {modalTaskId === id &&
-                                <TaskEditModal task={task} groupId={groupId} closeTaskEditModal={closeTaskEditModal} />}
-
-                            <div className="task-badge-container flex">
-                                {dueDate &&
-                                    <span className='task-due-date'><BsClock className='task-badge' />
-                                        {getFormatDate(task.dueDate)}
-                                    </span>
-                                }
-                                {description && <div className='task-badge'>
-                                    <img src={descriptionIcon} alt="description icon" />
-                                </div>
-                                }
-                                <div className="member-avatar">
-                                    {memberIds && memberIds.map(memberId => (
-                                        <img key={memberId} src={boardService.getMemberImgUrl(board, memberId)}
-                                            alt="profile img" />
-                                    ))}
-                                </div>
-                            </div>
+                            <button className="btn task-edit-icon" onClick={openTaskEditModal}>
+                                <BiPencil />
+                            </button>
+                            {isBadge() &&
+                                <div className="task-badge-container flex">
+                                    <div className='task-badges'>
+                                        {dueDate &&
+                                            <span className='task-due-date'>
+                                                <span className='clock-badge'>
+                                                    <FiClock />
+                                                </span>
+                                                {getFormatDate(task.dueDate)}
+                                            </span>
+                                        }
+                                        {description &&
+                                            <span className='description-badge'>
+                                                <GrTextAlignFull />
+                                            </span>
+                                        }
+                                        {attachments &&
+                                            <span className='task-attachment'>
+                                                <span className='attachment-badge'>
+                                                    <ImAttachment />
+                                                </span>
+                                                {attachments.length}
+                                            </span>}
+                                    </div>
+                                    <div className="member-avatar">
+                                        {memberIds && memberIds.map(memberId => (
+                                            <img key={memberId} src={boardService.getMemberImgUrl(board, memberId)}
+                                                alt="profile img" />
+                                        ))}
+                                    </div>
+                                </div>}
                         </div>
                     </div>
                 </section >
