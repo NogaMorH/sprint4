@@ -11,7 +11,6 @@ export const TaskList = ({ tasks, groupId }) => {
     if (!tasks) return <div></div>
 
     return (
-
         <div className="task-list-container">
             <Droppable droppableId={groupId} key={groupId}>
                 {provided => (

@@ -181,7 +181,7 @@ function getTask(board, groupId, taskId) {
 }
 
 async function moveTask(board, newBoard) {
-    console.log('newBoard:', newBoard)
+    // console.log('newBoard:', newBoard)
     try {
         // const group = board.groups.find(group => group.id === source.droppableId)
         // const newBoard = {
@@ -203,10 +203,7 @@ async function duplicateGroup(board, groupId) {
     const group = board.groups.find(group => group.id === groupId)
     const newGroup = { ...group, id: utilService.makeId() }
     const idx = board.groups.findIndex(currGroup => currGroup.id === groupId)
-    console.log(' idx:',  idx)
     board.groups.splice(idx, 0, newGroup)
-    // splice(idx, 1, task)
-    console.log('newboard:', board)
     const newBoard = await storageService.put(STORAGE_KEY, board)
     const updatedBoard = { ...newBoard }
     return updatedBoard

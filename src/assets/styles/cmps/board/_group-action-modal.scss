@@ -5,10 +5,11 @@
     top: 40px;
     overflow: hidden;
     height: fit-content;
-    border-radius: 1px;
     background-color: #ffffff;
     left: 240px;
     z-index: 100;
+    border: 0.5px solid #dcdfe4;
+    border-radius: 3px;
 
     .btns-container {
         padding: 0px 2.5px 12px;

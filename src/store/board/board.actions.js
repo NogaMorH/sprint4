@@ -77,6 +77,10 @@ export function saveGroup(group) {
 
 export function updateTask(groupId, taskId, name, value) {
     return async (dispatch, getState) => {
+        // console.log('groupId:', groupId)
+        // console.log('taskId:', taskId)
+        // console.log('name:', name)
+        // console.log('value:', value)
         try {
             const board = getState().boardModule.board
             let task = boardService.getTask(board, groupId, taskId)
