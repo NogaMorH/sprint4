@@ -6,7 +6,7 @@ import { GroupActionModal } from './group-action-modal'
 import { TaskList } from './task-list'
 import { removeGroup } from "../../store/board/board.actions"
 import { HiOutlineDotsHorizontal } from 'react-icons/hi'
-import { HiPlus } from 'react-icons/hi'
+import { BsPlusLg } from 'react-icons/bs'
 import { Draggable } from 'react-beautiful-dnd'
 
 export const GroupPreview = ({ group, index }) => {
@@ -82,7 +82,8 @@ export const GroupPreview = ({ group, index }) => {
                     {formAdd.groupId === id && <FormAdd groupId={id} />}
                     <TaskList tasks={tasks} groupId={id} openAddForm={openAddForm} />
                     {formAdd.groupId !== id && <div className="add-task-container">
-                        <button className="btn btn-add-task" onClick={openAddForm}><HiPlus className='plus-icon' />
+                        <button className="btn btn-add-task" onClick={openAddForm}>
+                            <BsPlusLg className='plus-icon' />
                             Add a card
                         </button>
                     </div>}

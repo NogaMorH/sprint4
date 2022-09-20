@@ -67,8 +67,26 @@
     }
 
     .add-task-container {
+        display: flex;
+
         .btn-add-task {
-            width: 100%;
+            flex-grow: 1;
+            max-width: 100%;
+            margin: 2px 8px 8px;
+            padding: 4px 8px;
+            color: $clr23;
+            font-size: em(13px, 13px);
+            background-color: inherit;
+            border-radius: 3px;
+            line-height: lh(20px, 13px);
+
+            .plus-icon {
+                @include plus-icon;
+            }
+
+            &:hover {
+                background-color: $clr24;
+            }
         }
     }
 }

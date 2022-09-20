@@ -25,10 +25,10 @@ export const GroupList = ({ groups, provided }) => {
         if (destination.droppableId === droppableId &&
             destination.index === index) return
 
-        if(type === 'group') {
+        if (type === 'group') {
             const currGroup = board.groups.find(group => group.id === draggableId)
             // console.log('currGroup:', currGroup)
-            board.groups.splice(index , 1)
+            board.groups.splice(index, 1)
             board.groups.splice(destination.index, 0, currGroup)
             console.log('board:', board)
 
@@ -99,7 +99,8 @@ export const GroupList = ({ groups, provided }) => {
                         {formAdd.isAddGroup
                             ? <FormAdd />
                             : <button className='btn btn-add-group' onClick={onAddGroup}>
-                                <BsPlusLg className='plus-icon' />Add another list
+                                <BsPlusLg className='plus-icon' />
+                                Add another list
                             </button>
                         }
                         {provided.placeholder}

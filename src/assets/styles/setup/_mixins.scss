@@ -107,3 +107,8 @@
     padding-left: 12px;
     padding-right: 12px;
 }
+
+@mixin plus-icon {
+    margin-right: 8px;
+    font-size: 12px;
+}
