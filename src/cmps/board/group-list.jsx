@@ -1,9 +1,8 @@
-import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { GroupPreview } from './group-preview'
 import { moveTask, setIsFormAddOpen } from '../../store/board/board.actions'
 import { FormAdd } from './form-add'
-import { HiPlus } from 'react-icons/hi'
+import { BsPlusLg } from 'react-icons/bs'
 import { DragDropContext } from 'react-beautiful-dnd'
 
 export const GroupList = ({ groups, provided }) => {
@@ -69,12 +68,12 @@ export const GroupList = ({ groups, provided }) => {
                 {groups.map(group =>
                     <GroupPreview key={group.id} group={group} />)}
                 {/* {provided.placeholder} */}
-                {formAdd.isAddGroup
-                    ? <FormAdd />
-                    : <button className='btn btn-add-group' onClick={onAddGroup}><HiPlus className='plus-icon' />Add another list</button>
-                }
-            </div>
-        </DragDropContext>
-
+            {formAdd.isAddGroup
+                ? <FormAdd />
+                : <button className='btn btn-add-group' onClick={onAddGroup}>
+                    <BsPlusLg className='plus-icon' />Add another list
+                </button>
+            }
+        </div>
     )
 }

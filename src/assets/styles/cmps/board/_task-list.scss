@@ -3,29 +3,16 @@
     // overflow-y: auto;
 
     .task-list {
-        margin: 0 4px;
+        // margin: 0 4px;
+        padding: 0 8px;
     }
-}
 
-.add-task-container {
-    height: rem(38px);
-    max-height: rem(38px);
-    display: flex;
-    align-items: center;
-    border-radius: 3px;
+    &::-webkit-scrollbar {
+        width: 8px;
+    }
 
-    .btn-add-task {
-        color: #5e6c84;
-        font-size: rem(14px);
-
-        &:hover {
-            background-color: #d9dbe2;
-        }
-
-        .plus-icon {
-            margin-inline-end: 9px;
-            height: 100%;
-            width: rem(20px);
-        }
+    &::-webkit-scrollbar-thumb {
+        background-color: #bfc4ce;
+        border: none;
     }
 }

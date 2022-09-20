@@ -17,6 +17,8 @@ export const TaskPreview = ({ task, groupId, index }) => {
     const dispatch = useDispatch()
     const navigate = useNavigate()
 
+    const { title, dueDate, memberIds, description, attachments, id } = task
+
     const getFormatDate = (dueDate) => {
         const monthAndDay = utilService.formatMonthDay(dueDate)
         return monthAndDay
@@ -41,10 +43,14 @@ export const TaskPreview = ({ task, groupId, index }) => {
     }
 
     const openTaskDetails = () => {
-        navigate(`/board/${board._id}/group/${groupId}/task/${task.id}`)
+        navigate(`/board/${board._id}/group/${groupId}/task/${id}`)
     }
 
-    const { title, dueDate, memberIds, description, attachments, id } = task
+    const isBadge = () => {
+        if (dueDate || description || memberIds || attachments) return true
+        else return false
+    }
+
     if (!task) return <div>Loading...</div>
     return (
         <Draggable key={id} draggableId={id} index={index}>
