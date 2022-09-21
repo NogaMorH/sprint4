@@ -2,7 +2,7 @@
     position: fixed;
     top: 46px;
     left: calc(100vw / 4.5);
-    width: 768px;
+    width: 778px;
     // min-height: 970px;
     max-height: 100%;
     background-color: $clr12;
@@ -27,7 +27,7 @@
         font-size: rem(11px);
         line-height: rem(20px);
         font-family: inherit;
-        color: #5e6c84;
+        color: $clr23;
         font-weight: 600;
     }
 

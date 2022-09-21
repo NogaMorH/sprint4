@@ -1,3 +1,27 @@
-.checklist-list>*:not(:last-child) {
-    margin-bottom: 24px;
+.checklist-list {
+
+    >*:not(:last-child) {
+        margin-bottom: 24px;
+    }
+
+    input {
+        background-color: transparent;
+        border: none;
+    }
+
+    textarea {
+        border: none;
+        resize: none;
+        overflow-y: hidden;
+        font-family: inherit;
+        background-color: transparent;
+        border: none;
+        outline: none;
+        border-radius: 3px;
+
+        &:focus {
+            background-color: #091e420a;
+            border: 1px solid #091e4221;
+        }
+    }
 }

@@ -1,13 +1,30 @@
 import { TodoList } from "./todo-list"
 import { TbCheckbox } from 'react-icons/tb'
+import { useState } from "react"
+import { IoCloseOutline } from 'react-icons/io5'
 
 export const Checklist = ({ checklist, updateChecklists, removeChecklist }) => {
 
     let { title, todos } = checklist
+    const [titleField, setTitleField] = useState(title)
+    const [focused, setFocused] = useState(false)
+
+    const onFocus = () => setFocused(true)
+
+    const onBlur = (ev) => {
+        if (!ev.relatedTarget) {
+            setTitleField(title)
+            console.log('Checklist title canceled!')
+        }
+        else if (ev.relatedTarget.className === 'checklist-title-save-btn') {
+            updateChecklist('title', titleField)
+            console.log('Checklist title saved!')
+        }
+        setFocused(false)
+    }
 
     const handleTitleChange = ({ target }) => {
-        // later move this to save title function !!!
-        updateChecklist('title', target.value)
+        setTitleField(target.value)
     }
 
     const updateChecklist = (name, value) => {
@@ -18,11 +35,24 @@ export const Checklist = ({ checklist, updateChecklists, removeChecklist }) => {
     return (
         <div className="checklist">
             <div className="checklist-title">
-                <label>
-                    <span className="checklist-title-icon"><TbCheckbox /></span>
-                    <input type="text" name="title" placeholder="Todo..." value={title} onChange={handleTitleChange} />
-                </label>
-                <button onClick={() => removeChecklist(checklist.id)}>Delete</button>
+                <span className="checklist-title-icon"><TbCheckbox /></span>
+
+                <textarea className="checklist-title-textarea"
+                    value={titleField}
+                    onChange={handleTitleChange}
+                    onFocus={onFocus}
+                    onBlur={onBlur}
+                />
+
+                {!focused && <button className="delete-btn" onClick={() => removeChecklist(checklist.id)}>Delete</button>}
+
+                {focused &&
+                    <div className="checklist-title-buttons">
+                        <button className="checklist-title-save-btn">Save</button>
+                        <span><IoCloseOutline /></span>
+                    </div>
+                }
+
             </div>
 
             <TodoList todos={todos} updateChecklist={updateChecklist} />
