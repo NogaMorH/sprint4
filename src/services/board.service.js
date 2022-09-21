@@ -24,29 +24,20 @@ export const boardService = {
     getBoardById,
     save,
     remove,
+    updateBoard,
+    saveGroup,
+    removeGroup,
+    duplicateGroup,
+    updateGroupTitle,
+    saveTask,
     removeTask,
     getMemberImgUrl,
-    saveTask,
-    removeGroup,
-    updateGroupTitle,
     getGroup,
-    getTask,
-    saveGroup,
-    updateBoard,
-    duplicateGroup
+    getTask
 }
 // window.cs = boardService
 
 function query(filterBy) {
-    // const {tasks} = board.groups
-    // console.log('filterBy:', filterBy)
-    // if (filterBy) {
-    //     const { task } = filterBy
-    //     if(task) {
-    //         const regex = new RegExp(task, 'i')
-    //         tasks = tasks.filter(task => regex.text(task.title))
-    //     }
-    // }
     return storageService.query(STORAGE_KEY)
 }
 
@@ -75,6 +66,63 @@ async function save(board) {
     return savedBoard
 }
 
+async function updateBoard(newBoard) {
+    try {
+        await storageService.put(STORAGE_KEY, newBoard)
+        return newBoard
+
+    } catch (err) {
+        console.log('Move task from board service has failed:', err)
+
+    }
+}
+
+async function saveGroup(board, group) {
+    try {
+        group.id = utilService.makeId()
+        group.createdAt = Date.now()
+        group.style = { color: "#EF7564" }
+        group.tasks = []
+        // group.byMember = {}
+        board.groups.push(group)
+        const newBoard = await storageService.put(STORAGE_KEY, board)
+        console.log('newBoard:', newBoard)
+        const updatedBoard = { ...newBoard }
+        return updatedBoard
+    } catch (err) {
+        console.log('Save group from board service has failed:', err)
+    }
+}
+
+async function removeGroup(board, groupId) {
+    try {
+        const groups = board.groups.filter(group => group.id !== groupId)
+        board.groups = groups
+        const newBoard = await storageService.put(STORAGE_KEY, board)
+        const updatedBoard = { ...newBoard }
+        return updatedBoard
+    } catch (err) {
+        console.log('Remove group has failed', err)
+    }
+}
+
+async function duplicateGroup(board, groupId) {
+    const group = board.groups.find(group => group.id === groupId)
+    const newGroup = { ...group, id: utilService.makeId() }
+    const idx = board.groups.findIndex(currGroup => currGroup.id === groupId)
+    board.groups.splice(idx, 0, newGroup)
+    const newBoard = await storageService.put(STORAGE_KEY, board)
+    const updatedBoard = { ...newBoard }
+    return updatedBoard
+}
+
+async function updateGroupTitle(board, groupId, title) {
+    const group = getGroup(board, groupId)
+    group.title = title
+    await storageService.put(STORAGE_KEY, board)
+    return { ...board }
+}
+
 async function saveTask(board, groupId, task) {
     if (task.id) {
         try {
@@ -100,29 +148,6 @@ async function saveTask(board, groupId, task) {
     }
 }
 
-async function saveGroup(board, group) {
-    console.log('group from service:', group)
-    try {
-        group.id = utilService.makeId()
-        group.createdAt = Date.now()
-        group.style = { color: "#EF7564" }
-        group.tasks = []
-        // group.byMember = {}
-        board.groups.push(group)
-        const newBoard = await storageService.put(STORAGE_KEY, board)
-        console.log('newBoard:', newBoard)
-        const updatedBoard = { ...newBoard }
-        return updatedBoard
-    } catch (err) {
-        console.log('Save group from board service has failed:', err)
-    }
-}
-
-function getMemberImgUrl(board, memberId) {
-    const url = board.members.find(member => member._id === memberId).imgUrl
-    return url
-}
-
 async function removeTask(board, groupId, taskId) {
     try {
         const group = getGroup(board, groupId)
@@ -136,23 +161,9 @@ async function removeTask(board, groupId, taskId) {
     }
 }
 
-async function removeGroup(board, groupId) {
-    try {
-        const groups = board.groups.filter(group => group.id !== groupId)
-        board.groups = groups
-        const newBoard = await storageService.put(STORAGE_KEY, board)
-        const updatedBoard = { ...newBoard }
-        return updatedBoard
-    } catch (err) {
-        console.log('Remove group has failed', err)
-    }
-}
-
-async function updateGroupTitle(board, groupId, title) {
-    const group = getGroup(board, groupId)
-    group.title = title
-    await storageService.put(STORAGE_KEY, board)
-    return { ...board }
+function getMemberImgUrl(board, memberId) {
+    const url = board.members.find(member => member._id === memberId).imgUrl
+    return url
 }
 
 function getGroup(board, groupId) {
@@ -164,35 +175,6 @@ function getTask(board, groupId, taskId) {
     const group = board.groups.find(group => group.id === groupId)
     const task = group.tasks.find(task => task.id === taskId)
     return task
-}
-
-async function updateBoard(board, newBoard) {
-    // console.log('newBoard:', newBoard)
-    try {
-        // const group = board.groups.find(group => group.id === source.droppableId)
-        // const newBoard = {
-        //     ...board,
-        //     groups:
-        //         board.groups.map(group => group.id === newGroup.id ? newGroup : group)
-        // }
-
-        await storageService.put(STORAGE_KEY, newBoard)
-        return newBoard
-
-    } catch (err) {
-        console.log('Move task from board service has failed:', err)
-
-    }
-}
-
-async function duplicateGroup(board, groupId) {
-    const group = board.groups.find(group => group.id === groupId)
-    const newGroup = { ...group, id: utilService.makeId() }
-    const idx = board.groups.findIndex(currGroup => currGroup.id === groupId)
-    board.groups.splice(idx, 0, newGroup)
-    const newBoard = await storageService.put(STORAGE_KEY, board)
-    const updatedBoard = { ...newBoard }
-    return updatedBoard
 }
 
 // TEST DATA

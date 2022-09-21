@@ -11,7 +11,6 @@ export function _UserProfile({ user, loadUser }) {
     loadUser(params.id)
   }, [])
 
-
   return (
     <section className="user-details">
       <h1>User Details</h1>
@@ -26,8 +25,6 @@ export function _UserProfile({ user, loadUser }) {
     </section>
   )
 }
-
-
 
 const mapStateToProps = state => {
   return {

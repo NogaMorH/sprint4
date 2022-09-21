@@ -2,10 +2,8 @@ import { IoCloseOutline } from 'react-icons/io5'
 import { useDispatch } from 'react-redux'
 import { duplicateGroup } from '../../store/board/board.actions'
 export const GroupActionModal = ({ groupId, onRemoveGroup, openAddForm }) => {
-   
 
     const dispatch = useDispatch()
-
 
     const onDuplicateGroup = () => {
         dispatch(duplicateGroup(groupId))

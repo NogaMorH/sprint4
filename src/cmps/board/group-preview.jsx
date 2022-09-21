@@ -83,7 +83,7 @@ export const GroupPreview = ({ group, index }) => {
                     {formAdd.groupId === id &&
                         !isFormAddTaskUp && <FormAdd groupId={id} />}
                     {formAdd.groupId !== id && <div className="add-task-container">
-                        <button className="btn btn-add-task" onClick={openAddForm}>
+                        <button className="btn btn-add-task" onClick={() => openAddForm(false)}>
                             <BsPlusLg className='plus-icon' />
                             Add a card
                         </button>

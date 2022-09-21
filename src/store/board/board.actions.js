@@ -48,18 +48,16 @@ export function removeBoard(boardId) {
     }
 }
 
-export function addBoard(board) {
-    return (dispatch) => {
-        boardService.save(board)
-            .then(savedBoard => {
-                console.log('Added Board', savedBoard);
-                // dispatch(getActionAddBoard(savedBoard))
-                showSuccessMsg('Board added')
-            })
-            .catch(err => {
-                showErrorMsg('Cannot add board')
-                console.log('Cannot add board', err)
-            })
+export function updateBoard(newBoard) {
+    return async (dispatch, getState) => {
+        try {
+            const board = getState().boardModule.board
+            const updatedBoard = await boardService.updateBoard(board, newBoard)
+            dispatch({ type: 'UPDATE_BOARD', updatedBoard })
+        } catch (err) {
+            console.log('Move task title has failed in board actions:', err)
+
+        }
     }
 }
 
@@ -75,16 +73,42 @@ export function saveGroup(group) {
     }
 }
 
-export function updateTask(groupId, taskId, key, value) {
+export function removeGroup(groupId) {
     return async (dispatch, getState) => {
         try {
             const board = getState().boardModule.board
-            let task = boardService.getTask(board, groupId, taskId)
-            task = { ...task, [key]: value }
-            const updatedBoard = await boardService.saveTask(board, groupId, task)
+            const updatedBoard = await boardService.removeGroup(board, groupId)
+            console.log('Deleted successfully')
+            dispatch({ type: 'UPDATE_BOARD', updatedBoard })
+            showSuccessMsg('Group removed')
+        } catch (err) {
+            showErrorMsg('Cannot remove group')
+            console.log('Cannot remove task', err)
+        }
+    }
+}
+
+export function updateGroupTitle(groupId, title) {
+    return async (dispatch, getState) => {
+        try {
+            const board = getState().boardModule.board
+            const updatedBoard = await boardService.updateGroupTitle(board, groupId, title)
             dispatch({ type: 'UPDATE_BOARD', updatedBoard })
         } catch (err) {
-            console.error('Update task in board actions has failed:', err)
+            console.log('Update group title has failed in board actions:', err)
+        }
+    }
+}
+
+export function duplicateGroup(groupId) {
+    return async (dispatch, getState) => {
+        try {
+            const board = getState().boardModule.board
+            const updatedBoard = await boardService.duplicateGroup(board, groupId)
+            dispatch({ type: 'UPDATE_BOARD', updatedBoard })
+
+        } catch (err) {
+            console.log('Duplicate group title has failed in board actions:', err)
         }
     }
 }
@@ -97,6 +121,20 @@ export function addTask(groupId, task) {
             dispatch({ type: 'UPDATE_BOARD', updatedBoard })
         } catch (err) {
             console.error('Add task in board actions has failed:', err)
+        }
+    }
+}
+
+export function updateTask(groupId, taskId, key, value) {
+    return async (dispatch, getState) => {
+        try {
+            const board = getState().boardModule.board
+            let task = boardService.getTask(board, groupId, taskId)
+            task = { ...task, [key]: value }
+            const updatedBoard = await boardService.saveTask(board, groupId, task)
+            dispatch({ type: 'UPDATE_BOARD', updatedBoard })
+        } catch (err) {
+            console.error('Update task in board actions has failed:', err)
         }
     }
 }
@@ -124,10 +162,7 @@ export function setIsFormAddOpen(groupId, isAddGroup) {
 }
 
 export function setModalGroupId(groupId) {
-    return (dispatch, getState) => {
-        // console.log('groupId:', groupId)
-        // const modalGroupId = getState().systemModule.modalGroupId
-        // const groupIdToDispatch = (modalGroupId === groupId) ? null : groupId
+    return (dispatch) => {
         dispatch({ type: 'SET_MODAL_GROUP_ID', groupId })
     }
 }
@@ -139,47 +174,11 @@ export function setModalTaskId(taskId) {
     }
 }
 
-export function removeGroup(groupId) {
-    return async (dispatch, getState) => {
-        try {
-            const board = getState().boardModule.board
-            const updatedBoard = await boardService.removeGroup(board, groupId)
-            console.log('Deleted successfully')
-            dispatch({ type: 'UPDATE_BOARD', updatedBoard })
-            showSuccessMsg('Group removed')
-
-
-        } catch (err) {
-            showErrorMsg('Cannot remove group')
-            console.log('Cannot remove task', err)
-        }
-    }
-}
-
 export function setTitleGroupId(groupId) {
     return (dispatch) => {
         dispatch({ type: 'SET_TITLE_GROUP_ID', groupId })
     }
 }
-
-export function updateGroupTitle(groupId, title) {
-    return async (dispatch, getState) => {
-        try {
-            const board = getState().boardModule.board
-            const updatedBoard = await boardService.updateGroupTitle(board, groupId, title)
-            dispatch({ type: 'UPDATE_BOARD', updatedBoard })
-        } catch (err) {
-            console.log('Update group title has failed in board actions:', err)
-        }
-    }
-}
-
-// export function setTitleTaskId(taskId) {
-//     console.log('taskId from set title task id:', taskId)
-//     return (dispatch) => {
-//         dispatch({ type: 'SET_TITLE_TASK_ID', taskId })
-//     }
-// }
 
 export function setModalAttachmentIdx(idx) {
     return (dispatch) => {
@@ -193,93 +192,29 @@ export function toggleBlackScreen() {
     }
 }
 
-export function updateBoard(newBoard) {
-    return async (dispatch, getState) => {
-        try {
-            const board = getState().boardModule.board
-            const updatedBoard = await boardService.updateBoard(board, newBoard)
-            dispatch({ type: 'UPDATE_BOARD', updatedBoard })
-        } catch (err) {
-            console.log('Move task title has failed in board actions:', err)
-
-        }
-    }
-}
-
-export function duplicateGroup(groupId) {
-    return async (dispatch, getState) => {
-        try {
-            const board = getState().boardModule.board
-            const updatedBoard = await boardService.duplicateGroup(board, groupId)
-            dispatch({ type: 'UPDATE_BOARD', updatedBoard })
-
-        } catch (err) {
-            console.log('Duplicate group title has failed in board actions:', err)
-        }
-    }
-}
-
-// export function setFilterBy(filterBy) {
-//     console.log('filterBy from action:', filterBy)
-//     return (dispatch) => {
-//         dispatch({ type: 'SET_FILTER_BY', filterBy })
-//     }
-// }
-
-// export function updateBoard(board) {
-//     return (dispatch) => {
-//         boardService.save(board)
-//             .then(savedBoard => {
-//                 console.log('Updated Board:', savedBoard);
-//                 // dispatch(getActionUpdateBoard(savedBoard))
-//                 showSuccessMsg('Board updated')
-//             })
-//             .catch(err => {
-//                 showErrorMsg('Cannot update board')
-//                 console.log('Cannot save board', err)
-//             })
-//     }
-// }
-
-// export function checkout() {
-//     return async (dispatch, getState) => {
-//         try {
-//             const state = getState()
-//             const total = state.boardModule.boardt.reduce((acc, board) => acc + board.price, 0)
-//             const score = await userService.changeScore(-total)
-//             dispatch({ type: 'SET_SCORE', score })
-//             dispatch({ type: 'CLEAR_CART' })
-//             showSuccessMsg('Charged you: $' + total.toLocaleString())
-//         } catch (err) {
-//             showErrorMsg('Cannot checkout, login first')
-//             console.log('BoardActions: err in checkout', err)
-//         }
-//     }
-// }
-
 
 // Demo for Optimistic Mutation 
 // (IOW - Assuming the server call will work, so updating the UI first)
-export function onRemoveBoardOptimistic(boardId) {
+// export function onRemoveBoardOptimistic(boardId) {
 
-    return (dispatch, getState) => {
+//     return (dispatch, getState) => {
 
-        dispatch({
-            type: 'REMOVE_CAR',
-            boardId
-        })
-        showSuccessMsg('Board removed')
+//         dispatch({
+//             type: 'REMOVE_CAR',
+//             boardId
+//         })
+//         showSuccessMsg('Board removed')
 
-        boardService.remove(boardId)
-            .then(() => {
-                console.log('Server Reported - Deleted Succesfully');
-            })
-            .catch(err => {
-                showErrorMsg('Cannot remove board')
-                console.log('Cannot load boards', err)
-                dispatch({
-                    type: 'UNDO_REMOVE_CAR',
-                })
-            })
-    }
-}
+//         boardService.remove(boardId)
+//             .then(() => {
+//                 console.log('Server Reported - Deleted Succesfully');
+//             })
+//             .catch(err => {
+//                 showErrorMsg('Cannot remove board')
+//                 console.log('Cannot load boards', err)
+//                 dispatch({
+//                     type: 'UNDO_REMOVE_CAR',
+//                 })
+//             })
+//     }
+// }
