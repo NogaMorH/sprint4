@@ -64,7 +64,7 @@ export const TaskPreview = ({ task, groupId, index }) => {
                             }
                         })}
                         <div className="task-preview-details">
-                            <h4 className="task-title">{title}</h4>
+                            <div className="task-title">{title}</div>
                             <button className="btn task-edit-icon" onClick={openTaskEditModal}>
                                 <BiPencil />
                             </button>

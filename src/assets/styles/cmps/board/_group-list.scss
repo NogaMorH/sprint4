@@ -8,7 +8,7 @@
         height: 100%;
         align-items: flex-start;
 
-      
+
     }
 
     .btn-add-group {
@@ -23,9 +23,8 @@
         height: 40px;
 
         .plus-icon {
-            margin-right: 8px;
+            @include plus-icon;
             color: #616e85;
-            font-size: 12px;
         }
 
         &:hover {
@@ -33,5 +32,5 @@
         }
     }
 
-    
+
 }
