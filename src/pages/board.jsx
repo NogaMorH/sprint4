@@ -23,7 +23,6 @@ export const Board = () => {
         dispatch(loadBoard(params.boardId))
     }, [params.boardId])
 
-
     const onAddGroup = () => {
         dispatch(setIsFormAddOpen(null, true))
     }
@@ -31,7 +30,9 @@ export const Board = () => {
     if (!board) return <div>Loading...</div>
     return (
         <div className='board-layout board-page'>
-            <div className={isBlackScreenOpen ? 'black-screen' : 'disabled-black-screen'}></div>
+            <div className={isBlackScreenOpen ? 'black-screen' : 'disabled-black-screen'}>
+                {console.log('click:')}
+            </div>
             <BoardMainHeader />
             <main className='full board-layout board-layout board'>
                 <BoardSecondaryHeader board={board} />

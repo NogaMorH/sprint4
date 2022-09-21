@@ -10,17 +10,15 @@ export const FormAdd = ({ groupId }) => {
     const [form, handleChange] = useForm({ title: '' })
 
     useEffect(() => {
-        console.log('task:', form)
     }, [form])
 
     const onAddTask = (ev) => {
         ev.preventDefault()
-        console.log('task:', form)
         dispatch(addTask(groupId, form))
         closeForm()
     }
 
-    const addGroup = (ev) => {
+    const onAddGroup = (ev) => {
         ev.preventDefault()
         dispatch(saveGroup(form))
         closeForm()
@@ -31,7 +29,7 @@ export const FormAdd = ({ groupId }) => {
     }
 
     return (
-        <form className='form-add' onSubmit={formAdd.isAddGroup ? addGroup : onAddTask}>
+        <form className='form-add' onSubmit={formAdd.isAddGroup ? onAddGroup : onAddTask}>
             <div className='title'>
                 <textarea
                     placeholder={formAdd.isAddGroup ? 'Enter list title...' : 'Enter a title for this card...'}

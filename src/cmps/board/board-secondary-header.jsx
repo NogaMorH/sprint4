@@ -1,19 +1,9 @@
-// import { useDispatch } from "react-redux"
 import { boardService } from "../../services/board.service"
-// import { setFilterBy } from "../../store/board/board.actions"
-// import { TaskFilter } from "./task-filter"
 
 export const BoardSecondaryHeader = ({ board }) => {
-
-    // const dispatch = useDispatch()
-
-    // const onChangeFilter = (filterBy) => {
-    //     dispatch(setFilterBy(filterBy))
-    //     dispatch(loadBoard())
-    // }
     if (!board) return
-    const { members } = board
-
+    // const { members } = board
+    
     const getAvatarPosition = (avatarIdx) => {
         return avatarIdx * (-3)
     }
@@ -32,11 +22,6 @@ export const BoardSecondaryHeader = ({ board }) => {
                                 style={{ transform: `translate(${getAvatarPosition(idx)}px)` }} />
                         ))}
                     </span>
-                </div>
-                {/* <span><TaskFilter onChangeFilter={onChangeFilter} /></span> */}
-                <div className='filter-container'>
-                    {/* <button className="btn">Filter</button> */}
-                    {/* <button className='btn btn-transparent'>... Show menu</button> */}
                 </div>
             </div>
         </header>

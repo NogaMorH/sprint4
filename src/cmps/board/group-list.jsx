@@ -4,11 +4,11 @@ import { updateBoard, setIsFormAddOpen } from '../../store/board/board.actions'
 import { FormAdd } from './form-add'
 import { DragDropContext, Droppable } from 'react-beautiful-dnd'
 import { utilService } from '../../services/util.service'
-export const GroupList = ({ groups, provided }) => {
+
+export const GroupList = ({ groups }) => {
     const board = useSelector(state => state.boardModule.board)
     const formAdd = useSelector(state => state.systemModule.formAdd)
     const dispatch = useDispatch()
-
 
     const onDragEnd = (result) => {
 
@@ -54,19 +54,13 @@ export const GroupList = ({ groups, provided }) => {
                 ...finish,
                 tasks: destinationTasks
             }
-
         }
-        console.log('newGroup:', newGroup)
-        console.log('board:', board)
 
         const newBoard = {
             ...board,
-            groups:
-                board.groups.map(group => group.id === newGroup.id ? newGroup : group)
+            groups: board.groups.map(group => group.id === newGroup.id ? newGroup : group)
         }
         dispatch(updateBoard(newBoard))
-        console.log('newBoard end of function:', newBoard)
-
     }
 
     if (!groups) return <div>Loading....</div>
