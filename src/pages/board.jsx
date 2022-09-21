@@ -19,7 +19,6 @@ export const Board = () => {
     const isBlackScreenOpen = useSelector(state => state.systemModule.isBlackScreenOpen)
     const dispatch = useDispatch()
     const params = useParams()
-    console.log('formAdd:', formAdd)
 
     useEffect(() => {
         dispatch(loadBoard(params.boardId))
@@ -29,22 +28,6 @@ export const Board = () => {
     const onAddGroup = () => {
         dispatch(setIsFormAddOpen(null, true))
     }
-
-
-    // useEffect(() => {
-    //     if (!board) return
-    //     console.log('board from did update:', board)
-    // }, [board])
-
-    // const onRemoveBoard = (boardId) => {
-    //     dispatch(removeBoard(boardId))
-    // }
-
-    // const onAddBoard = () => {
-    //     const board = boardService.getEmptyBoard()
-    //     board.vendor = prompt('Vendor?')
-    //     addBoard(board)
-    // }
 
     if (!board) return <div>Loading...</div>
     return (

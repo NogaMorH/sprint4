@@ -174,12 +174,12 @@ export function updateGroupTitle(groupId, title) {
     }
 }
 
-export function setTitleTaskId(taskId) {
-    console.log('taskId from set title task id:', taskId)
-    return (dispatch) => {
-        dispatch({ type: 'SET_TITLE_TASK_ID', taskId })
-    }
-}
+// export function setTitleTaskId(taskId) {
+//     console.log('taskId from set title task id:', taskId)
+//     return (dispatch) => {
+//         dispatch({ type: 'SET_TITLE_TASK_ID', taskId })
+//     }
+// }
 
 export function setModalAttachmentIdx(idx) {
     return (dispatch) => {

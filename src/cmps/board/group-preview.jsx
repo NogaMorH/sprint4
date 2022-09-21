@@ -16,14 +16,12 @@ export const GroupPreview = ({ group, index }) => {
     const modalGroupId = useSelector(state => state.systemModule.modalGroupId)
     const titleGroupId = useSelector(state => state.systemModule.titleGroupId)
     const [groupTitle, setTitle] = useState(group.title)
+    const [isFormAddTaskUp, setFormAddTaskUp] = useState(null)
 
     const toggleGroupModal = (ev) => {
         ev.stopPropagation()
-        // console.log('ev:', ev)
         if (modalGroupId === group.id) {
-            // console.log('modalGroupId:', modalGroupId)
             return closeGroupModal()
-
         }
         dispatch(setModalGroupId(group.id))
         document.addEventListener('click', closeGroupModal)
@@ -53,10 +51,10 @@ export const GroupPreview = ({ group, index }) => {
         dispatch(updateGroupTitle(group.id, groupTitle))
     }
 
-    const openAddForm = () => {
+    const openAddForm = (isUp) => { 
+        setFormAddTaskUp(isUp)       
         dispatch(setIsFormAddOpen(group.id, false))
     }
-
 
     const { id, title, tasks } = group
     return (
@@ -78,11 +76,14 @@ export const GroupPreview = ({ group, index }) => {
                         </div>
                     </div>
                     {modalGroupId === id && <GroupActionModal groupId={id} onRemoveGroup={onRemoveGroup}
-                        openAddForm={openAddForm} />}
-                    {formAdd.groupId === id && <FormAdd groupId={id} />}
-                    <TaskList tasks={tasks} groupId={id} openAddForm={openAddForm} />
+                        openAddForm={openAddForm} setFormAddTaskUp={setFormAddTaskUp} />}
+                    {formAdd.groupId === id &&
+                        isFormAddTaskUp && <FormAdd groupId={id} />}
+                    <TaskList tasks={tasks} groupId={id} />
+                    {formAdd.groupId === id &&
+                        !isFormAddTaskUp && <FormAdd groupId={id} />}
                     {formAdd.groupId !== id && <div className="add-task-container">
-                        <button className="btn btn-add-task" onClick={openAddForm}><HiPlus className='plus-icon' />
+                        <button className="btn btn-add-task" onClick={() => openAddForm(false)}><HiPlus className='plus-icon' />
                             Add a card
                         </button>
                     </div>}
