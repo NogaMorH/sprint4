@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { boardService } from '../services/board.service'
-import { loadBoard, updateTask } from '../store/board/board.actions'
+import { loadBoard, toggleBlackScreen, updateTask } from '../store/board/board.actions'
 import { TaskSideBar } from '../cmps/board/task-sidebar'
 import { Members } from '../cmps/task-details/members'
 import { DueDate } from '../cmps/task-details/dueDate'
@@ -10,22 +10,27 @@ import { Description } from '../cmps/task-details/description'
 import { AttachmentList } from '../cmps/task-details/attachment-list'
 import { ChecklistList } from '../cmps/task-details/checklist-list'
 import { BiCreditCardFront } from 'react-icons/bi'
+// import { useHistory } from "react-router-dom"
 
 export const TaskDetails = () => {
 
     const board = useSelector(state => state.boardModule.board)
     const [taskTitle, setTaskTitle] = useState('')
     const dispatch = useDispatch()
+    const navigate = useNavigate()
+    // const history = useHistory()
     const params = useParams()
     const { boardId, groupId, taskId } = params
 
     useEffect(() => {
         dispatch(loadBoard(boardId))
+        setTimeout(openTaskDetails, 1)
+        // console.log('history:', history);
+        // history.push(`/board/${board._id}`)
     }, [])
 
     useEffect(() => {
         if (!board) return
-        console.log('title:', title);
         setTaskTitle(title)
     }, [board])
 
@@ -33,6 +38,25 @@ export const TaskDetails = () => {
         if (!board || !taskTitle) return
         dispatch(updateTask(groupId, taskId, 'title', taskTitle))
     }, [taskTitle])
+
+    const openTaskDetails = (ev) => {
+        // ev not exist
+        // ev.stopPropagation()
+        dispatch(toggleBlackScreen())
+        document.addEventListener('click', closeTaskDetails)
+    }
+
+    const closeTaskDetails = (ev) => {
+        if (ev) {
+            console.log('ev:', ev);
+            ev.stopPropagation()
+        }
+        console.log('clicked');
+        dispatch(toggleBlackScreen())
+        document.removeEventListener('click', closeTaskDetails)
+        // can't use navigate because of propagation
+        navigate(`/board/${board._id}`)
+    }
 
     const handleTitleChange = ({ target }) => {
         setTaskTitle(target.value)
@@ -42,7 +66,7 @@ export const TaskDetails = () => {
     const { title, dueDate, memberIds, attachments, checklists, description } = boardService.getTask(board, groupId, taskId)
 
     return (
-        <div className="task-details-layout task-details-container">
+        <div className="task-details-layout task-details-container" onClick={(ev) => ev.stopPropagation()}>
             <div className='full task-details-cover'>
                 {attachments && attachments.map((attachment, idx) => {
                     if (attachment.isCover) {

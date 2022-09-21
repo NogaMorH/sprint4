@@ -18,10 +18,10 @@ const routes = [
     {
         path: 'board/:boardId',
         component: <Board />,
-    },
-    {
-        path: 'board/:boardId/group/:groupId/task/:taskId',
-        component: <TaskDetails />,
+        nestedRoute: {
+            path: 'group/:groupId/task/:taskId',
+            component: <TaskDetails />,
+        }
     },
     {
         path: 'login',

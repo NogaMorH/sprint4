@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { utilService } from '../../services/util.service'
 import { boardService } from '../../services/board.service'
 import { BiPencil } from 'react-icons/bi'
-import { useNavigate } from 'react-router-dom'
+import { Outlet, useNavigate } from 'react-router-dom'
 import { toggleBlackScreen, setModalTaskId } from '../../store/board/board.actions'
 import { TaskEditModal } from './task-edit-modal'
 import descriptionIcon from '../../assets/img/description.svg'
@@ -29,7 +29,6 @@ export const TaskPreview = ({ task, groupId, index }) => {
         dispatch(setModalTaskId(task.id))
         dispatch(toggleBlackScreen())
         document.addEventListener('click', closeTaskEditModal)
-
     }
 
     const closeTaskEditModal = (ev) => {
