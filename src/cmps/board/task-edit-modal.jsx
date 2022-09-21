@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux"
 import { Link } from "react-router-dom"
-import { removeTask, setModalTaskId, updateTask } from "../../store/board/board.actions"
+import { removeTask, setModalTaskId, toggleBlackScreen, updateTask } from "../../store/board/board.actions"
 import { BiCreditCardFront } from 'react-icons/bi'
 import { FiCreditCard } from 'react-icons/fi'
 import { BsArchive } from 'react-icons/bs'
@@ -30,6 +30,7 @@ export const TaskEditModal = ({ task, groupId, closeTaskEditModal }) => {
     const onRemoveTask = (ev, taskId) => {
         ev.stopPropagation()
         dispatch(removeTask(groupId, taskId))
+        dispatch(toggleBlackScreen())
     }
 
     const { id, title } = task
@@ -37,7 +38,7 @@ export const TaskEditModal = ({ task, groupId, closeTaskEditModal }) => {
         <div className="task-edit-modal">
             <div className='task-title-container'>
                 {modalTaskId === id &&
-                    <textarea name='title' value={taskTitle} className='task-title-edit'
+                    <textarea name='title' value={taskTitle} className='task-title-edit' onClick={(ev) => ev.stopPropagation()}
                         onChange={handleChange} onFocus={handleFocus} autoFocus>
                     </textarea>}
                 <button className="btn btn-primary-board" onClick={(ev) => onUpdateTask(ev)}>Save</button>
