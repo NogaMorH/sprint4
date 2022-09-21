@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import { useSelector } from "react-redux"
 import { GrAttachment } from 'react-icons/gr'
 import { ImArrowUpRight2 } from 'react-icons/im'
@@ -19,10 +19,6 @@ export const Attachment = ({ attachment, idx, toggleCover, removeAttachment, upd
         return (url.match(/\.(jpeg|jpg|gif|png)$/) != null)
     }
 
-    useEffect(() => {
-        // console.log('update:', isUpdated);
-    }, [isUpdated])
-
     const toggleEditModal = (ev) => {
         ev.preventDefault() // prevent default for link element(line 76)(not working with propagation!)
         ev.stopPropagation() // propagation for click event listener(line 50)
@@ -37,9 +33,7 @@ export const Attachment = ({ attachment, idx, toggleCover, removeAttachment, upd
     const closeEditModal = () => {
         dispatch(setModalAttachmentIdx(null))
         document.removeEventListener('click', closeEditModal)
-        // console.log('isUpdated in close:', isUpdated);
         if (!isUpdated) {
-            // console.log('initial name:', name)
             setName(name)
         }
         setIsUpdated(false)
@@ -58,6 +52,7 @@ export const Attachment = ({ attachment, idx, toggleCover, removeAttachment, upd
         setIsUpdated(true)
         attachment = { ...attachment, name: attachmentName }
         updateAttachments(attachment, idx)
+        closeEditModal() // temporary
     }
 
     return (
@@ -99,7 +94,7 @@ export const Attachment = ({ attachment, idx, toggleCover, removeAttachment, upd
                     <div className="attachment-modal" onClick={stopPropagation}>
                         <div className="attachment-modal-header">
                             <span>Edit attachment</span>
-                            <span className='close-icon'><IoCloseOutline /></span>
+                            <span className='close-icon' onClick={closeEditModal}><IoCloseOutline /></span>
                         </div>
 
                         <div className="attachment-modal-content">
