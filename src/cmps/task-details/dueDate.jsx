@@ -15,7 +15,7 @@ export const DueDate = ({ dueDate }) => {
                 <input type="checkbox" />
                 <button>{getFormatDate(dueDate)}</button>
             </div>
-            {/* <input type="text" value={getFormatDate(dueDate)} /> */}
+            {/* <input type="date" value={getFormatDate(dueDate)} /> */}
         </div>
     )
 }

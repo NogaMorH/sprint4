@@ -18,7 +18,7 @@ export const TaskDetails = () => {
     const [taskTitle, setTaskTitle] = useState('')
     const dispatch = useDispatch()
     const navigate = useNavigate()
-    // const history = useHistory()
+    // const history = useHistory() // useHistory not working !!!
     const params = useParams()
     const { boardId, groupId, taskId } = params
 
@@ -39,22 +39,14 @@ export const TaskDetails = () => {
         dispatch(updateTask(groupId, taskId, 'title', taskTitle))
     }, [taskTitle])
 
-    const openTaskDetails = (ev) => {
-        // ev not exist
-        // ev.stopPropagation()
+    const openTaskDetails = () => {
         dispatch(toggleBlackScreen())
         document.addEventListener('click', closeTaskDetails)
     }
 
-    const closeTaskDetails = (ev) => {
-        if (ev) {
-            console.log('ev:', ev);
-            ev.stopPropagation()
-        }
-        console.log('clicked');
+    const closeTaskDetails = () => {
         dispatch(toggleBlackScreen())
         document.removeEventListener('click', closeTaskDetails)
-        // can't use navigate because of propagation
         navigate(`/board/${board._id}`)
     }
 

@@ -1,4 +1,3 @@
-import { GrAttachment } from 'react-icons/gr'
 import { useDispatch } from 'react-redux'
 import { useParams } from 'react-router-dom'
 import { updateTask } from '../../store/board/board.actions'
