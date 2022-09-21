@@ -1,0 +1,55 @@
+.task-badge-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .task-badges {
+        max-width: 100%;
+        font-family: san-francisco-light, sans-serif;
+        font-size: rem(12px);
+        height: 28px;
+        align-items: flex-start;
+        position: relative;
+        color: $clr23;
+        display: flex;
+
+        .task-due-date {
+            margin-inline-end: 5px;
+            display: flex;
+            align-items: center;
+            margin-inline-end: 10px;
+
+            .clock-badge {
+                font-size: rem(15px);
+                margin-inline-end: 4px;
+            }
+        }
+
+        .description-badge {
+            font-size: 12px;
+            margin-inline-end: 10px;
+        }
+
+        .task-attachment {
+            margin-inline-end: 10px;
+            font-size: rem(12px);
+            display: flex;
+            align-items: center;
+
+            .attachment-badge {
+                color: $clr23;
+                font-size: rem(13px);
+                margin-inline-end: 4px;
+            }
+        }
+    }
+
+    .member-avatar {
+
+        img {
+            width: rem(28px);
+            border-radius: 50%;
+            margin: 0 0 4px 4px;
+        }
+    }
+}

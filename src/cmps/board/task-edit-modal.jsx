@@ -7,8 +7,9 @@ import { BsArchive } from 'react-icons/bs'
 import { AiOutlineUser } from 'react-icons/ai'
 import { BsClock } from 'react-icons/bs'
 import { useState } from "react"
+import { TaskPreviewBadge } from "./task-preview-badge"
 
-export const TaskEditModal = ({ task, groupId, closeTaskEditModal }) => {
+export const TaskEditModal = ({ task, groupId, closeTaskEditModal, isBadge }) => {
     const dispatch = useDispatch()
     const board = useSelector(state => state.boardModule.board)
     const modalTaskId = useSelector(state => state.systemModule.modalTaskId)
@@ -24,6 +25,7 @@ export const TaskEditModal = ({ task, groupId, closeTaskEditModal }) => {
 
     const handleChange = ({ target }) => {
         const value = target.value
+        console.log('value:', value)
         setTitle(value)
     }
 
@@ -33,15 +35,28 @@ export const TaskEditModal = ({ task, groupId, closeTaskEditModal }) => {
         dispatch(toggleBlackScreen())
     }
 
-    const { id, title } = task
+    const { id, title, attachments } = task
     return (
         <div className="task-edit-modal">
-            <div className='task-title-container'>
-                {modalTaskId === id &&
-                    <textarea name='title' value={taskTitle} className='task-title-edit' onClick={(ev) => ev.stopPropagation()}
-                        onChange={handleChange} onFocus={handleFocus} autoFocus>
-                    </textarea>}
-                <button className="btn btn-primary-board" onClick={(ev) => onUpdateTask(ev)}>Save</button>
+            <div className="task-edit-content">
+                    {attachments && attachments.map((attachment, idx) => {
+                        if (attachment.isCover) {
+                            return <img key={idx} className='task-cover-img' src={attachment.url} alt="cover" />
+                        }
+                    })}
+                            <form onSubmit={onUpdateTask}>
+                    {modalTaskId === id &&
+                        <input name='title' value={taskTitle} className='task-title-edit' onClick={(ev) => ev.stopPropagation()}
+                            onChange={handleChange} onFocus={handleFocus} autoFocus>
+                        </input>}
+                    <div className='edit-modal-task-preview' >
+                        <div className="edit-modal-task-details">
+                            {isBadge() &&
+                                <TaskPreviewBadge task={task} />}
+                        </div>
+                    </div>
+                </form>
+                <button className="btn btn-primary-board edit-modal" onClick={(ev) => onUpdateTask(ev)}>Save</button>
             </div>
             <div className="task-edit-modal-btns">
                 <span className="btn dark-btn"><Link to={`/board/${board._id}/group/${groupId}/task/${task.id}`}>

@@ -335,7 +335,7 @@ export const gBoards = [{
                 },
                 {
                     "id": "t110",
-                    "title": "Fix check list functionality in Task details component",
+                    "title": "Fix check list functionality in task details component",
                     "description": "At the moment, the input is updated every time you type, and we need to change it to only update the information when user is click save.",
                     "labelIds": ["l101"],
                     "memberIds": ["u101"],
@@ -448,10 +448,9 @@ export const gBoards = [{
                     "labelIds": ["l104"],
                 },
                 {
-                    "id": "t105",
+                    "id": "t112",
                     "title": "Set up backend server",
                     "dueDate": 1663800250120,
-                    "description": "Ask Asi about padding",
                     "labelIds": ["l101", "l103"],
                     "memberIds": ["u102"],
                     "attachments": [
@@ -481,7 +480,7 @@ export const gBoards = [{
             },
             "tasks": [
                 {
-                    "id": "t112",
+                    "id": "t113",
                     "title": "",
                     "labelIds": ["l101", "l103"],
                     "attachments": [
@@ -498,7 +497,7 @@ export const gBoards = [{
                     ],
                 },
                 {
-                    "id": "t113",
+                    "id": "t114",
                     "title": "No cursor in header serach field on mac",
                     "description": "No cursor appears in search field Open TrelloType something in the search field in the top left corner Expected: Cursor should appear Actual: No cursor appears, so it's impossible to select or copy text from this field. ",
                     "labelIds": ["l104"],
@@ -506,7 +505,7 @@ export const gBoards = [{
 
                 },
                 {
-                    "id": "t114",
+                    "id": "t115",
                     "title": "Mobile web calendar doesn't show any cards",
                     "description": "If you view the calendar in the phone's browser (I tested on an iPhone), it shows a calendar, but no indication of what dates have cards associated with them, and clicking on a date you know has a card doesn't show anything. Could we hide this link beneath a certain screen width?",
                     "labelIds": ["l104"],
@@ -515,9 +514,9 @@ export const gBoards = [{
 
                 },
                 {
-                    "id": "t115",
-                    "title": "Mobile web calendar doesn't show any cards",
-                    "description": "Screenshot in the attached case.",
+                    "id": "t116",
+                    "title": "Can't edit checklist item without clicking away from it first.",
+                    "description": "I mentioned this in the web room, but then I figured out a way to repro, although it is a bit strange. In Chrome: Hover over a checklist item:background is shaded cursor is hand Click:editing mode on checklist item Click away, eg down on 'Add comment': exits editing mode on checklist item Double click on 'Add comment' so that 'Add' is highlighted Hover over a checklist item: background is shaded cursor is hand  Click: doesn't enter editing mode",
                     "labelIds": ["l104"],
                     "memberIds": ["u101"],
                     "attachments": [{ "name": "Attachment", "url": "https://secure.helpscout.net/fakeconversation/12345", "isCover": false }],
@@ -526,7 +525,7 @@ export const gBoards = [{
             ]
         },
         {
-            "id": "g105",
+            "id": "g117",
             "title": "Done",
             "style": {},
             "byMember": {
@@ -536,7 +535,7 @@ export const gBoards = [{
             },
             "tasks": [
                 {
-                    "id": "t116",
+                    "id": "t118",
                     "title": "Color Palette variables",
                     "description": "",
                     "labelIds": ["l101"],
@@ -555,7 +554,7 @@ export const gBoards = [{
                     ]
                 },
                 {
-                    "id": "t117",
+                    "id": "t119",
                     "title": "React beautiful dnd",
                     "description": "",
                     "labelIds": ["l101"],
@@ -590,7 +589,7 @@ export const gBoards = [{
             "labelIds": ["l104"],
         },
         {
-            "id": "t118",
+            "id": "t120",
             "title": "Defining the application's layout",
             "description": "",
             "labelIds": ["l101"],
