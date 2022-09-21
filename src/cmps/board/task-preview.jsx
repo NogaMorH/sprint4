@@ -57,7 +57,7 @@ export const TaskPreview = ({ task, groupId, index }) => {
                     ref={provided.innerRef}>
                     {modalTaskId === id &&
                         <TaskEditModal task={task} groupId={groupId}
-                            closeTaskEditModal={closeTaskEditModal} />}
+                            closeTaskEditModal={(ev) => closeTaskEditModal(ev)} />}
                     <div className='task-preview' onClick={openTaskDetails}>
                         {attachments && attachments.map((attachment, idx) => {
                             if (attachment.isCover) {

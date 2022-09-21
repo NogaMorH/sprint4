@@ -36,7 +36,7 @@ export const FormAdd = ({ groupId }) => {
                 <textarea
                     placeholder={formAdd.isAddGroup ? 'Enter list title...' : 'Enter a title for this card...'}
                     className={formAdd.isAddGroup ? 'group-title' : 'card-title'}
-                    name='title' onChange={handleChange} value={form.title} autoFocus>
+                    name='title' onChange={handleChange} on value={form.title} autoFocus>
                 </textarea>
             </div>
             <button className='btn'>{formAdd.isAddGroup ? 'Add list' : 'Add card'}</button>

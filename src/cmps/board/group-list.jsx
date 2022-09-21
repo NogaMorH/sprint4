@@ -2,19 +2,13 @@ import { useDispatch, useSelector } from 'react-redux'
 import { GroupPreview } from './group-preview'
 import { updateBoard, setIsFormAddOpen } from '../../store/board/board.actions'
 import { FormAdd } from './form-add'
-import { BsPlusLg } from 'react-icons/bs'
 import { DragDropContext, Droppable } from 'react-beautiful-dnd'
 import { utilService } from '../../services/util.service'
-
 export const GroupList = ({ groups, provided }) => {
-    // console.log('groups:', groups)
     const board = useSelector(state => state.boardModule.board)
     const formAdd = useSelector(state => state.systemModule.formAdd)
     const dispatch = useDispatch()
 
-    const onAddGroup = () => {
-        dispatch(setIsFormAddOpen(null, true))
-    }
 
     const onDragEnd = (result) => {
 
@@ -27,11 +21,8 @@ export const GroupList = ({ groups, provided }) => {
 
         if (type === 'group') {
             const currGroup = board.groups.find(group => group.id === draggableId)
-            // console.log('currGroup:', currGroup)
             board.groups.splice(index, 1)
             board.groups.splice(destination.index, 0, currGroup)
-            console.log('board:', board)
-
             dispatch(updateBoard(board))
             return
         }
@@ -57,13 +48,6 @@ export const GroupList = ({ groups, provided }) => {
             const sourceTasks = start.tasks
             const currTask = sourceTasks.find((task, idx) => index === idx)
             sourceTasks.splice(index, 1)
-            console.log('start:', start)
-            // const sourceGroup = {
-            //     ...start,
-            //     tasks: sourceTasks
-            // }
-            // console.log('sourceGroup:', sourceGroup)
-
             const destinationTasks = finish.tasks
             destinationTasks.splice(destination.index, 0, currTask)
             newGroup = {
@@ -95,14 +79,6 @@ export const GroupList = ({ groups, provided }) => {
                         ref={provided.innerRef}>
                         {groups.map((group, index) =>
                             <GroupPreview key={group.id} group={group} index={index} />)}
-                        {/* {provided.placeholder} */}
-                        {formAdd.isAddGroup
-                            ? <FormAdd />
-                            : <button className='btn btn-add-group' onClick={onAddGroup}>
-                                <BsPlusLg className='plus-icon' />
-                                Add another list
-                            </button>
-                        }
                         {provided.placeholder}
                     </div>
                 )}
