@@ -295,7 +295,7 @@ export const gBoards = [{
                     "id": "t107",
                     "title": "Implement check lists design",
                     "dueDate": 1663900250120,
-                    "description": "",
+                    "description": "fix the functionality",
                     "labelIds": ["l101", "l103"],
                     "memberIds": [ "u103"],
                 },

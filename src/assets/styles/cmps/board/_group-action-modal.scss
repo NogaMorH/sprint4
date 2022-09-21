@@ -24,7 +24,7 @@
     .action-modal-title {
         display: flex;
         justify-content: center;
-        color: #5e6c84;
+        color: $clr23;
         border-bottom: 1px solid #dfe2e6;
         margin: 0 12px;
         margin-bottom: 6px;
@@ -44,7 +44,7 @@
             cursor: pointer;
 
             &:hover {
-                color: #172b4d;
+                color: $clr8;
             }
         }
     }
