@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { useSelector } from "react-redux"
 import { GrAttachment } from 'react-icons/gr'
 import { ImArrowUpRight2 } from 'react-icons/im'
@@ -10,6 +10,7 @@ import { useDispatch } from "react-redux"
 export const Attachment = ({ attachment, idx, toggleCover, removeAttachment, updateAttachments }) => {
 
     const [attachmentName, setName] = useState(attachment.name)
+    const [isUpdated, setIsUpdated] = useState(false)
     const modalAttachmnetIdx = useSelector(state => state.systemModule.modalAttachmnetIdx)
     const dispatch = useDispatch()
     const { name, url, isCover } = attachment
@@ -18,12 +19,13 @@ export const Attachment = ({ attachment, idx, toggleCover, removeAttachment, upd
         return (url.match(/\.(jpeg|jpg|gif|png)$/) != null)
     }
 
+    useEffect(() => {
+        // console.log('update:', isUpdated);
+    }, [isUpdated])
+
     const toggleEditModal = (ev) => {
         ev.preventDefault() // prevent default for link element(line 76)(not working with propagation!)
         ev.stopPropagation() // propagation for click event listener(line 50)
-        console.log('ev:', ev);
-        console.log('idx:', idx);
-        console.log('modalIdx:', modalAttachmnetIdx);
 
         if (modalAttachmnetIdx === idx) {
             return closeEditModal()
@@ -35,6 +37,12 @@ export const Attachment = ({ attachment, idx, toggleCover, removeAttachment, upd
     const closeEditModal = () => {
         dispatch(setModalAttachmentIdx(null))
         document.removeEventListener('click', closeEditModal)
+        // console.log('isUpdated in close:', isUpdated);
+        if (!isUpdated) {
+            // console.log('initial name:', name)
+            setName(name)
+        }
+        setIsUpdated(false)
     }
 
     const stopPropagation = (ev) => {
@@ -46,7 +54,8 @@ export const Attachment = ({ attachment, idx, toggleCover, removeAttachment, upd
         setName(target.value)
     }
 
-    const updatedName = () => {
+    const updateName = () => {
+        setIsUpdated(true)
         attachment = { ...attachment, name: attachmentName }
         updateAttachments(attachment, idx)
     }
@@ -98,7 +107,7 @@ export const Attachment = ({ attachment, idx, toggleCover, removeAttachment, upd
                                 Link name <br />
                                 <input type="text" value={attachmentName} onChange={handleChange} />
                             </label>
-                            <button className='update-btn' onClick={updatedName}>Update</button>
+                            <button className='update-btn' onClick={updateName}>Update</button>
                         </div>
                     </div>
                 }

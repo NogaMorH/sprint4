@@ -114,6 +114,8 @@
             text-align: center;
             height: 41px;
             line-height: 41px;
+            margin: 0 12px;
+            margin-bottom: 7px;
             font-size: rem(13px);
             color: #5e6c84;
             border-bottom: 1px solid var(--ds-border, #091e4221);
@@ -132,7 +134,7 @@
 
             label {
                 font-size: rem(11px);
-                font-family: san-francisco-light, sans-serif;
+                font-family: san-francisco-medium, sans-serif;
                 font-weight: 900;
 
                 input[type=text] {

@@ -4,8 +4,7 @@ import { loadBoard, addBoard, updateBoard, removeBoard } from '../store/board/bo
 import { boardService } from '../services/board.service'
 import { setIsFormAddOpen } from '../store/board/board.actions'
 import { GroupList } from '../cmps/board/group-list'
-import { useParams } from 'react-router-dom'
-
+import { Outlet, useParams } from 'react-router-dom'
 import { BoardMainHeader } from '../cmps/board/board-main-header'
 import { BoardSecondaryHeader } from '../cmps/board/board-secondary-header'
 import { FormAdd } from '../cmps/board/form-add'
@@ -31,22 +30,23 @@ export const Board = () => {
 
     if (!board) return <div>Loading...</div>
     return (
-            <div className='board-layout board-page'>
-                <div className={isBlackScreenOpen ? 'black-screen' : 'disabled-black-screen'}></div>
-                <BoardMainHeader />
-                <main className='full board-layout board-layout board'>
-                    <BoardSecondaryHeader board={board} />
-                    <div className='group-list-container'>
-                        <GroupList groups={board.groups} />
-                        {formAdd.isAddGroup
-                            ? <FormAdd />
-                            : <button className='btn btn-add-group' onClick={onAddGroup}>
-                                <BsPlusLg className='plus-icon' />Add another list
-                            </button>
-                        }
-                    </div>
-                </main>
-            </div>
+        <div className='board-layout board-page'>
+            <div className={isBlackScreenOpen ? 'black-screen' : 'disabled-black-screen'}></div>
+            <BoardMainHeader />
+            <main className='full board-layout board-layout board'>
+                <BoardSecondaryHeader board={board} />
+                <div className='group-list-container'>
+                    <GroupList groups={board.groups} />
+                    {formAdd.isAddGroup
+                        ? <FormAdd />
+                        : <button className='btn btn-add-group' onClick={onAddGroup}>
+                            <BsPlusLg className='plus-icon' />Add another list
+                        </button>
+                    }
+                    <Outlet />
+                </div>
+            </main>
+        </div>
 
     )
 }
