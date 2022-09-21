@@ -4,14 +4,14 @@ import { updateTask } from '../../store/board/board.actions'
 import { Attachment } from './attachment'
 import { ImAttachment } from 'react-icons/im'
 
-export const AttachmentList = ({ attachments }) => {
+export const AttachmentList = ({ attachments, closeAttachmentEditModal }) => {
 
     const dispatch = useDispatch()
     const params = useParams()
     const { groupId, taskId } = params
 
     const toggleCover = (ev, idx) => {
-        ev.preventDefault()
+        ev.stopPropagation()
         const attachment = attachments[idx]
         attachment.isCover = !attachment.isCover
 
@@ -23,7 +23,7 @@ export const AttachmentList = ({ attachments }) => {
     }
 
     const removeAttachment = (ev, idx) => {
-        ev.preventDefault()
+        ev.stopPropagation()
         const updatedAttachments = attachments.filter((attachment, index) => index !== idx)
         dispatch(updateTask(groupId, taskId, 'attachments', updatedAttachments))
     }
@@ -34,7 +34,7 @@ export const AttachmentList = ({ attachments }) => {
     }
 
     const addAttachment = () => {
-        // open the same modal of Task SideBar
+        // opens the same modal dynamic of Task SideBar
     }
 
     return (
@@ -52,6 +52,7 @@ export const AttachmentList = ({ attachments }) => {
                         toggleCover={toggleCover}
                         removeAttachment={removeAttachment}
                         updateAttachments={updateAttachments}
+                        closeAttachmentEditModal={closeAttachmentEditModal}
                     />
                 )
             })}

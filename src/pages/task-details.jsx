@@ -1,11 +1,11 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { boardService } from '../services/board.service'
-import { loadBoard, toggleBlackScreen, updateTask } from '../store/board/board.actions'
-import { TaskSideBar } from '../cmps/board/task-sidebar'
+import { loadBoard, setModalAttachmentIdx, toggleBlackScreen, updateTask } from '../store/board/board.actions'
+import { TaskSideBar } from '../cmps/task-details/task-sidebar'
 import { Members } from '../cmps/task-details/members'
-import { DueDate } from '../cmps/task-details/dueDate'
+import { DueDate } from '../cmps/task-details/due-date'
 import { Description } from '../cmps/task-details/description'
 import { AttachmentList } from '../cmps/task-details/attachment-list'
 import { ChecklistList } from '../cmps/task-details/checklist-list'
@@ -21,6 +21,7 @@ export const TaskDetails = () => {
     // const history = useHistory() // useHistory not working !!!
     const params = useParams()
     const { boardId, groupId, taskId } = params
+    const ref = useRef()
 
     useEffect(() => {
         dispatch(loadBoard(boardId))
@@ -42,6 +43,7 @@ export const TaskDetails = () => {
     const openTaskDetails = () => {
         dispatch(toggleBlackScreen())
         document.addEventListener('click', closeTaskDetails)
+        // ref.current.addEventListener('click', closeAttachmentEditModal)
     }
 
     const closeTaskDetails = () => {
@@ -49,6 +51,16 @@ export const TaskDetails = () => {
         document.removeEventListener('click', closeTaskDetails)
         navigate(`/board/${board._id}`)
     }
+
+    // const closeAttachmentEditModal = (ev) => {
+    //     if (ev.target.className === 'attachment-modal-header' ||
+    //         ev.target.className === 'attachment-modal-content' ||
+    //         ev.target.className === 'update-btn') {
+    //         return
+    //     }
+    //     dispatch(setModalAttachmentIdx(null))
+    //     document.removeEventListener('click', closeAttachmentEditModal)
+    // }
 
     const handleTitleChange = ({ target }) => {
         setTaskTitle(target.value)
@@ -58,7 +70,7 @@ export const TaskDetails = () => {
     const { title, dueDate, memberIds, attachments, checklists, description } = boardService.getTask(board, groupId, taskId)
 
     return (
-        <div className="task-details-layout task-details-container" onClick={(ev) => ev.stopPropagation()}>
+        <div className="task-details-layout task-details-container" ref={ref} onClick={(ev) => ev.stopPropagation()}>
             <div className='full task-details-cover'>
                 {attachments && attachments.map((attachment, idx) => {
                     if (attachment.isCover) {
