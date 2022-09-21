@@ -14,4 +14,8 @@
         background-color: #bfc4ce;
         border: none;
     }
+
+    &::-webkit-scrollbar-track {
+        background: rgba(205, 204, 204, 0.617);
+    }
 }

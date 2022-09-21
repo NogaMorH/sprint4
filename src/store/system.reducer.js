@@ -9,7 +9,6 @@ const initialState = {
   titleGroupId: null,
   modalTaskId: null,
   modalAttachmnetIdx: null,
-  // titleTaskId: null,
   isBlackScreenOpen: false
 }
 

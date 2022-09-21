@@ -4,6 +4,7 @@
     background-image: url(https://images.unsplash.com/photo-1659183591938-9753dee61d4d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80);
     background-repeat: no-repeat;
     background-size: cover;
+    padding-bottom: 8px;
 
     .board {
         grid-template-rows: auto 1fr;
@@ -12,6 +13,7 @@
         width: 100%;
         font-family: san-francisco-light, sans-serif;
         font-size: rem(13px);
+        height: 100%;
     }
 }
 
@@ -32,19 +34,18 @@
 
 ::-webkit-scrollbar {
     width: 15px;
-    height: 18px;
-    // background-color: blue;
+    height: 13px;
 }
 
 ::-webkit-scrollbar-track {
-    background: rgba(128, 125, 145, 0);
+    background: rgb(36 35 40 / 31%);
     border-radius: 7px;
 }
 
 ::-webkit-scrollbar-thumb {
     background-color: rgb(240 240 245 / 62%);
     border-radius: 10px;
-    border: 5px solid rgba(255, 255, 255, 0);
-    background-clip: padding-box;
+    // border: 5px solid rgba(255, 255, 255, 0);
+    // background-clip: padding-box;
     width: 8px;
 }
