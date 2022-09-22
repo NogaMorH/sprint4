@@ -17,19 +17,19 @@ export const TaskPreview = ({ task, groupId, index }) => {
 
     const { title, dueDate, memberIds, description, attachments, id } = task
 
-
     const openTaskEditModal = (ev) => {
         ev.stopPropagation()
         dispatch(setModalTaskId(task.id))
-        dispatch(toggleBlackScreen())
-        document.addEventListener('click', closeTaskEditModal)
+        // dispatch(toggleBlackScreen())
+        // document.addEventListener('click', closeTaskEditModal)
     }
 
     const closeTaskEditModal = (ev) => {
         ev.stopPropagation()
         dispatch(setModalTaskId(null))
-        dispatch(toggleBlackScreen())
-        document.removeEventListener('click', closeTaskEditModal)
+        // dispatch(toggleBlackScreen())
+        console.log('close:');
+        // document.removeEventListener('click', closeTaskEditModal)
     }
 
     const openTaskDetails = () => {

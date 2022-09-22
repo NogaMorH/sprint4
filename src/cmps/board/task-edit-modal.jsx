@@ -10,6 +10,7 @@ import { useState } from "react"
 import { TaskPreviewBadge } from "./task-preview-badge"
 
 export const TaskEditModal = ({ task, groupId, closeTaskEditModal, isBadge }) => {
+
     const dispatch = useDispatch()
     const board = useSelector(state => state.boardModule.board)
     const modalTaskId = useSelector(state => state.systemModule.modalTaskId)
@@ -32,43 +33,47 @@ export const TaskEditModal = ({ task, groupId, closeTaskEditModal, isBadge }) =>
     const onRemoveTask = (ev, taskId) => {
         ev.stopPropagation()
         dispatch(removeTask(groupId, taskId))
-        dispatch(toggleBlackScreen())
+        closeTaskEditModal(ev)
     }
 
     const { id, title, attachments } = task
     return (
-        <div className="task-edit-modal">
-            <div className="task-edit-content">
+        // <React.Fragment>
+        <div>
+            <div className="black-screen" onClick={closeTaskEditModal}></div>
+            <div className="task-edit-modal">
+                <div className="task-edit-content">
                     {attachments && attachments.map((attachment, idx) => {
                         if (attachment.isCover) {
                             return <img key={idx} className='task-cover-img' src={attachment.url} alt="cover" />
                         }
                     })}
-                            <form onSubmit={onUpdateTask}>
-                    {modalTaskId === id &&
-                        <input name='title' value={taskTitle} className='task-title-edit' onClick={(ev) => ev.stopPropagation()}
-                            onChange={handleChange} onFocus={handleFocus} autoFocus>
-                        </input>}
-                    <div className='edit-modal-task-preview' >
-                        <div className="edit-modal-task-details">
-                            {isBadge() &&
-                                <TaskPreviewBadge task={task} />}
+                    <form onSubmit={onUpdateTask}>
+                        {modalTaskId === id &&
+                            <input name='title' value={taskTitle} className='task-title-edit' onClick={(ev) => ev.stopPropagation()}
+                                onChange={handleChange} onFocus={handleFocus} autoFocus>
+                            </input>}
+                        <div className='edit-modal-task-preview' >
+                            <div className="edit-modal-task-details">
+                                {isBadge() &&
+                                    <TaskPreviewBadge task={task} />}
+                            </div>
                         </div>
-                    </div>
-                </form>
-                <button className="btn btn-primary-board edit-modal" onClick={(ev) => onUpdateTask(ev)}>Save</button>
-            </div>
-            <div className="task-edit-modal-btns">
-                <span className="btn dark-btn"><Link to={`/board/${board._id}/group/${groupId}/task/${task.id}`}>
-                    <BiCreditCardFront className="edit-modal-icon" />Open card</Link> </span>
-                <button className="btn dark-btn" onClick={(ev) => onRemoveTask(ev, id)}>
-                    <BsArchive className="edit-modal-icon" />Remove task</button>
-                <button className="btn dark-btn"> <AiOutlineUser className="edit-modal-icon" />Change members</button>
-                <button className="btn dark-btn"><FiCreditCard className="edit-modal-icon" />Change cover</button>
-                <button className="btn dark-btn"><BsClock className="edit-modal-icon" />Edit dates</button>
+                    </form>
+                    <button className="btn btn-primary-board edit-modal" onClick={(ev) => onUpdateTask(ev)}>Save</button>
+                </div>
+                <div className="task-edit-modal-btns">
+                    <span className="btn dark-btn"><Link to={`/board/${board._id}/group/${groupId}/task/${task.id}`}>
+                        <BiCreditCardFront className="edit-modal-icon" />Open card</Link> </span>
+                    <button className="btn dark-btn" onClick={(ev) => onRemoveTask(ev, id)}>
+                        <BsArchive className="edit-modal-icon" />Remove task</button>
+                    <button className="btn dark-btn"> <AiOutlineUser className="edit-modal-icon" />Change members</button>
+                    <button className="btn dark-btn"><FiCreditCard className="edit-modal-icon" />Change cover</button>
+                    <button className="btn dark-btn"><BsClock className="edit-modal-icon" />Edit dates</button>
+                </div>
             </div>
         </div>
-
+        // </React.Fragment>
     )
 
 }
