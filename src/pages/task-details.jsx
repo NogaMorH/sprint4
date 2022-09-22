@@ -101,7 +101,7 @@ export const TaskDetails = () => {
                 </div>
 
                 <TaskSideBar task={task}/>
-                <CoverModal taskId={taskId} groupId={groupId}/>
+                {/* <CoverModal taskId={taskId} groupId={groupId}/> */}
             </main>
         </div>
     )

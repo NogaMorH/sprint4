@@ -21,12 +21,16 @@ export const MembersModal = ({ dynamicClassName, groupId, taskId, closeModal }) 
     }, [])
 
     const toggleMember = (id) => {
-        if (memberIds.includes(id)) {
+        if (!memberIds) {
+            memberIds = [id]
+        }
+        else if (memberIds.includes(id)) {
             const idx = memberIds.indexOf(id)
             memberIds.splice(idx, 1)
         } else {
             memberIds.push(id)
         }
+        console.log('memberIds:', memberIds);
         dispatch(updateTask(groupId, taskId, 'memberIds', memberIds))
     }
 
@@ -56,6 +60,7 @@ export const MembersModal = ({ dynamicClassName, groupId, taskId, closeModal }) 
                 <input className="dynamic-input" type="text" placeholder="Search members" ref={ref} value={name} onChange={filter} />
 
                 <div className="members">
+                    {console.log('f:', foundUsers)}
                     {foundUsers && foundUsers.length > 0
                         ?
                         <ul className="members-list">
@@ -68,7 +73,7 @@ export const MembersModal = ({ dynamicClassName, groupId, taskId, closeModal }) 
                                     <li key={_id} className="member" onClick={() => toggleMember(_id)}>
                                         <img src={imgUrl} title={fullname} alt="user-avatar" />
                                         <span className="fullname">{fullname}</span>
-                                        {memberIds.includes(_id) && <span className="icon-check"><HiCheck /></span>}
+                                        {memberIds && memberIds.includes(_id) && <span className="icon-check"><HiCheck /></span>}
                                     </li>
                                 )
                             })}
