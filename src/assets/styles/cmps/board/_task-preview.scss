@@ -1,57 +1,61 @@
-.task-preview {
-    background-color: $clr5;
-    margin-bottom: 8px;
-    border-radius: 4px;
-    height: fit-content;
+.task-preview-container {
     position: relative;
-    word-break: break-word;
-    box-shadow: 0 1px 0 $clr17;
-    color: $clr8;
-    transition: background-color .2s;
 
-    .task-cover-img {
-        height: 163.33333333333334px;
-    }
+    .task-preview {
+        background-color: $clr5;
+        margin-bottom: 8px;
+        border-radius: 4px;
+        height: fit-content;
+        // position: relative;
+        word-break: break-word;
+        box-shadow: 0 1px 0 $clr17;
+        color: $clr8;
+        transition: background-color .2s;
 
-    .task-edit-icon {
-        display: none;
-        height: rem(28px);
-        line-height: rem(20px);
-        width: rem(28px);
-        z-index: 10;
-        position: absolute;
-        right: 3px;
-        top: 2px;
-        border-radius: 3px;
-        color: #42526e;
-        font-size: 15px;
-    }
-
-    &:hover {
-        background-color: #f4f5f7;
-        cursor: pointer;
+        .task-cover-img {
+            height: 163.33333333333334px;
+        }
 
         .task-edit-icon {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background-color: inherit;
+            display: none;
+            height: rem(28px);
+            line-height: rem(20px);
+            width: rem(28px);
+            z-index: 10;
+            position: absolute;
+            right: 3px;
+            top: 2px;
+            border-radius: 3px;
+            color: #42526e;
+            font-size: 15px;
+        }
 
-            &:hover {
-                background-color: #ebecf0;
+        &:hover {
+            background-color: #f4f5f7;
+            cursor: pointer;
+
+            .task-edit-icon {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                background-color: inherit;
+
+                &:hover {
+                    background-color: #ebecf0;
+                }
             }
         }
-    }
 
-    .task-preview-details {
-        padding: 7px 8px 2px;
+        .task-preview-details {
+            padding: 7px 8px 2px;
 
-        .task-title {
-            font-family: san-francisco-light;
-            line-height: lh(20px, 13px);
-            margin-bottom: 4px;
+            .task-title {
+                font-family: san-francisco-light;
+                line-height: lh(20px, 13px);
+                margin-bottom: 4px;
+            }
+
+
         }
-
- 
     }
 }
