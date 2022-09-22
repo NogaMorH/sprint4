@@ -1,5 +1,6 @@
 import { useState } from "react"
 import { IoCloseOutline } from 'react-icons/io5'
+import { HiOutlineDotsHorizontal } from 'react-icons/hi'
 
 export const Todo = ({ todo, updateTodos, removeTodo }) => {
 
@@ -33,18 +34,16 @@ export const Todo = ({ todo, updateTodos, removeTodo }) => {
     }
 
     return (
-        <li className="todo">
+        <li className="todo-container">
             <input type="checkbox" name="isDone" onChange={handleChange} checked={isDone} />
 
             <div className="todo">
-                <textarea className="todo-textarea"
+                <textarea className={`todo-textarea ${isDone && 'line-through'}`}
                     value={titleField}
                     onChange={handleChange}
                     onFocus={onFocus}
                     onBlur={onBlur}
                 />
-
-                {!focused && <button className="todo-remove-btn" onClick={() => removeTodo(id)}>Delete</button>}
 
                 {focused &&
                     <div className="todo-buttons">
@@ -52,6 +51,8 @@ export const Todo = ({ todo, updateTodos, removeTodo }) => {
                         <span><IoCloseOutline /></span>
                     </div>
                 }
+
+                <button className='todo-remove-btn' onClick={() => removeTodo(id)}><HiOutlineDotsHorizontal /></button>
             </div>
         </li>
     )

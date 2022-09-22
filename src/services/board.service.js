@@ -33,7 +33,8 @@ export const boardService = {
     removeTask,
     getMemberImgUrl,
     getGroup,
-    getTask
+    getTask,
+    getTaskMembers
 }
 // window.cs = boardService
 
@@ -44,11 +45,6 @@ function query(filterBy) {
 function getBoardById(boardId) {
     return storageService.get(STORAGE_KEY, boardId)
     // return axios.get(`/api/board/${boardId}`)
-}
-
-async function remove(boardId) {
-    await storageService.remove(STORAGE_KEY, boardId)
-    // boardChannel.postMessage(getActionRemoveBoard(boardId))
 }
 
 async function save(board) {
@@ -64,6 +60,11 @@ async function save(board) {
         // boardChannel.postMessage(getActionAddBoard(savedBoard))
     }
     return savedBoard
+}
+
+async function remove(boardId) {
+    await storageService.remove(STORAGE_KEY, boardId)
+    // boardChannel.postMessage(getActionRemoveBoard(boardId))
 }
 
 async function updateBoard(newBoard) {
@@ -175,6 +176,11 @@ function getTask(board, groupId, taskId) {
     const group = board.groups.find(group => group.id === groupId)
     const task = group.tasks.find(task => task.id === taskId)
     return task
+}
+
+function getTaskMembers(board, groupId, taskId) {
+    const memberIds = getTask(board, groupId, taskId).memberIds
+    return board.members.filter(member => memberIds.includes(member._id))
 }
 
 // TEST DATA

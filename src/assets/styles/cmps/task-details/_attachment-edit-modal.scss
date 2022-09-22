@@ -6,7 +6,7 @@
     background-color: #fff;
     width: 304px;
     border-radius: 3px;
-    box-shadow: inset 0 0 0 1px var(--ds-border-input, #dfe1e6);
+    box-shadow: inset 0 0 0 1px #dfe1e6;
 
     &-header {
         text-align: center;
@@ -16,7 +16,7 @@
         margin-bottom: 7px;
         font-size: rem(13px);
         color: $clr23;
-        border-bottom: 1px solid var(--ds-border, #091e4221);
+        border-bottom: 1px solid #091e4221;
 
         .close-icon {
             position: absolute;
@@ -42,7 +42,7 @@
                 background-color: #fafbfc;
                 border: none;
                 border-radius: 3px;
-                box-shadow: inset 0 0 0 2px var(--ds-border-input, #dfe1e6);
+                box-shadow: inset 0 0 0 2px #dfe1e6;
                 outline-color: $clr18;
 
                 &:focus {

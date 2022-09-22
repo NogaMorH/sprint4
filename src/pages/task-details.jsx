@@ -67,7 +67,8 @@ export const TaskDetails = () => {
     }
 
     if (!board) return <div>Loading...</div>
-    const { title, dueDate, memberIds, attachments, checklists, description } = boardService.getTask(board, groupId, taskId)
+    const task = boardService.getTask(board, groupId, taskId)
+    const { title, dueDate, memberIds, attachments, checklists, description } = task
 
     return (
         <div className="task-details-layout task-details-container" ref={ref} onClick={(ev) => ev.stopPropagation()}>
@@ -98,7 +99,7 @@ export const TaskDetails = () => {
                     {checklists && <ChecklistList checklists={checklists} />}
                 </div>
 
-                <TaskSideBar />
+                <TaskSideBar task={task}/>
             </main>
         </div>
     )

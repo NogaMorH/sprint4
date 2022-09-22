@@ -35,7 +35,6 @@ export const Attachment = ({ attachment, idx, toggleCover, removeAttachment, upd
     }
 
     return (
-        // <a href={url} target="_blank">
         <div className="attachment" onClick={openUrl}>
             <div className="attachment-img">
                 {checkURL(url) ?
@@ -70,6 +69,5 @@ export const Attachment = ({ attachment, idx, toggleCover, removeAttachment, upd
 
             {modalAttachmnetIdx === idx && <AttachmentEditModal name={name} toggleEditModal={toggleEditModal} updateName={updateName} />}
         </div>
-        // </a>
     )
 }

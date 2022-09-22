@@ -256,11 +256,11 @@ export const gBoards = [{
                                     "title": "Write functionality",
                                     "isDone": false
                                 },
-        
+
                             ]
                         },
-                        
-        
+
+
                     ],
                 },
                 {
@@ -297,7 +297,7 @@ export const gBoards = [{
                     "dueDate": 1663900250120,
                     "description": "fix the functionality",
                     "labelIds": ["l101", "l103"],
-                    "memberIds": [ "u103"],
+                    "memberIds": ["u103"],
                 },
                 {
                     "id": "t108",
@@ -356,7 +356,6 @@ export const gBoards = [{
                     "id": "111",
                     "title": "Build components",
                     "description": "",
-                    "attachments":[],
                     "checklists": [
 
                         {
@@ -466,7 +465,7 @@ export const gBoards = [{
                         }
                     ],
                 },
-                
+
             ]
         },
         {
@@ -559,115 +558,115 @@ export const gBoards = [{
                     "description": "",
                     "labelIds": ["l101"],
                     "attachments": [{ "name": "React beautiful dnd", "url": "https://github.com/atlassian/react-beautiful-dnd", "isCover": false }],
-            "checklists": [
+                    "checklists": [
 
+                        {
+                            "id": "YEhmF",
+                            "title": "React beautiful dnd",
+                            "todos": [
+                                {
+                                    "id": "212j3",
+                                    "title": "Get to know the library",
+                                    "isDone": true
+                                },
+                                {
+                                    "id": "212f3",
+                                    "title": "Watch tutorial",
+                                    "isDone": true
+                                },
+                                {
+                                    "id": "212d3",
+                                    "title": "Implement the feature in group list component",
+                                    "isDone": true
+                                },
+
+                            ]
+                        },
+
+
+                    ],
+                    "labelIds": ["l104"],
+                },
                 {
-                    "id": "YEhmF",
-                    "title": "React beautiful dnd",
-                    "todos": [
+                    "id": "t120",
+                    "title": "Defining the application's layout",
+                    "description": "",
+                    "labelIds": ["l101"],
+                    "memberIds": ["u102"],
+                    "comments": [
                         {
-                            "id": "212j3",
-                            "title": "Get to know the library",
-                            "isDone": true
-                        },
-                        {
-                            "id": "212f3",
-                            "title": "Watch tutorial",
-                            "isDone": true
-                        },
-                        {
-                            "id": "212d3",
-                            "title": "Implement the feature in group list component",
-                            "isDone": true
-                        },
-
+                            "id": "ZdPnm",
+                            "txt": "",
+                            "createdAt": 1663176600000,
+                            "byMember": {
+                                "id": "u101",
+                                "fullname": "Rebecca Krukover",
+                                "imgUrl": "http://res.cloudinary.com/shaishar9/image/upload/v1590850482/j1glw3c9jsoz2py0miol.jpg"
+                            }
+                        }
                     ]
                 },
-                
-
-            ],
-            "labelIds": ["l104"],
+            ]
+        }
+    ],
+    "activities": [
+        {
+            "id": "a101",
+            "txt": "Changed Color",
+            "createdAt": 154514,
+            "byMember": {
+                "id": "u103",
+                "fullname": "Rebecca Krukover",
+                "imgUrl": "http://some-img"
+            },
+            "task": {
+                "id": "c101",
+                "title": "Demo 1"
+            }
         },
         {
-            "id": "t120",
-            "title": "Defining the application's layout",
-            "description": "",
-            "labelIds": ["l101"],
-            "memberIds": ["u102"],
-            "comments": [
-                {
-                    "id": "ZdPnm",
-                    "txt": "",
-                    "createdAt": 1663176600000,
-                    "byMember": {
-                        "id": "u101",
-                        "fullname": "Rebecca Krukover",
-                        "imgUrl": "http://res.cloudinary.com/shaishar9/image/upload/v1590850482/j1glw3c9jsoz2py0miol.jpg"
-                    }
-                }
-            ]
+            "id": "a102",
+            "txt": "Task Created",
+            "createdAt": 154514,
+            "byMember": {
+                "id": "u103",
+                "fullname": "Rebecca Krukover",
+                "imgUrl": "http://some-img"
+            },
+            "task": {
+                "id": "c102",
+                "title": "Demo 2"
+            }
         },
+        {
+            "id": "a103",
+            "txt": "Task Created",
+            "createdAt": 154514,
+            "byMember": {
+                "id": "u101",
+                "fullname": "Rebecca Krukover",
+                "imgUrl": "http://some-img"
+            },
+            "task": {
+                "id": "c103",
+                "title": "Demo 3"
+            }
+        },
+        {
+            "id": "a104",
+            "txt": "Task Created",
+            "createdAt": 154514,
+            "byMember": {
+                "id": "u101",
+                "fullname": "Rebecca Krukover",
+                "imgUrl": "http://some-img"
+            },
+            "task": {
+                "id": "c103",
+                "title": "Demo 3"
+            }
+        }
     ]
-}
-],
-"activities": [
-    {
-        "id": "a101",
-        "txt": "Changed Color",
-        "createdAt": 154514,
-        "byMember": {
-            "id": "u103",
-            "fullname": "Rebecca Krukover",
-            "imgUrl": "http://some-img"
-        },
-        "task": {
-            "id": "c101",
-            "title": "Demo 1"
-        }
-    },
-    {
-        "id": "a102",
-        "txt": "Task Created",
-        "createdAt": 154514,
-        "byMember": {
-            "id": "u103",
-            "fullname": "Rebecca Krukover",
-            "imgUrl": "http://some-img"
-        },
-        "task": {
-            "id": "c102",
-            "title": "Demo 2"
-        }
-    },
-    {
-        "id": "a103",
-        "txt": "Task Created",
-        "createdAt": 154514,
-        "byMember": {
-            "id": "u101",
-            "fullname": "Rebecca Krukover",
-            "imgUrl": "http://some-img"
-        },
-        "task": {
-            "id": "c103",
-            "title": "Demo 3"
-        }
-    },
-    {
-        "id": "a104",
-        "txt": "Task Created",
-        "createdAt": 154514,
-        "byMember": {
-            "id": "u101",
-            "fullname": "Rebecca Krukover",
-            "imgUrl": "http://some-img"
-        },
-        "task": {
-            "id": "c103",
-            "title": "Demo 3"
-        }
-    }
-]
 }]
 const user = {
     "_id": "u101",

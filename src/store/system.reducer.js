@@ -9,6 +9,7 @@ const initialState = {
   titleGroupId: null,
   modalTaskId: null,
   modalAttachmnetIdx: null,
+  dynamicModalType: null,
   isBlackScreenOpen: false
 }
 
@@ -26,8 +27,9 @@ export function systemReducer(state = initialState, action = {}) {
       return { ...state, modalTaskId: action.taskId }
     case 'SET_MODAL_ATTACHMENT_IDX':
       return { ...state, modalAttachmnetIdx: action.idx }
+    case 'SET_DYNAMIC_MODAL_TYPE':
+      return { ...state, dynamicModalType: action.modalType }
     case 'SET_TOGGLE_BLACK_SCREEN':
-      console.log('reduse blackscreen:', !state.isBlackScreenOpen);
       return { ...state, isBlackScreenOpen: !state.isBlackScreenOpen }
     //   case 'LOADING_START':
     //     return { ...state, isLoading: true }

@@ -186,14 +186,19 @@ export function setModalAttachmentIdx(idx) {
     }
 }
 
+export function setDynamicModalType(modalType) {
+    return (dispatch) => {
+        dispatch({ type: 'SET_DYNAMIC_MODAL_TYPE', modalType })
+    }
+}
+
 export function toggleBlackScreen() {
     return (dispatch) => {
         dispatch({ type: 'SET_TOGGLE_BLACK_SCREEN' })
     }
 }
 
-
-// Demo for Optimistic Mutation 
+// Demo for Optimistic Mutation
 // (IOW - Assuming the server call will work, so updating the UI first)
 // export function onRemoveBoardOptimistic(boardId) {
 
