@@ -10,6 +10,7 @@ import { Description } from '../cmps/task-details/description'
 import { AttachmentList } from '../cmps/task-details/attachment-list'
 import { ChecklistList } from '../cmps/task-details/checklist-list'
 import { BiCreditCardFront } from 'react-icons/bi'
+import { CoverModal } from '../cmps/task-details/cover-modal'
 // import { useHistory } from "react-router-dom"
 
 export const TaskDetails = () => {
@@ -100,6 +101,7 @@ export const TaskDetails = () => {
                 </div>
 
                 <TaskSideBar task={task}/>
+                <CoverModal taskId={taskId} groupId={groupId}/>
             </main>
         </div>
     )
