@@ -126,6 +126,7 @@ export function addTask(groupId, task) {
 }
 
 export function updateTask(groupId, taskId, key, value) {
+    console.log('value:', value)
     return async (dispatch, getState) => {
         try {
             const board = getState().boardModule.board

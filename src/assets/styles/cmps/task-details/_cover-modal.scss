@@ -1,0 +1,29 @@
+.cover-modal-container {
+    width: rem(304px);
+
+
+    .color-list {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, 50px);
+        gap: 8px;
+
+
+        .color-preview {
+            width: rem(50px);
+            height: rem(32px);
+            border-radius: 3px;
+
+        }
+    }
+
+    .image-list-container {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 8px;
+        padding: 4px;
+        // margin: 0 -4px;
+        // overflow-x: hidden;
+        
+
+    }
+}

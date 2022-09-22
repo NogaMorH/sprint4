@@ -99,7 +99,7 @@ export const gBoards = [{
         {
             "_id": "u101",
             "fullname": "Kfir Azulay",
-            "imgUrl": "https://ca.slack-edge.com/T03E3RZ2KHV-U03MSPLUC8M-929ea4d5d183-512"
+            "imgUrl": "https://ca.slack-edge.com/T03E3RZ2KHV-U03MSPLUC8M-952cdccc1eee-512"
         },
         {
             "_id": "u102",
