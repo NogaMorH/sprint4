@@ -6,7 +6,6 @@ import { DynamicModal } from "../dynamic-modal/dynamic-modal"
 import { useState } from "react"
 import { useDispatch } from "react-redux"
 import { setDynamicModalType } from "../../store/board/board.actions"
-import { useSelector } from "react-redux"
 
 export const Labels = ({ board }) => {
 
