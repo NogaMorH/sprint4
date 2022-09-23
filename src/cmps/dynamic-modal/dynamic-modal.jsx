@@ -4,7 +4,7 @@ import { DatesModal } from "./dates-modal"
 import { LabelsModal } from "./labels-modal"
 import { MembersModal } from "./members-modal"
 
-export const DynamicModal = ({ type, dynamicClassName, groupId, taskId, closeModal }) => {
+export const DynamicModal = ({ type, groupId, taskId, closeModal }) => {
 
     const component = () => {
         switch (type) {
@@ -24,7 +24,6 @@ export const DynamicModal = ({ type, dynamicClassName, groupId, taskId, closeMod
     }
 
     return component()({
-        dynamicClassName,
         groupId,
         taskId,
         closeModal

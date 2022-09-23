@@ -99,7 +99,7 @@ export const gBoards = [{
         {
             "_id": "u101",
             "fullname": "Kfir Azulay",
-            "imgUrl": "https://ca.slack-edge.com/T03E3RZ2KHV-U03MSPLUC8M-952cdccc1eee-512"
+            "imgUrl": "https://ca.slack-edge.com/T03E3RZ2KHV-U03MSPLUC8M-929ea4d5d183-512"
         },
         {
             "_id": "u102",
@@ -134,11 +134,12 @@ export const gBoards = [{
                     "title": "Demo 1",
                     "dueDate": 1663480800000,
                     // "isDone": false,
+                    "labelIds": ["l101", "l102", "l103", "l104", "l105", "l106"],
                     "memberIds": ["u101", "u102", "u103"],
                     "attachments": [
                         {
                             "name": "React",
-                            "url": "https://trello.com/1/cards/632603fbf6acc8003771698a/attachments/632604094ac46301cd75ec3c/download/600b72f9-react-1024x680.png",
+                            "url": "https://ms314006.github.io/static/b7a8f321b0bbc07ca9b9d22a7a505ed5/97b31/React.jpg",
                             "isCover": true
                         },
 
@@ -256,11 +257,11 @@ export const gBoards = [{
                                     "title": "Write functionality",
                                     "isDone": false
                                 },
-
+        
                             ]
                         },
-
-
+                        
+        
                     ],
                 },
                 {
@@ -273,7 +274,7 @@ export const gBoards = [{
                     "attachments": [
                         {
                             "name": "CSS-Tricks",
-                            "url": "https://trello.com/1/cards/6321e397f74c90017a203d85/attachments/6321e41bf0df2d02221d6a73/download/image.png",
+                            "url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQFW-YbZfHL_hqzh8ZHAD9w_5ZSuSvNB9udBQ&usqp=CAU",
                             "isCover": true
                         },
                         {
@@ -297,7 +298,7 @@ export const gBoards = [{
                     "dueDate": 1663900250120,
                     "description": "fix the functionality",
                     "labelIds": ["l101", "l103"],
-                    "memberIds": ["u103"],
+                    "memberIds": [ "u103"],
                 },
                 {
                     "id": "t108",
@@ -465,7 +466,7 @@ export const gBoards = [{
                         }
                     ],
                 },
-
+                
             ]
         },
         {
@@ -558,115 +559,115 @@ export const gBoards = [{
                     "description": "",
                     "labelIds": ["l101"],
                     "attachments": [{ "name": "React beautiful dnd", "url": "https://github.com/atlassian/react-beautiful-dnd", "isCover": false }],
-                    "checklists": [
+            "checklists": [
 
+                {
+                    "id": "YEhmF",
+                    "title": "React beautiful dnd",
+                    "todos": [
                         {
-                            "id": "YEhmF",
-                            "title": "React beautiful dnd",
-                            "todos": [
-                                {
-                                    "id": "212j3",
-                                    "title": "Get to know the library",
-                                    "isDone": true
-                                },
-                                {
-                                    "id": "212f3",
-                                    "title": "Watch tutorial",
-                                    "isDone": true
-                                },
-                                {
-                                    "id": "212d3",
-                                    "title": "Implement the feature in group list component",
-                                    "isDone": true
-                                },
-
-                            ]
+                            "id": "212j3",
+                            "title": "Get to know the library",
+                            "isDone": true
+                        },
+                        {
+                            "id": "212f3",
+                            "title": "Watch tutorial",
+                            "isDone": true
+                        },
+                        {
+                            "id": "212d3",
+                            "title": "Implement the feature in group list component",
+                            "isDone": true
                         },
 
-
-                    ],
-                    "labelIds": ["l104"],
-                },
-                {
-                    "id": "t120",
-                    "title": "Defining the application's layout",
-                    "description": "",
-                    "labelIds": ["l101"],
-                    "memberIds": ["u102"],
-                    "comments": [
-                        {
-                            "id": "ZdPnm",
-                            "txt": "",
-                            "createdAt": 1663176600000,
-                            "byMember": {
-                                "id": "u101",
-                                "fullname": "Rebecca Krukover",
-                                "imgUrl": "http://res.cloudinary.com/shaishar9/image/upload/v1590850482/j1glw3c9jsoz2py0miol.jpg"
-                            }
-                        }
                     ]
                 },
+                
+
+            ],
+            "labelIds": ["l104"],
+        },
+        {
+            "id": "t120",
+            "title": "Defining the application's layout",
+            "description": "",
+            "labelIds": ["l101"],
+            "memberIds": ["u102"],
+            "comments": [
+                {
+                    "id": "ZdPnm",
+                    "txt": "",
+                    "createdAt": 1663176600000,
+                    "byMember": {
+                        "id": "u101",
+                        "fullname": "Rebecca Krukover",
+                        "imgUrl": "http://res.cloudinary.com/shaishar9/image/upload/v1590850482/j1glw3c9jsoz2py0miol.jpg"
+                    }
+                }
             ]
-        }
-    ],
-    "activities": [
-        {
-            "id": "a101",
-            "txt": "Changed Color",
-            "createdAt": 154514,
-            "byMember": {
-                "id": "u103",
-                "fullname": "Rebecca Krukover",
-                "imgUrl": "http://some-img"
-            },
-            "task": {
-                "id": "c101",
-                "title": "Demo 1"
-            }
         },
-        {
-            "id": "a102",
-            "txt": "Task Created",
-            "createdAt": 154514,
-            "byMember": {
-                "id": "u103",
-                "fullname": "Rebecca Krukover",
-                "imgUrl": "http://some-img"
-            },
-            "task": {
-                "id": "c102",
-                "title": "Demo 2"
-            }
-        },
-        {
-            "id": "a103",
-            "txt": "Task Created",
-            "createdAt": 154514,
-            "byMember": {
-                "id": "u101",
-                "fullname": "Rebecca Krukover",
-                "imgUrl": "http://some-img"
-            },
-            "task": {
-                "id": "c103",
-                "title": "Demo 3"
-            }
-        },
-        {
-            "id": "a104",
-            "txt": "Task Created",
-            "createdAt": 154514,
-            "byMember": {
-                "id": "u101",
-                "fullname": "Rebecca Krukover",
-                "imgUrl": "http://some-img"
-            },
-            "task": {
-                "id": "c103",
-                "title": "Demo 3"
-            }
-        }
     ]
+}
+],
+"activities": [
+    {
+        "id": "a101",
+        "txt": "Changed Color",
+        "createdAt": 154514,
+        "byMember": {
+            "id": "u103",
+            "fullname": "Rebecca Krukover",
+            "imgUrl": "http://some-img"
+        },
+        "task": {
+            "id": "c101",
+            "title": "Demo 1"
+        }
+    },
+    {
+        "id": "a102",
+        "txt": "Task Created",
+        "createdAt": 154514,
+        "byMember": {
+            "id": "u103",
+            "fullname": "Rebecca Krukover",
+            "imgUrl": "http://some-img"
+        },
+        "task": {
+            "id": "c102",
+            "title": "Demo 2"
+        }
+    },
+    {
+        "id": "a103",
+        "txt": "Task Created",
+        "createdAt": 154514,
+        "byMember": {
+            "id": "u101",
+            "fullname": "Rebecca Krukover",
+            "imgUrl": "http://some-img"
+        },
+        "task": {
+            "id": "c103",
+            "title": "Demo 3"
+        }
+    },
+    {
+        "id": "a104",
+        "txt": "Task Created",
+        "createdAt": 154514,
+        "byMember": {
+            "id": "u101",
+            "fullname": "Rebecca Krukover",
+            "imgUrl": "http://some-img"
+        },
+        "task": {
+            "id": "c103",
+            "title": "Demo 3"
+        }
+    }
+]
 }]
 const user = {
     "_id": "u101",

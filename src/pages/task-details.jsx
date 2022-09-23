@@ -11,6 +11,7 @@ import { AttachmentList } from '../cmps/task-details/attachment-list'
 import { ChecklistList } from '../cmps/task-details/checklist-list'
 import { BiCreditCardFront } from 'react-icons/bi'
 import { CoverModal } from '../cmps/task-details/cover-modal'
+import { Labels } from '../cmps/task-details/labels'
 // import { useHistory } from "react-router-dom"
 
 export const TaskDetails = () => {
@@ -69,7 +70,7 @@ export const TaskDetails = () => {
 
     if (!board) return <div>Loading...</div>
     const task = boardService.getTask(board, groupId, taskId)
-    const { title, dueDate, memberIds, attachments, checklists, description } = task
+    const { title, dueDate, labelIds, memberIds, attachments, checklists, description } = task
 
     return (
         <div className="task-details-layout task-details-container" ref={ref} onClick={(ev) => ev.stopPropagation()}>
@@ -91,6 +92,8 @@ export const TaskDetails = () => {
                 <div className="task-details-content">
                     {memberIds && <Members board={board} memberIds={memberIds} />}
 
+                    {labelIds && labelIds.length > 0 && <Labels board={board} />}
+
                     {dueDate && <DueDate dueDate={dueDate} />}
 
                     <Description description={description} />
@@ -100,7 +103,7 @@ export const TaskDetails = () => {
                     {checklists && <ChecklistList checklists={checklists} />}
                 </div>
 
-                <TaskSideBar task={task}/>
+                <TaskSideBar task={task} />
                 {/* <CoverModal taskId={taskId} groupId={groupId}/> */}
             </main>
         </div>

@@ -29,9 +29,9 @@ export const TaskSideBar = () => {
             {types.map((type, idx) => {
                 return (
                     <div key={idx}>
-                        <button onClick={() => openModal(type)}>{type}</button>
+                        <button className="task-sidebar-btn" onClick={() => openModal(type)}>{type}</button>
                         {dynamicModalType === type &&
-                            <DynamicModal type={type} dynamicClassName="dynamic-modal" groupId={groupId} taskId={taskId} closeModal={closeModal} />}
+                            <DynamicModal type={type} groupId={groupId} taskId={taskId} closeModal={closeModal} />}
                     </div>
                 )
             })}
