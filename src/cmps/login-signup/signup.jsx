@@ -12,17 +12,45 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined'
 import Typography from '@mui/material/Typography'
 import Container from '@mui/material/Container'
 import { createTheme, ThemeProvider } from '@mui/material/styles'
-
+import { useFormik } from 'formik'
+import * as yup from 'yup'
 
 export function SignUp() {
+
     const theme = createTheme()
-    const handleSubmit = (event) => {
-        event.preventDefault()
-        const data = new FormData(event.currentTarget)
-        console.log({
-            email: data.get('email'),
-            password: data.get('password'),
-        })
+
+    const formik = useFormik({
+        initialValues: {
+            firstName: "",
+            lastName: "",
+            email: "",
+            password: ""
+        },
+        validationSchema: yup.object({
+            firstName: yup.string()
+                .max(5, "Must be 5 characters or less")
+                .required("Required"),
+            lastName: yup.string().max(20, "Must be 20 characters or less"),
+            email: yup.string()
+                .email("Invalid email address")
+                .required("Required"),
+            password: yup.string()
+                .required('No password provided.')
+                .min(8, 'Password is too short - should be 8 chars minimum.')
+                .matches(/[a-zA-Z]/, 'Password can only contain Latin letters.')
+        }),
+        onSubmit: (values) => {
+            console.log('values:', values)
+        }
+    })
+
+    const handleFocus = ev => {
+        ev.target.classList.add("focus")
+    }
+
+    const onBlur = (ev, inputName) => {
+        if (formik.values[inputName]) return
+        ev.target.classList.remove("focus")
     }
 
     return (
@@ -35,15 +63,14 @@ export function SignUp() {
                         display: 'flex',
                         flexDirection: 'column',
                         alignItems: 'center',
-                    }}
-                >
+                    }}>
                     <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
                         <LockOutlinedIcon />
                     </Avatar>
                     <Typography component="h1" variant="h5">
                         Sign up
                     </Typography>
-                    <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
+                    <Box component="form" noValidate onSubmit={formik.handleSubmit} sx={{ mt: 3 }}>
                         <Grid container spacing={2}>
                             <Grid item xs={12} sm={6}>
                                 <TextField
@@ -54,7 +81,14 @@ export function SignUp() {
                                     id="firstName"
                                     label="First Name"
                                     autoFocus
-                                />
+                                    onChange={formik.handleChange}
+                                    onFocus={handleFocus}
+                                    onBlur={formik.handleBlur}
+                                    onBlurCapture={(ev) => { onBlur(ev, 'firstName') }}
+                                    value={formik.values.firstName} />
+                                {formik.touched.firstName && formik.errors.firstName ? (
+                                    <span className="error">{formik.errors.firstName}</span>
+                                ) : <span>&nbsp;</span>}
                             </Grid>
                             <Grid item xs={12} sm={6}>
                                 <TextField
@@ -63,8 +97,14 @@ export function SignUp() {
                                     id="lastName"
                                     label="Last Name"
                                     name="lastName"
-                                    autoComplete="family-name"
-                                />
+                                    onChange={formik.handleChange}
+                                    onFocus={handleFocus}
+                                    onBlur={formik.handleBlur}
+                                    onBlurCapture={(ev) => { onBlur(ev, 'lastName') }}
+                                    value={formik.values.lastName} />
+                                {formik.touched.lastName && formik.errors.lastName ? (
+                                    <span className="error">{formik.errors.lastName}</span>
+                                ) : <span>&nbsp;</span>}
                             </Grid>
                             <Grid item xs={12}>
                                 <TextField
@@ -74,7 +114,14 @@ export function SignUp() {
                                     label="Email Address"
                                     name="email"
                                     autoComplete="email"
-                                />
+                                    onChange={formik.handleChange}
+                                    onFocus={handleFocus}
+                                    onBlur={formik.handleBlur}
+                                    onBlurCapture={(ev) => { onBlur(ev, 'email') }}
+                                    value={formik.values.email} />
+                                {formik.touched.email && formik.errors.email ? (
+                                    <span className="error">{formik.errors.email}</span>
+                                ) : <span>&nbsp;</span>}
                             </Grid>
                             <Grid item xs={12}>
                                 <TextField
@@ -84,8 +131,15 @@ export function SignUp() {
                                     label="Password"
                                     type="password"
                                     id="password"
-                                    autoComplete="new-password"
-                                />
+                                    onChange={formik.handleChange}
+                                    onFocus={handleFocus}
+                                    onBlur={formik.handleBlur}
+                                    onBlurCapture={(ev) => { onBlur(ev, 'password') }}
+                                    value={formik.values.password}
+                                    autoComplete="new-password" />
+                                {formik.touched.password && formik.errors.password ? (
+                                    <span className="error">{formik.errors.password}</span>
+                                ) : <span>&nbsp;</span>}
                             </Grid>
                             <Grid item xs={12}>
                                 <FormControlLabel
@@ -98,8 +152,7 @@ export function SignUp() {
                             type="submit"
                             fullWidth
                             variant="contained"
-                            sx={{ mt: 3, mb: 2 }}
-                        >
+                            sx={{ mt: 3, mb: 2 }}>
                             Sign Up
                         </Button>
                         <Grid container justifyContent="flex-end">
