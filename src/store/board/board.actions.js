@@ -56,7 +56,6 @@ export function updateBoard(newBoard) {
             dispatch({ type: 'UPDATE_BOARD', updatedBoard })
         } catch (err) {
             console.log('Move task title has failed in board actions:', err)
-
         }
     }
 }

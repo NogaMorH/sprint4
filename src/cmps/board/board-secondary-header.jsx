@@ -3,7 +3,7 @@ import { boardService } from "../../services/board.service"
 export const BoardSecondaryHeader = ({ board }) => {
     if (!board) return
     // const { members } = board
-    
+
     const getAvatarPosition = (avatarIdx) => {
         return avatarIdx * (-3)
     }
@@ -13,7 +13,7 @@ export const BoardSecondaryHeader = ({ board }) => {
             <div className='board-secondary-header'>
                 <div className='header-main-content'>
                     <span className="board-title">{board.title}</span>
-                    <button className='btn btn-transparent creator'>{board.createdBy.fullname}</button>
+                    <button className='btn btn-transparent creator'>{board.createdBy ? board.createdBy.fullname : 'Guest'}</button>
                     <span className='divider'></span>
                     <span className="member-avatars">
                         {board.members && board.members.map((member, idx) => (
