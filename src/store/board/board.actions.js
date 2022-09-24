@@ -55,7 +55,7 @@ export function updateBoard(newBoard) {
             const updatedBoard = await boardService.updateBoard(board, newBoard)
             dispatch({ type: 'UPDATE_BOARD', updatedBoard })
         } catch (err) {
-            console.log('Move task title has failed in board actions:', err)
+            console.log('Update board has failed in board actions:', err)
         }
     }
 }

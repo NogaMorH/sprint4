@@ -77,27 +77,19 @@
     justify-content: space-between;
     width: 100%;
 
-    .logo {
-        font-family: charlie-text-bold, sans-serif;
+    .header-links {
+        .login-link {
+            display: flex;
+            align-items: center;
+            padding: 7px;
+            font-family: charlie-text-regular, sans-serif;
+            font-size: rem(15.5px);
+            color: inherit;
+            transition: color .2s;
 
-        img {
-            margin-right: rem(6px);
-        }
-    }
-}
-
-.header-links {
-    .login-link {
-        display: flex;
-        align-items: center;
-        padding: 7px;
-        font-family: charlie-text-regular, sans-serif;
-        font-size: rem(15.5px);
-        color: inherit;
-        transition: color .2s;
-
-        &:hover {
-            color: $clr9;
+            &:hover {
+                color: $clr9;
+            }
         }
     }
 }
@@ -111,4 +103,13 @@
 @mixin plus-icon {
     margin-right: 8px;
     font-size: 12px;
+}
+
+@mixin logo {
+    font-family: charlie-text-bold, sans-serif;
+
+    img {
+        margin-right: 0.2em;
+        width: 0.7333333333em;
+    }
 }

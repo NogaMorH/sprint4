@@ -1,0 +1,13 @@
+.login-signup-header {
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: $clr25;
+
+    .logo {
+        font-size: em(55px);
+        margin: 20px 0;
+        @include logo;
+    }
+}
