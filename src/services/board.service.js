@@ -71,11 +71,9 @@ async function remove(boardId) {
 async function updateBoard(newBoard) {
     try {
         await storageService.put(STORAGE_KEY, newBoard)
-        return newBoard
-
+        return { ...newBoard }
     } catch (err) {
         console.log('Move task from board service has failed:', err)
-
     }
 }
 

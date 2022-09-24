@@ -56,7 +56,6 @@ export function updateBoard(newBoard) {
             dispatch({ type: 'UPDATE_BOARD', updatedBoard })
         } catch (err) {
             console.log('Move task title has failed in board actions:', err)
-
         }
     }
 }
@@ -150,6 +149,20 @@ export function removeTask(groupId, taskId) {
         } catch (err) {
             showErrorMsg('Cannot remove task')
             console.log('Cannot remove task', err)
+        }
+    }
+}
+
+export function updateBoardLabels(labels) {
+    return async (dispatch, getState) => {
+        try {
+            const board = getState().boardModule.board
+            board.labels = labels
+            console.log('board:', board);
+            const updatedBoard = await boardService.updateBoard(board)
+            dispatch({ type: 'UPDATE_BOARD', updatedBoard })
+        } catch (err) {
+            console.error('Update task in board actions has failed:', err)
         }
     }
 }

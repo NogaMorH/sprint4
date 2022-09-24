@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 import { IoCloseOutline } from 'react-icons/io5'
 import { LabelStyleCmp } from './label-style-cmp'
 
-export const EditLabelModal = ({ label }) => {
+export const EditLabelModal = ({ label, updateLabels }) => {
 
     const { id, color, title } = label
     const [name, setName] = useState(title)
@@ -12,8 +12,8 @@ export const EditLabelModal = ({ label }) => {
         ref.current.focus()
     }, [])
 
-    const onChange = () => {
-
+    const onChange = ({ target }) => {
+        setName(target.value)
     }
 
     return (
@@ -39,7 +39,9 @@ export const EditLabelModal = ({ label }) => {
                 </div>
 
                 <div className="buttons">
-                    <button className={`edit-save-btn ${!id && 'c-btn'}`}>{id ? 'Save' : 'Create'}</button>
+                    <button className={`edit-save-btn ${!id && 'c-btn'}`} onClick={() => updateLabels(id, name)}>
+                        {id ? 'Save' : 'Create'}
+                    </button>
                     {id && <button className='edit-delete-btn'>Delete</button>}
                 </div>
             </div>

@@ -27,10 +27,8 @@ export const MembersModal = ({ groupId, taskId, closeModal }) => {
         else if (memberIds.includes(id)) {
             const idx = memberIds.indexOf(id)
             memberIds.splice(idx, 1)
-            console.log('remove:', memberIds);
         } else {
             memberIds.push(id)
-            console.log('add:', memberIds);
         }
         dispatch(updateTask(groupId, taskId, 'memberIds', memberIds))
     }
