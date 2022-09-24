@@ -83,7 +83,7 @@ export const TaskDetails = () => {
 
     if (!board) return <div>Loading...</div>
     const task = boardService.getTask(board, groupId, taskId)
-    const { title, dueDate, memberIds, attachments, checklists, description, cover } = task
+    const { title, dueDate, memberIds, attachments, checklists, description, cover, labelIds } = task
 
     return (
         <div className="task-details-layout task-details-container" ref={ref} onClick={(ev) => ev.stopPropagation()}>

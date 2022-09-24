@@ -36,9 +36,8 @@ export const TaskEditModal = ({ task, groupId, closeTaskEditModal, isBadge }) =>
         closeTaskEditModal(ev)
     }
 
-    const { id, title, attachments } = task
+    const { id, attachments } = task
     return (
-        // <React.Fragment>
         <div>
             <div className="black-screen" onClick={closeTaskEditModal}></div>
             <div className="task-edit-modal">
@@ -73,7 +72,5 @@ export const TaskEditModal = ({ task, groupId, closeTaskEditModal, isBadge }) =>
                 </div>
             </div>
         </div>
-        // </React.Fragment>
     )
-
 }
