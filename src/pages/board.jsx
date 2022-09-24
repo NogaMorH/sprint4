@@ -1,7 +1,6 @@
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { loadBoard, addBoard, updateBoard, removeBoard } from '../store/board/board.actions'
-import { boardService } from '../services/board.service'
+import { loadBoard } from '../store/board/board.actions'
 import { setIsFormAddOpen } from '../store/board/board.actions'
 import { GroupList } from '../cmps/board/group-list'
 import { Outlet, useParams } from 'react-router-dom'
@@ -15,7 +14,6 @@ import { BsPlusLg } from 'react-icons/bs'
 export const Board = () => {
     const formAdd = useSelector(state => state.systemModule.formAdd)
     const board = useSelector(state => state.boardModule.board)
-    const isBlackScreenOpen = useSelector(state => state.systemModule.isBlackScreenOpen)
     const dispatch = useDispatch()
     const params = useParams()
 
@@ -30,7 +28,6 @@ export const Board = () => {
     if (!board) return <div>Loading...</div>
     return (
         <div className='board-layout board-page'>
-            <div className={isBlackScreenOpen ? 'black-screen' : 'disabled-black-screen'}></div>
             <BoardMainHeader />
             <main className='full board-layout board-layout board'>
                 <BoardSecondaryHeader board={board} />

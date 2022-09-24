@@ -3,6 +3,7 @@
     top: 50px; // temporary
     right: 100px; // temporary
     width: 304px;
+    z-index: 10;
     background-color: #fff;
     box-shadow: inset 0 0 0 1px #dfe1e6;
     border-radius: 3px;
@@ -63,6 +64,7 @@
             border-radius: 3px;
             background-color: #fafbfc;
             box-shadow: inset 0 0 0 2px #dfe1e6;
+            color: $clr8;
 
             &:hover {
                 background-color: #ebecf0;
