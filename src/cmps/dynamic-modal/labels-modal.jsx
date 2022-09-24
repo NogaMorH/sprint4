@@ -5,7 +5,7 @@ import { useEffect, useRef, useState } from "react"
 import { useDispatch } from "react-redux"
 import { LabelStyleCmp } from "./label-style-cmp"
 import { boardService } from "../../services/board.service"
-import { updateTask } from "../../store/board/board.actions"
+import { updateBoardLabels, updateTask } from "../../store/board/board.actions"
 import { EditLabelModal } from "./edit-label-modal"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faLessThan } from '@fortawesome/free-solid-svg-icons'
@@ -45,6 +45,12 @@ export const LabelsModal = ({ groupId, taskId, closeModal }) => {
         setField(keyword)
     }
 
+    const isChecked = (id) => {
+        if (!labelIds) return false
+        return labelIds.includes(id)
+    }
+
+
     const toggleLabel = (id) => {
         if (!labelIds) {
             labelIds = [id]
@@ -56,6 +62,16 @@ export const LabelsModal = ({ groupId, taskId, closeModal }) => {
             labelIds.push(id)
         }
         dispatch(updateTask(groupId, taskId, 'labelIds', labelIds))
+    }
+
+    const updateLabels = (id, title) => {
+        const label = labels.find(label => label.id === id)
+        // console.log('title:', title);
+        label.title = title
+        const idx = labels.indexOf(label)
+        labels.splice(idx, 1, label)
+        dispatch(updateBoardLabels(labels))
+        onEdit()
     }
 
     return (
@@ -84,7 +100,7 @@ export const LabelsModal = ({ groupId, taskId, closeModal }) => {
                                         return (
                                             <li key={id}>
                                                 <label onClick={() => toggleLabel(id)}>
-                                                    <input type="checkbox" checked={labelIds.includes(id)} readOnly />
+                                                    <input type="checkbox" checked={isChecked(id)} readOnly />
                                                     <LabelStyleCmp className="label-modal" color={color} title={title} />
                                                 </label>
                                                 <button className="icon-pencil" onClick={() => onEdit(label)}><BiPencil /></button>
@@ -100,7 +116,7 @@ export const LabelsModal = ({ groupId, taskId, closeModal }) => {
                     </div>}
             </div>
 
-            {isEdit && <EditLabelModal label={editLabel} />}
+            {isEdit && <EditLabelModal label={editLabel} updateLabels={updateLabels} />}
         </div>
     )
 }

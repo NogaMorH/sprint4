@@ -153,6 +153,20 @@ export function removeTask(groupId, taskId) {
     }
 }
 
+export function updateBoardLabels(labels) {
+    return async (dispatch, getState) => {
+        try {
+            const board = getState().boardModule.board
+            board.labels = labels
+            console.log('board:', board);
+            const updatedBoard = await boardService.updateBoard(board)
+            dispatch({ type: 'UPDATE_BOARD', updatedBoard })
+        } catch (err) {
+            console.error('Update task in board actions has failed:', err)
+        }
+    }
+}
+
 export function setIsFormAddOpen(groupId, isAddGroup) {
     return (dispatch) => {
         dispatch({ type: 'SET_FORM_ADD_GROUP_ID', groupId })

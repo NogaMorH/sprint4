@@ -38,10 +38,9 @@ const ColorPicker = styled.div`
     height: 28px;
     background-color: ${p => p.color};
     border-radius: 3px;
-    opacity: 0.8;
     
     &:hover {
-        opacity: 1;
+        filter: saturate(99%) brightness(90%);
     }
 `
 
