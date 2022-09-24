@@ -40,19 +40,30 @@ export const TaskPreview = ({ task, groupId, index }) => {
         if (dueDate || description || memberIds || attachments) return true
         else return false
     }
+    const { cover } = task
 
     if (!task) return <div>Loading...</div>
     return (
         <Draggable key={id} draggableId={id} index={index}>
             {(provided) => (
                 <section className='task-preview-container'
+                    onClick={openTaskDetails}
                     {...provided.draggableProps}
                     {...provided.dragHandleProps}
                     ref={provided.innerRef}>
+                    {cover &&
+                        (cover.img ?
+                            <img className='task-cover-img' src={cover.img} alt="cover" />
+                            :
+                            <div className='task-cover-color' style={{ background: `${cover.color}` }}>
+                                {/* <button className="btn btn-cover-modal" onClick={() => openCoverModal(true)}>Cover</button> */}
+
+                            </div>)}
+
                     {modalTaskId === id &&
                         <TaskEditModal task={task} groupId={groupId}
                             closeTaskEditModal={(ev) => closeTaskEditModal(ev)} isBadge={isBadge} />}
-                    <div className='task-preview' onClick={openTaskDetails}>
+                    <div className='task-preview'>
                         {attachments && attachments.map((attachment, idx) => {
                             if (attachment.isCover) {
                                 return <img key={idx} className='task-cover-img' src={attachment.url} alt="cover" />

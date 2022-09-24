@@ -27,10 +27,11 @@
     background-color: #0009;
     z-index: 20;
     cursor: pointer;
+    // pointer-events: none;
 }
 
 .disabled-black-screen {
-    display: none;
+    pointer-events: none;
 }
 
 ::-webkit-scrollbar {
