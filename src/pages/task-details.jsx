@@ -28,7 +28,7 @@ export const TaskDetails = () => {
     const ref = useRef()
 
     useEffect(() => {
-        dispatch(loadBoard(boardId))
+        // dispatch(loadBoard(boardId))
         setTimeout(openTaskDetails, 1)
         // console.log('history:', history);
         // history.push(`/board/${board._id}`)
@@ -41,7 +41,7 @@ export const TaskDetails = () => {
 
     useEffect(() => {
         if (!board || !taskTitle) return
-        dispatch(updateTask(groupId, taskId, 'title', taskTitle))
+        if (taskTitle !== title) dispatch(updateTask(groupId, taskId, 'title', taskTitle))
     }, [taskTitle])
 
     const openTaskDetails = () => {

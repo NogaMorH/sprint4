@@ -39,7 +39,8 @@ export const Board = () => {
                     {formAdd.isAddGroup
                         ? <FormAdd />
                         : <button className='btn btn-add-group' onClick={onAddGroup}>
-                            <BsPlusLg className='plus-icon' />Add another list
+                            <BsPlusLg className='plus-icon' />
+                            Add another list
                         </button>
                     }
                     <Outlet />

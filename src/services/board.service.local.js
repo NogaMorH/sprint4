@@ -1,10 +1,10 @@
-import { httpService } from './http.service'
+import { storageService } from './async-storage.service.js'
 import { utilService } from './util.service.js'
 import { userService } from './user.service.js'
 
 // This file demonstrates how to use a BroadcastChannel to notify other browser tabs 
 
-const BASE_URL = 'board/'
+const STORAGE_KEY = 'board'
 // const boardChannel = new BroadcastChannel('boardChannel')
 
 
@@ -16,7 +16,7 @@ const BASE_URL = 'board/'
 
 // var gBoards = require('../data/board')
 
-export const boardService = {
+export const boardServiceLocal = {
     query,
     getBoardById,
     save,
@@ -36,67 +36,43 @@ export const boardService = {
 }
 // window.cs = boardService
 
-async function query() {
-    try {
-        return await httpService.get(BASE_URL)
-    } catch (err) {
-        console.log('Query has failed:', err)
-        throw err
-    }
+function query(filterBy) {
+    return storageService.query(STORAGE_KEY)
 }
 
-async function getBoardById(boardId) {
-    console.log('boardId:', boardId)
-    try {
-        return await httpService.get(BASE_URL + boardId)
-        // return axios.get(`/api/board/${boardId}`)
-    } catch (err) {
-        console.log('Get board by id has failed', err)
-        throw err
-    }
+function getBoardById(boardId) {
+    return storageService.get(STORAGE_KEY, boardId)
+    // return axios.get(`/api/board/${boardId}`)
 }
 
 async function save(board) {
     var savedBoard
     if (board._id) {
-        try {
-            savedBoard = await httpService.put(BASE_URL, board)
-        } catch (err) {
-            console.log('Save board has failed:', err)
-            throw err
-        }
+        savedBoard = await storageService.put(STORAGE_KEY, board)
         // boardChannel.postMessage(getActionUpdateBoard(savedBoard))
+
     } else {
         // Later, owner is set by the backend
-        // board.owner = userService.getLoggedinUser()
-        try {
-            savedBoard = await httpService.post(BASE_URL, board)
-            // boardChannel.postMessage(getActionAddBoard(savedBoard))
-        } catch (err) {
-            console.log('Save board has failed:', err)
-            throw err
-        }
+        board.owner = userService.getLoggedinUser()
+        savedBoard = await storageService.post(STORAGE_KEY, board)
+        // boardChannel.postMessage(getActionAddBoard(savedBoard))
     }
     return savedBoard
 }
 
 async function remove(boardId) {
-    try {
-        return await httpService.delete(BASE_URL + boardId)
-        // boardChannel.postMessage(getActionRemoveBoard(boardId))
-    } catch (err) {
-        console.log('Remove has failed:', err)
-        throw err
-    }
+    await storageService.remove(STORAGE_KEY, boardId)
+    // boardChannel.postMessage(getActionRemoveBoard(boardId))
 }
 
 async function updateBoard(newBoard) {
     try {
-        await httpService.put(BASE_URL + newBoard._id, newBoard)
+        await storageService.put(STORAGE_KEY, newBoard)
         return newBoard
+
     } catch (err) {
-        console.log('UpdateBoard in board service has failed:', err)
-        throw err
+        console.log('Move task from board service has failed:', err)
+
     }
 }
 
@@ -108,11 +84,12 @@ async function saveGroup(board, group) {
         group.tasks = []
         // group.byMember = {}
         board.groups.push(group)
-        await httpService.put(BASE_URL + board._id, board)
-        return { ...board }
+        const newBoard = await storageService.put(STORAGE_KEY, board)
+        console.log('newBoard:', newBoard)
+        const updatedBoard = { ...newBoard }
+        return updatedBoard
     } catch (err) {
-        console.log('Save group in board service has failed:', err)
-        throw err
+        console.log('Save group from board service has failed:', err)
     }
 }
 
@@ -120,38 +97,29 @@ async function removeGroup(board, groupId) {
     try {
         const groups = board.groups.filter(group => group.id !== groupId)
         board.groups = groups
-        await httpService.put(BASE_URL + board._id, board)
-        return { ...board }
+        const newBoard = await storageService.put(STORAGE_KEY, board)
+        const updatedBoard = { ...newBoard }
+        return updatedBoard
     } catch (err) {
         console.log('Remove group has failed', err)
-        throw err
     }
 }
 
 async function duplicateGroup(board, groupId) {
-    try {
-        const group = board.groups.find(group => group.id === groupId)
-        const newGroup = { ...group, id: utilService.makeId() }
-        const idx = board.groups.findIndex(currGroup => currGroup.id === groupId)
-        board.groups.splice(idx, 0, newGroup)
-        await httpService.put(BASE_URL + board._id, board)
-        return { ...board }
-    } catch (err) {
-        console.log('Duplicate group has failed in board service:', err)
-        throw err
-    }
+    const group = board.groups.find(group => group.id === groupId)
+    const newGroup = { ...group, id: utilService.makeId() }
+    const idx = board.groups.findIndex(currGroup => currGroup.id === groupId)
+    board.groups.splice(idx, 0, newGroup)
+    const newBoard = await storageService.put(STORAGE_KEY, board)
+    const updatedBoard = { ...newBoard }
+    return updatedBoard
 }
 
 async function updateGroupTitle(board, groupId, title) {
-    try {
-        const group = getGroup(board, groupId)
-        group.title = title
-        await httpService.put(BASE_URL + board._id, board)
-        return { ...board }
-    } catch (err) {
-        console.log('Update group title has failed in board service:', err)
-        throw err
-    }
+    const group = getGroup(board, groupId)
+    group.title = title
+    await storageService.put(STORAGE_KEY, board)
+    return { ...board }
 }
 
 async function saveTask(board, groupId, task) {
@@ -160,22 +128,21 @@ async function saveTask(board, groupId, task) {
             const group = getGroup(board, groupId)
             const idx = group.tasks.findIndex(currTask => currTask.id === task.id)
             group.tasks.splice(idx, 1, task)
-            await httpService.put(BASE_URL + board._id, board)
+            await storageService.put(STORAGE_KEY, board)
             return { ...board }
         } catch (err) {
             console.log('Save task from board service has failed:', err)
-            throw err
         }
     } else {
         try {
             task.id = utilService.makeId()
             const group = getGroup(board, groupId)
             group.tasks.push(task)
-            await httpService.put(BASE_URL + board._id, board)
-            return { ...board }
+            const newBoard = await storageService.put(STORAGE_KEY, board)
+            const updatedBoard = { ...newBoard }
+            return updatedBoard
         } catch (err) {
             console.log('Save task from board service has failed:', err)
-            throw err
         }
     }
 }
@@ -185,11 +152,11 @@ async function removeTask(board, groupId, taskId) {
         const group = getGroup(board, groupId)
         const tasks = group.tasks.filter(task => task.id !== taskId)
         group.tasks = tasks
-        await httpService.put(BASE_URL + board._id, board)
-        return { ...board }
+        const newdBoard = await storageService.put(STORAGE_KEY, board)
+        const updatedBoard = { ...newdBoard }
+        return updatedBoard
     } catch (err) {
         console.log('Remove task has failed:', err);
-        throw err
     }
 }
 
