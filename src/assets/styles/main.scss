@@ -50,6 +50,7 @@
 // task-details
 @import "cmps/task-details/task-sidebar";
 @import "cmps/task-details/members";
+@import "cmps/task-details/labels";
 @import "cmps/task-details/due-date";
 @import "cmps/task-details/description";
 @import "cmps/task-details/attachment-list";
@@ -62,4 +63,6 @@
 // dynamic-modal 
 @import "cmps/dynamic-modal/dynamic-modal";
 @import "cmps/dynamic-modal/members-modal";
+@import "cmps/dynamic-modal/labels-modal";
+@import "cmps/dynamic-modal/edit-label-modal";
 @import "cmps/task-details/cover-modal";

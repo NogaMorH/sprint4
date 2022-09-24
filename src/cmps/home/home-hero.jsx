@@ -6,11 +6,11 @@ export const HomeHero = () => {
         <section className='flex home-hero'>
             <div className='hero-text'>
                 <h1 className='hero-title'>
-                    Trello helps teams move work forward.
+                    Rello helps teams move work forward.
                 </h1>
                 <p className='hero-paragraph'>
                     Collaborate, manage projects, and reach new productivity peaks.
-                    From high rises to the home office, the way your team works is unique—accomplish it all with Trello.
+                    From high rises to the home office, the way your team works is unique—accomplish it all with Rello.
                 </p>
                 <button className='btn btn-primary-home'><Link to='board/b101'>Try now</Link></button>
             </div>

@@ -12,6 +12,7 @@ import { ChecklistList } from '../cmps/task-details/checklist-list'
 import { BiCreditCardFront } from 'react-icons/bi'
 import { CoverModal } from '../cmps/task-details/cover-modal'
 import { IoCloseOutline } from 'react-icons/io5'
+import { Labels } from '../cmps/task-details/labels'
 // import { useHistory } from "react-router-dom"
 
 export const TaskDetails = () => {
@@ -115,6 +116,8 @@ export const TaskDetails = () => {
             <main className='task-details'>
                 <div className="task-details-content">
                     {memberIds && <Members board={board} memberIds={memberIds} />}
+
+                    {labelIds && labelIds.length > 0 && <Labels board={board} />}
 
                     {dueDate && <DueDate dueDate={dueDate} />}
 

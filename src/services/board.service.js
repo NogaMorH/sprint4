@@ -34,7 +34,8 @@ export const boardService = {
     getMemberImgUrl,
     getGroup,
     getTask,
-    getTaskMembers
+    getTaskMembers,
+    getTaskLabels
 }
 // window.cs = boardService
 
@@ -181,6 +182,11 @@ function getTask(board, groupId, taskId) {
 function getTaskMembers(board, groupId, taskId) {
     const memberIds = getTask(board, groupId, taskId).memberIds
     return board.members.filter(member => memberIds.includes(member._id))
+}
+
+function getTaskLabels(board, groupId, taskId) {
+    const labelIds = getTask(board, groupId, taskId).labelIds
+    return board.labels.filter(label => labelIds.includes(label.id))
 }
 
 // TEST DATA
