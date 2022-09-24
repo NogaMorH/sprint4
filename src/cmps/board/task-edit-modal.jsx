@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux"
 import { Link } from "react-router-dom"
-import { removeTask, setModalTaskId, toggleBlackScreen, updateTask } from "../../store/board/board.actions"
+import { removeTask, setModalTaskId, updateTask } from "../../store/board/board.actions"
 import { BiCreditCardFront } from 'react-icons/bi'
 import { FiCreditCard } from 'react-icons/fi'
 import { BsArchive } from 'react-icons/bs'
@@ -38,7 +38,6 @@ export const TaskEditModal = ({ task, groupId, closeTaskEditModal, isBadge }) =>
 
     const { id, title, attachments } = task
     return (
-        // <React.Fragment>
         <div>
             <div className="black-screen" onClick={closeTaskEditModal}></div>
             <div className="task-edit-modal">
@@ -73,7 +72,6 @@ export const TaskEditModal = ({ task, groupId, closeTaskEditModal, isBadge }) =>
                 </div>
             </div>
         </div>
-        // </React.Fragment>
     )
 
 }

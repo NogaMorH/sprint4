@@ -72,24 +72,19 @@ export const TaskDetails = () => {
         <>
             <div className="black-screen" onClick={closeTaskDetails}></div>
             <div className="task-details-layout task-details-container" ref={ref} onClick={(ev) => ev.stopPropagation()}>
+
                 <div className='full task-details-cover'>
                     {isCoverModalOpen && <CoverModal task={task} taskId={taskId} groupId={groupId} />}
-                    <button className="close-task-details" onClick={closeTaskDetails}><IoCloseOutline /> </button>
+                    <button className="close-task-details" onClick={closeTaskDetails}><IoCloseOutline /></button>
                     <button className="btn btn-cover-modal" onClick={() => openCoverModal(true)}>Cover</button>
 
                     {cover &&
                         (cover.img ?
                             <img className='task-cover-img' src={cover.img} alt="cover" />
                             :
-                            <div className='task-cover-color' style={{ background: `${cover.color}` }}>
-
-                            </div>)}
-
-                    {/* {attachments && attachments.map((attachment, idx) => {
-                    if (attachment.isCover) {
-                        return <img key={idx} className='task-cover-img' src={attachment.url} alt="cover" />
-                    } 
-                })} */}
+                            <div className='task-cover-color' style={{ background: `${cover.color}` }}></div>
+                        )
+                    }
                 </div>
 
                 <div className='task-title'>
@@ -114,7 +109,6 @@ export const TaskDetails = () => {
                     </div>
 
                     <TaskSideBar task={task} />
-                    {/* <CoverModal taskId={taskId} groupId={groupId}/> */}
                 </main>
             </div>
         </>

@@ -1,0 +1,21 @@
+.delete-label-modal {
+
+    p {
+        margin-bottom: 8px;
+    }
+
+    button {
+        background-color: #b04632;
+        color: #fff;
+        margin: 0;
+
+        &:hover {
+            background-color: rgb(147, 59, 39);
+        }
+
+        &:active {
+            background-color: rgb(147, 59, 39);
+            color: #fff;
+        }
+    }
+}
