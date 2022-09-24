@@ -99,7 +99,7 @@ export const gBoards = [{
         {
             "_id": "u101",
             "fullname": "Kfir Azulay",
-            "imgUrl": "https://ca.slack-edge.com/T03E3RZ2KHV-U03MSPLUC8M-929ea4d5d183-512"
+            "imgUrl": "https://ca.slack-edge.com/T03E3RZ2KHV-U03MSPLUC8M-952cdccc1eee-512"
         },
         {
             "_id": "u102",
@@ -133,6 +133,7 @@ export const gBoards = [{
                     "id": "t101",
                     "title": "Demo 1",
                     "dueDate": 1663480800000,
+                    "cover": {"img": "https://trello.com/1/cards/632603fbf6acc8003771698a/attachments/632604094ac46301cd75ec3c/download/600b72f9-react-1024x680.png"},
                     // "isDone": false,
                     "labelIds": ["l101", "l102", "l103", "l104", "l105", "l106"],
                     "memberIds": ["u101", "u102", "u103"],
@@ -140,7 +141,7 @@ export const gBoards = [{
                         {
                             "name": "React",
                             "url": "https://ms314006.github.io/static/b7a8f321b0bbc07ca9b9d22a7a505ed5/97b31/React.jpg",
-                            "isCover": true
+                            "isCover": false
                         },
 
                         {

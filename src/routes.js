@@ -5,7 +5,6 @@ import { LoginSignup } from './pages/login-signup.jsx'
 import { TemplatePage } from './pages/template-page.jsx'
 import { UserProfile } from './pages/user-profile.jsx'
 
-// Routes accesible from the main navigation (in AppHeader)
 const routes = [
     {
         path: '/',

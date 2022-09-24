@@ -18,5 +18,8 @@
         "titleBar.inactiveBackground": "#60949099",
         "titleBar.inactiveForeground": "#15202b99"
     },
-    "peacock.color": "#609490"
+    "peacock.color": "#609490",
+    "cSpell.words": [
+        "Rello"
+    ]
 }

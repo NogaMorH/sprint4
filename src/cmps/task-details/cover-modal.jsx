@@ -1,10 +1,13 @@
 import { useDispatch } from "react-redux"
 import { boardService } from "../../services/board.service"
 import { updateTask } from "../../store/board/board.actions"
+import { uploadImg } from "../../cloudinary-service"
+import { useState } from "react"
 
-export const CoverModal = ({ taskId, groupId }) => {
-
+export const CoverModal = ({ taskId, groupId, task }) => {
+ 
     const dispatch = useDispatch()
+    // const [isColorSelected, setColorSelected] = useState(null)
     const coverColors = ['#7bc86c', '#f5dd2a', '#fbaf40', '#ef7564', '#cd8de5', '#5ba3cf', '#37cce5', '#6deca8', '#fa8ed5', '#172b4d']
     const coverImgs = [
         'https://images.unsplash.com/photo-1461749280684-dccba630e2f6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1769&q=80'
@@ -15,21 +18,49 @@ export const CoverModal = ({ taskId, groupId }) => {
     const onSetCover = (ev, value) => {
         ev.stopPropagation()
         let key = ev.target.className === 'color-preview' ? 'color' : 'img'
-        console.log('ev:', ev)
         dispatch(updateTask(groupId, taskId, 'cover', { [key]: value }))
+        if (task.attachments) {
+            task.attachments.map(attachment => attachment.isCover = false)
+        }
+    }
+
+    const onImgUpload = async (ev) => {
+        const imgUrl = await uploadImg(ev)
+        const attachment = {
+            name: 'Attachemnt',
+            url: imgUrl,
+            isCover: true
+        }
+        if(!task.attachments) task.attachments = []
+        task.attachments.unshift(attachment)
+        dispatch(updateTask(groupId, taskId, 'attachments', task.attachments))
+        dispatch(updateTask(groupId, taskId, 'cover', { img: imgUrl }))
+
     }
 
     return (
-        <section className="cover-modal-container">
-            <div className="cover-modal-title">Cover</div>
-            <ul className="color-list">
-                {coverColors.map((color, idx) => {
-                    return <li className="color-preview" key={idx}
-                        style={{ background: `${color}` }} onClick={(ev) => onSetCover(ev, color)} >
-                    </li>
-                })}
-            </ul>
-            <section className="image-list-container">
+        <section className="dynamic-modal cover-modal-container">
+            <div className="dynamic-header">
+                <h4>Cover</h4>
+                {/* <span onClick={onCloseModal}><IoCloseOutline /></span> */}
+            </div>
+            <div className="cover-modal-color-container">
+                <h5 className="color-title">Colors</h5>
+                <ul className="color-list">
+                    {coverColors.map((color, idx) => {
+                        return <li className="color-preview" key={idx}
+                            style={{ background: `${color}` }} onClick={(ev) => onSetCover(ev, color)} >
+                        </li>
+                    })}
+                </ul>
+                <div className="upload-img-container">
+                <label htmlFor="img-upload" className="btn img-upload">Upload a cover image
+                    <input className="img-upload-btn" type="file" id='img-uplaod' onChange={onImgUpload} />
+                    </label>
+                </div>
+            </div>
+            <div className="img-list-container">
+                <h5 className="img-title">Photos from unsplash</h5>
                 <ul className="img-list">
                     {coverImgs.map((imgUrl, idx) => {
                         return <li className="cover-img-container" key={idx}>
@@ -37,7 +68,7 @@ export const CoverModal = ({ taskId, groupId }) => {
                         </li>
                     })}
                 </ul>
-            </section>
+            </div>
         </section >
     )
 }

@@ -200,6 +200,7 @@ export function setModalAttachmentIdx(idx) {
 }
 
 export function setDynamicModalType(modalType) {
+    console.log('modalType:', modalType)
     return (dispatch) => {
         dispatch({ type: 'SET_DYNAMIC_MODAL_TYPE', modalType })
     }
