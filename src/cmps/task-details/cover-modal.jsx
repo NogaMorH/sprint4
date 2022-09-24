@@ -2,10 +2,9 @@ import { useDispatch } from "react-redux"
 import { boardService } from "../../services/board.service"
 import { updateTask } from "../../store/board/board.actions"
 import { uploadImg } from "../../cloudinary-service"
-import { useState } from "react"
+import { IoCloseOutline } from "react-icons/io5"
 
-export const CoverModal = ({ taskId, groupId, task }) => {
- 
+export const CoverModal = ({ taskId, groupId, task, toggleCoverModal }) => {
     const dispatch = useDispatch()
     // const [isColorSelected, setColorSelected] = useState(null)
     const coverColors = ['#7bc86c', '#f5dd2a', '#fbaf40', '#ef7564', '#cd8de5', '#5ba3cf', '#37cce5', '#6deca8', '#fa8ed5', '#172b4d']
@@ -17,6 +16,9 @@ export const CoverModal = ({ taskId, groupId, task }) => {
     ]
     const onSetCover = (ev, value) => {
         ev.stopPropagation()
+        if (task.cover?.color === value || task.cover?.img === value) {
+            return dispatch(updateTask(groupId, taskId, 'cover', null))
+        }
         let key = ev.target.className === 'color-preview' ? 'color' : 'img'
         dispatch(updateTask(groupId, taskId, 'cover', { [key]: value }))
         if (task.attachments) {
@@ -31,7 +33,8 @@ export const CoverModal = ({ taskId, groupId, task }) => {
             url: imgUrl,
             isCover: true
         }
-        if(!task.attachments) task.attachments = []
+        if (!task.attachments) task.attachments = []
+        if (task.cover) task.cover = imgUrl
         task.attachments.unshift(attachment)
         dispatch(updateTask(groupId, taskId, 'attachments', task.attachments))
         dispatch(updateTask(groupId, taskId, 'cover', { img: imgUrl }))
@@ -42,7 +45,7 @@ export const CoverModal = ({ taskId, groupId, task }) => {
         <section className="dynamic-modal cover-modal-container">
             <div className="dynamic-header">
                 <h4>Cover</h4>
-                {/* <span onClick={onCloseModal}><IoCloseOutline /></span> */}
+                <span onClick={toggleCoverModal}><IoCloseOutline className="btn-close-cover-modal" /></span>
             </div>
             <div className="cover-modal-color-container">
                 <h5 className="color-title">Colors</h5>
@@ -54,9 +57,9 @@ export const CoverModal = ({ taskId, groupId, task }) => {
                     })}
                 </ul>
                 <div className="upload-img-container">
-                <label htmlFor="img-upload" className="btn img-upload">Upload a cover image
-                    <input className="img-upload-btn" type="file" id='img-uplaod' onChange={onImgUpload} />
-                    </label>
+                    <button className="btn img-upload">Upload a cover image
+                        <input className="img-upload-btn" type="file" id='img-uplaod' onChange={onImgUpload} />
+                    </button>
                 </div>
             </div>
             <div className="img-list-container">

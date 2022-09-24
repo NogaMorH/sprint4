@@ -22,14 +22,27 @@ import { showSuccessMsg, showErrorMsg } from '../../services/event-bus.service.j
 //     }
 // }
 
+export function loadBoards(){
+    return async (dispatch) => {
+        try {
+            const miniBoards = await boardService.query()
+            console.log('miniBoards: from action', miniBoards)
+            dispatch({type: 'SET_BOARDS', miniBoards})
+        } catch (err) {
+            console.log('Cannot load boards', err)
+            throw err
+        }
+    } 
+}
+
 export function loadBoard(boardId) {
     return async (dispatch) => {
         try {
             const board = await boardService.getBoardById(boardId)
             dispatch({ type: 'SET_BOARD', board })
         } catch (err) {
-            showErrorMsg('Cannot load boards')
-            console.log('Cannot load boards', err)
+            showErrorMsg('Cannot load board')
+            console.log('Cannot load board', err)
         }
     }
 }

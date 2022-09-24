@@ -61,15 +61,28 @@
         .btn-cover-modal {
             z-index: 5;
             background-color: #00000014;
-            padding: 6px 12px 6px 6px;
+            padding: 6px 12px 6px 12px;
             border: none;
             border-radius: 3px;
             bottom: 10px;
             color: #172b4d;
-            // padding: 6px 12px 6px 6px;
+            font-weight: 700;
             position: absolute;
             right: 10px;
+
+            &:hover {
+                background-color: #00000029;
+            }
+
+            .cover-modal-icon {
+                margin-inline-end: 4px;
+                margin-top: 4px;
+                color: #172b4d;
+                width: 20px;
+            }
         }
+
+
 
         .close-task-details {
             align-items: center;
@@ -96,59 +109,49 @@
             }
         }
     }
-}
 
-.task-title {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    margin-top: 10px;
-    margin-bottom: 15px;
 
-    &-icon {
-        position: absolute;
-        font-size: 21px;
-        color: $clr14;
+    .task-title {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
         margin-top: 10px;
-    }
+        margin-bottom: 15px;
 
-    &-header {
-        width: 672px;
-        background-color: transparent;
-        border: none;
-        font-size: rem(20px);
-        font-family: san-francisco-medium, sans-serif;
-        padding: 4px 8px;
-        color: $clr8;
-        outline-color: $clr18;
-        margin-top: 5px;
-        margin-left: 25px;
+        &-icon {
+            position: absolute;
+            font-size: 21px;
+            color: $clr14;
+            margin-top: 10px;
+        }
 
-        &:focus {
-            background-color: white;
+        &-header {
+            width: 672px;
+            background-color: transparent;
+            border: none;
+            font-size: rem(20px);
+            font-family: san-francisco-medium, sans-serif;
+            padding: 4px 8px;
+            color: $clr8;
+            outline-color: $clr18;
+            margin-top: 5px;
+            margin-left: 25px;
+
+            &:focus {
+                background-color: white;
+            }
+        }
+
+        &-subtitle {
+            font-size: rem(14px);
+            margin-left: 33px;
+            margin-top: 1.5px;
         }
     }
 
-    &-subtitle {
-        font-size: rem(14px);
-        margin-left: 33px;
-        margin-top: 1.5px;
+    .task-details {
+        display: flex;
+        justify-content: space-between;
+
     }
-}
-
-.task-details {
-    display: flex;
-    justify-content: space-between;
-
-    // &-content {
-
-    //     >* {
-    //         margin-bottom: 24px;
-    //     }
-    // }
-
-
-    // &-sidebar {
-
-    // }
 }
