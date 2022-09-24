@@ -96,8 +96,6 @@
             }
         }
     }
-
-
 }
 
 .task-title {
@@ -142,12 +140,12 @@
     display: flex;
     justify-content: space-between;
 
-    &-content {
+    // &-content {
 
-        >* {
-            margin-bottom: 24px;
-        }
-    }
+    //     >* {
+    //         margin-bottom: 24px;
+    //     }
+    // }
 
 
     // &-sidebar {
