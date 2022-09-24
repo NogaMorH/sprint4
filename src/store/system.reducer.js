@@ -30,6 +30,7 @@ export function systemReducer(state = initialState, action = {}) {
     case 'SET_DYNAMIC_MODAL_TYPE':
       return { ...state, dynamicModalType: action.modalType }
     case 'SET_TOGGLE_BLACK_SCREEN':
+      console.log('blackScreen.:', state.isBlackScreenOpen)
       return { ...state, isBlackScreenOpen: !state.isBlackScreenOpen }
     //   case 'LOADING_START':
     //     return { ...state, isLoading: true }

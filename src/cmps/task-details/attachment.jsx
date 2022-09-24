@@ -6,15 +6,11 @@ import { setModalAttachmentIdx } from '../../store/board/board.actions'
 import { useDispatch } from "react-redux"
 import { AttachmentEditModal } from "./attachment-edit-modal"
 
-export const Attachment = ({ attachment, idx, toggleCover, removeAttachment, updateAttachments, closeAttachmentEditModal }) => {
+export const Attachment = ({ attachment, idx, toggleCover, removeAttachment, updateAttachments, closeAttachmentEditModal, checkURL }) => {
 
     const modalAttachmnetIdx = useSelector(state => state.systemModule.modalAttachmnetIdx)
     const dispatch = useDispatch()
     const { name, url, isCover } = attachment
-
-    const checkURL = (url) => {
-        return (url.match(/\.(jpeg|jpg|gif|png)$/) != null)
-    }
 
     const openUrl = () => {
         window.open(url, '_blank')?.focus()

@@ -4,11 +4,15 @@ import { updateTask } from '../../store/board/board.actions'
 import { Attachment } from './attachment'
 import { ImAttachment } from 'react-icons/im'
 
-export const AttachmentList = ({ attachments, closeAttachmentEditModal }) => {
+export const AttachmentList = ({ attachments, closeAttachmentEditModal, task }) => {
 
     const dispatch = useDispatch()
     const params = useParams()
     const { groupId, taskId } = params
+
+    const checkURL = (url) => {
+        return (url.match(/\.(jpeg|jpg|gif|png)$/) != null)
+    }
 
     const toggleCover = (ev, idx) => {
         ev.stopPropagation()
@@ -20,6 +24,12 @@ export const AttachmentList = ({ attachments, closeAttachmentEditModal }) => {
             if (attachment.isCover) attachment.isCover = false
         })
         dispatch(updateTask(groupId, taskId, 'attachments', attachments))
+
+        if (attachment.isCover) {
+            dispatch(updateTask(groupId, taskId, 'cover', { img: attachment.url }))
+        } else {
+            dispatch(updateTask(groupId, taskId, 'cover', {}))
+        }
     }
 
     const removeAttachment = (ev, idx) => {
@@ -53,6 +63,7 @@ export const AttachmentList = ({ attachments, closeAttachmentEditModal }) => {
                         removeAttachment={removeAttachment}
                         updateAttachments={updateAttachments}
                         closeAttachmentEditModal={closeAttachmentEditModal}
+                        checkURL={checkURL}
                     />
                 )
             })}

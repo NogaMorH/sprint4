@@ -1,29 +1,98 @@
 .cover-modal-container {
-    width: rem(304px);
+    right: 0;
+    z-index: 20;
+    .dynamic-header {
+        padding-top: 10px;
+        padding-right: 34px;
+        font-size: 14px;
 
+    }
+
+    .color-title {
+        font-size: 12px;
+        color: #5e6c84;
+        line-height: 16px;
+        font-weight: 600;
+        padding: 0 12px 0 12px;
+        font-family: 'san-francisco-medium';
+    }
 
     .color-list {
         display: grid;
-        grid-template-columns: repeat(auto-fit, 50px);
+        grid-template-columns: repeat(auto-fit, 48px);
         gap: 8px;
+        padding: 0 12px 12px 12px;
 
 
         .color-preview {
             width: rem(50px);
             height: rem(32px);
             border-radius: 3px;
+            cursor: pointer;
+
+            &:hover {
+                filter: saturate(90%) brightness(85%);
+            }
+
+            &.selected {
+                box-shadow: 0 0 0 2px #ffffff, 0 0 0 4px #0079bf;
+                filter: none;
+            }
+        }
+    }
+
+    .img-list-container {
+        padding: 0px 12px 12px 12px;
+
+
+        .img-title {
+            font-size: 12px;
+            color: #5e6c84;
+            line-height: 16px;
+            font-weight: 600;
+            padding: 0 0 0 5px;
+            font-family: 'san-francisco-medium';
+        }
+
+        .img-list {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+            padding: 4px;
+            // margin: 0 -4px;
+            // overflow-x: hidden;
+
+            .img-preview {
+                cursor: pointer;
+            }
 
         }
     }
 
-    .image-list-container {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 8px;
-        padding: 4px;
-        // margin: 0 -4px;
-        // overflow-x: hidden;
-        
+    .upload-img-container {
+        display: flex;
+        padding: 0 12px 12px 12px;
 
+        .img-upload-btn {
+            color: rgba(0, 0, 0, 0, );
+            display: none;
+
+        }
+    }
+
+    .img-upload {
+        background-color: #f5f6f8;
+        width: 100%;
+        height: rem(32px);
+        cursor: pointer;
+        justify-content: center;
+        font-weight: 600;
+        font-family: 'san-francisco-medium';
+        font-size: rem(14px);
+
+
+        &:hover {
+            background-color: #091e4214;
+        }
     }
 }

@@ -133,6 +133,7 @@ export const gBoards = [{
                     "id": "t101",
                     "title": "Demo 1",
                     "dueDate": 1663480800000,
+                    "cover": {"img": "https://trello.com/1/cards/632603fbf6acc8003771698a/attachments/632604094ac46301cd75ec3c/download/600b72f9-react-1024x680.png"},
                     // "isDone": false,
                     "memberIds": ["u101", "u102", "u103"],
                     "attachments": [
