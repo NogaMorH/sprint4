@@ -74,7 +74,7 @@ export const TaskDetails = () => {
             <div className="task-details-layout task-details-container" ref={ref} onClick={(ev) => ev.stopPropagation()}>
                 <div className='full task-details-cover'>
                     {isCoverModalOpen && <CoverModal task={task} taskId={taskId} groupId={groupId} />}
-                    <button className="close-task-details"><IoCloseOutline /> </button>
+                    <button className="close-task-details" onClick={closeTaskDetails}><IoCloseOutline /> </button>
                     <button className="btn btn-cover-modal" onClick={() => openCoverModal(true)}>Cover</button>
 
                     {cover &&
