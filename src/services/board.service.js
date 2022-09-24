@@ -46,7 +46,6 @@ async function query() {
 }
 
 async function getBoardById(boardId) {
-    console.log('boardId:', boardId)
     try {
         return await httpService.get(BASE_URL + boardId)
         // return axios.get(`/api/board/${boardId}`)
