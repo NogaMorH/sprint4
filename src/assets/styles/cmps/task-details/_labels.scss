@@ -23,6 +23,11 @@
             padding-top: 3px;
             font-size: rem(12px);
             color: $clr8;
+
+            &:active {
+                color: $clr18;
+                background-color: #e4f0f6;
+            }
         }
     }
 }

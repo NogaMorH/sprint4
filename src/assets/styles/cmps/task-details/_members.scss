@@ -10,4 +10,20 @@
             border-radius: 50%;
         }
     }
+
+    .icon-add {
+        display: inline;
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        padding: 0;
+        padding-top: 3px;
+        font-size: rem(12px);
+        color: $clr8;
+
+        &:active {
+            color: $clr18;
+            background-color: #e4f0f6;
+        }
+    }
 }

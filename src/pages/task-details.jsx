@@ -50,15 +50,15 @@ export const TaskDetails = () => {
         setCoverModalOpen(isOpen)
     }
 
-    // const closeAttachmentEditModal = (ev) => {
-    //     if (ev.target.className === 'attachment-modal-header' ||
-    //         ev.target.className === 'attachment-modal-content' ||
-    //         ev.target.className === 'update-btn') {
-    //         return
-    //     }
-    //     dispatch(setModalAttachmentIdx(null))
-    //     document.removeEventListener('click', closeAttachmentEditModal)
-    // }
+    const closeAttachmentEditModal = (ev) => {
+        if (ev.target.className === 'attachment-modal-header' ||
+            ev.target.className === 'attachment-modal-content' ||
+            ev.target.className === 'update-btn') {
+            return
+        }
+        dispatch(setModalAttachmentIdx(null))
+        document.removeEventListener('click', closeAttachmentEditModal)
+    }
 
     const handleTitleChange = ({ target }) => {
         setTaskTitle(target.value)
@@ -95,7 +95,8 @@ export const TaskDetails = () => {
 
                 <main className='task-details'>
                     <div className="task-details-content">
-                        {memberIds && <Members board={board} memberIds={memberIds} />}
+                        {/* {memberIds && <Members board={board} memberIds={memberIds} />} */}
+                        {memberIds && <Members members={boardService.getTaskMembers(board, groupId, taskId)} />}
 
                         {labelIds && labelIds.length > 0 && <Labels board={board} />}
 

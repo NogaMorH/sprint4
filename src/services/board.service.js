@@ -32,7 +32,8 @@ export const boardService = {
     getGroup,
     getTask,
     getTaskMembers,
-    getTaskLabels
+    getTaskLabels,
+    updateBoardLabels
 }
 // window.cs = boardService
 
@@ -188,6 +189,17 @@ async function removeTask(board, groupId, taskId) {
         return { ...board }
     } catch (err) {
         console.log('Remove task has failed:', err);
+        throw err
+    }
+}
+
+async function updateBoardLabels(board, labels) {
+    try {
+        board.labels = labels
+        await httpService.put(BASE_URL + board._id, board)
+        return { ...board }
+    } catch (err) {
+        console.log('UpdateBoard in board service has failed:', err)
         throw err
     }
 }

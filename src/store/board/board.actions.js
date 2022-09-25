@@ -157,8 +157,7 @@ export function updateBoardLabels(labels) {
     return async (dispatch, getState) => {
         try {
             const board = getState().boardModule.board
-            board.labels = labels
-            const updatedBoard = await boardService.updateBoard(board)
+            const updatedBoard = await boardService.updateBoardLabels(board, labels)
             dispatch({ type: 'UPDATE_BOARD', updatedBoard })
         } catch (err) {
             console.error('Update board labels in board actions has failed:', err)
@@ -197,15 +196,11 @@ export function setModalAttachmentIdx(idx) {
     }
 }
 
-export function setDynamicModalType(modalType) {
+export function setDynamicModal(modal) {
     return (dispatch) => {
+        const { modalType, fromCmp } = modal
         dispatch({ type: 'SET_DYNAMIC_MODAL_TYPE', modalType })
-    }
-}
-
-export function toggleBlackScreen() {
-    return (dispatch) => {
-        dispatch({ type: 'SET_TOGGLE_BLACK_SCREEN' })
+        dispatch({ type: 'SET_DYNAMIC_MODAL_FROM_CMP', fromCmp })
     }
 }
 

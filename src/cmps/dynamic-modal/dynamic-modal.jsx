@@ -1,3 +1,4 @@
+import { CoverModal } from "../task-details/cover-modal"
 import { AttachmentModal } from "./attachment-modal"
 import { ChecklistModal } from "./checklist-modal"
 import { DatesModal } from "./dates-modal"
@@ -18,8 +19,8 @@ export const DynamicModal = ({ type, groupId, taskId, closeModal }) => {
                 return DatesModal
             case 'attachment':
                 return AttachmentModal
-            // case 'cover':
-            //     return CoverModal
+            case 'cover':
+                return CoverModal
         }
     }
 
