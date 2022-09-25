@@ -15,7 +15,7 @@ export const BoardMainHeader = () => {
                     </button>
                 </div>
                 <div className='flex header-links'>
-                    <Link to='login' className='login-link'>Log in</Link>
+                    <Link to='/login' className='login-link'>Log in</Link>
                 </div>
             </div>
         </header>

@@ -68,7 +68,7 @@ export function updateBoard(newBoard) {
             const updatedBoard = await boardService.updateBoard(board, newBoard)
             dispatch({ type: 'UPDATE_BOARD', updatedBoard })
         } catch (err) {
-            console.log('Move task title has failed in board actions:', err)
+            console.log('Update board has failed in board actions:', err)
         }
     }
 }
@@ -171,11 +171,10 @@ export function updateBoardLabels(labels) {
         try {
             const board = getState().boardModule.board
             board.labels = labels
-            console.log('board:', board);
             const updatedBoard = await boardService.updateBoard(board)
             dispatch({ type: 'UPDATE_BOARD', updatedBoard })
         } catch (err) {
-            console.error('Update task in board actions has failed:', err)
+            console.error('Update board labels in board actions has failed:', err)
         }
     }
 }
@@ -195,7 +194,6 @@ export function setModalGroupId(groupId) {
 
 export function setModalTaskId(taskId) {
     return (dispatch) => {
-        // console.log('taskId frim set modal action:', taskId)
         dispatch({ type: 'SET_MODAL_TASK_ID', taskId })
     }
 }
@@ -213,7 +211,6 @@ export function setModalAttachmentIdx(idx) {
 }
 
 export function setDynamicModalType(modalType) {
-    console.log('modalType:', modalType)
     return (dispatch) => {
         dispatch({ type: 'SET_DYNAMIC_MODAL_TYPE', modalType })
     }

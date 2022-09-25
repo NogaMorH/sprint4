@@ -2,7 +2,7 @@
     @include header;
     align-items: stretch;
     background-color: $clr5;
-    color: $clr7;
+    color: $clr25;
     position: fixed;
     z-index: 10;
 
@@ -11,12 +11,9 @@
     }
 
     .logo {
-        font-size: em(30px);
         padding: 6.5px 6.5px 6.5px 16px;
-
-        img {
-            width: rem(22px);
-        }
+        font-size: em(30px);
+        @include logo;
     }
 
     .header-links {

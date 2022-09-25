@@ -46,7 +46,6 @@ async function query() {
 }
 
 async function getBoardById(boardId) {
-    console.log('boardId:', boardId)
     try {
         return await httpService.get(BASE_URL + boardId)
         // return axios.get(`/api/board/${boardId}`)
@@ -93,7 +92,7 @@ async function remove(boardId) {
 async function updateBoard(newBoard) {
     try {
         await httpService.put(BASE_URL + newBoard._id, newBoard)
-        return newBoard
+        return { ...newBoard }
     } catch (err) {
         console.log('UpdateBoard in board service has failed:', err)
         throw err

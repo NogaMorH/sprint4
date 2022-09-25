@@ -20,9 +20,10 @@
                 color: $clr14;
                 margin-inline-end: 15px;
                 line-height: 1.5;
+                @include logo;
 
                 img {
-                    max-width: 0.975rem;
+                    // max-width: 0.975rem;
                     margin-top: 2px;
                 }
             }

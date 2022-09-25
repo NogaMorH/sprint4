@@ -1,6 +1,7 @@
 import styled from 'styled-components'
 
 const LabelContainer = styled.div`
+    position: relative;
     display: flex;
     align-items: center;
     height: 32px;
@@ -13,6 +14,7 @@ const BgColor = styled.div`
     border-radius: 3px;
     background-color: ${p => p.color};
     opacity: 0.3;
+    width: 100%;
 
     &:hover {
         opacity: 0.5;
@@ -33,6 +35,17 @@ const Title = styled.span`
     color: #000;
 `
 
+export const LabelStyleCmp = ({ className, color, title }) => {
+
+    return (
+        <LabelContainer className={className} variant={color} color={color}>
+            <BgColor className={className} color={color} />
+            <Color color={color} />
+            <Title>{title}</Title>
+        </LabelContainer >
+    )
+}
+
 const ColorPicker = styled.div`
     width: 48.8px;
     height: 28px;
@@ -44,17 +57,9 @@ const ColorPicker = styled.div`
     }
 `
 
-export const LabelStyleCmp = ({ className, color, title }) => {
+export const ColorPickerStyleCmp = ({ color }) => {
 
     return (
-        <LabelContainer onClick={(ev) => ev.stopPropagation()} className={className} variant={color} color={color}>
-            {title && <>
-                <BgColor className={className} color={color} />
-                <Color color={color} />
-                <Title>{title}</Title>
-            </>}
-
-            {!title && <ColorPicker className={className} color={color} />}
-        </LabelContainer >
+        <ColorPicker color={color} />
     )
 }

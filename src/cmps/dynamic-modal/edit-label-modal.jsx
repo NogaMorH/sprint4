@@ -1,10 +1,11 @@
 import { useEffect, useRef, useState } from 'react'
 import { IoCloseOutline } from 'react-icons/io5'
-import { LabelStyleCmp } from './label-style-cmp'
+import { ColorPickerStyleCmp, LabelStyleCmp } from './label-style-cmp'
 
-export const EditLabelModal = ({ label, updateLabels }) => {
+export const EditLabelModal = ({ label, updateLabels, toggleModal }) => {
 
     const { id, color, title } = label
+    const [updatedColor, setUpdatedColor] = useState(color)
     const [name, setName] = useState(title)
     const ref = useRef()
 
@@ -16,10 +17,24 @@ export const EditLabelModal = ({ label, updateLabels }) => {
         setName(target.value)
     }
 
+    const removeColor = () => {
+        setUpdatedColor('#DFE1E6')
+    }
+
+    const changeColor = (color) => {
+        setUpdatedColor(color)
+    }
+
+    const updateLabel = () => {
+        label.color = updatedColor
+        label.title = name
+        updateLabels(label)
+    }
+
     return (
         <div className="edit-label-modal">
             <div className="label-container">
-                <LabelStyleCmp className='label-edit' color={color} title={title} />
+                <LabelStyleCmp className='label-edit' color={updatedColor} title={name} />
             </div>
 
             <div className="dynamic-content">
@@ -29,20 +44,20 @@ export const EditLabelModal = ({ label, updateLabels }) => {
                 <h6>Select a color</h6>
                 <ul className="color-palette">
                     {colorPelette.map((color, idx) => {
-                        return <LabelStyleCmp key={idx} color={color} />
+                        return <li key={idx} onClick={() => changeColor(color)}><ColorPickerStyleCmp color={color} /></li>
                     })}
                 </ul>
 
-                <div className="remove-btn">
+                <div className={`remove-btn ${updatedColor === '#DFE1E6' && 'disable'}`}>
                     <span className='icon-close'><IoCloseOutline /></span>
-                    <button>Remove color</button>
+                    <button onClick={removeColor}>Remove color</button>
                 </div>
 
                 <div className="buttons">
-                    <button className={`edit-save-btn ${!id && 'c-btn'}`} onClick={() => updateLabels(id, name)}>
+                    <button className={`edit-save-btn ${!id && 'c-btn'}`} onClick={updateLabel}>
                         {id ? 'Save' : 'Create'}
                     </button>
-                    {id && <button className='edit-delete-btn'>Delete</button>}
+                    {id && <button className='edit-delete-btn' onClick={() => toggleModal('delete')}>Delete</button>}
                 </div>
             </div>
         </div>
