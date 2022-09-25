@@ -5,6 +5,7 @@ import { useSelector } from "react-redux"
 import { Link } from "react-router-dom"
 import { loadBoards, updateBoard } from "../store/board/board.actions"
 import { RiStarLine, RiStarSFill } from 'react-icons/ri'
+import { AiOutlineClockCircle } from "react-icons/ai"
 
 export const TemplatePage = () => {
 
@@ -19,7 +20,7 @@ export const TemplatePage = () => {
 
     useEffect(() => {
         getStarredBoards()
-    } ,[boards])
+    }, [boards])
 
     const onLoadBoards = () => {
         try {
@@ -38,15 +39,36 @@ export const TemplatePage = () => {
 
     const getStarredBoards = () => {
         const starredBoards = boards.filter(board => board.isStarred)
-        console.log('starredBoards:', starredBoards)
+        // console.log('starredBoards:', starredBoards)
         return starredBoards
     }
+    // { console.log('getStarredBoards().length:', getStarredBoards().length) }
 
     if (!boards) return <div>Loading...</div>
     return (
         <div className="board-list-container">
+            {getStarredBoards().length &&
+                <div className="sttared-board-container">
+                    <span className="starred-board-list-title-icon"> <RiStarLine /></span>
+                    <span className="board-list-title">Starred boards
+                    </span>
+                    <ul className="board-list">
+                        {getStarredBoards().map(board => {
+                            return <Link to={`/board/${board._id}`} key={board._id}>
+                                <li className="board-preview">
+                                    <div className="board-preview-details">
+                                        <div className="board-title">{board.title}</div>
+                                        <div className="starred" onClick={(ev) => toggleIsStarred(ev, board)}><RiStarSFill /></div>
+                                    </div>
+                                </li>
+                            </Link>
+                        })}
+                    </ul>
+                </div>}
+
             <div className="board-list-title">
-                <span className="board-list-title-icon">Star / User</span>
+                <span className="board-list-title-icon"><AiOutlineClockCircle /></span>
+                <span className="board-list-title-icon">Recently viewed</span>
                 <h4>YOUR WORKSPACES</h4>
             </div>
             {/* {starredBoards && } */}

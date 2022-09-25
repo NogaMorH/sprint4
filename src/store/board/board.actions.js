@@ -72,6 +72,34 @@ export function updateBoard(newBoard) {
         }
     }
 }
+// export function updateBoard(board) {
+//     return async (dispatch, getState) => {
+//         try {
+//             // const board = getState().boardModule.board
+//             const savedBoard = await boardService.save(board)
+//             dispatch({ type: 'UPDATE_BOARD', savedBoard })
+//         } catch (err) {
+//             console.log('Cannot update toy',err )
+//             throw err
+//         }
+
+//     }
+// }
+
+// export function updateBoard(board) {
+	//     return (dispatch) => {
+	//         boardService.save(board)
+	//             .then(savedBoard => {
+	//                 console.log('Updated Board:', savedBoard);
+	//                 // dispatch(getActionUpdateBoard(savedBoard))
+	//                 showSuccessMsg('Board updated')
+	//             })
+	//             .catch(err => {
+	//                 showErrorMsg('Cannot update board')
+	//                 console.log('Cannot save board', err)
+	//             })
+	//     }
+	// }
 
 export function saveGroup(group) {
     return async (dispatch, getState) => {
