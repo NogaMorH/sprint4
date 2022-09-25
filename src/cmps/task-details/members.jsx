@@ -13,7 +13,7 @@ export const Members = ({ members }) => {
     const dispatch = useDispatch()
 
     const toggleModal = () => {
-        if (dynamicModal === 'members') {
+        if (dynamicModal.modalType === 'members') {
             return dispatch(setDynamicModal({ modalType: null, fromCmp: null }))
         }
         dispatch(setDynamicModal({ modalType: 'members', fromCmp: 'members' }))
@@ -35,7 +35,8 @@ export const Members = ({ members }) => {
             </div> */}
 
             {dynamicModal.modalType === 'members' && dynamicModal.fromCmp === 'members' &&
-                <DynamicModal type='members' groupId={groupId} taskId={taskId} closeModal={toggleModal} />}
+                <DynamicModal type='members' groupId={groupId} taskId={taskId} closeModal={toggleModal} />
+            }
         </div>
     )
 }

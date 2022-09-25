@@ -6,7 +6,6 @@ import { DynamicModal } from "../dynamic-modal/dynamic-modal"
 import { useDispatch } from "react-redux"
 import { setDynamicModal } from "../../store/board/board.actions"
 import { useSelector } from "react-redux"
-import { useState } from "react"
 
 export const Labels = ({ board }) => {
 
@@ -35,7 +34,8 @@ export const Labels = ({ board }) => {
             </ul>
 
             {dynamicModal.modalType === 'labels' && dynamicModal.fromCmp === 'labels' &&
-                <DynamicModal type='labels' groupId={groupId} taskId={taskId} closeModal={toggleModal} />}
+                <DynamicModal type='labels' groupId={groupId} taskId={taskId} closeModal={toggleModal} />
+            }
         </div>
     )
 }

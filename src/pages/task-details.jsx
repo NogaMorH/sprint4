@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { boardService } from '../services/board.service'
-import { loadBoard, setModalAttachmentIdx, toggleBlackScreen, updateTask } from '../store/board/board.actions'
+import { setDynamicModal, setModalAttachmentIdx, updateTask } from '../store/board/board.actions'
 import { TaskSideBar } from '../cmps/task-details/task-sidebar'
 import { Members } from '../cmps/task-details/members'
 import { DueDate } from '../cmps/task-details/due-date'
@@ -10,28 +10,21 @@ import { Description } from '../cmps/task-details/description'
 import { AttachmentList } from '../cmps/task-details/attachment-list'
 import { ChecklistList } from '../cmps/task-details/checklist-list'
 import { BiCreditCardFront } from 'react-icons/bi'
-import { CoverModal } from '../cmps/task-details/cover-modal'
 import { IoCloseOutline } from 'react-icons/io5'
 import { Labels } from '../cmps/task-details/labels'
 import { FiCreditCard } from 'react-icons/fi'
-// import { useHistory } from "react-router-dom"
+import { DynamicModal } from '../cmps/dynamic-modal/dynamic-modal'
 
 export const TaskDetails = () => {
 
     const board = useSelector(state => state.boardModule.board)
+    const dynamicModal = useSelector(state => state.systemModule.dynamicModal)
     const [taskTitle, setTaskTitle] = useState('')
-    const [isCoverModalOpen, setCoverModalOpen] = useState(false)
     const dispatch = useDispatch()
     const navigate = useNavigate()
-    // const history = useHistory() // useHistory not working !!!
     const params = useParams()
     const { groupId, taskId } = params
     const ref = useRef()
-
-    useEffect(() => {
-        // console.log('history:', history);
-        // history.push(`/board/${board._id}`)
-    }, [board])
 
     useEffect(() => {
         if (!board) return
@@ -47,19 +40,22 @@ export const TaskDetails = () => {
         navigate(`/board/${board._id}`)
     }
 
-    const toggleCoverModal = () => {
-        setCoverModalOpen(!isCoverModalOpen)
+    const toggleModal = () => {
+        if (dynamicModal.modalType === 'cover') {
+            return dispatch(setDynamicModal({ modalType: null, fromCmp: null }))
+        }
+        dispatch(setDynamicModal({ modalType: 'cover', fromCmp: 'cover' }))
     }
 
-    const closeAttachmentEditModal = (ev) => {
-        if (ev.target.className === 'attachment-modal-header' ||
-            ev.target.className === 'attachment-modal-content' ||
-            ev.target.className === 'update-btn') {
-            return
-        }
-        dispatch(setModalAttachmentIdx(null))
-        document.removeEventListener('click', closeAttachmentEditModal)
-    }
+    // const closeAttachmentEditModal = (ev) => {
+    //     if (ev.target.className === 'attachment-modal-header' ||
+    //         ev.target.className === 'attachment-modal-content' ||
+    //         ev.target.className === 'update-btn') {
+    //         return
+    //     }
+    //     dispatch(setModalAttachmentIdx(null))
+    //     document.removeEventListener('click', closeAttachmentEditModal)
+    // }
 
     const handleTitleChange = ({ target }) => {
         setTaskTitle(target.value)
@@ -75,10 +71,14 @@ export const TaskDetails = () => {
             <div className="task-details-layout task-details-container" ref={ref} onClick={(ev) => ev.stopPropagation()}>
 
                 <div className='full task-details-cover'>
-                    {isCoverModalOpen && <CoverModal task={task} taskId={taskId} groupId={groupId} toggleCoverModal={toggleCoverModal} />}
+                    {dynamicModal.modalType === 'cover' && dynamicModal.fromCmp === 'cover' &&
+                        <DynamicModal type='cover' groupId={groupId} taskId={taskId} closeModal={toggleModal} />
+                    }
                     <button className="close-task-details" onClick={closeTaskDetails}><IoCloseOutline /> </button>
-                    <button className="btn btn-cover-modal" onClick={toggleCoverModal}><span className='cover-modal-icon'><FiCreditCard /></span>
-                        Cover</button>
+                    <button className="btn btn-cover-modal" onClick={toggleModal}>
+                        <span className='cover-modal-icon'><FiCreditCard /></span>
+                        Cover
+                    </button>
 
                     {cover &&
                         (cover.img ?

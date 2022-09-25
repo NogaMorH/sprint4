@@ -30,7 +30,8 @@ export const TaskSideBar = () => {
                     <div key={idx}>
                         <button className="task-sidebar-btn" onClick={() => openModal(type)}>{type}</button>
                         {dynamicModal.modalType === type && dynamicModal.fromCmp === 'sidebar' &&
-                            <DynamicModal type={type} groupId={groupId} taskId={taskId} closeModal={closeModal} />}
+                            <DynamicModal type={type} groupId={groupId} taskId={taskId} closeModal={closeModal} />
+                        }
                     </div>
                 )
             })}
