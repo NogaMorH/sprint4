@@ -1,7 +1,7 @@
-export const AttachmentModal = ({ dynamicClassName, groupId, taskId }) => {
+export const AttachmentModal = ({ groupId, taskId, closeModal }) => {
 
     return (
-        <div className={`${dynamicClassName} members-modal`}>
+        <div className='dynamic-modal attachment-modal'>
             attachment
         </div>
     )

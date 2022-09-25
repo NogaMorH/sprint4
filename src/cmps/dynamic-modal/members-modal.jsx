@@ -20,19 +20,6 @@ export const MembersModal = ({ groupId, taskId, closeModal }) => {
         ref.current.focus()
     }, [])
 
-    const toggleMember = (id) => {
-        if (!memberIds) {
-            memberIds = [id]
-        }
-        else if (memberIds.includes(id)) {
-            const idx = memberIds.indexOf(id)
-            memberIds.splice(idx, 1)
-        } else {
-            memberIds.push(id)
-        }
-        dispatch(updateTask(groupId, taskId, 'memberIds', memberIds))
-    }
-
     const filter = ({ target }) => {
         const keyword = target.value
 
@@ -45,6 +32,19 @@ export const MembersModal = ({ groupId, taskId, closeModal }) => {
             setFoundUsers(members)
         }
         setName(keyword)
+    }
+
+    const toggleMember = (id) => {
+        if (!memberIds) {
+            memberIds = [id]
+        }
+        else if (memberIds.includes(id)) {
+            const idx = memberIds.indexOf(id)
+            memberIds.splice(idx, 1)
+        } else {
+            memberIds.push(id)
+        }
+        dispatch(updateTask(groupId, taskId, 'memberIds', memberIds))
     }
 
     return (
