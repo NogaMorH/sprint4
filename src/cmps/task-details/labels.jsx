@@ -17,7 +17,7 @@ export const Labels = ({ board }) => {
 
     const toggleModal = () => {
         setIsOpen(!isOpen)
-        dispatch(setDynamicModalType(null))
+        dispatch(setDynamicModalType(null)) // temporary - use 'click outside'
     }
 
     return (

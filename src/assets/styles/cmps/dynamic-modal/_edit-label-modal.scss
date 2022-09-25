@@ -22,8 +22,9 @@
         display: grid;
         grid-template-columns: repeat(5, 1fr);
         justify-items: center;
-        gap: 4px;
+        gap: 9px;
         margin-bottom: 5px;
+        cursor: pointer;
     }
 
     .remove-btn {
@@ -37,6 +38,19 @@
             left: 75px;
             font-size: rem(16px);
             color: $clr8;
+        }
+
+        &.disable {
+
+            button {
+                color: #a5adba;
+                cursor: not-allowed;
+                background-color: #091e420a;
+            }
+
+            .icon-close {
+                color: #a5adba;
+            }
         }
     }
 

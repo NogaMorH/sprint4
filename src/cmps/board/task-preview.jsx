@@ -56,19 +56,17 @@ export const TaskPreview = ({ task, groupId, index }) => {
                             <img className='task-cover-img' src={cover.img} alt="cover" />
                             :
                             <div className='task-cover-color' style={{ background: `${cover.color}` }}>
-                                {/* <button className="btn btn-cover-modal" onClick={() => openCoverModal(true)}>Cover</button> */}
-
                             </div>)}
 
                     {modalTaskId === id &&
                         <TaskEditModal task={task} groupId={groupId}
                             closeTaskEditModal={(ev) => closeTaskEditModal(ev)} isBadge={isBadge} />}
                     <div className='task-preview'>
-                        {attachments && attachments.map((attachment, idx) => {
+                        {/* {attachments && attachments.map((attachment, idx) => {
                             if (attachment.isCover) {
                                 return <img key={idx} className='task-cover-img' src={attachment.url} alt="cover" />
                             }
-                        })}
+                        })} */}
                         <div className="task-preview-details">
                             <div className="task-title">{title}</div>
                             <button className="btn task-edit-icon" onClick={openTaskEditModal}>
