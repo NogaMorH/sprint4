@@ -14,10 +14,13 @@ import Container from '@mui/material/Container'
 import { createTheme, ThemeProvider } from '@mui/material/styles'
 import { useFormik } from 'formik'
 import * as yup from 'yup'
+import { useDispatch } from 'react-redux'
+import { onSignup } from '../../store/user/user.actions'
 
 export function SignUp() {
 
     const theme = createTheme()
+    const dispatch = useDispatch()
 
     const formik = useFormik({
         initialValues: {
@@ -28,19 +31,20 @@ export function SignUp() {
         },
         validationSchema: yup.object({
             firstName: yup.string()
-                .max(5, "Must be 5 characters or less")
+                .max(15, "Must be 15 characters or less. Please try again.")
                 .required("Required"),
-            lastName: yup.string().max(20, "Must be 20 characters or less"),
+            lastName: yup.string().max(20, "Must be 20 characters or less. Please try again."),
             email: yup.string()
                 .email("Invalid email address")
                 .required("Required"),
             password: yup.string()
-                .required('No password provided.')
-                .min(8, 'Password is too short - should be 8 chars minimum.')
-                .matches(/[a-zA-Z]/, 'Password can only contain Latin letters.')
+                .required('No password provided')
+                .min(6, 'Your password must be at least 6 characters long. Please try another.')
+            // .matches(/[a-zA-Z]/, 'Password can only contain Latin letters.')
         }),
         onSubmit: (values) => {
             console.log('values:', values)
+            dispatch(onSignup(values))
         }
     })
 
@@ -141,12 +145,12 @@ export function SignUp() {
                                     <span className="error">{formik.errors.password}</span>
                                 ) : <span>&nbsp;</span>}
                             </Grid>
-                            <Grid item xs={12}>
+                            {/* <Grid item xs={12}>
                                 <FormControlLabel
                                     control={<Checkbox value="allowExtraEmails" color="primary" />}
                                     label="I want to receive inspiration, marketing promotions and updates via email."
                                 />
-                            </Grid>
+                            </Grid> */}
                         </Grid>
                         <Button
                             type="submit"
@@ -166,8 +170,8 @@ export function SignUp() {
                 </Box>
                 <Typography variant="body2" color="text.secondary" align="center" sx={{ mt: 5 }}>
                     {'Copyright © '}
-                    <Link color="inherit" href="https://mui.com/">
-                        Your Website
+                    <Link color="inherit" href="/">
+                        Rello
                     </Link>{' '}
                     {new Date().getFullYear()}
                     {'.'}
