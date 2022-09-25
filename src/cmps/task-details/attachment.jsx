@@ -20,9 +20,13 @@ export const Attachment = ({ attachment, idx, toggleCover, removeAttachment, upd
         ev.stopPropagation()
 
         if (modalAttachmnetIdx === idx) {
-            return dispatch(setModalAttachmentIdx(null))
+            return closeEditModal()
         }
         dispatch(setModalAttachmentIdx(idx))
+    }
+
+    const closeEditModal = () => {
+        dispatch(setModalAttachmentIdx(null))
     }
 
     const updateName = (value) => {
@@ -49,7 +53,7 @@ export const Attachment = ({ attachment, idx, toggleCover, removeAttachment, upd
                     <button className="actions-remove-btn hover-btn"
                         onClick={(ev) => removeAttachment(ev, idx)}>Delete</button>
                     -
-                    <button className="actions-edit-btn hover-btn"
+                    <button name='edit-btn' className="actions-edit-btn hover-btn"
                         onClick={toggleEditModal}>Edit</button>
                 </div>
 
@@ -63,7 +67,7 @@ export const Attachment = ({ attachment, idx, toggleCover, removeAttachment, upd
                 }
             </div>
 
-            {modalAttachmnetIdx === idx && <AttachmentEditModal name={name} toggleEditModal={toggleEditModal} updateName={updateName} />}
+            {modalAttachmnetIdx === idx && <AttachmentEditModal name={name} closeEditModal={closeEditModal} updateName={updateName} />}
         </div>
     )
 }
