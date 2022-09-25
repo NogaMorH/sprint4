@@ -255,6 +255,17 @@ async function moveGroup(board, result) {
     }
 }
 
+async function updateBoardLabels(board, labels) {
+    try {
+        board.labels = labels
+        await httpService.put(BASE_URL + board._id, board)
+        return { ...board }
+    } catch (err) {
+        console.log('UpdateBoard in board service has failed:', err)
+        throw err
+    }
+}
+
 function getMemberImgUrl(board, memberId) {
     const url = board.members.find(member => member._id === memberId).imgUrl
     return url

@@ -57,7 +57,7 @@ export const EditLabelModal = ({ label, updateLabels, toggleModal }) => {
                     <button className={`edit-save-btn ${!id && 'c-btn'}`} onClick={updateLabel}>
                         {id ? 'Save' : 'Create'}
                     </button>
-                    {id && <button className='edit-delete-btn' onClick={() => toggleModal('delete')}>Delete</button>}
+                    {id && <button className='edit-delete-btn' onClick={() => toggleModal('delete', label)}>Delete</button>}
                 </div>
             </div>
         </div>

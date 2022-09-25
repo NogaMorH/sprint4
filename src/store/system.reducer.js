@@ -9,8 +9,10 @@ const initialState = {
   titleGroupId: null,
   modalTaskId: null,
   modalAttachmnetIdx: null,
-  dynamicModalType: null,
-  isBlackScreenOpen: false
+  dynamicModal: {
+    modalType: null,
+    fromCmp: null
+  }
 }
 
 export function systemReducer(state = initialState, action = {}) {
@@ -28,9 +30,9 @@ export function systemReducer(state = initialState, action = {}) {
     case 'SET_MODAL_ATTACHMENT_IDX':
       return { ...state, modalAttachmnetIdx: action.idx }
     case 'SET_DYNAMIC_MODAL_TYPE':
-      return { ...state, dynamicModalType: action.modalType }
-    case 'SET_TOGGLE_BLACK_SCREEN':
-      return { ...state, isBlackScreenOpen: !state.isBlackScreenOpen }
+      return { ...state, dynamicModal: { ...state.dynamicModal, modalType: action.modalType } }
+    case 'SET_DYNAMIC_MODAL_FROM_CMP':
+      return { ...state, dynamicModal: { ...state.dynamicModal, fromCmp: action.fromCmp } }
     //   case 'LOADING_START':
     //     return { ...state, isLoading: true }
     //   case 'LOADING_DONE':

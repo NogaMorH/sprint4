@@ -20,10 +20,12 @@ export const LabelsModal = ({ groupId, taskId, closeModal }) => {
     const [field, setField] = useState('')
     const [foundLabels, setFoundLabels] = useState(labels)
     const [currLabel, setCurrLabel] = useState('')
-    const [openModal, setOpenModal] = useState(null)
+    const [openModal, setOpenModal] = useState('main')
 
     const dispatch = useDispatch()
     const ref = useRef()
+
+    console.log('openModal:', openModal);
 
     useEffect(() => {
         ref.current.focus()
@@ -44,12 +46,14 @@ export const LabelsModal = ({ groupId, taskId, closeModal }) => {
     }
 
     const toggleModal = (type, label) => {
+        console.log('type:', type);
         if (type === 'edit') {
 
             if (!label?.color) {
                 label = { color: '#7BC86C', title: '' }
             }
         }
+        console.log('label:', label);
         setCurrLabel(label)
         setOpenModal(type)
     }
@@ -72,10 +76,11 @@ export const LabelsModal = ({ groupId, taskId, closeModal }) => {
         dispatch(updateTask(groupId, taskId, 'labelIds', labelIds))
     }
 
-    const updateLabels = (label) => {
+    const updateLabels = (label, action) => {
         const idx = labels.indexOf(label)
 
-        if (!label.color) {
+        if (action === 'delete') {
+            console.log('label to update:', label);
             labels.splice(idx, 1)
         }
         else if (!label.id) {
@@ -85,19 +90,19 @@ export const LabelsModal = ({ groupId, taskId, closeModal }) => {
             labels.splice(idx, 1, label)
         }
         dispatch(updateBoardLabels(labels))
-        setOpenModal(null)
+        setOpenModal('main')
     }
 
     return (
         <div className='dynamic-modal labels-modal-container'>
 
             <div className="dynamic-header">
-                {openModal && <span className="icon-less" onClick={() => setOpenModal(null)}><FontAwesomeIcon icon={faLessThan} size="2xs" /></span>}
-                <h5>{!openModal && 'Labels' || openModal === 'edit' && 'Create label' || openModal === 'delete' && 'Delete label'}</h5>
+                {openModal !== 'main' && <span className="icon-less" onClick={() => setOpenModal('main')}><FontAwesomeIcon icon={faLessThan} size="2xs" /></span>}
+                <h5>{openModal === 'main' && 'Labels' || openModal === 'edit' && 'Create label' || openModal === 'delete' && 'Delete label'}</h5>
                 <span onClick={closeModal}><IoCloseOutline /></span>
             </div>
 
-            {!openModal &&
+            {openModal === 'main' &&
                 <div className="dynamic-content">
                     <div>
                         <input className="dynamic-input" type="text" placeholder="Search labels..." ref={ref} value={field} onChange={filter} />
@@ -134,7 +139,7 @@ export const LabelsModal = ({ groupId, taskId, closeModal }) => {
             }
 
             {openModal === 'edit' && <EditLabelModal label={currLabel} updateLabels={updateLabels} toggleModal={toggleModal} />}
-            {openModal === 'delete' && <DeleteLabelModal updateLabels={updateLabels} />}
+            {openModal === 'delete' && <DeleteLabelModal label={currLabel} updateLabels={updateLabels} />}
         </div>
     )
 }

@@ -36,7 +36,7 @@ export const MembersModal = ({ groupId, taskId, closeModal }) => {
     const filter = ({ target }) => {
         const keyword = target.value
 
-        if (keyword !== '') {
+        if (members && keyword !== '') {
             const results = members.filter(member => {
                 return member.fullname.toLowerCase().startsWith(keyword.toLowerCase())
             })
@@ -59,28 +59,31 @@ export const MembersModal = ({ groupId, taskId, closeModal }) => {
                 <input className="dynamic-input" type="text" placeholder="Search members" ref={ref} value={name} onChange={filter} />
 
                 <div className="members">
-                    {foundUsers && foundUsers.length > 0
-                        ?
-                        <ul className="members-list">
-                            <h6>Board members</h6>
+                    {members &&
+                        (foundUsers && foundUsers.length > 0
+                            ?
+                            <ul className="members-list">
+                                <h6>Board members</h6>
 
-                            {foundUsers.map(member => {
-                                const { _id, fullname, imgUrl } = member
+                                {foundUsers.map(member => {
+                                    const { _id, fullname, imgUrl } = member
 
-                                return (
-                                    <li key={_id} onClick={() => toggleMember(_id)}>
-                                        <img src={imgUrl} title={fullname} alt="user-avatar" />
-                                        <span className="fullname">{fullname}</span>
-                                        {memberIds && memberIds.includes(_id) && <span className="icon-check"><HiCheck /></span>}
-                                    </li>
-                                )
-                            })}
-                        </ul>
-                        :
-                        <p>
-                            Looks like that person isn't a member yet. Enter their email address to add them to the card and board.
-                        </p>
-                    }
+                                    return (
+                                        <li key={_id} onClick={() => toggleMember(_id)}>
+                                            <img src={imgUrl} title={fullname} alt="user-avatar" />
+                                            <span className="fullname">{fullname}</span>
+                                            {memberIds && memberIds.includes(_id) && <span className="icon-check"><HiCheck /></span>}
+                                        </li>
+                                    )
+                                })}
+                            </ul>
+                            :
+                            <p>
+                                Looks like that person isn't a member yet. Enter their email address to add them to the card and board.
+                            </p>
+                        )}
+
+                    {!members && <p>There are no available members in this board.</p>}
                 </div>
 
                 {foundUsers && foundUsers.length > 0 && <button>Show other Workspace members</button>}
