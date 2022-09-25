@@ -10,6 +10,10 @@
     @include main-layout(minmax(8px, 23px), 1fr, minmax(8px, 16px))
 }
 
+.template-layout {
+    @include main-layout(minmax(200px, 1fr), minmax(auto, 1140px), minmax(200px, 1fr))
+}
+
 // @include for-narrow-layout {
 //     grid-template-columns: 
 //         minmax(20px, 1fr)

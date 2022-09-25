@@ -22,17 +22,17 @@ import { showSuccessMsg, showErrorMsg } from '../../services/event-bus.service.j
 //     }
 // }
 
-export function loadBoards(){
+export function loadBoards() {
     return async (dispatch) => {
         try {
             const miniBoards = await boardService.query()
             console.log('miniBoards: from action', miniBoards)
-            dispatch({type: 'SET_BOARDS', miniBoards})
+            dispatch({ type: 'SET_BOARDS', miniBoards })
         } catch (err) {
             console.log('Cannot load boards', err)
             throw err
         }
-    } 
+    }
 }
 
 export function loadBoard(boardId) {
@@ -61,45 +61,57 @@ export function removeBoard(boardId) {
     }
 }
 
-export function updateBoard(newBoard) {
+export function updateBoard(board) {
     return async (dispatch, getState) => {
         try {
-            const board = getState().boardModule.board
-            const updatedBoard = await boardService.updateBoard(board, newBoard)
+            // const board = getState().boardModule.board
+            // console.log('board from actions:', board)
+            const updatedBoard = await boardService.save(board)
             dispatch({ type: 'UPDATE_BOARD', updatedBoard })
         } catch (err) {
-            console.log('Update board has failed in board actions:', err)
+            console.log('Cannot update board', err)
+            throw err
         }
+
     }
 }
 // export function updateBoard(board) {
-//     return async (dispatch, getState) => {
-//         try {
-//             // const board = getState().boardModule.board
-//             const savedBoard = await boardService.save(board)
-//             dispatch({ type: 'UPDATE_BOARD', savedBoard })
-//         } catch (err) {
-//             console.log('Cannot update toy',err )
-//             throw err
-//         }
-
+//     return (dispatch) => {
+//         boardService.save(board)
+//             .then(savedBoard => {
+//                 console.log('Updated Board:', savedBoard);
+//                 // dispatch(getActionUpdateBoard(savedBoard))
+//                 showSuccessMsg('Board updated')
+//             })
+//             .catch(err => {
+//                 showErrorMsg('Cannot update board')
+//                 console.log('Cannot save board', err)
+//             })
 //     }
 // }
 
-// export function updateBoard(board) {
-	//     return (dispatch) => {
-	//         boardService.save(board)
-	//             .then(savedBoard => {
-	//                 console.log('Updated Board:', savedBoard);
-	//                 // dispatch(getActionUpdateBoard(savedBoard))
-	//                 showSuccessMsg('Board updated')
-	//             })
-	//             .catch(err => {
-	//                 showErrorMsg('Cannot update board')
-	//                 console.log('Cannot save board', err)
-	//             })
-	//     }
-	// }
+// export function updateBoard(newBoard) {
+//     return async (dispatch, getState) => {
+//         try {
+//             const board = getState().boardModule.board
+//             const updatedBoard = await boardService.updateBoard(board, newBoard)
+//             dispatch({ type: 'UPDATE_BOARD', updatedBoard })
+//         } catch (err) {
+//             console.log('Update board has failed in board actions:', err)
+//         }
+//     }
+// }
+export function setBoardIsStarred(board) {
+    console.log('board from action:', board)
+    return async (dispatch) => {
+        try {
+            const updatedBoard = await boardService.setBoardIsStarred(board)
+            dispatch({ type: 'UPDATE_BOARD', updatedBoard })
+        } catch (err) {
+            console.log('Cannot set board as starred', err)
+        }
+    }
+}
 
 export function saveGroup(group) {
     return async (dispatch, getState) => {
@@ -190,6 +202,23 @@ export function removeTask(groupId, taskId) {
         } catch (err) {
             showErrorMsg('Cannot remove task')
             console.log('Cannot remove task', err)
+        }
+    }
+}
+
+export function handleDrag(result) {
+    return async (dispatch, getState) => {
+        try {
+            let updatedBoard
+            const board = getState().boardModule.board
+            if (result.type === 'group') {
+                updatedBoard = await boardService.moveGroup(board, result)
+            } else {
+                updatedBoard = await boardService.moveTask(board, result)
+            }
+            dispatch({ type: 'UPDATE_BOARD', updatedBoard })
+        } catch (err) {
+            console.log('Cannot move task', err)
         }
     }
 }

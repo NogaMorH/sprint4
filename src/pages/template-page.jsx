@@ -3,7 +3,7 @@ import { useEffect } from "react"
 import { useDispatch } from "react-redux"
 import { useSelector } from "react-redux"
 import { Link } from "react-router-dom"
-import { loadBoards, updateBoard } from "../store/board/board.actions"
+import { loadBoards, setBoardIsStarred, updateBoard } from "../store/board/board.actions"
 import { RiStarLine, RiStarSFill } from 'react-icons/ri'
 import { AiOutlineClockCircle } from "react-icons/ai"
 
@@ -14,30 +14,27 @@ export const TemplatePage = () => {
     const dispatch = useDispatch()
 
     useEffect(() => {
+        // console.log('miniBoards:', boards)
         onLoadBoards()
-        console.log('miniBoards:', boards)
+   
     }, [])
 
     useEffect(() => {
-        getStarredBoards()
+        onGetStarredBoards()
     }, [boards])
 
     const onLoadBoards = () => {
-        try {
-            dispatch(loadBoards())
-        } catch (err) {
-            console.log('Cannor load boards:')
-        }
+        dispatch(loadBoards())
+     
     }
 
     const toggleIsStarred = (ev, board) => {
         ev.stopPropagation()
         ev.preventDefault()
-        board.isStarred = !board.isStarred
-        // dispatch(updateBoard(board))
+        dispatch(setBoardIsStarred(board))
     }
 
-    const getStarredBoards = () => {
+    const onGetStarredBoards = () => {
         const starredBoards = boards.filter(board => board.isStarred)
         // console.log('starredBoards:', starredBoards)
         return starredBoards
@@ -46,14 +43,16 @@ export const TemplatePage = () => {
 
     if (!boards) return <div>Loading...</div>
     return (
-        <div className="board-list-container">
-            {getStarredBoards().length &&
+        <div className="template-layout board-list-container">
+            {onGetStarredBoards().length &&
                 <div className="sttared-board-container">
-                    <span className="starred-board-list-title-icon"> <RiStarLine /></span>
-                    <span className="board-list-title">Starred boards
-                    </span>
+                    <div className="board-list-title-container">
+                        <span className="starred-board-list-title-icon"> <RiStarLine /></span>
+                        <span className="board-list-title">Starred boards
+                        </span>
+                    </div>
                     <ul className="board-list">
-                        {getStarredBoards().map(board => {
+                        {onGetStarredBoards().map(board => {
                             return <Link to={`/board/${board._id}`} key={board._id}>
                                 <li className="board-preview">
                                     <div className="board-preview-details">
@@ -67,11 +66,12 @@ export const TemplatePage = () => {
                 </div>}
 
             <div className="board-list-title">
-                <span className="board-list-title-icon"><AiOutlineClockCircle /></span>
-                <span className="board-list-title-icon">Recently viewed</span>
-                <h4>YOUR WORKSPACES</h4>
+                <div className="board-list-title-container">
+                    <span className="board-list-title-icon"><AiOutlineClockCircle /></span>
+                    <span className="board-list-title">Recently viewed</span>
+                </div>
+                {/* <h4>YOUR WORKSPACES</h4> */}
             </div>
-            {/* {starredBoards && } */}
             <ul className="board-list">
                 {boards.map(board => {
                     return <Link to={`/board/${board._id}`} key={board._id}>
