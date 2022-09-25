@@ -13,6 +13,7 @@ import { BiCreditCardFront } from 'react-icons/bi'
 import { CoverModal } from '../cmps/task-details/cover-modal'
 import { IoCloseOutline } from 'react-icons/io5'
 import { Labels } from '../cmps/task-details/labels'
+import { FiCreditCard } from 'react-icons/fi'
 // import { useHistory } from "react-router-dom"
 
 export const TaskDetails = () => {
@@ -30,7 +31,7 @@ export const TaskDetails = () => {
     useEffect(() => {
         // console.log('history:', history);
         // history.push(`/board/${board._id}`)
-    }, [])
+    }, [board])
 
     useEffect(() => {
         if (!board) return
@@ -46,8 +47,8 @@ export const TaskDetails = () => {
         navigate(`/board/${board._id}`)
     }
 
-    const openCoverModal = (isOpen) => {
-        setCoverModalOpen(isOpen)
+    const toggleCoverModal = () => {
+        setCoverModalOpen(!isCoverModalOpen)
     }
 
     const closeAttachmentEditModal = (ev) => {
@@ -74,9 +75,10 @@ export const TaskDetails = () => {
             <div className="task-details-layout task-details-container" ref={ref} onClick={(ev) => ev.stopPropagation()}>
 
                 <div className='full task-details-cover'>
-                    {isCoverModalOpen && <CoverModal task={task} taskId={taskId} groupId={groupId} />}
-                    <button className="close-task-details" onClick={closeTaskDetails}><IoCloseOutline /></button>
-                    <button className="btn btn-cover-modal" onClick={() => openCoverModal(true)}>Cover</button>
+                    {isCoverModalOpen && <CoverModal task={task} taskId={taskId} groupId={groupId} toggleCoverModal={toggleCoverModal} />}
+                    <button className="close-task-details" onClick={closeTaskDetails}><IoCloseOutline /> </button>
+                    <button className="btn btn-cover-modal" onClick={toggleCoverModal}><span className='cover-modal-icon'><FiCreditCard /></span>
+                        Cover</button>
 
                     {cover &&
                         (cover.img ?

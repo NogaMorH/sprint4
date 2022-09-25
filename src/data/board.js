@@ -62,7 +62,7 @@ export const gBoards = [{
         "fullname": "Kfir Azulay",
         "imgUrl": "http://some-img"
     },
-    // "style": { "background-image": "url(https://www.google.com/imgres?imgurl=https%3A%2F%2Fwww.w3schools.com%2Fcss%2Fimg_lights.jpg&imgrefurl=https%3A%2F%2Fwww.w3schools.com%2Fcss%2Fcss3_images.asp&tbnid=kwgHAQqTiLQXLM&vet=12ahUKEwjW5p2J0ZT6AhULgc4BHa10Ac0QMygEegUIARDHAQ..i&docid=2bZLA8JdC6ZaTM&w=600&h=400&itg=1&q=image&ved=2ahUKEwjW5p2J0ZT6AhULgc4BHa10Ac0QMygEegUIARDHAQ)" },
+    // "style": { "background": "url(https://www.google.com/imgres?imgurl=https%3A%2F%2Fwww.w3schools.com%2Fcss%2Fimg_lights.jpg&imgrefurl=https%3A%2F%2Fwww.w3schools.com%2Fcss%2Fcss3_images.asp&tbnid=kwgHAQqTiLQXLM&vet=12ahUKEwjW5p2J0ZT6AhULgc4BHa10Ac0QMygEegUIARDHAQ..i&docid=2bZLA8JdC6ZaTM&w=600&h=400&itg=1&q=image&ved=2ahUKEwjW5p2J0ZT6AhULgc4BHa10Ac0QMygEegUIARDHAQ)" },
     "labels": [
         {
             "id": "l101",
