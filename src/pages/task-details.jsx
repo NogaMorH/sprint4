@@ -66,8 +66,7 @@ export const TaskDetails = () => {
     const { title, dueDate, memberIds, attachments, checklists, description, cover, labelIds } = task
 
     return (
-        <>
-            <div className="black-screen" onClick={closeTaskDetails}></div>
+        <div className="black-screen" onClick={closeTaskDetails}>
             <div className="task-details-layout task-details-container" ref={ref} onClick={(ev) => ev.stopPropagation()}>
 
                 <div className='full task-details-cover'>
@@ -114,6 +113,6 @@ export const TaskDetails = () => {
                     <TaskSideBar task={task} />
                 </main>
             </div>
-        </>
+        </div>
     )
 }

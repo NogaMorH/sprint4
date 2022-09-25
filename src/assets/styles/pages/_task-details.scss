@@ -1,10 +1,8 @@
 .task-details-container {
-    position: fixed;
+    position: absolute;
     top: 46px;
     left: calc(100vw / 4.5);
     width: 778px;
-    // min-height: 970px;
-    max-height: 100%;
     background-color: $clr12;
     border-radius: 3px;
     padding-bottom: 50px;
@@ -12,9 +10,7 @@
     font-family: san-francisco-light, sans-serif;
     color: $clr8;
     line-height: 20px;
-    z-index: 25;
-    overflow: hidden;
-    overflow-y: auto;
+    z-index: 45;
 
     h4 {
         font-size: rem(15.5px);
