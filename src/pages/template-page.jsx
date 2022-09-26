@@ -22,6 +22,7 @@ export const TemplatePage = () => {
 
     useEffect(() => {
         onGetStarredBoards()
+        console.log('boards:', boards)
     }, [boards])
 
     const onLoadBoards = () => {
@@ -33,7 +34,7 @@ export const TemplatePage = () => {
         ev.stopPropagation()
         ev.preventDefault()
         dispatch(setBoardIsStarred(board))
-        onLoadBoards()
+        // onLoadBoards()
     }
 
     const toggleAddBoardModal = () => {
@@ -80,6 +81,9 @@ export const TemplatePage = () => {
                     {/* <h4>YOUR WORKSPACES</h4> */}
                 </div>
                 <ul className="board-list">
+                    <li className="board-preview add-board" onClick={toggleAddBoardModal}>
+                        <div className="add-board-title">Create new board</div>
+                    </li>
                     {boards.map(board => {
                         return <Link to={`/board/${board._id}`} key={board._id}>
                             <li className="board-preview">
@@ -97,9 +101,7 @@ export const TemplatePage = () => {
                             </li>
                         </Link>
                     })}
-                    <li className="add-board" onClick={toggleAddBoardModal}>
-                        <div className="add-board-title">Create new board</div>
-                    </li>
+
                 </ul>
                 {isAddBoardModalOpen && <AddBoardModal toggleAddBoardModal={toggleAddBoardModal} />}
             </section >

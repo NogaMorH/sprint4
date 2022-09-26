@@ -5,7 +5,7 @@ import { uploadImg } from "../../cloudinary-service"
 import { IoCloseOutline } from "react-icons/io5"
 import { useSelector } from "react-redux"
 
-export const CoverModal = ({ taskId, groupId, closeModal }) => {
+export const CoverModal = ({ taskId, groupId, closeModal, className }) => {
 
     const board = useSelector(state => state.boardModule.board)
     const task = boardService.getTask(board, groupId, taskId)
@@ -47,7 +47,7 @@ export const CoverModal = ({ taskId, groupId, closeModal }) => {
     }
 
     return (
-        <section className="dynamic-modal cover-modal-container" onClick={(ev) => ev.stopPropagation()}>
+        <section className={`dynamic-modal cover-modal-container ${className ? className : 'details-pos'}`} onClick={(ev) => ev.stopPropagation()}>
             <div className="dynamic-header">
                 <h4>Cover</h4>
                 <span onClick={closeModal}><IoCloseOutline className="btn-close-cover-modal" /></span>
@@ -63,7 +63,7 @@ export const CoverModal = ({ taskId, groupId, closeModal }) => {
                 </ul>
                 <div className="upload-img-container">
                     <button className="btn img-upload">Upload a cover image
-                        <input className="img-upload-btn" type="file" id='img-uplaod' onChange={onImgUpload}  />
+                        <input className="img-upload-btn" type="file" id='img-uplaod' onChange={onImgUpload} />
                     </button>
                 </div>
             </div>

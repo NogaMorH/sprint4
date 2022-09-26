@@ -10,7 +10,7 @@
 // import { MobileDateTimePicker } from '@mui/x-date-pickers/MobileDateTimePicker'
 // import Stack from '@mui/material/Stack'
 
-export const DatesModal = ({ groupId, taskId, closeModal }) => {
+export const DatesModal = ({ groupId, taskId, closeModal, className }) => {
 
     // const [dateWithNoInitialValue, setDateWithNoInitialValue] = React.useState(null)
     // const [dateWithInitialValue, setDateWithInitialValue] = React.useState(
@@ -37,7 +37,7 @@ export const DatesModal = ({ groupId, taskId, closeModal }) => {
     // )
 
     return (
-        <div className='dynamic-modal dates-modal' onClick={(ev) => ev.stopPropagation()}>
+        <div className={`dynamic-modal dates-modal ${className ? className : ''}`} onClick={(ev) => ev.stopPropagation()}>
             dates
         </div>
     )

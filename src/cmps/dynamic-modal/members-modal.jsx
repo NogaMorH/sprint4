@@ -6,7 +6,8 @@ import { HiCheck } from 'react-icons/hi'
 import { useDispatch } from "react-redux"
 import { updateTask } from "../../store/board/board.actions"
 
-export const MembersModal = ({ groupId, taskId, closeModal }) => {
+export const MembersModal = ({ groupId, taskId, closeModal, className }) => {
+    console.log('className:', className)
 
     const board = useSelector(state => state.boardModule.board)
     const { members } = board
@@ -48,7 +49,7 @@ export const MembersModal = ({ groupId, taskId, closeModal }) => {
     }
 
     return (
-        <div className='dynamic-modal members-modal' onClick={(ev) => ev.stopPropagation()}>
+        <div className={`dynamic-modal members-modal ${className ? className : ''}`} onClick={(ev) => ev.stopPropagation()}>
 
             <div className="dynamic-header">
                 <h5>Members</h5>
