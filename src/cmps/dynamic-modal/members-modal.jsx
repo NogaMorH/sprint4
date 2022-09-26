@@ -66,14 +66,22 @@ export const MembersModal = ({ groupId, taskId, closeModal }) => {
                                 <h6>Board members</h6>
 
                                 {foundUsers.map(member => {
-                                    const { _id, fullname, imgUrl } = member
+                                    // temporary - member.id instead of member._id
+                                    const { id, fullname, imgUrl } = member
+                                    // const { _id, fullname, imgUrl } = member
 
                                     return (
-                                        <li key={_id} onClick={() => toggleMember(_id)}>
+                                        // temporary - member.id instead of member._id
+                                        <li key={id} onClick={() => toggleMember(id)}>
                                             <img src={imgUrl} title={fullname} alt="user-avatar" />
                                             <span className="fullname">{fullname}</span>
-                                            {memberIds && memberIds.includes(_id) && <span className="icon-check"><HiCheck /></span>}
+                                            {memberIds && memberIds.includes(id) && <span className="icon-check"><HiCheck /></span>}
                                         </li>
+                                        // <li key={_id} onClick={() => toggleMember(_id)}>
+                                        //     <img src={imgUrl} title={fullname} alt="user-avatar" />
+                                        //     <span className="fullname">{fullname}</span>
+                                        //     {memberIds && memberIds.includes(_id) && <span className="icon-check"><HiCheck /></span>}
+                                        // </li>
                                     )
                                 })}
                             </ul>

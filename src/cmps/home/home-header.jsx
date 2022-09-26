@@ -12,7 +12,7 @@ export const HomeHeader = () => {
             </Link>
             <div className='flex header-links'>
                 <Link to='login' className='login-link'>Log in</Link>
-                <Link to='board/6331abaa11800c29ac07f628' className='btn btn-wide'>Get Rello for free</Link>
+                <Link to='board/633207f911800c29ac69cc99' className='btn btn-wide'>Get Rello for free</Link>
             </div>
         </header>
     )

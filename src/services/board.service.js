@@ -268,12 +268,8 @@ async function updateBoardLabels(board, labels) {
 }
 
 function getMemberImgUrl(board, memberId) {
-    console.log('members:',board.members)
-    console.log('memberId:', memberId)
     const member = board.members.find(member => member.id === memberId)
-    console.log('member:', member)
     const url = member.imgUrl
-    console.log('url:', url)
     return url
 }
 

@@ -9,6 +9,7 @@
     color: $clr8;
     line-height: 20px;
     z-index: 45;
+    cursor: default; // without it get pointer from black-screen
 
     h4 {
         font-size: rem(15.5px);
