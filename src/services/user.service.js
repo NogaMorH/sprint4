@@ -3,7 +3,8 @@ import { httpService } from './http.service'
 // import { socketService, SOCKET_EVENT_USER_UPDATED, SOCKET_EMIT_USER_WATCH } from './socket.service'
 // import { showSuccessMsg } from '../services/event-bus.service'
 
-const BASE_URL = 'user'
+const USER_BASE_URL = 'user'
+const AUTH_BASE_URL = 'auth'
 const STORAGE_KEY_LOGGEDIN_USER = 'loggedinUser'
 
 export const userService = {
@@ -21,7 +22,7 @@ export const userService = {
 // window.userService = userService
 
 function getUsers() {
-    return httpService.query(BASE_URL)
+    return httpService.query(USER_BASE_URL)
     // return httpService.get(`user`)
 }
 
@@ -30,7 +31,7 @@ function getUsers() {
 // }
 
 async function getById(userId) {
-    const user = await httpService.get(BASE_URL + userId)
+    const user = await httpService.get(USER_BASE_URL + userId)
     // const user = await httpService.get(`user/${userId}`)
 
     // socketService.emit(SOCKET_EMIT_USER_WATCH, userId)
@@ -40,12 +41,12 @@ async function getById(userId) {
 }
 
 function remove(userId) {
-    return httpService.delete(BASE_URL + userId)
+    return httpService.delete(USER_BASE_URL + userId)
     // return httpService.delete(`user/${userId}`)
 }
 
 async function update(user) {
-    await httpService.put(BASE_URL + user._id, user)
+    await httpService.put(USER_BASE_URL + user._id, user)
     // user = await httpService.put(`user/${user._id}`, user)
     // Handle case in which admin updates other user's details
     if (getLoggedinUser()._id === user._id) saveLocalUser(user)
@@ -53,8 +54,12 @@ async function update(user) {
 }
 
 async function login(userCred) {
-    const users = await httpService.query(BASE_URL, userCred)
-    const user = users.find(user => user.username === userCred.username)
+    const users = await httpService.get(AUTH_BASE_URL, userCred)
+    console.log('users:', users)
+    const user = users.find(user => {
+        return user.username === userCred.username && user.password === userCred.password
+    })
+    console.log('user:', user)
     // const user = await httpService.post('auth/login', userCred)
     if (user) {
         // socketService.login(user._id)
@@ -63,7 +68,7 @@ async function login(userCred) {
 }
 
 async function signup(userCred) {
-    const user = await httpService.post(BASE_URL, userCred)
+    const user = await httpService.post(AUTH_BASE_URL, userCred)
     // const user = await httpService.post('auth/signup', userCred)
     // socketService.login(user._id)
     return saveLocalUser(user)
