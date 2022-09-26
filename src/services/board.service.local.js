@@ -161,7 +161,7 @@ async function removeTask(board, groupId, taskId) {
 }
 
 function getMemberImgUrl(board, memberId) {
-    const url = board.members.find(member => member._id === memberId).imgUrl
+    const url = board.members.find(member => member.id === memberId).imgUrl
     return url
 }
 
@@ -178,7 +178,7 @@ function getTask(board, groupId, taskId) {
 
 function getTaskMembers(board, groupId, taskId) {
     const memberIds = getTask(board, groupId, taskId).memberIds
-    return board.members.filter(member => memberIds.includes(member._id))
+    return board.members.filter(member => memberIds.includes(member.id))
 }
 
 function getTaskLabels(board, groupId, taskId) {

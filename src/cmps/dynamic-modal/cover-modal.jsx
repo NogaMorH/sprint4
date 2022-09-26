@@ -37,6 +37,7 @@ export const CoverModal = ({ taskId, groupId, closeModal }) => {
             url: imgUrl,
             isCover: true
         }
+        console.log('imgUrl:', imgUrl)
         if (!task.attachments) task.attachments = []
         if (task.cover) task.cover = imgUrl
         task.attachments.unshift(attachment)

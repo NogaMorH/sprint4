@@ -24,7 +24,7 @@ export const Members = ({ members }) => {
             <h6>Members</h6>
             <div className="members-profile-img">
                 {members.map(member => (
-                    <img key={member._id} src={member.imgUrl} alt="profile img" />
+                    <img key={member.id} src={member.imgUrl} alt="profile img" />
                 ))}
             </div>
             <button className="icon-add" onClick={toggleModal}><BsPlusLg /></button>

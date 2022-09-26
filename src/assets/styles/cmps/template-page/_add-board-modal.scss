@@ -1,0 +1,110 @@
+.add-board-modal {
+    position: absolute;
+    width: 304px;
+    z-index: 10;
+    background-color: #fff;
+    box-shadow: inset 0 0 0 1px #dfe1e6;
+    border-radius: 3px;
+    color: $clr23;
+    cursor: default;
+
+    button {
+        display: inline;
+        padding: 6px 12px;
+        color: $clr8;
+
+        &:hover {
+            background-color: $clr24;
+        }
+
+        &:active {
+            color: $clr18;
+            background-color: #e4f0f6;
+        }
+    }
+
+    .add-board-modal-title-container {
+        position: relative;
+        height: 41px;
+        margin: 0 12px;
+        margin-bottom: 8px;
+        border-bottom: 1px solid #091e4221;
+        text-align: center;
+
+        .add-board-modal-title {
+            font-family: san-francisco-light, sans-serif;
+            font-size: rem(13.5px);
+            line-height: 40px;
+            margin: auto;
+        }
+
+        .btn-close-add-board-modal {
+            position: absolute;
+            top: 12px;
+            right: 0;
+            font-size: rem(19px);
+
+            &:hover {
+                color: $clr8;
+            }
+        }
+    }
+
+    .add-board-modal-content {
+        padding: 12px;
+    }
+
+    .board-display-img-container {
+        display: flex;
+        justify-content: center;
+        padding-bottom: 8px;
+
+        .board-display-img {
+            width: 200px;
+            height: 120px;
+            border-radius: 3px;
+            box-shadow: 0 7px 15px rgb(0 0 0 / 15%);
+            display: flex;
+            background: url('https://images.unsplash.com/photo-1559666126-84f389727b9a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1477&q=80');
+            background-size: cover;
+            background-position: center center;
+            align-items: center;
+            justify-content: center;
+
+            img {
+                padding: 7px;
+            }
+
+        }
+    }
+
+    .bg-picker-container {
+        padding-bottom: 4px
+    }
+
+    .bg-img-list {
+        display: flex;
+        justify-content: space-between;
+        padding: 0 0 8px;
+
+        .bg-img-preview {
+            width: 64px;
+            height: 40px;
+            object-fit: contain;
+        }
+    }
+
+    .bg-color-list {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .bg-color-preview {
+        width: 40px;
+        height: 32px;
+
+        &:hover {
+            filter: saturate(90%) brightness(85%);
+        }
+    }
+}

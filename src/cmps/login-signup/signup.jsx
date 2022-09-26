@@ -26,6 +26,7 @@ export function SignUp() {
         initialValues: {
             firstName: "",
             lastName: "",
+            username: "",
             email: "",
             password: ""
         },
@@ -35,6 +36,9 @@ export function SignUp() {
                 .required("Required"),
             lastName: yup.string()
                 .max(20, "Must be 20 characters or less. Please try again."),
+            username: yup.string()
+                .max(10, "Must be 10 characters or less. Please try again.")
+                .required("Required"),
             email: yup.string()
                 .email("Invalid email address")
                 .required("Required"),
@@ -109,6 +113,22 @@ export function SignUp() {
                                     value={formik.values.lastName} />
                                 {formik.touched.lastName && formik.errors.lastName ? (
                                     <span className="error">{formik.errors.lastName}</span>
+                                ) : <span>&nbsp;</span>}
+                            </Grid>
+                            <Grid item xs={12}>
+                                <TextField
+                                    required
+                                    fullWidth
+                                    id="username"
+                                    label="username"
+                                    name="username"
+                                    onChange={formik.handleChange}
+                                    onFocus={handleFocus}
+                                    onBlur={formik.handleBlur}
+                                    onBlurCapture={(ev) => { onBlur(ev, 'username') }}
+                                    value={formik.values.username} />
+                                {formik.touched.username && formik.errors.username ? (
+                                    <span className="error">{formik.errors.username}</span>
                                 ) : <span>&nbsp;</span>}
                             </Grid>
                             <Grid item xs={12}>

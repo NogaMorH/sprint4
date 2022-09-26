@@ -268,7 +268,12 @@ async function updateBoardLabels(board, labels) {
 }
 
 function getMemberImgUrl(board, memberId) {
-    const url = board.members.find(member => member._id === memberId).imgUrl
+    console.log('members:',board.members)
+    console.log('memberId:', memberId)
+    const member = board.members.find(member => member.id === memberId)
+    console.log('member:', member)
+    const url = member.imgUrl
+    console.log('url:', url)
     return url
 }
 
@@ -285,7 +290,7 @@ function getTask(board, groupId, taskId) {
 
 function getTaskMembers(board, groupId, taskId) {
     const memberIds = getTask(board, groupId, taskId).memberIds
-    return board.members.filter(member => memberIds.includes(member._id))
+    return board.members.filter(member => memberIds.includes(member.id))
 }
 
 function getTaskLabels(board, groupId, taskId) {
