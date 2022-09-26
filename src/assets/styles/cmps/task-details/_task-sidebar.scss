@@ -4,12 +4,28 @@
     font-size: rem(14px);
 
     button {
+        position: relative;
         width: 168px;
         margin-bottom: 10px;
 
         &:active {
             color: $clr18;
             background-color: #e4f0f6;
+        }
+
+        .icon {
+            position: absolute;
+            top: 7.5px;
+            left: 8px;
+            color: $clr8;
+
+            &:active {
+                color: $clr18; //not working !
+            }
+        }
+
+        .sidebar-cmp {
+            padding-left: 20px;
         }
     }
 }

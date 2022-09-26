@@ -3,8 +3,12 @@ import { boardService } from "../../services/board.service"
 import { updateTask } from "../../store/board/board.actions"
 import { uploadImg } from "../../cloudinary-service"
 import { IoCloseOutline } from "react-icons/io5"
+import { useSelector } from "react-redux"
 
-export const CoverModal = ({ taskId, groupId, task, toggleCoverModal }) => {
+export const CoverModal = ({ taskId, groupId, closeModal }) => {
+
+    const board = useSelector(state => state.boardModule.board)
+    const task = boardService.getTask(board, groupId, taskId)
     const dispatch = useDispatch()
     // const [isColorSelected, setColorSelected] = useState(null)
     const coverColors = ['#7bc86c', '#f5dd2a', '#fbaf40', '#ef7564', '#cd8de5', '#5ba3cf', '#37cce5', '#6deca8', '#fa8ed5', '#172b4d']
@@ -42,10 +46,10 @@ export const CoverModal = ({ taskId, groupId, task, toggleCoverModal }) => {
     }
 
     return (
-        <section className="dynamic-modal cover-modal-container">
+        <section className="dynamic-modal cover-modal-container" onClick={(ev) => ev.stopPropagation()}>
             <div className="dynamic-header">
                 <h4>Cover</h4>
-                <span onClick={toggleCoverModal}><IoCloseOutline className="btn-close-cover-modal" /></span>
+                <span onClick={closeModal}><IoCloseOutline className="btn-close-cover-modal" /></span>
             </div>
             <div className="cover-modal-color-container">
                 <h5 className="color-title">Colors</h5>
@@ -75,5 +79,3 @@ export const CoverModal = ({ taskId, groupId, task, toggleCoverModal }) => {
         </section >
     )
 }
-
-// onClick={(ev) => onSetCoverImg

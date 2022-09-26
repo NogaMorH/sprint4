@@ -3,21 +3,23 @@ import { boardService } from "../../services/board.service"
 import { LabelStyleCmp } from "../dynamic-modal/label-style-cmp"
 import { BsPlusLg } from 'react-icons/bs'
 import { DynamicModal } from "../dynamic-modal/dynamic-modal"
-import { useState } from "react"
 import { useDispatch } from "react-redux"
-import { setDynamicModalType } from "../../store/board/board.actions"
+import { setDynamicModal } from "../../store/board/board.actions"
+import { useSelector } from "react-redux"
 
 export const Labels = ({ board }) => {
 
+    const dynamicModal = useSelector(state => state.systemModule.dynamicModal)
     const params = useParams()
     const { groupId, taskId } = params
     const labels = boardService.getTaskLabels(board, groupId, taskId)
-    const [isOpen, setIsOpen] = useState(false)
     const dispatch = useDispatch()
 
     const toggleModal = () => {
-        setIsOpen(!isOpen)
-        dispatch(setDynamicModalType(null)) // temporary - use 'click outside'
+        if (dynamicModal.modalType === 'labels') {
+            return dispatch(setDynamicModal({ modalType: null, fromCmp: null }))
+        }
+        dispatch(setDynamicModal({ modalType: 'labels', fromCmp: 'labels' }))
     }
 
     return (
@@ -31,8 +33,9 @@ export const Labels = ({ board }) => {
                 <button className="icon-add" onClick={toggleModal}><BsPlusLg /></button>
             </ul>
 
-            {isOpen &&
-                <DynamicModal type='labels' groupId={groupId} taskId={taskId} closeModal={toggleModal} />}
+            {dynamicModal.modalType === 'labels' && dynamicModal.fromCmp === 'labels' &&
+                <DynamicModal type='labels' groupId={groupId} taskId={taskId} closeModal={toggleModal} />
+            }
         </div>
     )
 }

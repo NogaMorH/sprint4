@@ -1,7 +1,7 @@
 import { TodoList } from "./todo-list"
 import { TbCheckbox } from 'react-icons/tb'
-import { useState } from "react"
 import { IoCloseOutline } from 'react-icons/io5'
+import { useState } from "react"
 
 export const Checklist = ({ checklist, updateChecklists, removeChecklist }) => {
 
@@ -52,7 +52,6 @@ export const Checklist = ({ checklist, updateChecklists, removeChecklist }) => {
                         <span><IoCloseOutline /></span>
                     </div>
                 }
-
             </div>
 
             <TodoList todos={todos} updateChecklist={updateChecklist} />

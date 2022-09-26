@@ -21,7 +21,7 @@ export const boardService = {
     getBoardById,
     save,
     remove,
-    updateBoard,
+    // updateBoard,
     saveGroup,
     removeGroup,
     duplicateGroup,
@@ -32,7 +32,10 @@ export const boardService = {
     getGroup,
     getTask,
     getTaskMembers,
-    getTaskLabels
+    getTaskLabels,
+    moveTask,
+    moveGroup,
+    setBoardIsStarred,
 }
 // window.cs = boardService
 
@@ -56,10 +59,11 @@ async function getBoardById(boardId) {
 }
 
 async function save(board) {
+    console.log('board from service:', board)
     var savedBoard
     if (board._id) {
         try {
-            savedBoard = await httpService.put(BASE_URL, board)
+            savedBoard = await httpService.put(BASE_URL + board._id, board)
         } catch (err) {
             console.log('Save board has failed:', err)
             throw err
@@ -89,15 +93,15 @@ async function remove(boardId) {
     }
 }
 
-async function updateBoard(newBoard) {
-    try {
-        await httpService.put(BASE_URL + newBoard._id, newBoard)
-        return { ...newBoard }
-    } catch (err) {
-        console.log('UpdateBoard in board service has failed:', err)
-        throw err
-    }
-}
+// async function updateBoard(newBoard) {
+//     try {
+//         await httpService.put(BASE_URL + newBoard._id, newBoard)
+//         return { ...newBoard }
+//     } catch (err) {
+//         console.log('UpdateBoard in board service has failed:', err)
+//         throw err
+//     }
+// }
 
 async function saveGroup(board, group) {
     try {
@@ -192,6 +196,76 @@ async function removeTask(board, groupId, taskId) {
     }
 }
 
+async function moveTask(board, result) {
+    try {
+        const { destination, source, draggableId } = result
+        const { droppableId, index } = source
+        const group = board.groups.find(group => group.id === droppableId)
+        const task = group.tasks.find(task => task.id === draggableId)
+
+        const start = board.groups.find(group => group.id === droppableId)
+        const finish = board.groups.find(group => group.id === destination.droppableId)
+        let newGroup
+        if (start === finish) {
+            group.tasks.splice(index, 1)
+            group.tasks.splice(destination.index, 0, task)
+
+            newGroup = {
+                ...group,
+                tasks: group.tasks
+            }
+
+        } else {
+
+            const sourceTasks = start.tasks
+            const currTask = sourceTasks.find((task, idx) => index === idx)
+            sourceTasks.splice(index, 1)
+            const destinationTasks = finish.tasks
+            destinationTasks.splice(destination.index, 0, currTask)
+            newGroup = {
+                ...finish,
+                tasks: destinationTasks
+            }
+        }
+
+        const newBoard = {
+            ...board,
+            groups: board.groups.map(group => group.id === newGroup.id ? newGroup : group)
+        }
+        await httpService.put(BASE_URL + board._id, board)
+        return newBoard
+    } catch (err) {
+        console.log('Remove task has failed:', err);
+        throw err
+    }
+}
+
+async function moveGroup(board, result) {
+    try {
+        const { destination, source, draggableId } = result
+        const { index } = source
+        const currGroup = board.groups.find(group => group.id === draggableId)
+        board.groups.splice(index, 1)
+        board.groups.splice(destination.index, 0, currGroup)
+        await httpService.put(BASE_URL + board._id, board)
+        return { ...board }
+    } catch (err) {
+        console.log('Remove task has failed:', err);
+        throw err
+    }
+}
+
+async function updateBoardLabels(board, labels) {
+    try {
+        board.labels = labels
+        await httpService.put(BASE_URL + board._id, board)
+        return { ...board }
+    } catch (err) {
+        console.log('UpdateBoard in board service has failed:', err)
+        throw err
+    }
+}
+
 function getMemberImgUrl(board, memberId) {
     const url = board.members.find(member => member._id === memberId).imgUrl
     return url
@@ -216,6 +290,19 @@ function getTaskMembers(board, groupId, taskId) {
 function getTaskLabels(board, groupId, taskId) {
     const labelIds = getTask(board, groupId, taskId).labelIds
     return board.labels.filter(label => labelIds.includes(label.id))
+}
+
+async function setBoardIsStarred(board) {
+    try {
+     board.isStarred = !board.isStarred
+    await httpService.put(BASE_URL + board._id, board)
+    console.log('board from service:', board)
+    return board
+    } catch (err) {
+        console.log('Set board as starred has failed:', err);
+        throw err
+    }
+
 }
 
 // TEST DATA

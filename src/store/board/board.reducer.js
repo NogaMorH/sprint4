@@ -1,5 +1,7 @@
 const initialState = {
-    boards: []
+    boards: [],
+    board: null
+
 }
 
 export function boardReducer(state = initialState, action) {
@@ -9,7 +11,7 @@ export function boardReducer(state = initialState, action) {
         case 'SET_BOARDS':
             return { ...state, boards: action.miniBoards }
         case 'UPDATE_BOARD':
-            return { ...state, miniBoards: action.updatedBoard }
+            return { ...state, board: action.updatedBoard }
 
         default:
             return state

@@ -1,11 +1,14 @@
 import { useDispatch } from 'react-redux'
 import { useParams } from 'react-router-dom'
-import { updateTask } from '../../store/board/board.actions'
+import { setDynamicModal, updateTask } from '../../store/board/board.actions'
 import { Attachment } from './attachment'
 import { ImAttachment } from 'react-icons/im'
+import { DynamicModal } from '../dynamic-modal/dynamic-modal'
+import { useSelector } from 'react-redux'
 
 export const AttachmentList = ({ attachments, closeAttachmentEditModal, task }) => {
 
+    const dynamicModal = useSelector(state => state.systemModule.dynamicModal)
     const dispatch = useDispatch()
     const params = useParams()
     const { groupId, taskId } = params
@@ -43,8 +46,11 @@ export const AttachmentList = ({ attachments, closeAttachmentEditModal, task }) 
         dispatch(updateTask(groupId, taskId, 'attachments', attachments))
     }
 
-    const addAttachment = () => {
-        // opens the same modal dynamic of Task SideBar
+    const toggleModal = () => {
+        if (dynamicModal.modalType === 'attachment') {
+            return dispatch(setDynamicModal({ modalType: null, fromCmp: null }))
+        }
+        dispatch(setDynamicModal({ modalType: 'attachment', fromCmp: 'attachment' }))
     }
 
     return (
@@ -68,7 +74,11 @@ export const AttachmentList = ({ attachments, closeAttachmentEditModal, task }) 
                 )
             })}
 
-            <button className='add-attachment-btn' onClick={addAttachment}>Add an attachment</button>
+            <button className='add-attachment-btn' onClick={toggleModal}>Add an attachment</button>
+
+            {dynamicModal.modalType === 'attachment' && dynamicModal.fromCmp === 'attachment' &&
+                <DynamicModal type='attachment' groupId={groupId} taskId={taskId} closeModal={toggleModal} />
+            }
         </div >
     )
 }
