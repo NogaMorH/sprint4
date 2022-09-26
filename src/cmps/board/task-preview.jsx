@@ -1,9 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux'
-import { utilService } from '../../services/util.service'
-import { boardService } from '../../services/board.service'
 import { BiPencil } from 'react-icons/bi'
-import { Outlet, useNavigate } from 'react-router-dom'
-import { toggleBlackScreen, setModalTaskId } from '../../store/board/board.actions'
+import { useNavigate } from 'react-router-dom'
+import { setModalTaskId } from '../../store/board/board.actions'
 import { TaskEditModal } from './task-edit-modal'
 
 import { Draggable } from 'react-beautiful-dnd'
@@ -20,16 +18,11 @@ export const TaskPreview = ({ task, groupId, index }) => {
     const openTaskEditModal = (ev) => {
         ev.stopPropagation()
         dispatch(setModalTaskId(task.id))
-        // dispatch(toggleBlackScreen())
-        // document.addEventListener('click', closeTaskEditModal)
     }
 
     const closeTaskEditModal = (ev) => {
         ev.stopPropagation()
         dispatch(setModalTaskId(null))
-        // dispatch(toggleBlackScreen())
-        console.log('close:');
-        // document.removeEventListener('click', closeTaskEditModal)
     }
 
     const openTaskDetails = () => {
@@ -51,29 +44,26 @@ export const TaskPreview = ({ task, groupId, index }) => {
                     {...provided.draggableProps}
                     {...provided.dragHandleProps}
                     ref={provided.innerRef}>
+
                     {cover &&
                         (cover.img ?
                             <img className='task-cover-img' src={cover.img} alt="cover" />
                             :
-                            <div className='task-cover-color' style={{ background: `${cover.color}` }}>
-                            </div>)}
-
+                            <div className='task-cover-color' style={{ background: `${cover.color}` }}></div>
+                        )
+                    }
                     {modalTaskId === id &&
                         <TaskEditModal task={task} groupId={groupId}
-                            closeTaskEditModal={(ev) => closeTaskEditModal(ev)} isBadge={isBadge} />}
+                            closeTaskEditModal={(ev) => closeTaskEditModal(ev)} isBadge={isBadge} />
+                    }
                     <div className='task-preview'>
-                        {/* {attachments && attachments.map((attachment, idx) => {
-                            if (attachment.isCover) {
-                                return <img key={idx} className='task-cover-img' src={attachment.url} alt="cover" />
-                            }
-                        })} */}
                         <div className="task-preview-details">
                             <div className="task-title">{title}</div>
-                            <button className="btn task-edit-icon" onClick={openTaskEditModal}>
-                                <BiPencil />
-                            </button>
+                            <button className="btn task-edit-icon" onClick={openTaskEditModal}><BiPencil /></button>
+
                             {isBadge() &&
-                                <TaskPreviewBadge task={task} />}
+                                <TaskPreviewBadge task={task} />
+                            }
                         </div>
                     </div>
                 </section >
