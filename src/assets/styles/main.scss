@@ -34,6 +34,7 @@
 @import "cmps/board/task-edit-modal";
 @import "cmps/board/task-filter";
 @import "cmps/board/task-preview";
+@import "cmps/board/task-preview-labels";
 @import "cmps/board/task-preview-badge";
 @import "cmps/board/form-add.scss";
 // home
@@ -68,6 +69,6 @@
 @import "cmps/dynamic-modal/delete-label-modal";
 @import "cmps/dynamic-modal/checklist-modal";
 @import "cmps/dynamic-modal/attachment-modal";
-@import "cmps/task-details/cover-modal";
+@import "cmps/dynamic-modal/cover-modal";
 // login signup
 @import "cmps/login-signup/login-signup-header"

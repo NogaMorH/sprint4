@@ -6,6 +6,7 @@ import { TaskEditModal } from './task-edit-modal'
 
 import { Draggable } from 'react-beautiful-dnd'
 import { TaskPreviewBadge } from './task-preview-badge'
+import { TaskPreviewLabels } from './task-preview-labels'
 
 export const TaskPreview = ({ task, groupId, index }) => {
     const board = useSelector(state => state.boardModule.board)
@@ -58,6 +59,7 @@ export const TaskPreview = ({ task, groupId, index }) => {
                     }
                     <div className='task-preview'>
                         <div className="task-preview-details">
+                            <TaskPreviewLabels />
                             <div className="task-title">{title}</div>
                             <button className="btn task-edit-icon" onClick={openTaskEditModal}><BiPencil /></button>
 

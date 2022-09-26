@@ -6,7 +6,6 @@
         width: 100%;
         text-align: left;
         margin: 2px 0 0;
-        cursor: pointer;
 
         &:hover {
             background-color: #091e420a;
@@ -24,6 +23,7 @@
             left: 0;
             width: 304px;
             height: 32px;
+            font-size: 0;
             cursor: pointer;
         }
     }
