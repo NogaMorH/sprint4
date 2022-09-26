@@ -3,8 +3,8 @@ import Avatar from '@mui/material/Avatar'
 import Button from '@mui/material/Button'
 import CssBaseline from '@mui/material/CssBaseline'
 import TextField from '@mui/material/TextField'
-import FormControlLabel from '@mui/material/FormControlLabel'
-import Checkbox from '@mui/material/Checkbox'
+// import FormControlLabel from '@mui/material/FormControlLabel'
+// import Checkbox from '@mui/material/Checkbox'
 import Link from '@mui/material/Link'
 import Grid from '@mui/material/Grid'
 import Box from '@mui/material/Box'
@@ -33,7 +33,8 @@ export function SignUp() {
             firstName: yup.string()
                 .max(15, "Must be 15 characters or less. Please try again.")
                 .required("Required"),
-            lastName: yup.string().max(20, "Must be 20 characters or less. Please try again."),
+            lastName: yup.string()
+                .max(20, "Must be 20 characters or less. Please try again."),
             email: yup.string()
                 .email("Invalid email address")
                 .required("Required"),
