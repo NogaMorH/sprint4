@@ -1,17 +1,18 @@
 import { hover } from "@testing-library/user-event/dist/hover"
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 import { useDispatch } from "react-redux"
 import { useSelector } from "react-redux"
 import { Link } from "react-router-dom"
 import { loadBoards, setBoardIsStarred, updateBoard } from "../store/board/board.actions"
 import { RiStarLine, RiStarSFill } from 'react-icons/ri'
 import { AiOutlineClockCircle } from "react-icons/ai"
+import { AddBoardModal } from "../cmps/template-page/add-board-modal"
 
 export const TemplatePage = () => {
 
     const boards = useSelector(state => state.boardModule.boards)
-
     const dispatch = useDispatch()
+    const [isAddBoardModalOpen, setIsAddBoardModalOpen] = useState(false)
 
     useEffect(() => {
         // console.log('miniBoards:', boards)
@@ -35,6 +36,11 @@ export const TemplatePage = () => {
         onLoadBoards()
     }
 
+    const toggleAddBoardModal = () => {
+        console.log('isAddBoardModalOpen:', isAddBoardModalOpen)
+        setIsAddBoardModalOpen(!isAddBoardModalOpen)
+    }
+
     const onGetStarredBoards = () => {
         const starredBoards = boards.filter(board => board.isStarred)
         // console.log('starredBoards:', starredBoards)
@@ -45,7 +51,7 @@ export const TemplatePage = () => {
     if (!boards) return <div>Loading...</div>
     return (
         <div className="board-list-container">
-            {onGetStarredBoards().length &&
+            {onGetStarredBoards().length > 0 &&
                 <div className="sttared-board-container">
                     <div className="board-list-title-container">
                         <span className="board-list-title-icon"> <RiStarLine /></span>
@@ -91,7 +97,11 @@ export const TemplatePage = () => {
                             </li>
                         </Link>
                     })}
+                    <li className="add-board" onClick={toggleAddBoardModal}>
+                        <div className="add-board-title">Create new board</div>
+                    </li>
                 </ul>
+                {isAddBoardModalOpen && <AddBoardModal toggleAddBoardModal={toggleAddBoardModal} />}
             </section >
         </div >
     )

@@ -17,10 +17,11 @@ export const BoardSecondaryHeader = ({ board }) => {
                     <span className='divider'></span>
                     <span className="member-avatars">
                         {board.members && board.members.map((member, idx) => (
-                            <img key={member._id} src={boardService.getMemberImgUrl(board, member._id)}
+                            <img key={member.id} src={boardService.getMemberImgUrl(board, member.id)}
                                 alt="profile img" className='member-avatar'
                                 style={{ transform: `translate(${getAvatarPosition(idx)}px)` }} />
-                        ))}
+                        )
+                        )}
                     </span>
                 </div>
             </div>

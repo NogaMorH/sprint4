@@ -38,7 +38,7 @@ export const TaskPreview = ({ task, groupId, index }) => {
 
     if (!task) return <div>Loading...</div>
     return (
-        <Draggable key={id} draggableId={id} index={index}>
+        <Draggable key={id} draggableId={id} index={index} isDragDisabled={modalTaskId !== null}>
             {(provided) => (
                 <section className='task-preview-container'
                     onClick={openTaskDetails}

@@ -8,6 +8,7 @@
     .board-list-title-container {
         padding-bottom: rem(5.5px);
         display: flex;
+        margin-inline-start: 5px;
 
         .board-list-title-icon {
             font-size: rem(22px);
@@ -50,7 +51,7 @@
             margin-right: rem(15px);
             margin-bottom: rem(55px);
             border-radius: 3px;
-            background-color: aqua;
+            background-color: red;
 
 
             .board-preview-details {
@@ -65,21 +66,23 @@
                     color: #fff;
                     font-weight: 700;
                     font-family:700;
+                    margin-inline-start: 2px;
+                    margin-top: 2px;
                 }
 
                 // &:hover {
                     .starred {
                         color: #f1d600;
                         position: absolute;
-                        right: 6px;
-                        bottom: 0px;
+                        right: 11px;
+                        bottom: 7px;
                         font-size: rem(18px);
                     }
 
                     .unstarred {
                         position: absolute;
-                        right: 6px;
-                        bottom: 0px;
+                        right: 11px;
+                        bottom: 7px;
                         font-size: rem(16px)
                     }
                 }
