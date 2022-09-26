@@ -259,9 +259,9 @@ export function setTitleGroupId(groupId) {
     }
 }
 
-export function setModalAttachmentIdx(idx) {
+export function setEditModalAttachmentIdx(idx) {
     return (dispatch) => {
-        dispatch({ type: 'SET_MODAL_ATTACHMENT_IDX', idx })
+        dispatch({ type: 'SET_EDIT_MODAL_ATTACHMENT_IDX', idx })
     }
 }
 

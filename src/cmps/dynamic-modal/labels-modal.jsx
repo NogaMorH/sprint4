@@ -25,7 +25,6 @@ export const LabelsModal = ({ groupId, taskId, closeModal }) => {
     const dispatch = useDispatch()
     const ref = useRef()
 
-    console.log('openModal:', openModal);
 
     useEffect(() => {
         ref.current.focus()
@@ -46,14 +45,12 @@ export const LabelsModal = ({ groupId, taskId, closeModal }) => {
     }
 
     const toggleModal = (type, label) => {
-        console.log('type:', type);
         if (type === 'edit') {
 
             if (!label?.color) {
                 label = { color: '#7BC86C', title: '' }
             }
         }
-        console.log('label:', label);
         setCurrLabel(label)
         setOpenModal(type)
     }
@@ -80,7 +77,6 @@ export const LabelsModal = ({ groupId, taskId, closeModal }) => {
         const idx = labels.indexOf(label)
 
         if (action === 'delete') {
-            console.log('label to update:', label);
             labels.splice(idx, 1)
         }
         else if (!label.id) {
@@ -94,7 +90,7 @@ export const LabelsModal = ({ groupId, taskId, closeModal }) => {
     }
 
     return (
-        <div className='dynamic-modal labels-modal-container'>
+        <div className='dynamic-modal labels-modal-container' onClick={(ev) => ev.stopPropagation()}>
 
             <div className="dynamic-header">
                 {openModal !== 'main' && <span className="icon-less" onClick={() => setOpenModal('main')}><FontAwesomeIcon icon={faLessThan} size="2xs" /></span>}

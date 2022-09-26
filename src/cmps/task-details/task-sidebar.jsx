@@ -1,3 +1,10 @@
+import { HiOutlineUser } from "react-icons/hi"
+import { AiOutlineTag } from "react-icons/ai"
+import { TbCheckbox } from "react-icons/tb"
+import { MdOutlineWatchLater } from "react-icons/md"
+import { ImAttachment } from "react-icons/im"
+import { FiCreditCard } from "react-icons/fi"
+import { VscArchive } from "react-icons/vsc"
 import { useDispatch } from "react-redux"
 import { useSelector } from "react-redux"
 import { useParams } from "react-router-dom"
@@ -28,14 +35,28 @@ export const TaskSideBar = () => {
             {types.map((type, idx) => {
                 return (
                     <div key={idx}>
-                        <button className="task-sidebar-btn" onClick={() => openModal(type)}>{type}</button>
+                        <button className="task-sidebar-btn" onClick={() => openModal(type)}>
+                            <span className="icon">
+                                {type === 'members' && <HiOutlineUser />}
+                                {type === 'labels' && <AiOutlineTag />}
+                                {type === 'checklist' && <TbCheckbox />}
+                                {type === 'dates' && <MdOutlineWatchLater />}
+                                {type === 'attachment' && <ImAttachment />}
+                                {type === 'cover' && <FiCreditCard />}
+                            </span>
+                            <span className="sidebar-cmp">{type}</span>
+                        </button>
+
                         {dynamicModal.modalType === type && dynamicModal.fromCmp === 'sidebar' &&
                             <DynamicModal type={type} groupId={groupId} taskId={taskId} closeModal={closeModal} />
                         }
                     </div>
                 )
             })}
-            <button>Archive</button>
+            <button>
+                <span className="icon"><VscArchive /></span>
+                <span className="sidebar-cmp">Archive</span>
+            </button>
         </div>
     )
 }

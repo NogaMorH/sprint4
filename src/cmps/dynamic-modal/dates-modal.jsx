@@ -1,7 +1,7 @@
-export const DatesModal = ({ dynamicClassName, groupId, taskId }) => {
+export const DatesModal = ({ groupId, taskId, closeModal }) => {
 
     return (
-        <div className={`${dynamicClassName} members-modal`}>
+        <div className='dynamic-modal dates-modal' onClick={(ev) => ev.stopPropagation()}>
             dates
         </div>
     )

@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { boardService } from '../services/board.service'
-import { setDynamicModal, setModalAttachmentIdx, updateTask } from '../store/board/board.actions'
+import { setDynamicModal, setEditModalAttachmentIdx, updateTask } from '../store/board/board.actions'
 import { TaskSideBar } from '../cmps/task-details/task-sidebar'
 import { Members } from '../cmps/task-details/members'
 import { DueDate } from '../cmps/task-details/due-date'
@@ -40,22 +40,19 @@ export const TaskDetails = () => {
         navigate(`/board/${board._id}`)
     }
 
-    const toggleModal = () => {
+    const closeModal = (ev) => {
+        ev.stopPropagation()
+        if (dynamicModal.modalType) {
+            dispatch(setDynamicModal({ modalTYpe: null, fromCmp: null }))
+        }
+    }
+
+    const toggleCoverModal = () => {
         if (dynamicModal.modalType === 'cover') {
             return dispatch(setDynamicModal({ modalType: null, fromCmp: null }))
         }
         dispatch(setDynamicModal({ modalType: 'cover', fromCmp: 'cover' }))
     }
-
-    // const closeAttachmentEditModal = (ev) => {
-    //     if (ev.target.className === 'attachment-modal-header' ||
-    //         ev.target.className === 'attachment-modal-content' ||
-    //         ev.target.className === 'update-btn') {
-    //         return
-    //     }
-    //     dispatch(setModalAttachmentIdx(null))
-    //     document.removeEventListener('click', closeAttachmentEditModal)
-    // }
 
     const handleTitleChange = ({ target }) => {
         setTaskTitle(target.value)
@@ -67,14 +64,14 @@ export const TaskDetails = () => {
 
     return (
         <div className="black-screen" onClick={closeTaskDetails}>
-            <div className="task-details-layout task-details-container" ref={ref} onClick={(ev) => ev.stopPropagation()}>
+            <div className="task-details-layout task-details-container" ref={ref} onClick={closeModal}>
 
                 <div className='full task-details-cover'>
                     {dynamicModal.modalType === 'cover' && dynamicModal.fromCmp === 'cover' &&
-                        <DynamicModal type='cover' groupId={groupId} taskId={taskId} closeModal={toggleModal} />
+                        <DynamicModal type='cover' groupId={groupId} taskId={taskId} closeModal={toggleCoverModal} />
                     }
                     <button className="close-task-details" onClick={closeTaskDetails}><IoCloseOutline /> </button>
-                    <button className="btn btn-cover-modal" onClick={toggleModal}>
+                    <button className="btn btn-cover-modal" onClick={toggleCoverModal}>
                         <span className='cover-modal-icon'><FiCreditCard /></span>
                         Cover
                     </button>

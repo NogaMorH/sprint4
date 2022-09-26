@@ -2,7 +2,7 @@ import { useSelector } from "react-redux"
 import { GrAttachment } from 'react-icons/gr'
 import { ImArrowUpRight2 } from 'react-icons/im'
 import { FiCreditCard } from 'react-icons/fi'
-import { setModalAttachmentIdx } from '../../store/board/board.actions'
+import { setEditModalAttachmentIdx } from '../../store/board/board.actions'
 import { useDispatch } from "react-redux"
 import { AttachmentEditModal } from "./attachment-edit-modal"
 
@@ -20,9 +20,13 @@ export const Attachment = ({ attachment, idx, toggleCover, removeAttachment, upd
         ev.stopPropagation()
 
         if (modalAttachmnetIdx === idx) {
-            return dispatch(setModalAttachmentIdx(null))
+            return closeEditModal()
         }
-        dispatch(setModalAttachmentIdx(idx))
+        dispatch(setEditModalAttachmentIdx(idx))
+    }
+
+    const closeEditModal = () => {
+        dispatch(setEditModalAttachmentIdx(null))
     }
 
     const updateName = (value) => {
@@ -49,7 +53,7 @@ export const Attachment = ({ attachment, idx, toggleCover, removeAttachment, upd
                     <button className="actions-remove-btn hover-btn"
                         onClick={(ev) => removeAttachment(ev, idx)}>Delete</button>
                     -
-                    <button className="actions-edit-btn hover-btn"
+                    <button name='edit-btn' className="actions-edit-btn hover-btn"
                         onClick={toggleEditModal}>Edit</button>
                 </div>
 
@@ -63,7 +67,7 @@ export const Attachment = ({ attachment, idx, toggleCover, removeAttachment, upd
                 }
             </div>
 
-            {modalAttachmnetIdx === idx && <AttachmentEditModal name={name} toggleEditModal={toggleEditModal} updateName={updateName} />}
+            {modalAttachmnetIdx === idx && <AttachmentEditModal name={name} closeEditModal={closeEditModal} updateName={updateName} />}
         </div>
     )
 }
