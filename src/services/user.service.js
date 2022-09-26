@@ -3,8 +3,8 @@ import { httpService } from './http.service'
 // import { socketService, SOCKET_EVENT_USER_UPDATED, SOCKET_EMIT_USER_WATCH } from './socket.service'
 // import { showSuccessMsg } from '../services/event-bus.service'
 
-const USER_BASE_URL = 'user'
-const AUTH_BASE_URL = 'auth'
+const USER_BASE_URL = 'user/'
+const AUTH_BASE_URL = 'auth/'
 const STORAGE_KEY_LOGGEDIN_USER = 'loggedinUser'
 
 export const userService = {
@@ -22,8 +22,11 @@ export const userService = {
 // window.userService = userService
 
 function getUsers() {
-    return httpService.query(USER_BASE_URL)
-    // return httpService.get(`user`)
+    try {
+        return httpService.query(USER_BASE_URL)
+    } catch (err) {
+        console.log('Get users from user service has failed:', err)
+    }
 }
 
 // function onUserUpdate(user) {
@@ -31,53 +34,65 @@ function getUsers() {
 // }
 
 async function getById(userId) {
-    const user = await httpService.get(USER_BASE_URL + userId)
-    // const user = await httpService.get(`user/${userId}`)
-
-    // socketService.emit(SOCKET_EMIT_USER_WATCH, userId)
-    // socketService.off(SOCKET_EVENT_USER_UPDATED, onUserUpdate)
-    // socketService.on(SOCKET_EVENT_USER_UPDATED, onUserUpdate)
-    return user
+    try {
+        const user = await httpService.get(USER_BASE_URL + userId)
+        // socketService.emit(SOCKET_EMIT_USER_WATCH, userId)
+        // socketService.off(SOCKET_EVENT_USER_UPDATED, onUserUpdate)
+        // socketService.on(SOCKET_EVENT_USER_UPDATED, onUserUpdate)
+        return user
+    } catch (err) {
+        console.log('Get by id has failed in user service', err)
+    }
 }
 
 function remove(userId) {
-    return httpService.delete(USER_BASE_URL + userId)
-    // return httpService.delete(`user/${userId}`)
+    try {
+        return httpService.delete(USER_BASE_URL + userId)
+    } catch (err) {
+        console.log('Remove has failed in user service', err)
+    }
 }
 
 async function update(user) {
-    await httpService.put(USER_BASE_URL + user._id, user)
-    // user = await httpService.put(`user/${user._id}`, user)
-    // Handle case in which admin updates other user's details
-    if (getLoggedinUser()._id === user._id) saveLocalUser(user)
-    return user
+    try {
+        await httpService.put(USER_BASE_URL + user._id, user)
+        if (getLoggedinUser()._id === user._id) saveLocalUser(user)
+        return user
+    } catch (err) {
+        console.log('Update has failed in user service', err)
+    }
 }
 
 async function login(userCred) {
-    const users = await httpService.get(AUTH_BASE_URL, userCred)
-    console.log('users:', users)
-    const user = users.find(user => {
-        return user.username === userCred.username && user.password === userCred.password
-    })
-    console.log('user:', user)
-    // const user = await httpService.post('auth/login', userCred)
-    if (user) {
-        // socketService.login(user._id)
-        return saveLocalUser(user)
+    try {
+        const users = await httpService.get(`${AUTH_BASE_URL}login`, userCred)
+        console.log('users:', users)
+        const user = users.find(user => {
+            return user.username === userCred.username && user.password === userCred.password
+        })
+        console.log('user:', user)
+        if (user) {
+            // socketService.login(user._id)
+            return saveLocalUser(user)
+        }
+    } catch (err) {
+        console.log('Login has failed in user service', err)
     }
 }
 
 async function signup(userCred) {
-    const user = await httpService.post(AUTH_BASE_URL, userCred)
-    // const user = await httpService.post('auth/signup', userCred)
-    // socketService.login(user._id)
-    return saveLocalUser(user)
+    try {
+        const user = await httpService.post(`${AUTH_BASE_URL}signup`, userCred)
+        // socketService.login(user._id)
+        return saveLocalUser(user)
+    } catch (err) {
+        console.log('Signup has failed in user service', err)
+    }
 }
 
 async function logout() {
     sessionStorage.removeItem(STORAGE_KEY_LOGGEDIN_USER)
     // socketService.logout()
-    // return await httpService.post('auth/logout')
 }
 
 function saveLocalUser(user) {
