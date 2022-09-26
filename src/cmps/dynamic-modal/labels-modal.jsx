@@ -90,7 +90,7 @@ export const LabelsModal = ({ groupId, taskId, closeModal }) => {
     }
 
     return (
-        <div className='dynamic-modal labels-modal-container'>
+        <div className='dynamic-modal labels-modal-container' onClick={(ev) => ev.stopPropagation()}>
 
             <div className="dynamic-header">
                 {openModal !== 'main' && <span className="icon-less" onClick={() => setOpenModal('main')}><FontAwesomeIcon icon={faLessThan} size="2xs" /></span>}

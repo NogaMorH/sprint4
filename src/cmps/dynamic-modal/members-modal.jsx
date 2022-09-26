@@ -48,7 +48,7 @@ export const MembersModal = ({ groupId, taskId, closeModal }) => {
     }
 
     return (
-        <div className='dynamic-modal members-modal'>
+        <div className='dynamic-modal members-modal' onClick={(ev) => ev.stopPropagation()}>
 
             <div className="dynamic-header">
                 <h5>Members</h5>

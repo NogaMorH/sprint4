@@ -1,4 +1,4 @@
-import { CoverModal } from "../task-details/cover-modal"
+import { CoverModal } from "./cover-modal"
 import { AttachmentModal } from "./attachment-modal"
 import { ChecklistModal } from "./checklist-modal"
 import { DatesModal } from "./dates-modal"

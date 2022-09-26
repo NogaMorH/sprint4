@@ -27,7 +27,7 @@ export function systemReducer(state = initialState, action = {}) {
       return { ...state, titleGroupId: action.groupId }
     case 'SET_MODAL_TASK_ID':
       return { ...state, modalTaskId: action.taskId }
-    case 'SET_MODAL_ATTACHMENT_IDX':
+    case 'SET_EDIT_MODAL_ATTACHMENT_IDX':
       return { ...state, modalAttachmnetIdx: action.idx }
     case 'SET_DYNAMIC_MODAL_TYPE':
       return { ...state, dynamicModal: { ...state.dynamicModal, modalType: action.modalType } }

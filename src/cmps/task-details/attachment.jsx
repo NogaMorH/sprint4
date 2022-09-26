@@ -2,7 +2,7 @@ import { useSelector } from "react-redux"
 import { GrAttachment } from 'react-icons/gr'
 import { ImArrowUpRight2 } from 'react-icons/im'
 import { FiCreditCard } from 'react-icons/fi'
-import { setModalAttachmentIdx } from '../../store/board/board.actions'
+import { setEditModalAttachmentIdx } from '../../store/board/board.actions'
 import { useDispatch } from "react-redux"
 import { AttachmentEditModal } from "./attachment-edit-modal"
 
@@ -22,11 +22,11 @@ export const Attachment = ({ attachment, idx, toggleCover, removeAttachment, upd
         if (modalAttachmnetIdx === idx) {
             return closeEditModal()
         }
-        dispatch(setModalAttachmentIdx(idx))
+        dispatch(setEditModalAttachmentIdx(idx))
     }
 
     const closeEditModal = () => {
-        dispatch(setModalAttachmentIdx(null))
+        dispatch(setEditModalAttachmentIdx(null))
     }
 
     const updateName = (value) => {

@@ -46,7 +46,7 @@ export const CoverModal = ({ taskId, groupId, closeModal }) => {
     }
 
     return (
-        <section className="dynamic-modal cover-modal-container">
+        <section className="dynamic-modal cover-modal-container" onClick={(ev) => ev.stopPropagation()}>
             <div className="dynamic-header">
                 <h4>Cover</h4>
                 <span onClick={closeModal}><IoCloseOutline className="btn-close-cover-modal" /></span>
@@ -79,5 +79,3 @@ export const CoverModal = ({ taskId, groupId, closeModal }) => {
         </section >
     )
 }
-
-// onClick={(ev) => onSetCoverImg

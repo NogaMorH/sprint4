@@ -1,3 +1,4 @@
+import { faL } from "@fortawesome/free-solid-svg-icons"
 import { useEffect, useState } from "react"
 import { useRef } from "react"
 import { IoCloseOutline } from "react-icons/io5"
@@ -12,6 +13,7 @@ export const AttachmentModal = ({ groupId, taskId, closeModal }) => {
     const attachments = boardService.getTask(board, groupId, taskId).attachments
     const [url, setUrl] = useState('')
     const [name, setName] = useState('')
+    const [isFile, setIsFile] = useState(false)
     const dispatch = useDispatch()
     const ref = useRef()
 
@@ -19,17 +21,22 @@ export const AttachmentModal = ({ groupId, taskId, closeModal }) => {
         ref.current.focus()
     }, [])
 
+    useEffect(() => {
+        if (isFile) addAttachment()
+    }, [isFile])
+
     const onChange = ({ target }) => {
-        if (target.name === 'url') {
+        setIsFile(false)
+        if (target.files) {
+            setUrl(URL.createObjectURL(target.files[0]))
+            setName(target.files[0].name)
+            setIsFile(true)
+        }
+        else if (target.name === 'url') {
             setUrl(target.value)
         } else {
             setName(target.value)
         }
-        
-        // console.log('target.files:', target.files);
-        // if (target.files) {
-        //     setUrl(URL.createObjectURL(target.files[0]))
-        // }
     }
 
     const addAttachment = () => {
@@ -40,7 +47,7 @@ export const AttachmentModal = ({ groupId, taskId, closeModal }) => {
     }
 
     return (
-        <div className='dynamic-modal attachment-modal'>
+        <div className='dynamic-modal attachment-modal' onClick={(ev) => ev.stopPropagation()}>
 
             <div className="dynamic-header">
                 <h5>Attach from...</h5>
@@ -49,7 +56,7 @@ export const AttachmentModal = ({ groupId, taskId, closeModal }) => {
 
             <button className="attach-file">
                 <span>Computer</span>
-                {/* <input type="file" onChange={onChange} /> */}
+                <input type="file" onChange={onChange} />
             </button>
 
             <div className="dynamic-content attach-link">

@@ -30,7 +30,7 @@ export const ChecklistModal = ({ groupId, taskId, closeModal }) => {
     }
 
     return (
-        <div className='dynamic-modal checklist-modal'>
+        <div className='dynamic-modal checklist-modal' onClick={(ev) => ev.stopPropagation()}>
             <div className="dynamic-header">
                 <h5>Add checklist</h5>
                 <span onClick={closeModal}><IoCloseOutline /></span>
