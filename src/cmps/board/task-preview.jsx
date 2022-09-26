@@ -46,18 +46,16 @@ export const TaskPreview = ({ task, groupId, index }) => {
                     {...provided.dragHandleProps}
                     ref={provided.innerRef}>
 
-                    {cover &&
-                        (cover.img ?
-                            <img className='task-cover-img' src={cover.img} alt="cover" />
-                            :
-                            <div className='task-cover-color' style={{ background: `${cover.color}` }}></div>
-                        )
-                    }
                     {modalTaskId === id &&
                         <TaskEditModal task={task} groupId={groupId}
-                            closeTaskEditModal={(ev) => closeTaskEditModal(ev)} isBadge={isBadge} />
-                    }
+                            closeTaskEditModal={(ev) => closeTaskEditModal(ev)} isBadge={isBadge} />}
                     <div className='task-preview'>
+                        {cover &&
+                            (cover.img ?
+                                <img className='task-cover-img' src={cover.img} alt="cover" />
+                                :
+                                <div className='task-cover-color' style={{ background: `${cover.color}` }}>
+                                </div>)}
                         <div className="task-preview-details">
                             <TaskPreviewLabels />
                             <div className="task-title">{title}</div>
