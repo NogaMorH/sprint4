@@ -1,14 +1,6 @@
 .task-preview-container {
     position: relative;
 
-
-    .task-cover-color {
-        height: 32px;
-        width: 100%;
-        border-radius: 3px 3px 0 0;
-    }
-
-
     .task-preview {
         background-color: $clr5;
         margin-bottom: 8px;
@@ -20,8 +12,16 @@
         color: $clr8;
         transition: background-color .2s;
 
+        .task-cover-color {
+            height: 32px;
+            width: 100%;
+            border-radius: 3px 3px 0 0;
+        }
+
         .task-cover-img {
             height: 163.33333333333334px;
+            border-radius: 3px 3px 0 0;
+            object-fit: contain;
         }
 
         .task-edit-icon {

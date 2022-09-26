@@ -51,22 +51,17 @@ export const TaskPreview = ({ task, groupId, index }) => {
                     {...provided.draggableProps}
                     {...provided.dragHandleProps}
                     ref={provided.innerRef}>
-                    {cover &&
-                        (cover.img ?
-                            <img className='task-cover-img' src={cover.img} alt="cover" />
-                            :
-                            <div className='task-cover-color' style={{ background: `${cover.color}` }}>
-                            </div>)}
 
                     {modalTaskId === id &&
                         <TaskEditModal task={task} groupId={groupId}
                             closeTaskEditModal={(ev) => closeTaskEditModal(ev)} isBadge={isBadge} />}
                     <div className='task-preview'>
-                        {/* {attachments && attachments.map((attachment, idx) => {
-                            if (attachment.isCover) {
-                                return <img key={idx} className='task-cover-img' src={attachment.url} alt="cover" />
-                            }
-                        })} */}
+                        {cover &&
+                            (cover.img ?
+                                <img className='task-cover-img' src={cover.img} alt="cover" />
+                                :
+                                <div className='task-cover-color' style={{ background: `${cover.color}` }}>
+                                </div>)}
                         <div className="task-preview-details">
                             <div className="task-title">{title}</div>
                             <button className="btn task-edit-icon" onClick={openTaskEditModal}>

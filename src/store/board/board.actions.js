@@ -105,8 +105,7 @@ export function setBoardIsStarred(board) {
     console.log('board from action:', board)
     return async (dispatch) => {
         try {
-            const updatedBoard = await boardService.setBoardIsStarred(board)
-            dispatch({ type: 'UPDATE_BOARD', updatedBoard })
+             await boardService.setBoardIsStarred(board)
         } catch (err) {
             console.log('Cannot set board as starred', err)
         }

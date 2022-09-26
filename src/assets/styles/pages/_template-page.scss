@@ -1,31 +1,89 @@
-
 .board-list-container {
-    height: 100%;
+    display: flex;
+    flex-direction: column;
+    margin: 80px 50px 50px;
+    width: 100%;
+   
+
     .board-list-title-container {
-        padding-bottom: rem(11px);
-    }
-}
+        padding-bottom: rem(5.5px);
+        display: flex;
 
+        .board-list-title-icon {
+            font-size: rem(22px);
+        }
 
-.board-list {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-    gap: 14px;
+        .board-list-title {
+            margin-inline-start: 15px;
+            font-size: rem(15px);
+            line-height: 24px;
+            /* margin-bottom: 8px; */
+            font-family: san-fransisco-medium, sans-serif;
 
-    .board-preview {
-        margin: 0 2% 2% 0;
-        padding: 0;
-        transform: translate(0);
-        height: rem(80px);
-        background-color: aqua;
+        }
 
+        .starred-board-container {
+            // padding: 0 0 20px;
+            // display: flex;
+            // flex-direction: column;
+            // flex-wrap: wrap;
+        }
 
-        .board-preview-details {
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            height: rem(80px);
-            padding: 6px 0px 6px 6px;
+        .all-boards {
+            // display: flex;
+            // flex-direction: column;
+            // flex-wrap: wrap;
         }
     }
-}
+
+
+    .board-list {
+        display: flex;
+        flex-wrap: wrap;
+
+        .board-preview {
+            margin: 0 2% 2% 0;
+            padding: 0;
+            transform: translate(0);
+            height: rem(98px);
+            width: rem(193px);
+            margin-right: rem(15px);
+            margin-bottom: rem(55px);
+            border-radius: 3px;
+            background-color: aqua;
+
+
+            .board-preview-details {
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                height: rem(75px);
+                height: 100%;
+                padding: 6px 6px 6px 6px;
+
+                .board-title {
+                    color: #fff;
+                    font-weight: 700;
+                    font-family:700;
+                }
+
+                // &:hover {
+                    .starred {
+                        color: #f1d600;
+                        position: absolute;
+                        right: 6px;
+                        bottom: 0px;
+                        font-size: rem(18px);
+                    }
+
+                    .unstarred {
+                        position: absolute;
+                        right: 6px;
+                        bottom: 0px;
+                        font-size: rem(16px)
+                    }
+                }
+            }
+        }
+    }
+// }
