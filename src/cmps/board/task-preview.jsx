@@ -14,7 +14,7 @@ export const TaskPreview = ({ task, groupId, index }) => {
     const dispatch = useDispatch()
     const navigate = useNavigate()
 
-    const { title, dueDate, memberIds, description, attachments, id } = task
+    const { title, dueDate, labelIds, memberIds, description, attachments, id } = task
 
     const openTaskEditModal = (ev) => {
         ev.stopPropagation()
@@ -48,16 +48,18 @@ export const TaskPreview = ({ task, groupId, index }) => {
 
                     {modalTaskId === id &&
                         <TaskEditModal task={task} groupId={groupId}
-                            closeTaskEditModal={(ev) => closeTaskEditModal(ev)} isBadge={isBadge} />}
+                            closeTaskEditModal={(ev) => closeTaskEditModal(ev)} isBadge={isBadge} />
+                    }
                     <div className='task-preview'>
                         {cover &&
                             (cover.img ?
                                 <img className='task-cover-img' src={cover.img} alt="cover" />
                                 :
-                                <div className='task-cover-color' style={{ background: `${cover.color}` }}>
-                                </div>)}
+                                <div className='task-cover-color' style={{ background: `${cover.color}` }}></div>
+                            )
+                        }
                         <div className="task-preview-details">
-                            <TaskPreviewLabels />
+                            {labelIds && <TaskPreviewLabels groupId={groupId} taskId={task.id} />}
                             <div className="task-title">{title}</div>
                             <button className="btn task-edit-icon" onClick={openTaskEditModal}><BiPencil /></button>
 

@@ -35,6 +35,7 @@ export const boardService = {
     getTaskLabels,
     moveTask,
     moveGroup,
+    updateBoardLabels,
     setBoardIsStarred,
 }
 // window.cs = boardService
@@ -294,10 +295,10 @@ function getTaskLabels(board, groupId, taskId) {
 
 async function setBoardIsStarred(board) {
     try {
-     board.isStarred = !board.isStarred
-     console.log('board serviceeee:', board)
-    await httpService.put(BASE_URL + board._id, board)
-    return board
+        board.isStarred = !board.isStarred
+        console.log('board serviceeee:', board)
+        await httpService.put(BASE_URL + board._id, board)
+        return board
     } catch (err) {
         console.log('Set board as starred has failed:', err);
         throw err

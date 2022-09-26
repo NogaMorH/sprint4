@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { boardService } from '../services/board.service'
-import { setDynamicModal, setEditModalAttachmentIdx, updateTask } from '../store/board/board.actions'
+import { setDynamicModal, updateTask } from '../store/board/board.actions'
 import { TaskSideBar } from '../cmps/task-details/task-sidebar'
 import { Members } from '../cmps/task-details/members'
 import { DueDate } from '../cmps/task-details/due-date'
@@ -71,6 +71,7 @@ export const TaskDetails = () => {
                         <DynamicModal type='cover' groupId={groupId} taskId={taskId} closeModal={toggleCoverModal} />
                     }
                     <button className="close-task-details" onClick={closeTaskDetails}><IoCloseOutline /> </button>
+
                     <button className="btn btn-cover-modal" onClick={toggleCoverModal}>
                         <span className='cover-modal-icon'><FiCreditCard /></span>
                         Cover
