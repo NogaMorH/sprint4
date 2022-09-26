@@ -63,7 +63,7 @@ export const CoverModal = ({ taskId, groupId, closeModal }) => {
                 </ul>
                 <div className="upload-img-container">
                     <button className="btn img-upload">Upload a cover image
-                        <input className="img-upload-btn" type="file" id='img-uplaod' onChange={onImgUpload} />
+                        <input className="img-upload-btn" type="file" id='img-uplaod' onChange={onImgUpload}  />
                     </button>
                 </div>
             </div>

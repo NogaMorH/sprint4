@@ -16,7 +16,7 @@ export const TemplatePage = () => {
     useEffect(() => {
         // console.log('miniBoards:', boards)
         onLoadBoards()
-   
+
     }, [])
 
     useEffect(() => {
@@ -25,13 +25,14 @@ export const TemplatePage = () => {
 
     const onLoadBoards = () => {
         dispatch(loadBoards())
-     
+
     }
 
     const toggleIsStarred = (ev, board) => {
         ev.stopPropagation()
         ev.preventDefault()
         dispatch(setBoardIsStarred(board))
+        onLoadBoards()
     }
 
     const onGetStarredBoards = () => {
@@ -43,11 +44,11 @@ export const TemplatePage = () => {
 
     if (!boards) return <div>Loading...</div>
     return (
-        <div className="template-layout board-list-container">
+        <div className="board-list-container">
             {onGetStarredBoards().length &&
                 <div className="sttared-board-container">
                     <div className="board-list-title-container">
-                        <span className="starred-board-list-title-icon"> <RiStarLine /></span>
+                        <span className="board-list-title-icon"> <RiStarLine /></span>
                         <span className="board-list-title">Starred boards
                         </span>
                     </div>
@@ -56,41 +57,42 @@ export const TemplatePage = () => {
                             return <Link to={`/board/${board._id}`} key={board._id}>
                                 <li className="board-preview">
                                     <div className="board-preview-details">
-                                        <div className="board-title">{board.title}</div>
-                                        <div className="starred" onClick={(ev) => toggleIsStarred(ev, board)}><RiStarSFill /></div>
+                                        <span className="board-title">{board.title}</span>
+                                        <span className="starred" onClick={(ev) => toggleIsStarred(ev, board)}><RiStarSFill /></span>
                                     </div>
                                 </li>
                             </Link>
                         })}
                     </ul>
                 </div>}
-
-            <div className="board-list-title">
-                <div className="board-list-title-container">
-                    <span className="board-list-title-icon"><AiOutlineClockCircle /></span>
-                    <span className="board-list-title">Recently viewed</span>
+            <section className="all-boards">
+                <div className="board-list-title">
+                    <div className="board-list-title-container">
+                        <span className="board-list-title-icon"><AiOutlineClockCircle /></span>
+                        <span className="board-list-title">Recently viewed</span>
+                    </div>
+                    {/* <h4>YOUR WORKSPACES</h4> */}
                 </div>
-                {/* <h4>YOUR WORKSPACES</h4> */}
-            </div>
-            <ul className="board-list">
-                {boards.map(board => {
-                    return <Link to={`/board/${board._id}`} key={board._id}>
-                        <li className="board-preview">
-                            <div className="board-preview-details">
-                                <div className="board-title">{board.title}</div>
-                                {board.isStarred &&
-                                    <div className="starred" onClick={(ev) => toggleIsStarred(ev, board)}>
-                                        <RiStarSFill />
-                                    </div>}
-                                {!board.isStarred &&
-                                    <div className="unsttared" onClick={(ev) => toggleIsStarred(ev, board)}>
-                                        <RiStarLine />
-                                    </div>}
-                            </div>
-                        </li>
-                    </Link>
-                })}
-            </ul>
+                <ul className="board-list">
+                    {boards.map(board => {
+                        return <Link to={`/board/${board._id}`} key={board._id}>
+                            <li className="board-preview">
+                                <div className="board-preview-details">
+                                    <span className="board-title">{board.title}</span>
+                                    {board.isStarred &&
+                                        <span className="starred" onClick={(ev) => toggleIsStarred(ev, board)}>
+                                            <RiStarSFill />
+                                        </span>}
+                                    {!board.isStarred &&
+                                        <span className="unstarred" onClick={(ev) => toggleIsStarred(ev, board)}>
+                                            <RiStarLine />
+                                        </span>}
+                                </div>
+                            </li>
+                        </Link>
+                    })}
+                </ul>
+            </section >
         </div >
     )
 }
