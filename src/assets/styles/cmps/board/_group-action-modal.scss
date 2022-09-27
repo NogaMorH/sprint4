@@ -2,4 +2,8 @@
     @include modal;
     left: 240px;
     top: 40px;
+
+    .close-icon {
+        @include close-icon;
+    }
 }

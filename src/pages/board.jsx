@@ -42,7 +42,7 @@ export const Board = () => {
     if (!board) return <div>Loading...</div>
     return (
         <div className='board-layout board-page'>
-            <BoardMainHeader />
+            <MainHeader />
             <main className='full board-layout board-layout board' style={getBoardBg(board)}>
                 <BoardSecondaryHeader board={board} />
                 <div className='group-list-container'>
