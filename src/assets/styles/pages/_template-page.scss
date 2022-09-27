@@ -1,9 +1,8 @@
 .board-list-container {
     display: flex;
     flex-direction: column;
-    margin: 80px 50px 50px;
+    margin: 100px 100px 100px;
     width: 100%;
-   
 
     .board-list-title-container {
         padding-bottom: rem(5.5px);
@@ -20,23 +19,9 @@
             line-height: 24px;
             /* margin-bottom: 8px; */
             font-family: san-fransisco-medium, sans-serif;
-
-        }
-
-        .starred-board-container {
-            // padding: 0 0 20px;
-            // display: flex;
-            // flex-direction: column;
-            // flex-wrap: wrap;
-        }
-
-        .all-boards {
-            // display: flex;
-            // flex-direction: column;
-            // flex-wrap: wrap;
+            font-weight: 700;
         }
     }
-
 
     .board-list {
         display: flex;
@@ -51,8 +36,19 @@
             margin-right: rem(15px);
             margin-bottom: rem(55px);
             border-radius: 3px;
-            background-color: red;
+            background-color: #d29033;
 
+            &.add-board {
+                background-color: #f0f2f5;
+                color: #172b4d;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                position: relative;
+                cursor: pointer;
+                font-family: san-francisco-light, sans-serif;
+                font-size: rem(14px);
+            }
 
             .board-preview-details {
                 display: flex;
@@ -65,28 +61,30 @@
                 .board-title {
                     color: #fff;
                     font-weight: 700;
-                    font-family:700;
+                    font-family: 700;
                     margin-inline-start: 2px;
                     margin-top: 2px;
                 }
 
                 // &:hover {
-                    .starred {
-                        color: #f1d600;
-                        position: absolute;
-                        right: 11px;
-                        bottom: 7px;
-                        font-size: rem(18px);
-                    }
+                .starred {
+                    color: #f1d600;
+                    position: absolute;
+                    right: 11px;
+                    bottom: 7px;
+                    font-size: rem(18px);
+                }
 
-                    .unstarred {
-                        position: absolute;
-                        right: 11px;
-                        bottom: 7px;
-                        font-size: rem(16px)
-                    }
+                .unstarred {
+                    position: absolute;
+                    right: 11px;
+                    bottom: 7px;
+                    font-size: rem(16px);
+                    color: #fff;
                 }
             }
         }
     }
+}
+
 // }

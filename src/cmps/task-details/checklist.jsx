@@ -2,6 +2,7 @@ import { TodoList } from "./todo-list"
 import { TbCheckbox } from 'react-icons/tb'
 import { IoCloseOutline } from 'react-icons/io5'
 import { useState } from "react"
+import { ChecklistProgressBar } from "./checklist-progress-bar"
 
 export const Checklist = ({ checklist, updateChecklists, removeChecklist }) => {
 
@@ -53,6 +54,8 @@ export const Checklist = ({ checklist, updateChecklists, removeChecklist }) => {
                     </div>
                 }
             </div>
+
+            <ChecklistProgressBar checklist={checklist} />
 
             <TodoList todos={todos} updateChecklist={updateChecklist} />
         </div>
