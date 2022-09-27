@@ -10,7 +10,7 @@ import { updateTask } from '../../store/board/board.actions'
 import { boardService } from '../../services/board.service'
 import { useSelector } from 'react-redux'
 
-export const DatesModal = ({ groupId, taskId, closeModal, className }) => {
+export const DatesModal = ({ groupId, taskId, className }) => {
 
     const board = useSelector(state => state.boardModule.board)
     const task = boardService.getTask(board, groupId, taskId)
