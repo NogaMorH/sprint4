@@ -16,11 +16,20 @@ import { useFormik } from 'formik'
 import * as yup from 'yup'
 import { useDispatch } from 'react-redux'
 import { onSignup } from '../../store/user/user.actions'
+import { useSelector } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
+import { useEffect } from 'react'
 
-export function SignUp() {
+export function SignUp({ setIsLogin }) {
 
     const theme = createTheme()
     const dispatch = useDispatch()
+    const user = useSelector(state => state.userModule.user)
+    const navigate = useNavigate()
+
+    useEffect(() => {
+        if (user) navigate('/template')
+    })
 
     const formik = useFormik({
         initialValues: {
@@ -182,9 +191,9 @@ export function SignUp() {
                         </Button>
                         <Grid container justifyContent="flex-end">
                             <Grid item>
-                                <Link href="#" variant="body2">
+                                <button onClick={() => setIsLogin(true)} variant="body2">
                                     Already have an account? Sign in
-                                </Link>
+                                </button>
                             </Grid>
                         </Grid>
                     </Box>

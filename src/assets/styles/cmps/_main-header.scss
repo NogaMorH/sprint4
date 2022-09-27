@@ -1,4 +1,4 @@
-.board-main-header {
+.main-header {
     height: 44px;
     background-color: #b7c4e6;
     height: fit-content;
@@ -6,8 +6,8 @@
     .header-main-container {
         @include header;
         align-items: center;
-        padding-top: 3.5px;
-        padding-bottom: 3.5px;
+        padding-top: 6px;
+        padding-bottom: 6px;
 
         .logo-container {
             display: flex;
@@ -38,5 +38,13 @@
 
     .header-links {
         padding-inline-end: 5px;
+    }
+
+    .avatar-btn {
+        background-color: inherit;
+    }
+
+    .avatar {
+        width: 32px;
     }
 }
