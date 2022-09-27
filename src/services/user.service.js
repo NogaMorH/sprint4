@@ -5,7 +5,7 @@ import { httpService } from './http.service'
 
 const USER_BASE_URL = 'user/'
 const AUTH_BASE_URL = 'auth/'
-const STORAGE_KEY_LOGGEDIN_USER = 'loggedinUser'
+const STORAGE_KEY_LOGGEDIN_USER = 'loggedInUser'
 
 export const userService = {
     login,
@@ -86,8 +86,12 @@ async function signup(userCred) {
 }
 
 async function logout() {
-    sessionStorage.removeItem(STORAGE_KEY_LOGGEDIN_USER)
-    // socketService.logout()
+    try {
+        await httpService.post(`${AUTH_BASE_URL}logout`)
+        sessionStorage.removeItem('loggedInUser')
+    } catch (err) {
+        console.log(err)
+    }
 }
 
 function saveLocalUser(user) {
