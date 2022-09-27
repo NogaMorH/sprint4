@@ -6,7 +6,8 @@ import { HiCheck } from 'react-icons/hi'
 import { useDispatch } from "react-redux"
 import { updateTask } from "../../store/board/board.actions"
 
-export const MembersModal = ({ groupId, taskId, closeModal }) => {
+export const MembersModal = ({ groupId, taskId, closeModal, className }) => {
+    console.log('className:', className)
 
     const board = useSelector(state => state.boardModule.board)
     const { members } = board
@@ -48,7 +49,7 @@ export const MembersModal = ({ groupId, taskId, closeModal }) => {
     }
 
     return (
-        <div className='dynamic-modal members-modal' onClick={(ev) => ev.stopPropagation()}>
+        <div className={`dynamic-modal members-modal ${className ? className : ''}`} onClick={(ev) => ev.stopPropagation()}>
 
             <div className="dynamic-header">
                 <h5>Members</h5>
@@ -66,14 +67,22 @@ export const MembersModal = ({ groupId, taskId, closeModal }) => {
                                 <h6>Board members</h6>
 
                                 {foundUsers.map(member => {
-                                    const { _id, fullname, imgUrl } = member
+                                    // temporary - member.id instead of member._id
+                                    const { id, fullname, imgUrl } = member
+                                    // const { _id, fullname, imgUrl } = member
 
                                     return (
-                                        <li key={_id} onClick={() => toggleMember(_id)}>
+                                        // temporary - member.id instead of member._id
+                                        <li key={id} onClick={() => toggleMember(id)}>
                                             <img src={imgUrl} title={fullname} alt="user-avatar" />
                                             <span className="fullname">{fullname}</span>
-                                            {memberIds && memberIds.includes(_id) && <span className="icon-check"><HiCheck /></span>}
+                                            {memberIds && memberIds.includes(id) && <span className="icon-check"><HiCheck /></span>}
                                         </li>
+                                        // <li key={_id} onClick={() => toggleMember(_id)}>
+                                        //     <img src={imgUrl} title={fullname} alt="user-avatar" />
+                                        //     <span className="fullname">{fullname}</span>
+                                        //     {memberIds && memberIds.includes(_id) && <span className="icon-check"><HiCheck /></span>}
+                                        // </li>
                                     )
                                 })}
                             </ul>

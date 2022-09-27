@@ -1,29 +1,28 @@
-.members {
+.members-container {
     margin-left: 33px;
     margin-bottom: 12px;
 
-    &-profile-img {
+    .members-div {
+        display: flex;
 
-        img {
-            width: rem(30px);
+        >* {
+            width: 32px;
+            height: 32px;
             margin-right: 5px;
             border-radius: 50%;
         }
-    }
 
-    .icon-add {
-        display: inline;
-        width: 32px;
-        height: 32px;
-        border-radius: 50%;
-        padding: 0;
-        padding-top: 3px;
-        font-size: rem(12px);
-        color: $clr8;
+        .icon-add {
+            display: inline;
+            padding: 0;
+            padding-top: 3px;
+            font-size: rem(12px);
+            color: $clr8;
 
-        &:active {
-            color: $clr18;
-            background-color: #e4f0f6;
+            &:active {
+                color: $clr18;
+                background-color: #e4f0f6;
+            }
         }
     }
 }

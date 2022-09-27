@@ -60,7 +60,7 @@ async function getBoardById(boardId) {
 }
 
 async function save(board) {
-    console.log('board from service:', board)
+    // console.log('board from service:', board)
     var savedBoard
     if (board._id) {
         try {
@@ -74,6 +74,30 @@ async function save(board) {
         // Later, owner is set by the backend
         // board.owner = userService.getLoggedinUser()
         try {
+            board = {
+                ...board,
+                isStarred: false,
+                createdBy: {
+                    fullname: '',
+                    imgUrl: ''
+                },
+                labels: [],
+                members: [],
+                groups: [{
+                    id: utilService.makeId(),
+                    title: '',
+                    createdAt: Date.now(),
+                    style: { color: "#EF7564" },
+                    byMember: {
+                        id: '',
+                        fullname: '',
+                        imgUrl: ''
+                    },
+                    tasks: []
+                }]
+            }
+            console.log('hiiiiiiiidifsjfaksdfn:')
+            console.log('board:', board)
             savedBoard = await httpService.post(BASE_URL, board)
             // boardChannel.postMessage(getActionAddBoard(savedBoard))
         } catch (err) {
@@ -268,12 +292,8 @@ async function updateBoardLabels(board, labels) {
 }
 
 function getMemberImgUrl(board, memberId) {
-    console.log('members:',board.members)
-    console.log('memberId:', memberId)
     const member = board.members.find(member => member.id === memberId)
-    console.log('member:', member)
     const url = member.imgUrl
-    console.log('url:', url)
     return url
 }
 
@@ -298,12 +318,16 @@ function getTaskLabels(board, groupId, taskId) {
     return board.labels.filter(label => labelIds.includes(label.id))
 }
 
-async function setBoardIsStarred(board) {
+async function setBoardIsStarred(miniBoards, board) {
     try {
         board.isStarred = !board.isStarred
+        const updatedBoard = miniBoards.map(miniBoard => {
+            if (board._id === miniBoard._id) return board
+            return miniBoard
+        })
         console.log('board serviceeee:', board)
         await httpService.put(BASE_URL + board._id, board)
-        return board
+        return [...updatedBoard]
     } catch (err) {
         console.log('Set board as starred has failed:', err);
         throw err

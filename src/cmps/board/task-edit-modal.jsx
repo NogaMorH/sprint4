@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux"
 import { Link } from "react-router-dom"
-import { removeTask, setModalTaskId, updateTask } from "../../store/board/board.actions"
+import { removeTask, setDynamicModal, setModalTaskId, updateTask } from "../../store/board/board.actions"
 import { BiCreditCardFront } from 'react-icons/bi'
 import { FiCreditCard } from 'react-icons/fi'
 import { BsArchive } from 'react-icons/bs'
@@ -8,10 +8,12 @@ import { AiOutlineUser } from 'react-icons/ai'
 import { BsClock } from 'react-icons/bs'
 import { useState } from "react"
 import { TaskPreviewBadge } from "./task-preview-badge"
+import { DynamicModal } from "../dynamic-modal/dynamic-modal"
 
 export const TaskEditModal = ({ task, groupId, closeTaskEditModal, isBadge }) => {
 
     const dispatch = useDispatch()
+    const dynamicModal = useSelector(state => state.systemModule.dynamicModal)
     const board = useSelector(state => state.boardModule.board)
     const modalTaskId = useSelector(state => state.systemModule.modalTaskId)
     const [taskTitle, setTitle] = useState(task.title)
@@ -36,9 +38,18 @@ export const TaskEditModal = ({ task, groupId, closeTaskEditModal, isBadge }) =>
         closeTaskEditModal(ev)
     }
 
+    console.log('dynamicModal:', dynamicModal)
+    const toggleModal = (ev, type) => {
+        ev.stopPropagation()
+        if (dynamicModal.modalType === type) {
+            return dispatch(setDynamicModal({ modalType: null, fromCmp: null }))
+        }
+        dispatch(setDynamicModal({ modalType: type, fromCmp: 'task edit modal' }))
+    }
+
     const { id, attachments } = task
     return (
-        <div>
+        <div className="task-edit-modal-container">
             <div className="black-screen" onClick={closeTaskEditModal}></div>
             <div className="task-edit-modal">
                 <div className="task-edit-content">
@@ -66,10 +77,21 @@ export const TaskEditModal = ({ task, groupId, closeTaskEditModal, isBadge }) =>
                         <BiCreditCardFront className="edit-modal-icon" />Open card</Link> </span>
                     <button className="btn dark-btn" onClick={(ev) => onRemoveTask(ev, id)}>
                         <BsArchive className="edit-modal-icon" />Remove task</button>
-                    <button className="btn dark-btn"> <AiOutlineUser className="edit-modal-icon" />Change members</button>
-                    <button className="btn dark-btn"><FiCreditCard className="edit-modal-icon" />Change cover</button>
+                    <button className="btn dark-btn" onClick={(ev) => toggleModal(ev, 'members')}> <AiOutlineUser className="edit-modal-icon" />Change members</button>
+                    <button className="btn dark-btn" onClick={(ev) => toggleModal(ev, 'cover')}><FiCreditCard className="edit-modal-icon" />Change cover</button>
                     <button className="btn dark-btn"><BsClock className="edit-modal-icon" />Edit dates</button>
                 </div>
+            </div>
+            <div className="modal-container">
+                {dynamicModal.modalType === 'cover' && dynamicModal.fromCmp === 'task edit modal' &&
+                    <DynamicModal type='cover' className="pos-fixed" groupId={groupId} taskId={task.id} closeModal={toggleModal} />
+                }
+                {dynamicModal.modalType === 'members' && dynamicModal.fromCmp === 'task edit modal' &&
+                    <DynamicModal type='members' className="pos-fixed" groupId={groupId} taskId={task.id} closeModal={toggleModal} />
+                }
+                {dynamicModal.modalType === 'dates' && dynamicModal.fromCmp === 'task edit modal' &&
+                    <DynamicModal type='dates' className="pos-fixed" groupId={groupId} taskId={task.id} closeModal={toggleModal} />
+                }
             </div>
         </div>
     )

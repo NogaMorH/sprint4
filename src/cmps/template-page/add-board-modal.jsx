@@ -1,22 +1,48 @@
 import { boardService } from "../../services/board.service"
 import { utilService } from "../../services/util.service"
 import { useDispatch } from "react-redux"
-import { useFormRegisterBase } from "../../hooks/useFormRegisterBase"
 import { IoCloseOutline } from "react-icons/io5"
+import { useForm } from "../../hooks/useForm"
+import { useEffect, useState } from "react"
+import { addBoard } from "../../store/board/board.actions"
+import { useNavigate } from "react-router-dom"
 
 export const AddBoardModal = ({ toggleAddBoardModal }) => {
 
-    const dispatch = useDispatch
-    // const [board, register] = useFormRegisterBase({
-    //     title: '',
-    //     style: {
-    //         background: ''
-    //     }
-    // })
+    const navigate = useNavigate()
+    const dispatch = useDispatch()
+    const [newBoard, setNewBoard] = useState(false)
+    const [board, handleChange, setBoard] = useForm({
+        title: '',
+        style: {
+            imgUrl: null,
+            bgColor: '#d29033'
+        }
+    })
 
-    const onAddBoard = () => {
-        // dispatch(addBoard)
-        console.log('add board from cmp:')
+    // useEffect(() => {
+    //     console.log('new board', newBoard)
+    //     if (newBoard) {
+    //      
+    //     }
+    // }, [newBoard])
+    useEffect(() => {
+        if(board._id){
+           
+            console.log('board:', board)
+        }
+    },[board])
+
+    const onAddBoard = async (ev) => {
+        ev.preventDefault()
+        try {
+        const newBoard = await dispatch(addBoard(board))
+        // setNewBoard(dispatch(addBoard(board)))
+        // console.log(' dispatch(addBoard(board)):', dispatch(addBoard(board)) )
+        navigate(`/board/${newBoard._id}`)
+        } catch (err) {
+            console.log('Cannot create board', err)
+        }
     }
 
     const bgImgUrls = [
@@ -30,12 +56,16 @@ export const AddBoardModal = ({ toggleAddBoardModal }) => {
 
 
     const setBoardBg = (type, value) => {
-        let newBoard
+        let imgUrl
+        let bgColor
         if (type === 'url') {
-            newBoard.style.background = value
+            imgUrl = value
+            bgColor = null
         } else if (type === 'color') {
-            newBoard.style.background = value
+            bgColor = value
+            imgUrl = null
         }
+        setBoard(prevBoard => ({ ...prevBoard, style: { imgUrl, bgColor } }))
     }
 
     return (
@@ -55,7 +85,7 @@ export const AddBoardModal = ({ toggleAddBoardModal }) => {
                     <ul className="bg-img-list">
                         {bgImgUrls.map((bgImgUrl, idx) => {
                             return <li key={idx} className="bg-img-preview" onClick={() => setBoardBg('url', bgImgUrl)}>
-                                     <img className="img-preview" src={`${bgImgUrl}`}/>
+                                <img className="img-preview" src={`${bgImgUrl}`} />
                             </li>
                         })}
                     </ul>
@@ -66,16 +96,18 @@ export const AddBoardModal = ({ toggleAddBoardModal }) => {
                         })}
                     </ul>
                 </div>
-                {/* <form onSubmit={onAddBoard}>
+                <form onSubmit={onAddBoard}>
                     <label htmlFor="title">Board title *</label>
-                    <input {...register('title', 'text')}>
-
+                    <input
+                        name='title'
+                        id='title'
+                        value={board.title}
+                        onChange={handleChange}
+                        autoFocus
+                    >
                     </input>
-
-
-
-
-                </form> */}
+                    <button>Create</button>
+                </form>
             </div>
         </section>
     )

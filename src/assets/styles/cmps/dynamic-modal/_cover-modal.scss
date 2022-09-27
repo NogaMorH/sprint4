@@ -1,7 +1,11 @@
 .cover-modal-container {
-    top: 160px;
-    right: -210px;
+
     z-index: 20;
+
+    &.details-pos {
+        top: 160px;
+        right: -210px;
+    }
 
     .dynamic-header {
         padding-top: 10px;
@@ -105,11 +109,8 @@
                 width: 100%;
                 height: 100%;
                 cursor: pointer;
-                font-size: 0;              
+                font-size: 0;
             }
         }
     }
 }
-
-
-

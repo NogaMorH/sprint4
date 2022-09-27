@@ -20,19 +20,14 @@ export const Members = ({ members }) => {
     }
 
     return (
-        <div className="members">
+        <div className="members-container">
             <h6>Members</h6>
-            <div className="members-profile-img">
+            <div className="members-div">
                 {members.map(member => (
                     <img key={member.id} src={member.imgUrl} alt="profile img" />
                 ))}
+                <button className="icon-add" onClick={toggleModal}><BsPlusLg /></button>
             </div>
-            <button className="icon-add" onClick={toggleModal}><BsPlusLg /></button>
-            {/* <div className="members-profile-img">
-                {memberIds.map(memberId => (
-                    <img key={memberId} src={boardService.getMemberImgUrl(board, memberId)} alt="profile img" />
-                ))}
-            </div> */}
 
             {dynamicModal.modalType === 'members' && dynamicModal.fromCmp === 'members' &&
                 <DynamicModal type='members' groupId={groupId} taskId={taskId} closeModal={toggleModal} />
