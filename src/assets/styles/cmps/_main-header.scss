@@ -1,13 +1,14 @@
-.board-main-header {
+.main-header {
     height: 44px;
     background-color: #b7c4e6;
     height: fit-content;
+    position: relative;
 
     .header-main-container {
         @include header;
         align-items: center;
-        padding-top: 3.5px;
-        padding-bottom: 3.5px;
+        padding-top: 6px;
+        padding-bottom: 6px;
 
         .logo-container {
             display: flex;
@@ -23,7 +24,6 @@
                 @include logo;
 
                 img {
-                    // max-width: 0.975rem;
                     margin-top: 2px;
                 }
             }
@@ -38,5 +38,15 @@
 
     .header-links {
         padding-inline-end: 5px;
+    }
+
+    .avatar-btn {
+        background-color: inherit;
+        padding: 0;
+    }
+
+    .avatar {
+        width: 32px;
+        border-radius: 50%;
     }
 }

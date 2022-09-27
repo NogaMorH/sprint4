@@ -113,3 +113,60 @@
         width: 0.7333333333em;
     }
 }
+
+@mixin modal {
+    width: rem(304px);
+    position: absolute;
+    overflow: hidden;
+    height: fit-content;
+    background-color: #ffffff;
+    z-index: 100;
+    border: 0.5px solid #dcdfe4;
+    border-radius: 3px;
+    font-family: san-francisco-light, sans-serif;
+    padding-bottom: 12px;
+
+    .modal-title {
+        display: grid;
+        color: $clr23;
+        border-bottom: 1px solid #dfe2e6;
+        margin: 0 12px 6px 12px;
+        line-height: rem(40px);
+        font-size: rem(14px);
+        z-index: 5;
+        grid-template-columns: 1fr auto;
+
+        title {
+            display: flex;
+            justify-content: center;
+        }
+
+        .close-icon {
+            font-size: 18px;
+            color: #6b778c;
+            padding: 0;
+            background-color: inherit;
+            font-size: 20px;
+
+            &:hover {
+                color: $clr8;
+            }
+        }
+    }
+
+    .btn-action-container {
+
+        width: 100%;
+
+        .btn-action {
+            background: none;
+            padding: 6px 12px;
+            color: #384a68;
+            width: 100%;
+        }
+
+        &:hover {
+            background-color: $clr27;
+        }
+    }
+}

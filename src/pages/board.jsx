@@ -4,7 +4,7 @@ import { loadBoard } from '../store/board/board.actions'
 import { setIsFormAddOpen } from '../store/board/board.actions'
 import { GroupList } from '../cmps/board/group-list'
 import { Outlet, useParams } from 'react-router-dom'
-import { BoardMainHeader } from '../cmps/board/board-main-header'
+import { MainHeader } from '../cmps/main-header'
 import { BoardSecondaryHeader } from '../cmps/board/board-secondary-header'
 import { FormAdd } from '../cmps/board/form-add'
 import { BsPlusLg } from 'react-icons/bs'
@@ -28,7 +28,7 @@ export const Board = () => {
     if (!board) return <div>Loading...</div>
     return (
         <div className='board-layout board-page'>
-            <BoardMainHeader />
+            <MainHeader />
             <main className='full board-layout board-layout board'>
                 <BoardSecondaryHeader board={board} />
                 <div className='group-list-container'>
