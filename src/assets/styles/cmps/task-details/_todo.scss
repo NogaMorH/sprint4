@@ -1,7 +1,8 @@
 .todo-container {
-    min-height: 36px;
-    padding-bottom: 8px;
     position: relative;
+    display: flex;
+    align-items: center;
+    min-height: 36px;
 
     &:hover {
         background-color: rgba(9, 30, 66, 0.04);
@@ -10,10 +11,15 @@
 
     input[name=isDone] {
         position: absolute;
-        margin-top: 8px;
+
+        &.focused {
+            align-self: flex-start;
+            margin-top: 10px;
+        }
     }
 
     .todo {
+        width: 521px;
 
         .line-through {
             text-decoration: line-through;
@@ -22,11 +28,9 @@
         textarea {
             margin-left: 33px;
             height: 20px;
-            width: 450px;
-
+            width: 512px;
 
             &:focus {
-                width: 512px;
                 height: 56px;
                 padding: 8px 12px;
                 text-decoration: none;
@@ -36,6 +40,7 @@
         &-buttons {
             position: relative;
             margin-top: 2px;
+            margin-bottom: 9px;
 
             button {
                 margin-left: 33px;
@@ -60,26 +65,31 @@
                 }
             }
         }
+    }
 
-        .todo-remove-btn {
-            display: none;
-            line-height: 10px;
-            font-size: rem(14px);
-            background-color: transparent;
-            padding: 5px;
-            position: absolute;
-            right: 0;
+    .todo-remove-btn {
+        display: none;
+        position: absolute;
+        right: 0;
+        padding: 4px;
+        font-size: rem(16px);
+        background-color: transparent;
+        margin-right: 2px;
 
-            &:hover {
-                background-color: rgba(9, 30, 66, 0.09);
-            }
+        &.focused {
+            display: flex;
+            top: 65px;
+            padding: 8px;
         }
 
         &:hover {
-            .todo-remove-btn {
-                display: inline;
-                
-            }
+            background-color: rgba(9, 30, 66, 0.09);
+        }
+    }
+
+    &:hover {
+        .todo-remove-btn {
+            display: flex;
         }
     }
 }
