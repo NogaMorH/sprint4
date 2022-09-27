@@ -1,8 +1,8 @@
 .checklist {
-
+    
     &-title {
         position: relative;
-
+        
         &-icon {
             position: absolute;
             top: -4px;
@@ -10,8 +10,9 @@
             margin-top: 5px;
             color: $clr14;
         }
-
+        
         textarea {
+            width: 512px;
             margin-left: 33px;
             height: 32px;
             font-size: rem(16px);
@@ -19,7 +20,6 @@
             color: $clr8;
 
             &:focus {
-                width: 512px;
                 height: 54px;
                 padding: 8px 12px;
             }

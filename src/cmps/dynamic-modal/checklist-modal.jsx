@@ -22,7 +22,8 @@ export const ChecklistModal = ({ groupId, taskId, closeModal }) => {
     }
 
     const addChecklist = () => {
-        const checklists = boardService.getTask(board, groupId, taskId).checklists
+        let checklists = boardService.getTask(board, groupId, taskId).checklists
+        if (!checklists) checklists = []
         const checklist = { id: utilService.makeId(), title, todos: [] }
         checklists.push(checklist)
         dispatch(updateTask(groupId, taskId, 'checklists', checklists))
