@@ -5,7 +5,7 @@ import { boardService } from '../services/board.service'
 import { setDynamicModal, updateTask } from '../store/board/board.actions'
 import { TaskSideBar } from '../cmps/task-details/task-sidebar'
 import { Members } from '../cmps/task-details/members'
-import { DueDate } from '../cmps/task-details/due-date'
+import { Date } from '../cmps/task-details/date'
 import { Description } from '../cmps/task-details/description'
 import { AttachmentList } from '../cmps/task-details/attachment-list'
 import { ChecklistList } from '../cmps/task-details/checklist-list'
@@ -94,12 +94,11 @@ export const TaskDetails = () => {
 
                 <main className='task-details'>
                     <div className="task-details-content">
-                        {/* {memberIds && <Members board={board} memberIds={memberIds} />} */}
                         {memberIds && <Members members={boardService.getTaskMembers(board, groupId, taskId)} />}
 
                         {labelIds && labelIds.length > 0 && <Labels board={board} />}
 
-                        {dueDate && <DueDate dueDate={dueDate} />}
+                        {dueDate && <Date dueDate={dueDate} />}
 
                         <Description description={description} />
 

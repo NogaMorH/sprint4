@@ -7,7 +7,6 @@ import { useDispatch } from "react-redux"
 import { updateTask } from "../../store/board/board.actions"
 
 export const MembersModal = ({ groupId, taskId, closeModal, className }) => {
-    console.log('className:', className)
 
     const board = useSelector(state => state.boardModule.board)
     const { members } = board

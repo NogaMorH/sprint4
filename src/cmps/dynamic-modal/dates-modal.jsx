@@ -1,49 +1,45 @@
 import * as React from 'react'
 import dayjs from 'dayjs'
 import TextField from '@mui/material/TextField'
-import Stack from '@mui/material/Stack'
-import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider'
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
-import { DatePicker } from '@mui/x-date-pickers/DatePicker'
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider'
+import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker'
 import { useEffect } from 'react'
+import { useDispatch } from 'react-redux'
+import { updateTask } from '../../store/board/board.actions'
+import { boardService } from '../../services/board.service'
+import { useSelector } from 'react-redux'
 
 export const DatesModal = ({ groupId, taskId, closeModal, className }) => {
 
-    // const [value, setValue] = React.useState(dayjs())
-    // console.log('value:', value.$d)
+    const board = useSelector(state => state.boardModule.board)
+    const task = boardService.getTask(board, groupId, taskId)
+    const ms = task.dueDate ? task.dueDate.ms : new Date().getTime()
+    const date = new Date(ms)
 
-    // useEffect(()=> {
+    const cloneDayjs = dayjs().set('year', date.getFullYear())
+        .set('month', date.getMonth()).set('date', date.getDate())
+        .set('hour', date.getHours()).set('minute', date.getMinutes())
 
-    // }, [value])
+    const [value, setValue] = React.useState(cloneDayjs)
+    const dispatch = useDispatch()
 
-    // return (
-    //     <div onClick={(ev) => ev.stopPropagation()}>
-    //         <LocalizationProvider dateAdapter={AdapterDayjs}>
-    //             <Stack spacing={3}>
-    //                 <DatePicker
-    //                     openTo="year"
-    //                     views={['year', 'month', 'day']}
-    //                     label="Year, month and date"
-    //                     value={value}
-    //                     onChange={(newValue) => {
-    //                         setValue(newValue)
-    //                     }}
-    //                     renderInput={(params) => <TextField {...params} helperText={null} />}
-    //                 />
-    //             </Stack>
-    //         </LocalizationProvider>
-    //     </div>
-    // )
-
-    // return (
-    //     <div className='dynamic-modal dates-modal' onClick={(ev) => ev.stopPropagation()}>
-    //         dates
-    //     </div>
-    // )
+    useEffect(() => {
+        dispatch(updateTask(groupId, taskId, 'dueDate', { ...task.dueDate, ms: new Date(value).getTime() }))
+    }, [value])
 
     return (
         <div className={`dynamic-modal dates-modal ${className ? className : ''}`} onClick={(ev) => ev.stopPropagation()}>
-            dates
+            <LocalizationProvider dateAdapter={AdapterDayjs}>
+                <DateTimePicker
+                    renderInput={(props) => <TextField {...props} />}
+                    label="DateTimePicker"
+                    value={value}
+                    onChange={(newValue) => {
+                        setValue(newValue)
+                    }}
+                />
+            </LocalizationProvider>
         </div>
     )
 }

@@ -1,0 +1,23 @@
+.date-container {
+    margin-left: 33px;
+    
+    .date {
+        display: flex;
+        margin-bottom: 10px;
+
+        button {
+            line-height: rem(20px);
+            margin-left: 5px;
+        }
+
+        &-label {
+            height: 16px;
+            font-size: rem(11px);
+            line-height: 16px;
+            padding: 0 4px;
+            margin-left: 8px;
+            color: #fff;
+            border-radius: 3px;
+        }
+    }
+}
