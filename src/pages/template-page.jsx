@@ -3,7 +3,7 @@ import { useEffect, useState } from "react"
 import { useDispatch } from "react-redux"
 import { useSelector } from "react-redux"
 import { Link } from "react-router-dom"
-import { loadBoards, setBoardIsStarred, updateBoard } from "../store/board/board.actions"
+import { clearStore, loadBoards, setBoardIsStarred, updateBoard } from "../store/board/board.actions"
 import { RiStarLine, RiStarSFill } from 'react-icons/ri'
 import { AiOutlineClockCircle } from "react-icons/ai"
 import { AddBoardModal } from "../cmps/template-page/add-board-modal"
@@ -11,18 +11,19 @@ import { AddBoardModal } from "../cmps/template-page/add-board-modal"
 export const TemplatePage = () => {
 
     const boards = useSelector(state => state.boardModule.boards)
+    const newBoard = useSelector(state => state.boardModule.board)
     const dispatch = useDispatch()
     const [isAddBoardModalOpen, setIsAddBoardModalOpen] = useState(false)
 
     useEffect(() => {
-        // console.log('miniBoards:', boards)
         onLoadBoards()
-
+        if (newBoard) {
+            dispatch(clearStore())
+        }
     }, [])
 
     useEffect(() => {
         onGetStarredBoards()
-        console.log('boards:', boards)
     }, [boards])
 
     const onLoadBoards = () => {
@@ -37,17 +38,37 @@ export const TemplatePage = () => {
         // onLoadBoards()
     }
 
-    const toggleAddBoardModal = () => {
-        console.log('isAddBoardModalOpen:', isAddBoardModalOpen)
+    const toggleAddBoardModal = (ev) => {
+        // console.log('ev:', ev)
         setIsAddBoardModalOpen(!isAddBoardModalOpen)
     }
 
+    // const getModalPosition = (ev) => {
+    //     const x = ev.clientX
+    //     const y = ev.ClientY
+    //     const modalPos = 
+    // }
+
     const onGetStarredBoards = () => {
         const starredBoards = boards.filter(board => board.isStarred)
-        // console.log('starredBoards:', starredBoards)
         return starredBoards
     }
     // { console.log('getStarredBoards().length:', getStarredBoards().length) }
+
+    const getBoardBg = (board) => {
+        let style = {}
+        if (board.style?.imgUrl) {
+            style = {
+                background: `url(${board.style.imgUrl})`,
+                backgroundSize: 'cover',
+            }
+        } else {
+            style = {
+                backgroundColor: board.style.bgColor
+            }
+        }
+        return style
+    }
 
     if (!boards) return <div>Loading...</div>
     return (
@@ -62,7 +83,7 @@ export const TemplatePage = () => {
                     <ul className="board-list">
                         {onGetStarredBoards().map(board => {
                             return <Link to={`/board/${board._id}`} key={board._id}>
-                                <li className="board-preview">
+                                <li className="board-preview" style={getBoardBg(board)}>
                                     <div className="board-preview-details">
                                         <span className="board-title">{board.title}</span>
                                         <span className="starred" onClick={(ev) => toggleIsStarred(ev, board)}><RiStarSFill /></span>
@@ -86,7 +107,7 @@ export const TemplatePage = () => {
                     </li>
                     {boards.map(board => {
                         return <Link to={`/board/${board._id}`} key={board._id}>
-                            <li className="board-preview">
+                            <li className="board-preview" style={getBoardBg(board)}>
                                 <div className="board-preview-details">
                                     <span className="board-title">{board.title}</span>
                                     {board.isStarred &&

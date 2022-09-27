@@ -43,6 +43,14 @@
                     border-radius: 50%;
                 }
             }
+
+            .btn-open-menu {
+                @include btn-transparent-size;
+
+                .board-menu-dots-icon {
+                    color: #fff
+                }
+            }
         }
 
         .filter-container {

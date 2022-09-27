@@ -1,0 +1,139 @@
+.board-side-menu-container {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    top: 90px;
+    right: 0;
+    height: calc(100vh - 85px);
+    border-radius: 3px;
+    border-top-right-radius: 0;
+    background-color: #f4f5f7;
+    box-shadow: 0 12px 24px -6px #091e4240, 0 0 0 1px #091e4214;
+    width: 340px;
+    z-index: 50;
+    transition: transform .6s, box-shadow .6s;
+    transform: translateX(0);
+
+    .board-side-menu-content {
+        padding: 12px 6px 8px 12px;
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+
+        .menu-header {
+            align-items: center;
+            height: 48px;
+            padding: 0 6px 0 12px;
+            width: 100%;
+            /* flex: 0 0 auto; */
+            justify-content: center;
+            transition: opacity .2s ease-in;
+            border-bottom: solid 1px #d5d9df;
+
+            .menu-header-title {
+                line-height: 20px;
+                margin: 14px 32px;
+                text-align: center;
+                font-weight: 600;
+                font-size: rem(17px);
+                color: #172b4d;
+                font-family: san-francisco-medium, sans-serif;
+            }
+
+            .btn-close-menu {
+                font-size: 24px;
+                position: absolute;
+                right: 10px;
+                top: 24.5px;
+                color: #42526e;
+            }
+        }
+
+        .menu-main-content {
+            padding-top: 12px;
+
+
+            .btn-menu-action {
+                background-color: initial;
+                color: #172b4d;
+                font-weight: 600;
+                line-height: 20px;
+                padding: 6px 6px 6px 28px;
+                position: relative;
+                text-align: left;
+                width: 100%;
+            }
+
+            .board-background-section {
+                display: flex;
+                align-items: center;
+                margin-top: 8px;
+
+                .board-bg-color-tile {
+                    .img-container {
+                        background-image: url(https://a.trellocdn.com/prgb/dist/images/colors@2x.ec32a2ed8dd8198b8ef0.jpg);
+                        background-color: #dfe1e6;
+                        background-size: contain;
+                        border-radius: 8px;
+                        height: 96px;
+                        width: 155px;
+                        margin-bottom: 8px;
+                        cursor: pointer;
+                    }
+
+                    .bg-tile-title {
+                        color: #172b4d;
+                        font-size: rem(14px);
+                        text-align: center;
+                    }
+
+                }
+
+                .board-bg-img-tile {
+                    padding-left: 0;
+                    padding-right: 8px;
+
+                    .img-container {
+                        background-image: url(https://a.trellocdn.com/prgb/dist/images/photos-thumbnail@3x.8f9c1323c9c16601a9a4.jpg);
+                        background-color: #dfe1e6;
+                        background-size: contain;
+                        border-radius: 8px;
+                        height: 96px;
+                        width: 155px;
+                        margin-bottom: 8px;
+                        cursor: pointer;
+                    }
+
+                    .bg-tile-title {
+                        color: #172b4d;
+                        font-size: rem(14px);
+                        text-align: center;
+                    }
+                }
+            }
+
+            .btn-activity {
+                background-color: inherit;
+                color: #172b4d;
+                font-weight: 600;
+                line-height: 20px;
+                padding: 6px 6px 6px 28px;
+                position: relative;
+                text-align: left;
+                text-decoration: none;
+                width: 100%;
+                font-size: rem(14px);
+                font-family: san-francisco-medium, sans-serif;
+
+
+
+                .activity-list-icon {
+                    position: absolute;
+                    left: 0px;
+                    font-size: 22px;
+                }
+            }
+        }
+    }
+
+}

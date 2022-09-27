@@ -38,8 +38,8 @@ export function loadBoards() {
 export function loadBoard(boardId) {
     return async (dispatch) => {
         try {
-            const board = await boardService.getBoardById(boardId)
-            dispatch({ type: 'SET_BOARD', board })
+            const newBoard = await boardService.getBoardById(boardId)
+            dispatch({ type: 'SET_BOARD', newBoard })
         } catch (err) {
             showErrorMsg('Cannot load board')
             console.log('Cannot load board', err)
@@ -51,8 +51,9 @@ export function addBoard(board) {
     // console.log('board from action:', board)
     return async (dispatch) => {
         try {
-            const savedBoard = await boardService.save(board)
-            dispatch({ type: 'SET_BOARD', savedBoard })
+            const newBoard = await boardService.save(board)
+            // console.log('savedBoard conrolerrrrrrr:', savedBoard)
+            dispatch({ type: 'SET_BOARD', newBoard })
         } catch (err) {
             console.log('Cannot add board', err)
         }
@@ -88,32 +89,7 @@ export function updateBoard(board) {
 
     }
 }
-// export function updateBoard(board) {
-//     return (dispatch) => {
-//         boardService.save(board)
-//             .then(savedBoard => {
-//                 console.log('Updated Board:', savedBoard);
-//                 // dispatch(getActionUpdateBoard(savedBoard))
-//                 showSuccessMsg('Board updated')
-//             })
-//             .catch(err => {
-//                 showErrorMsg('Cannot update board')
-//                 console.log('Cannot save board', err)
-//             })
-//     }
-// }
 
-// export function updateBoard(newBoard) {
-//     return async (dispatch, getState) => {
-//         try {
-//             const board = getState().boardModule.board
-//             const updatedBoard = await boardService.updateBoard(board, newBoard)
-//             dispatch({ type: 'UPDATE_BOARD', updatedBoard })
-//         } catch (err) {
-//             console.log('Update board has failed in board actions:', err)
-//         }
-//     }
-// }
 export function setBoardIsStarred(board) {
     return async (dispatch, getState) => {
         try {
@@ -285,6 +261,13 @@ export function setDynamicModal(modal) {
         const { modalType, fromCmp } = modal
         dispatch({ type: 'SET_DYNAMIC_MODAL_TYPE', modalType })
         dispatch({ type: 'SET_DYNAMIC_MODAL_FROM_CMP', fromCmp })
+    }
+}
+
+export function clearStore() {
+    return (dispatch) => {
+        const newBoard = null
+        dispatch({ type: 'SET_BOARD', newBoard })
     }
 }
 
