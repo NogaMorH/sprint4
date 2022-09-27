@@ -21,6 +21,7 @@ export const Login = ({ setIsLogin }) => {
     const dispatch = useDispatch()
 
     const handleSubmit = (event) => {
+        console.log('event:', event)
         event.preventDefault()
         const data = new FormData(event.currentTarget)
         const credentials = {
@@ -51,7 +52,7 @@ export const Login = ({ setIsLogin }) => {
                     <Typography component="h1" variant="h5">
                         Sign in
                     </Typography>
-                    <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
+                    <Box component="form" onSubmit={(ev) => handleSubmit(ev)} noValidate sx={{ mt: 1 }}>
                         <TextField
                             margin="normal"
                             required
