@@ -69,7 +69,7 @@ async function login(userCred) {
         if (user) {
             // socketService.login(user._id)
             return saveLocalUser(user)
-        }
+        } else return Promise.reject('Invalid username or password')
     } catch (err) {
         console.log('Login has failed in user service', err)
     }

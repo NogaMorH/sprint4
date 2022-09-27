@@ -15,11 +15,20 @@ import { createTheme, ThemeProvider } from '@mui/material/styles'
 import { useDispatch } from 'react-redux'
 import { onLogin } from '../../store/user/user.actions'
 import { ContactSupportOutlined } from '@mui/icons-material'
+import { useSelector } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
+import { useEffect } from 'react'
 
 export const Login = ({ setIsLogin }) => {
 
     const theme = createTheme()
     const dispatch = useDispatch()
+    const user = useSelector(state => state.userModule.user)
+    const navigate = useNavigate()
+
+    useEffect(() => {
+        if (user) navigate('/template')
+    }, [user])
 
     const handleSubmit = (event) => {
         event.preventDefault()
@@ -28,7 +37,7 @@ export const Login = ({ setIsLogin }) => {
             email: data.get('email'),
             password: data.get('password')
         }
-        console.log('credentials:', credentials)
+        dispatch(onLogin(credentials))
     }
 
     return (
@@ -70,10 +79,10 @@ export const Login = ({ setIsLogin }) => {
                             id="password"
                             autoComplete="current-password"
                         />
-                        <FormControlLabel
+                        {/* <FormControlLabel
                             control={<Checkbox value="remember" color="primary" />}
                             label="Remember me"
-                        />
+                        /> */}
                         <Button
                             type="submit"
                             fullWidth
@@ -83,11 +92,11 @@ export const Login = ({ setIsLogin }) => {
                             Sign In
                         </Button>
                         <Grid container>
-                            <Grid item xs>
+                            {/* <Grid item xs>
                                 <Link href="#" variant="body2">
                                     Forgot password?
                                 </Link>
-                            </Grid>
+                            </Grid> */}
                             <Grid item>
                                 <button onClick={() => setIsLogin(false)} variant="body2">
                                     {"Don't have an account? Sign Up"}

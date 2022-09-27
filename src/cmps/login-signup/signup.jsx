@@ -29,7 +29,7 @@ export function SignUp({ setIsLogin }) {
 
     useEffect(() => {
         if (user) navigate('/template')
-    })
+    }, [user])
 
     const formik = useFormik({
         initialValues: {
