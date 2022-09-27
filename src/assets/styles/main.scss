@@ -22,8 +22,9 @@
 @import "cmps/user-msg";
 @import "cmps/img-uploader";
 @import "cmps/login-signup";
+@import "cmps/main-header";
+@import "cmps/user-modal";
 // board
-@import "cmps/board/board-main-header";
 @import "cmps/board/board-secondary-header";
 @import "cmps/board/board-side-menu";
 @import "cmps/board/board-menu";
@@ -54,7 +55,7 @@
 @import "cmps/task-details/task-sidebar";
 @import "cmps/task-details/members";
 @import "cmps/task-details/labels";
-@import "cmps/task-details/due-date";
+@import "cmps/task-details/date";
 @import "cmps/task-details/description";
 @import "cmps/task-details/attachment-list";
 @import "cmps/task-details/attachment";

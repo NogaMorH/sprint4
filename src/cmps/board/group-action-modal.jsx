@@ -11,16 +11,21 @@ export const GroupActionModal = ({ groupId, onRemoveGroup, openAddForm }) => {
 
     return (
         <div className='group-action-modal'>
-            <div className="action-modal-title">
-                <span>List actions</span>
-                <span className='close-icon'><IoCloseOutline /></span>
-            </div>
-            <div className='btns-container'>
-                <button className='btn btn-action' onClick={() => openAddForm(true)}>Add card...</button>
-                <button className='btn btn-action' onClick={onRemoveGroup}>Delete list...</button>
-                <button className='btn btn-action' onClick={onDuplicateGroup}>Copy list...</button>
-
-            </div>
+            <header className="modal-title">
+                <span className='title'>List actions</span>
+                <button className='btn close-icon'><IoCloseOutline /></button>
+            </header>
+            <ul className='btns-list'>
+                <li className='btn-action-container'>
+                    <button className='btn btn-action' onClick={() => openAddForm(true)}>Add card...</button>
+                </li>
+                <li className='btn-action-container'>
+                    <button className='btn btn-action' onClick={onRemoveGroup}>Delete list...</button>
+                </li>
+                <li className='btn-action-container'>
+                    <button className='btn btn-action' onClick={onDuplicateGroup}>Copy list...</button>
+                </li>
+            </ul>
         </div>
     )
 }

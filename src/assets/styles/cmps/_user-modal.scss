@@ -1,0 +1,32 @@
+.user-modal {
+    @include modal;
+    top: 48px;
+    right: 4px;
+
+    .user-container {
+        display: flex;
+        color: $clr8;
+        align-items: center;
+        margin-bottom: 2px;
+
+        .user-details {
+
+            .user-name {
+                font-size: rem(14px);
+                margin-bottom: 7px;
+            }
+
+            .user-email {
+                font-size: rem(12px);
+                color: $clr26;
+            }
+        }
+
+        .avatar {
+            margin: 4px 8px 4px 12px;
+            width: 40px;
+        }
+
+    }
+
+}

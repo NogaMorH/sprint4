@@ -1,10 +1,10 @@
-// import * as React from 'react'
+import * as React from 'react'
 import Avatar from '@mui/material/Avatar'
 import Button from '@mui/material/Button'
 import CssBaseline from '@mui/material/CssBaseline'
 import TextField from '@mui/material/TextField'
-// import FormControlLabel from '@mui/material/FormControlLabel'
-// import Checkbox from '@mui/material/Checkbox'
+import FormControlLabel from '@mui/material/FormControlLabel'
+import Checkbox from '@mui/material/Checkbox'
 import Link from '@mui/material/Link'
 import Grid from '@mui/material/Grid'
 import Box from '@mui/material/Box'
@@ -14,25 +14,30 @@ import Container from '@mui/material/Container'
 import { createTheme, ThemeProvider } from '@mui/material/styles'
 import { useDispatch } from 'react-redux'
 import { onLogin } from '../../store/user/user.actions'
+import { ContactSupportOutlined } from '@mui/icons-material'
+import { useSelector } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
+import { useEffect } from 'react'
 
 export const Login = ({ setIsLogin }) => {
 
     const theme = createTheme()
     const dispatch = useDispatch()
+    const user = useSelector(state => state.userModule.user)
+    const navigate = useNavigate()
+
+    useEffect(() => {
+        if (user) navigate('/template')
+    }, [user])
 
     const handleSubmit = (event) => {
-        console.log('event:', event)
         event.preventDefault()
         const data = new FormData(event.currentTarget)
         const credentials = {
             email: data.get('email'),
-            password: data.get('password'),
+            password: data.get('password')
         }
         dispatch(onLogin(credentials))
-    }
-
-    const openSignup = () => {
-        setIsLogin(false)
     }
 
     return (
@@ -45,14 +50,15 @@ export const Login = ({ setIsLogin }) => {
                         display: 'flex',
                         flexDirection: 'column',
                         alignItems: 'center',
-                    }}>
+                    }}
+                >
                     <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
                         <LockOutlinedIcon />
                     </Avatar>
                     <Typography component="h1" variant="h5">
                         Sign in
                     </Typography>
-                    <Box component="form" onSubmit={(ev) => handleSubmit(ev)} noValidate sx={{ mt: 1 }}>
+                    <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
                         <TextField
                             margin="normal"
                             required
@@ -81,24 +87,25 @@ export const Login = ({ setIsLogin }) => {
                             type="submit"
                             fullWidth
                             variant="contained"
-                            sx={{ mt: 3, mb: 2 }}>
+                            sx={{ mt: 3, mb: 2 }}
+                        >
                             Sign In
                         </Button>
-                        <Grid container style={{ justifyContent: 'center' }}>
+                        <Grid container>
                             {/* <Grid item xs>
                                 <Link href="#" variant="body2">
                                     Forgot password?
                                 </Link>
                             </Grid> */}
                             <Grid item>
-                                <button variant="body2" onClick={openSignup} className="signup">
+                                <button onClick={() => setIsLogin(false)} variant="body2">
                                     {"Don't have an account? Sign Up"}
                                 </button>
                             </Grid>
                         </Grid>
                     </Box>
                 </Box>
-                <Typography variant="body2" color="text.secondary" align="center" sx={{ mt: 8, mb: 4 }} >
+                <Typography sx={{ mt: 8, mb: 4 }} variant="body2" color="text.secondary" align="center">
                     {'Copyright © '}
                     <Link color="inherit" href="/">
                         Rello
@@ -107,6 +114,6 @@ export const Login = ({ setIsLogin }) => {
                     {'.'}
                 </Typography>
             </Container>
-        </ThemeProvider >
+        </ThemeProvider>
     )
 }

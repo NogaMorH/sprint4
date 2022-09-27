@@ -38,7 +38,6 @@ export const TaskEditModal = ({ task, groupId, closeTaskEditModal, isBadge }) =>
         closeTaskEditModal(ev)
     }
 
-    console.log('dynamicModal:', dynamicModal)
     const toggleModal = (ev, type) => {
         ev.stopPropagation()
         if (dynamicModal.modalType === type) {

@@ -46,7 +46,7 @@
         .task-cover-img {
             height: 160px;
             object-fit: contain;
-            background-color: #2c2c2c;
+            background-color: #2c2c2c1c;
         }
 
         .task-cover-color {
@@ -77,8 +77,6 @@
             }
         }
 
-
-
         .close-task-details {
             align-items: center;
             border: none;
@@ -104,7 +102,6 @@
             }
         }
     }
-
 
     .task-title {
         display: flex;
@@ -147,6 +144,5 @@
     .task-details {
         display: flex;
         justify-content: space-between;
-
     }
 }

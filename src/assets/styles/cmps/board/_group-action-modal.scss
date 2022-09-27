@@ -1,51 +1,5 @@
 .group-action-modal {
-    width: rem(304px);
-    position: absolute;
+    @include modal;
     left: 240px;
     top: 40px;
-    overflow: hidden;
-    height: fit-content;
-    background-color: #ffffff;
-    left: 240px;
-    z-index: 100;
-    border: 0.5px solid #dcdfe4;
-    border-radius: 3px;
-
-    .btns-container {
-        padding: 0px 2.5px 12px;
-
-        .btn-action {
-            background: none;
-            padding: 6px 12px;
-            color: #384a68;
-        }
-    }
-
-    .action-modal-title {
-        display: flex;
-        justify-content: center;
-        color: $clr23;
-        border-bottom: 1px solid #dfe2e6;
-        margin: 0 12px;
-        margin-bottom: 6px;
-        line-height: rem(40px);
-        font-size: rem(14px);
-        position: relative;
-        z-index: 5;
-
-        .close-icon {
-            position: absolute;
-            right: 0;
-            top: 3.5px;
-            z-index: 10;
-            width: 16px;
-            font-size: 18px;
-            color: #6b778c;
-            cursor: pointer;
-
-            &:hover {
-                color: $clr8;
-            }
-        }
-    }
 }

@@ -7,6 +7,7 @@ import { clearStore, loadBoards, setBoardIsStarred, updateBoard } from "../store
 import { RiStarLine, RiStarSFill } from 'react-icons/ri'
 import { AiOutlineClockCircle } from "react-icons/ai"
 import { AddBoardModal } from "../cmps/template-page/add-board-modal"
+import { MainHeader } from '../cmps/main-header'
 
 export const TemplatePage = () => {
 
@@ -28,7 +29,6 @@ export const TemplatePage = () => {
 
     const onLoadBoards = () => {
         dispatch(loadBoards())
-
     }
 
     const toggleIsStarred = (ev, board) => {
@@ -72,61 +72,72 @@ export const TemplatePage = () => {
 
     if (!boards) return <div>Loading...</div>
     return (
-        <div className="board-list-container">
-            {onGetStarredBoards().length > 0 &&
-                <div className="sttared-board-container">
-                    <div className="board-list-title-container">
-                        <span className="board-list-title-icon"> <RiStarLine /></span>
-                        <span className="board-list-title">Starred boards
-                        </span>
+        <div className='template-page'>
+            <MainHeader />
+            <div className="board-list-container">
+                {onGetStarredBoards().length > 0 &&
+                    <div className="sttared-board-container">
+                        <div className="board-list-title-container">
+                            <span className="board-list-title-icon">
+                                <RiStarLine />
+                            </span>
+                            <span className="board-list-title">Starred boards
+                            </span>
+                        </div>
+                        <ul className="board-list">
+                            {onGetStarredBoards().map(board => {
+                                return <Link to={`/board/${board._id}`} key={board._id}>
+                                    <li className="board-preview" style={getBoardBg(board)}>
+                                        <div className="board-preview-details">
+                                            <span className="board-title">
+                                                {board.title}
+                                            </span>
+                                            <span className="starred" onClick={(ev) => toggleIsStarred(ev, board)}>
+                                                <RiStarSFill />
+                                            </span>
+                                        </div>
+                                    </li>
+                                </Link>
+                            })}
+                        </ul>
+                    </div>}
+                <section className="all-boards">
+                    <div className="board-list-title">
+                        <div className="board-list-title-container">
+                            <span className="board-list-title-icon">
+                                <AiOutlineClockCircle />
+                            </span>
+                            <span className="board-list-title">Recently viewed</span>
+                        </div>
+                        {/* <h4>YOUR WORKSPACES</h4> */}
                     </div>
                     <ul className="board-list">
-                        {onGetStarredBoards().map(board => {
+                        <li className="board-preview add-board" onClick={toggleAddBoardModal}>
+                            <div className="add-board-title">Create new board</div>
+                        </li>
+                        {boards.map(board => {
                             return <Link to={`/board/${board._id}`} key={board._id}>
                                 <li className="board-preview" style={getBoardBg(board)}>
                                     <div className="board-preview-details">
                                         <span className="board-title">{board.title}</span>
-                                        <span className="starred" onClick={(ev) => toggleIsStarred(ev, board)}><RiStarSFill /></span>
+                                        {board.isStarred &&
+                                            <span className="starred" onClick={(ev) => toggleIsStarred(ev, board)}>
+                                                <RiStarSFill />
+                                            </span>}
+                                        {!board.isStarred &&
+                                            <span className="unstarred" onClick={(ev) => toggleIsStarred(ev, board)}>
+                                                <RiStarLine />
+                                            </span>}
                                     </div>
                                 </li>
                             </Link>
                         })}
-                    </ul>
-                </div>}
-            <section className="all-boards">
-                <div className="board-list-title">
-                    <div className="board-list-title-container">
-                        <span className="board-list-title-icon"><AiOutlineClockCircle /></span>
-                        <span className="board-list-title">Recently viewed</span>
-                    </div>
-                    {/* <h4>YOUR WORKSPACES</h4> */}
-                </div>
-                <ul className="board-list">
-                    <li className="board-preview add-board" onClick={toggleAddBoardModal}>
-                        <div className="add-board-title">Create new board</div>
-                    </li>
-                    {boards.map(board => {
-                        return <Link to={`/board/${board._id}`} key={board._id}>
-                            <li className="board-preview" style={getBoardBg(board)}>
-                                <div className="board-preview-details">
-                                    <span className="board-title">{board.title}</span>
-                                    {board.isStarred &&
-                                        <span className="starred" onClick={(ev) => toggleIsStarred(ev, board)}>
-                                            <RiStarSFill />
-                                        </span>}
-                                    {!board.isStarred &&
-                                        <span className="unstarred" onClick={(ev) => toggleIsStarred(ev, board)}>
-                                            <RiStarLine />
-                                        </span>}
-                                </div>
-                            </li>
-                        </Link>
-                    })}
 
-                </ul>
-                {isAddBoardModalOpen && <AddBoardModal toggleAddBoardModal={toggleAddBoardModal} />}
-            </section >
-        </div >
+                    </ul>
+                    {isAddBoardModalOpen && <AddBoardModal toggleAddBoardModal={toggleAddBoardModal} />}
+                </section >
+            </div >
+        </div>
     )
 }
 
@@ -135,9 +146,9 @@ export const TemplatePage = () => {
         //each <li> should render the mini board background image, miniBoard.title
         //todo: create a isStarred
 // </Link>
-// }) 
+// })
 
-//star notes: 
+//star notes:
 // outline star shows when hover- comes in transition
 //todo: toggleIsStarred func
 

@@ -7,4 +7,47 @@
     .add-todo-btn {
         margin-left: 33px;
     }
+
+    .new-todo {
+
+        &-textarea {
+            margin-left: 33px;
+            height: 20px;
+            width: 512px;
+            outline: auto;
+            outline-color: $clr18;
+            
+            &:focus {
+                background-color: #fff;
+                height: 56px;
+                padding: 8px 12px;
+                text-decoration: none;
+            }
+        }
+
+        &-buttons {
+            display: flex;
+            margin-top: 2px;
+            margin-bottom: 9px;
+            margin-left: 33px;
+
+            .todo-add-btn {
+                background-color: $clr18;
+                color: #fff;
+                margin-right: 5px;
+
+                &:hover {
+                    background-color: $clr19;
+                }
+            }
+
+            .todo-cancel-btn {
+                background-color: transparent;
+
+                &:hover {
+                    background-color: #091e4214;
+                }
+            }
+        }
+    }
 }

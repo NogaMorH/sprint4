@@ -1,6 +1,5 @@
 .attachment-list {
     position: relative;
-    width: 512px;
     margin-bottom: 50px;
 
     &-header {
@@ -14,9 +13,8 @@
 
     .add-attachment-btn {
         align-self: flex-start;
-        margin: 8px 0;
+        margin-top: 18px;
         margin-left: 33px;
         font-size: rem(14px);
     }
-
 }
