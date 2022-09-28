@@ -60,9 +60,12 @@ export const TaskPreview = ({ task, groupId, index }) => {
                         }
                         <div className="task-preview-details">
                             {labelIds && <TaskPreviewLabels groupId={groupId} taskId={task.id} />}
-                            
+
                             <div className="task-title">{title}</div>
-                            <button className="btn task-edit-icon" onClick={openTaskEditModal}><BiPencil /></button>
+                            <button className={cover ? 'btn task-edit-icon on-cover' : 'btn task-edit-icon'}
+                                onClick={openTaskEditModal}>
+                                <BiPencil />
+                            </button>
 
                             {isBadge() &&
                                 <TaskPreviewBadge task={task} />

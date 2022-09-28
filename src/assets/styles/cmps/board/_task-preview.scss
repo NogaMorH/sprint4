@@ -52,6 +52,15 @@
                     background-color: #ebecf0;
                 }
             }
+
+            .task-edit-icon.on-cover {
+                transition: background-color .2s;
+                background-color: $clr28;
+
+                &:hover {
+                    background-color: $clr29;
+                }
+            }
         }
 
         .task-preview-details {

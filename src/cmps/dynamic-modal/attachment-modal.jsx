@@ -1,4 +1,3 @@
-import { faL } from "@fortawesome/free-solid-svg-icons"
 import { useEffect, useState } from "react"
 import { useRef } from "react"
 import { IoCloseOutline } from "react-icons/io5"
@@ -10,7 +9,7 @@ import { updateTask } from "../../store/board/board.actions"
 export const AttachmentModal = ({ groupId, taskId, closeModal }) => {
 
     const board = useSelector(state => state.boardModule.board)
-    const attachments = boardService.getTask(board, groupId, taskId).attachments
+    let attachments = boardService.getTask(board, groupId, taskId).attachments
     const [url, setUrl] = useState('')
     const [name, setName] = useState('')
     const [isFile, setIsFile] = useState(false)
@@ -41,6 +40,7 @@ export const AttachmentModal = ({ groupId, taskId, closeModal }) => {
 
     const addAttachment = () => {
         const attachment = { name, url, isCover: false }
+        if (!attachments) attachments = []
         attachments.unshift(attachment)
         dispatch(updateTask(groupId, taskId, 'attachments', attachments))
         closeModal()
