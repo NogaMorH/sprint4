@@ -14,8 +14,6 @@ export const httpService = {
         return ajax(endpoint, 'GET', data)
     },
     post(endpoint, data) {
-        console.log('endpoint:', endpoint)
-        console.log('data:', data)
         return ajax(endpoint, 'POST', data)
     },
     put(endpoint, data) {

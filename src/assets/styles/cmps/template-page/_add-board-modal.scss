@@ -7,6 +7,9 @@
     border-radius: 3px;
     color: $clr23;
     cursor: default;
+    position: absolute;
+    top: 0;
+    left: 300px;
 
     button {
         display: inline;
@@ -57,7 +60,7 @@
     .board-display-img-container {
         display: flex;
         justify-content: center;
-        padding-bottom: 8px;
+        padding-bottom: 18px;
 
         .board-display-img {
             width: 200px;
@@ -66,7 +69,7 @@
             box-shadow: 0 7px 15px rgb(0 0 0 / 15%);
             display: flex;
             background-size: cover;
-            background-position: center center;
+            // background-position: center;
             align-items: center;
             justify-content: center;
 
@@ -85,17 +88,27 @@
         display: flex;
         justify-content: space-between;
         padding: 0 0 8px;
+        margin-bottom: 3px;
 
         .bg-img-preview {
             width: 64px;
             height: 40px;
             object-fit: contain;
         }
+
+        .bg-picker-title {
+            color: #5e6c84;
+            font-size: 14px;
+            font-weight: 700;
+            line-height: 16px;
+            margin-bottom: 4px;
+        }
     }
 
     .bg-color-list {
         display: flex;
         justify-content: space-between;
+        margin-bottom: 10px;
     }
 
     .bg-color-preview {
@@ -106,4 +119,53 @@
             filter: saturate(90%) brightness(85%);
         }
     }
+
+    .add-board-title {
+        color: #5e6c84;
+        font-size: 14px;
+        font-weight: 700;
+        line-height: 16px;
+        margin-bottom: 4px;
+
+        .asterisk {
+            color: #eb5a46;
+            margin-left: 2px;
+        }
+    }
+
+    .add-board-input-title {
+        width: 100%;
+        height: 36px;
+        box-shadow: inset 0 0 0 0.8px #eb5a46;
+        margin-top: 2px;
+        margin-bottom: 2px;
+        font-size: 14px;
+        line-height: 20px;
+        outline: none;
+        border-radius: 3px;
+    }
+
+    .btn-add-board {
+        width: 100%;
+        height: rem(34px);
+        margin-top: 2px;
+        color: #ffffff;
+        background-color: #0079bf;
+        font-size: rem(14px);
+        border-radius: 3px;
+    }
+
+    .btn-disabled {
+        color: #a5adba;
+        cursor: not-allowed;
+        background-color: #091e420a;
+        width: 100%;
+        height: rem(34px);
+        font-size: rem(14px);
+        padding: 6px 12px;
+        border-radius: 3px;
+
+    }
+
+
 }

@@ -1,11 +1,19 @@
-import { useEffect, useRef } from 'react'
+import { useEffect } from 'react'
 import { IoCloseOutline } from 'react-icons/io5'
+import { useDispatch } from 'react-redux'
 import { useSelector } from 'react-redux'
+import { onLogout } from '../store/user/user.actions'
 
 export const UserModal = ({ toggleUserModal }) => {
 
     const user = useSelector(state => state.userModule.user)
+    const dispatch = useDispatch()
 
+    const logout = () => {
+        dispatch(onLogout())
+    }
+
+    if (!user) return <div></div>
     return (
         <div className='user-modal' onClick={(ev) => ev.stopPropagation()} >
             <header className='modal-title'>
@@ -22,7 +30,7 @@ export const UserModal = ({ toggleUserModal }) => {
                 </div>
                 <ul className='btns-list'>
                     <li className='btn-action-container'>
-                        <button className='btn btn-action'>Log out</button>
+                        <button className='btn btn-action' onClick={logout}>Log out</button>
                     </li>
                 </ul>
             </main>

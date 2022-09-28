@@ -18,13 +18,15 @@ export const MainHeader = () => {
     }, [isUserModalOpen])
 
     useEffect(() => {
+        if (!user) closeUserModal()
+    }, [user])
+
+    useEffect(() => {
         if (modalGroupId || modalTaskId) closeUserModal()
     }, [modalGroupId, modalTaskId])
 
     const toggleUserModal = (ev) => {
         ev.stopPropagation()
-        console.log('hi')
-        console.log('!isUserModalOpen:', !isUserModalOpen)
         setIsUserModalOpen(!isUserModalOpen)
     }
 
