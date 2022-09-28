@@ -1,6 +1,7 @@
 import { boardService } from "../../services/board.service.js";
 import { userService } from "../../services/user.service.js";
 import { showSuccessMsg, showErrorMsg } from '../../services/event-bus.service.js'
+import { socketService } from "../../services/socket.service.js";
 
 // Action Creators:
 // export function getActionRemoveBoard(boardId) {
@@ -39,6 +40,7 @@ export function loadBoard(boardId) {
     return async (dispatch) => {
         try {
             const newBoard = await boardService.getBoardById(boardId)
+            socketService.setBoard(boardId)
             dispatch({ type: 'SET_BOARD', newBoard })
         } catch (err) {
             showErrorMsg('Cannot load board')
@@ -211,6 +213,7 @@ export function handleDrag(result) {
             } else {
                 updatedBoard = await boardService.moveTask(board, result)
             }
+            socketService.updateBoard(updatedBoard._id)
             dispatch({ type: 'UPDATE_BOARD', updatedBoard })
         } catch (err) {
             console.log('Cannot move task', err)
