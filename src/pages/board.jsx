@@ -25,15 +25,16 @@ export const Board = () => {
         dispatch(setIsFormAddOpen(null, true))
     }
 
-    const getBoardBg = (board) => {
+    const getBoardBg = () => {
         let style = {}
         if (board.style?.imgUrl) {
             style = {
-                background: `url(${board.style.imgUrl})`
+                background: `url(${board.style.imgUrl})`,
+                backgroundSize: 'cover'
             }
         } else {
             style = {
-                backgroundColor: board.style.bgColor
+                background: board.style.bgColor
             }
         }
         return style
@@ -42,8 +43,8 @@ export const Board = () => {
     if (!board) return <div>Loading...</div>
     return (
         <div className='board-layout board-page'>
-            <BoardMainHeader />
-            <main className='full board-layout board-layout board' style={getBoardBg(board)}>
+            <MainHeader />
+            <main className='full board-layout board-layout board' style={getBoardBg()}>
                 <BoardSecondaryHeader board={board} />
                 <div className='group-list-container'>
                     <GroupList groups={board.groups} />

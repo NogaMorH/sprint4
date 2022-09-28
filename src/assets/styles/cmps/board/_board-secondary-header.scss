@@ -61,3 +61,64 @@
         }
     }
 }
+
+@include for-mobile-layout {
+    .board-secondary-header-container {
+        padding-top: 7px;
+        padding-bottom: 9px;
+        // color: $clr8;
+
+        .board-secondary-header {
+            display: block;
+            // justify-content: space-between;
+            // max-height: 40px;
+            padding-top: 7px;
+            padding-bottom: 9px;
+            // color: $clr8;
+            align-items: center;
+            background-color: #6f7477;
+
+            .header-main-content {
+                justify-content: space-between;
+
+                .board-title {
+                    font-size: rem(14px);
+                    font-weight: 400;
+                    color: #fff;
+                    // line-height: rem(32px);
+                    font-family: san-francisco-medium, sans-serif;
+                    margin-inline-end: 15px;
+                    width: 130px;
+
+
+                }
+
+                .creator {
+                    display: none;
+                }
+
+                .divider {
+                    display: none;
+                }
+
+                .member-avatars {
+                    display: none;
+
+                }
+
+                .btn-open-menu {
+                    background-color: transparent;
+
+                }
+
+                .show-menu-txt {
+                    display: none;
+                }
+
+                .board-menu-dots-icon {}
+
+            }
+        }
+    }
+
+}

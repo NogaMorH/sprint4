@@ -35,7 +35,7 @@ export const BoardSecondaryHeader = ({ board }) => {
                         )
                         )}
                     </span>
-                    <button className="btn-open-menu" onClick={() => openBoardMenu()}><HiOutlineDotsHorizontal className="board-menu-dots-icon" /> Show menu</button>
+                    <button className="btn-open-menu" onClick={() => openBoardMenu()}><HiOutlineDotsHorizontal className="board-menu-dots-icon" /><span className="show-menu-txt">Show menu</span></button>
                     {isSideMenuOpen && <BoardSideMenu board={board} />}
                 </div>
             </div>

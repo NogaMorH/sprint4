@@ -64,7 +64,8 @@ async function save(board) {
     var savedBoard
     if (board._id) {
         try {
-            savedBoard = await httpService.put(BASE_URL + board._id, board)
+            await httpService.put(BASE_URL + board._id, board)
+            return {...board}
         } catch (err) {
             console.log('Save board has failed:', err)
             throw err

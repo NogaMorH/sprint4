@@ -24,8 +24,8 @@ export const AddBoardModal = ({ toggleAddBoardModal }) => {
 
     useEffect(() => {
         if (newBoard) {
-            navigate(`/board/${newBoard._id}`)
             console.log('board:', newBoard)
+            navigate(`/board/${newBoard._id}`)
         }
     }, [newBoard])
 

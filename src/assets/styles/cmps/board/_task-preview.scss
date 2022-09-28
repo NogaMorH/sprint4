@@ -19,7 +19,7 @@
         }
 
         .task-cover-img {
-            height: 163.33333333333334px;
+            height: 100%;
             border-radius: 3px 3px 0 0;
             object-fit: contain;
         }
@@ -61,6 +61,18 @@
                 font-family: san-francisco-light;
                 line-height: lh(20px, 13px);
                 margin-bottom: 8px;
+            }
+        }
+    }
+}
+
+@include for-mobile-layout {
+    .task-preview-container {
+        .task-preview {
+            .task-preview-details {
+                .task-title {
+                    margin-bottom: 0;
+                }
             }
         }
     }
