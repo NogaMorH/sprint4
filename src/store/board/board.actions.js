@@ -86,7 +86,12 @@ export function updateBoard(board) {
             console.log('Cannot update board', err)
             throw err
         }
+    }
+}
 
+export function updateBoardFromSocket(updatedBoard) {
+    return (dispatch) => {
+        dispatch({ type: 'UPDATE_BOARD', updatedBoard })
     }
 }
 
