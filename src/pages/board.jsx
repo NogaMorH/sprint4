@@ -29,7 +29,8 @@ export const Board = () => {
         let style = {}
         if (board.style?.imgUrl) {
             style = {
-                background: `url(${board.style.imgUrl})`
+                background: `url(${board.style.imgUrl})`,
+                backgroundSize: 'cover'
             }
         } else {
             style = {
@@ -42,7 +43,7 @@ export const Board = () => {
     if (!board) return <div>Loading...</div>
     return (
         <div className='board-layout board-page'>
-            <BoardMainHeader />
+            <MainHeader />
             <main className='full board-layout board-layout board' style={getBoardBg(board)}>
                 <BoardSecondaryHeader board={board} />
                 <div className='group-list-container'>
