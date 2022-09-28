@@ -5,6 +5,7 @@ import { FiCreditCard } from 'react-icons/fi'
 import { setEditModalAttachmentIdx } from '../../store/board/board.actions'
 import { useDispatch } from "react-redux"
 import { AttachmentEditModal } from "./attachment-edit-modal"
+import { utilService } from "../../services/util.service"
 
 export const Attachment = ({ attachment, idx, toggleCover, removeAttachment, updateAttachments, closeAttachmentEditModal, checkURL }) => {
 
@@ -49,12 +50,15 @@ export const Attachment = ({ attachment, idx, toggleCover, removeAttachment, upd
                 <span className='link-icon'><ImArrowUpRight2 /></span>
 
                 <div className="actions">
-                    Added 2 hours ago -
+                    <span>Added 1 minute ago -</span>
+                    {/* <span>Added {utilService.getFormatDate(Date.now())} - </span> */}
                     <button className="actions-remove-btn hover-btn"
-                        onClick={(ev) => removeAttachment(ev, idx)}>Delete</button>
+                        onClick={(ev) => removeAttachment(ev, idx)}>Delete
+                    </button>
                     -
                     <button name='edit-btn' className="actions-edit-btn hover-btn"
-                        onClick={toggleEditModal}>Edit</button>
+                        onClick={toggleEditModal}>Edit
+                    </button>
                 </div>
 
                 {checkURL(url) &&
