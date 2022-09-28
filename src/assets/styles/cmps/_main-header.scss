@@ -50,3 +50,9 @@
         border-radius: 50%;
     }
 }
+
+@include for-mobile-layout { 
+    .main-header{
+        display: none
+    }
+}

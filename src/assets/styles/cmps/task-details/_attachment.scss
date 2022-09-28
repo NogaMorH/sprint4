@@ -5,7 +5,7 @@
     margin-left: 33px;
     margin-bottom: 10px;
     color: $clr23;
-    width: 512px;
+    max-width: 512px;
 
     &:hover {
         background-color: rgba(9, 30, 66, 0.04);
@@ -18,7 +18,7 @@
 
     &-img {
         position: relative;
-        width: 112px;
+        max-width: 112px;
         height: 80px;
         background-color: #091e420a;
         border-radius: 3px;

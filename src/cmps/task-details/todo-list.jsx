@@ -8,7 +8,6 @@ export const TodoList = ({ todos, updateChecklist }) => {
     const [focused, setFocused] = useState(false)
 
     const updateTodos = (todo) => {
-        console.log('todo:', todo);
         const updatedTodos = todos.map(currTodo => {
             if (currTodo.id === todo.id) {
                 return todo

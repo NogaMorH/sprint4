@@ -4,7 +4,8 @@ export const utilService = {
     getRandomIntInclusive,
     delay,
     formatMonthDay,
-    formatAMPM
+    formatAMPM,
+    getFormatDate
 }
 
 function makeId(length = 6) {
@@ -59,4 +60,8 @@ function formatAMPM(ms) {
     return strTime
 }
 
-
+function getFormatDate(ms) {
+    const monthAndDay = formatMonthDay(ms)
+    const time = formatAMPM(ms)
+    return monthAndDay + ' at ' + time
+}

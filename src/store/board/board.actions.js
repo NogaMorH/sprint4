@@ -78,6 +78,7 @@ export function removeBoard(boardId) {
 }
 
 export function updateBoard(board) {
+    console.log('board:', board)
     return async (dispatch, getState) => {
         try {
             // const board = getState().boardModule.board

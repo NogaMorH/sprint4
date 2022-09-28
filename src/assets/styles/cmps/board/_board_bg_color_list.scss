@@ -1,21 +1,22 @@
-.board-bg-img-list {
+
+
+.board-bg-color-list {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 8px;
     height: 300px;
 
 
-    .bg-img-preview{
+    .bg-color-preview{
       width: 155px;
       margin-bottom: 10px;
     }
 
-    .board-bg-img-preview{
+    .board-bg-color-preview{
         width: 100%;
         height: 96px;
         cursor: pointer;
         border-radius: 8px;
-        background-color: red;
     }
     
 }

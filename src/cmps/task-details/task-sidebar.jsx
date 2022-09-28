@@ -34,8 +34,8 @@ export const TaskSideBar = () => {
         <div className="task-sidebar">
             {types.map((type, idx) => {
                 return (
-                    <div key={idx}>
-                        <button className="task-sidebar-btn" onClick={() => openModal(type)}>
+                    <div key={idx} className="task-sidebar-btns">
+                        <button onClick={() => openModal(type)}>
                             <span className="icon">
                                 {type === 'members' && <HiOutlineUser />}
                                 {type === 'labels' && <AiOutlineTag />}
@@ -53,10 +53,11 @@ export const TaskSideBar = () => {
                     </div>
                 )
             })}
-            <button>
+            {/* Archive button not working for now(and interrupt other buttons) */}
+            {/* <button>
                 <span className="icon"><VscArchive /></span>
                 <span className="sidebar-cmp">Archive</span>
-            </button>
+            </button> */}
         </div>
     )
 }

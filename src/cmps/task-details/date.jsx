@@ -13,12 +13,6 @@ export const Date = ({ dueDate }) => {
     const { groupId, taskId } = params
     const dispatch = useDispatch()
 
-    const getFormatDate = (ms) => {
-        const monthAndDay = utilService.formatMonthDay(ms)
-        const time = utilService.formatAMPM(ms)
-        return monthAndDay + ' at ' + time
-    }
-
     const toggleModal = () => {
         if (dynamicModal.modalType === 'dates') {
             return dispatch(setDynamicModal({ modalType: null, fromCmp: null }))
@@ -40,7 +34,7 @@ export const Date = ({ dueDate }) => {
             <div className="date">
                 <input type="checkbox" name="isDone" onChange={toggleIsDone} checked={isDone} />
                 <button onClick={toggleModal}>
-                    <span>{getFormatDate(ms)}</span>
+                    <span>{utilService.getFormatDate(ms)}</span>
                     {isDone ?
                         <span className="date-label" style={{ backgroundColor: '#61BD4F' }}>complete</span>
                         :
