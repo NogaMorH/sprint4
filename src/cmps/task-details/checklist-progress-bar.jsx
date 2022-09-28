@@ -9,12 +9,13 @@ const Container = styled.div`
         font-size: 11px;
         color: #5e6c84;
         padding-bottom: 5px;
+        // padding-right: 2px;
     }
 
     progress[value] {
         -webkit-appearance: none;
         appearence: none;
-        width: 512px;
+        width: 93.948%;
 
         ::-webkit-progress-bar {
             height: 8px;
@@ -41,7 +42,11 @@ export const ChecklistProgressBar = ({ checklist }) => {
 
     return (
         <Container color={color}>
-            <span>{Math.floor((value / max) * 100)}%</span>
+            {!max ?
+                <span>{value}%</span>
+                :
+                <span>{Math.floor((value / max) * 100)}%</span>
+            }
             <progress value={value} max={max} />
         </Container>
     )

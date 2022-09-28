@@ -1,12 +1,13 @@
 .task-sidebar {
     display: flex;
-    flex-direction: column;
+    // flex-direction: column;
+    // width: 168px;
     font-size: rem(14px);
+    gap: 10px;
 
     button {
         position: relative;
-        width: 168px;
-        margin-bottom: 10px;
+        // width: 100%;
 
         &:active {
             color: $clr18;
@@ -26,6 +27,34 @@
 
         .sidebar-cmp {
             padding-left: 20px;
+            text-transform: capitalize;
+        }
+    }
+}
+
+@media (min-width: 750px) {
+    .task-sidebar {
+        flex-direction: column;
+        width: 168px;
+
+        button {
+            width: 100%;
+        }
+    }
+}
+
+@media (max-width: 750px) {
+    .task-sidebar {
+        flex-direction: row;
+        flex-wrap: wrap;
+        margin-bottom: 20px;
+
+        .task-sidebar-btns {
+            flex: 1 1 150px;
+
+            button {
+                width: 100%;
+            }
         }
     }
 }

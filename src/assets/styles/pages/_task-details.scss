@@ -2,7 +2,7 @@
     position: absolute;
     top: 46px;
     left: calc(100vw / 4.5);
-    width: 768px;
+    max-width: 768px;
     background-color: $clr12;
     border-radius: 3px;
     font-family: san-francisco-light, sans-serif;
@@ -118,7 +118,7 @@
         }
 
         &-header {
-            width: 672px;
+            width: 92%; // 672px
             background-color: transparent;
             border: none;
             font-size: rem(20px);
@@ -143,6 +143,37 @@
 
     .task-details {
         display: flex;
+        // flex-direction: row;
         justify-content: space-between;
+        gap: 16px;
     }
 }
+
+@media (min-width: 750px) {
+    .task-details {
+        flex-direction: row;
+    }
+}
+
+@media (max-width: 750px) {
+    .task-details {
+        flex-direction: column;
+    }
+}
+
+// @media (max-width: 500px) {
+//     .task-details-container {
+//         width: 350px;
+
+//         .task-title {
+
+//             &-header {
+//                 width: 300px;
+//             }
+//         }
+
+//         .task-details {
+//             flex-direction: column;
+//         }
+//     }
+// }

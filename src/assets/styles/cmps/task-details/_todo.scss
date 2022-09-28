@@ -19,7 +19,7 @@
     }
 
     .todo {
-        width: 521px;
+        width: 93.948%; 
 
         .line-through {
             text-decoration: line-through;
@@ -28,7 +28,7 @@
         textarea {
             margin-left: 33px;
             height: 20px;
-            width: 512px;
+            width: 100%; // 512px
 
             &:focus {
                 height: 56px;
