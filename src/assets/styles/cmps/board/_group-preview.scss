@@ -90,3 +90,16 @@
         }
     }
 }
+
+@include for-mobile-layout {
+    .group-preview {
+        max-height: 100%;
+        margin-right: 4px;
+        width: 80vw;
+        background-color: #ebecf0;
+        border-radius: 3px;
+        position: relative;
+        margin-inline-start: 10px;
+        margin-inline-start: 10px;
+    }
+}

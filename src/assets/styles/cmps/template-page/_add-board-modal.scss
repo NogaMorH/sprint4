@@ -7,7 +7,6 @@
     border-radius: 3px;
     color: $clr23;
     cursor: default;
-    position: absolute;
     top: 0;
     left: 300px;
 
@@ -27,12 +26,13 @@
     }
 
     .add-board-modal-title-container {
-        position: relative;
         height: 41px;
         margin: 0 12px;
         margin-bottom: 8px;
         border-bottom: 1px solid #091e4221;
         text-align: center;
+        display: flex;
+        align-items: center;
 
         .add-board-modal-title {
             font-family: san-francisco-light, sans-serif;
@@ -42,14 +42,8 @@
         }
 
         .btn-close-add-board-modal {
-            position: absolute;
-            top: 12px;
-            right: 0;
-            font-size: rem(19px);
-
-            &:hover {
-                color: $clr8;
-            }
+            @include close-icon;
+            display: flex;
         }
     }
 

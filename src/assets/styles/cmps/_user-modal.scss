@@ -3,6 +3,10 @@
     top: 48px;
     right: 4px;
 
+    .close-icon {
+        @include close-icon;
+    }
+
     .user-container {
         display: flex;
         color: $clr8;

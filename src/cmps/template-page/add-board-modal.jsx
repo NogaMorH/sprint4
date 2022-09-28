@@ -1,5 +1,5 @@
 import { boardService } from "../../services/board.service"
-import { utilService } from "../../services/util.service"
+// import { utilService } from "../../services/util.service"
 import { useDispatch } from "react-redux"
 import { IoCloseOutline } from "react-icons/io5"
 import { useForm } from "../../hooks/useForm"
@@ -24,8 +24,8 @@ export const AddBoardModal = ({ toggleAddBoardModal }) => {
 
     useEffect(() => {
         if (newBoard) {
-            navigate(`/board/${newBoard._id}`)
             console.log('board:', newBoard)
+            navigate(`/board/${newBoard._id}`)
         }
     }, [newBoard])
 
@@ -79,32 +79,41 @@ export const AddBoardModal = ({ toggleAddBoardModal }) => {
         <section className="add-board-modal">
             <div className="add-board-modal-title-container">
                 <h5 className="add-board-modal-title">Create board</h5>
-                <span onClick={toggleAddBoardModal} className="btn-close-add-board-modal"><IoCloseOutline /></span>
+                <button onClick={toggleAddBoardModal} className="btn-close-add-board-modal">
+                    <IoCloseOutline />
+                </button>
             </div>
             <div className="add-board-modal-content">
                 <div className="board-display-img-container">
                     <div className="board-display-img" style={setDisplayImgCover()}>
-                        <img src="https://a.trellocdn.com/prgb/dist/images/board-preview-skeleton.14cda5dc635d1f13bc48.svg" alt="board-displat-image" />
+                        <img
+                            src="https://a.trellocdn.com/prgb/dist/images/board-preview-skeleton.14cda5dc635d1f13bc48.svg"
+                            alt="board-displat-image" />
                     </div>
                 </div>
                 <div className="bg-picker-container">
                     <div className="bg-picker-title">Background</div>
                     <ul className="bg-img-list">
                         {boardService.getBackground('url').map((bgImgUrl, idx) => {
-                            return <li key={idx} className="bg-img-preview" onClick={() => setBoardBg('url', bgImgUrl)}>
+                            return <li key={idx} className="bg-img-preview"
+                                onClick={() => setBoardBg('url', bgImgUrl)}>
                                 <img className="img-preview" src={`${bgImgUrl}`} />
                             </li>
                         })}
                     </ul>
                     <ul className="bg-color-list">
                         {boardService.getBackground('color').map((bgColor, idx) => {
-                            return <li key={idx} className="bg-color-preview" style={{ background: `${bgColor}` }} onClick={() => setBoardBg('color', bgColor)}>
+                            return <li key={idx} className="bg-color-preview" style={{ background: `${bgColor}` }}
+                                onClick={() => setBoardBg('color', bgColor)}>
                             </li>
                         })}
                     </ul>
                 </div>
                 <form onSubmit={onAddBoard}>
-                    <label className="add-board-title" htmlFor="title">Board title<span className="asterisk">*</span></label>
+                    <label className="add-board-title" htmlFor="title">
+                        Board title
+                        <span className="asterisk">*</span>
+                    </label>
                     <input
                         className="add-board-input-title"
                         name='title'
@@ -115,7 +124,9 @@ export const AddBoardModal = ({ toggleAddBoardModal }) => {
                     >
                     </input>
                     <p className="require-title"> 👋 Board title is required</p>
-                    <button className={board.title ? 'btn-add-board' : 'btn-disabled'}>Create</button>
+                    <button className={board.title ? 'btn-add-board' : 'btn-disabled'}>
+                        Create
+                    </button>
                 </form>
             </div>
         </section>

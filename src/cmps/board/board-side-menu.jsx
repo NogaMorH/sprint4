@@ -4,6 +4,7 @@ import { TbList } from "react-icons/tb"
 import { useSelector } from "react-redux"
 import { boardService } from "../../services/board.service"
 import { Activities } from "./activities"
+import { BoardBgColorList } from "./board-bg-color-list"
 import { BoardBgImgList } from "./board-bg-img-list"
 
 export const BoardSideMenu = () => {
@@ -42,6 +43,7 @@ export const BoardSideMenu = () => {
                     </div>
                 </div>}
                 {isBgImgListOpen && <BoardBgImgList /> }
+                {isBgColorListOpen && <BoardBgColorList />}
         </section>
     )
 

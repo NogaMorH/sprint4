@@ -1,6 +1,7 @@
 import { httpService } from './http.service'
-import { utilService } from './util.service.js'
-import { userService } from './user.service.js'
+import { utilService } from './util.service'
+import { userService } from './user.service'
+import { socketService } from './socket.service'
 
 // This file demonstrates how to use a BroadcastChannel to notify other browser tabs 
 
@@ -64,7 +65,8 @@ async function save(board) {
     var savedBoard
     if (board._id) {
         try {
-            savedBoard = await httpService.put(BASE_URL + board._id, board)
+            await httpService.put(BASE_URL + board._id, board)
+            return {...board}
         } catch (err) {
             console.log('Save board has failed:', err)
             throw err
@@ -186,6 +188,7 @@ async function saveTask(board, groupId, task) {
             const idx = group.tasks.findIndex(currTask => currTask.id === task.id)
             group.tasks.splice(idx, 1, task)
             await httpService.put(BASE_URL + board._id, board)
+            socketService.updateBoard(board._id)
             return { ...board }
         } catch (err) {
             console.log('Save task from board service has failed:', err)

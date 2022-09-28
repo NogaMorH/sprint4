@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { loadBoard } from '../store/board/board.actions'
+import { loadBoard, updateBoardFromSocket } from '../store/board/board.actions'
 import { setIsFormAddOpen } from '../store/board/board.actions'
 import { GroupList } from '../cmps/board/group-list'
 import { Outlet, useParams } from 'react-router-dom'
@@ -8,6 +8,7 @@ import { MainHeader } from '../cmps/main-header'
 import { BoardSecondaryHeader } from '../cmps/board/board-secondary-header'
 import { FormAdd } from '../cmps/board/form-add'
 import { BsPlusLg } from 'react-icons/bs'
+import { socketService } from '../services/socket.service'
 
 // import { showSuccessMsg } from '../services/event-bus.service.js'
 
@@ -21,11 +22,17 @@ export const Board = () => {
         dispatch(loadBoard(params.boardId))
     }, [params.boardId])
 
+    useEffect(() => {
+        socketService.on('board-updated', (board) => {
+            dispatch(updateBoardFromSocket(board))
+        })
+    }, [])
+
     const onAddGroup = () => {
         dispatch(setIsFormAddOpen(null, true))
     }
 
-    const getBoardBg = (board) => {
+    const getBoardBg = () => {
         let style = {}
         if (board.style?.imgUrl) {
             style = {
@@ -34,7 +41,7 @@ export const Board = () => {
             }
         } else {
             style = {
-                backgroundColor: board.style.bgColor
+                background: board.style.bgColor
             }
         }
         return style
@@ -44,7 +51,7 @@ export const Board = () => {
     return (
         <div className='board-layout board-page'>
             <MainHeader />
-            <main className='full board-layout board-layout board' style={getBoardBg(board)}>
+            <main className='full board-layout board' style={getBoardBg()}>
                 <BoardSecondaryHeader board={board} />
                 <div className='group-list-container'>
                     <GroupList groups={board.groups} />

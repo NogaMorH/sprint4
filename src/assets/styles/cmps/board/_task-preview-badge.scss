@@ -53,3 +53,15 @@
         }
     }
 }
+
+@include for-mobile-layout {
+    .task-badge-container {
+        align-items: self-start;
+
+        .member-avatar {
+            margin: 2px 0 0px 4px;
+        }
+        
+    }
+
+}
