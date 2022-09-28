@@ -1,5 +1,4 @@
 .labels {
-    margin-left: 33px;
     margin-bottom: 5px;
     max-width: 512px;
 
@@ -31,4 +30,14 @@
             }
         }
     }
+}
+
+@media (min-width: 750px) {
+    .labels {
+        margin-left: 33px;
+    }
+}
+
+@media (max-width: 750px) {
+    .labels {}
 }
