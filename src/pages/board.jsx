@@ -9,8 +9,7 @@ import { BoardSecondaryHeader } from '../cmps/board/board-secondary-header'
 import { FormAdd } from '../cmps/board/form-add'
 import { BsPlusLg } from 'react-icons/bs'
 import { socketService } from '../services/socket.service'
-import * as React from 'react'
-import CircularProgress from '@mui/material/CircularProgress'
+import { Loader } from '../cmps/loader'
 // import { showSuccessMsg } from '../services/event-bus.service.js'
 
 export const Board = () => {
@@ -48,10 +47,7 @@ export const Board = () => {
         return style
     }
 
-    if (!board) return (
-        <div className='loader-container'>
-            <CircularProgress style={{ width: '7%', height: '7%' }} />
-        </div>)
+    if (!board) return <Loader />
     return (
         <div className='board-layout board-page'>
             <MainHeader />

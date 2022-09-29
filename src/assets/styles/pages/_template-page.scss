@@ -1,98 +1,100 @@
-.board-list-container {
-    // display: flex;
-    // flex-direction: column;
-    // margin: 100px 100px 100px;
-    // width: 100%;
+.template-page {
 
-    .board-list-title-container {
-        padding-bottom: rem(5.5px);
-        display: flex;
-        margin-inline-start: 5px;
+    .board-list-container {
+        // display: flex;
+        // flex-direction: column;
+        // width: 100%;
+        margin-top: 40px;
 
-        .board-list-title-icon {
-            font-size: rem(22px);
-        }
-
-        .board-list-title {
-            margin-inline-start: 15px;
-            font-size: rem(15px);
-            line-height: 24px;
-            /* margin-bottom: 8px; */
-            font-family: san-fransisco-medium, sans-serif;
-            font-weight: 700;
-        }
-    }
-
-    .board-list {
-        display: flex;
-        flex-wrap: wrap;
-        // justify-content: space-between;
-
-        .all-boards {
+        .board-list-title-container {
+            padding-bottom: rem(5.5px);
             display: flex;
-            flex-direction: column;
-        }
+            margin-inline-start: 5px;
 
-        .board-preview {
-            // margin: 0 2% 2% 0;
-            padding: 0;
-            transform: translate(0);
-            height: 6.125rem;
-            width: 12.0625rem;
-            margin-right: 0.9375rem; 
-            margin-bottom: 2.4375rem;
-            border-radius: 3px;
-      
-
-            &.add-board {
-                margin: 0;
-                background-color: #f0f2f5;
-                color: #172b4d;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                position: relative;
-                cursor: pointer;
-                margin-right: 0.9375rem; 
-                font-family: san-francisco-light, sans-serif;
-                font-size: rem(14px);
+            .board-list-title-icon {
+                font-size: rem(22px);
             }
 
-            .board-preview-details {
+            .board-list-title {
+                margin-inline-start: 15px;
+                font-size: rem(15px);
+                line-height: 24px;
+                /* margin-bottom: 8px; */
+                font-family: san-fransisco-medium, sans-serif;
+                font-weight: 700;
+            }
+        }
+
+        .board-list {
+            // display: flex;
+            // flex-wrap: wrap;
+            // justify-content: space-between;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+
+            .all-boards {
                 display: flex;
                 flex-direction: column;
-                justify-content: space-between;
-                height: rem(75px);
-                height: 100%;
-                padding: 6px 6px 6px 6px;
+            }
 
-                .board-title {
-                    color: #fff;
-                    font-weight: 700;
-                    font-family: 700;
-                    margin-inline-start: 2px;
-                    margin-top: 2px;
+            .board-preview {
+                // margin: 0 2% 2% 0;
+                padding: 0;
+                transform: translate(0);
+                height: 6.125rem;
+                width: 12.0625rem;
+                margin-right: 0.9375rem;
+                margin-bottom: 2.4375rem;
+                border-radius: 3px;
+
+                &.add-board {
+                    margin: 0;
+                    background-color: #f0f2f5;
+                    color: #172b4d;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    position: relative;
+                    cursor: pointer;
+                    margin-right: 0.9375rem;
+                    font-family: san-francisco-light, sans-serif;
+                    font-size: rem(14px);
                 }
 
-                // &:hover {
-                .starred {
-                    color: #f1d600;
-                    position: absolute;
-                    right: 11px;
-                    bottom: 7px;
-                    font-size: rem(18px);
-                }
+                .board-preview-details {
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: space-between;
+                    height: rem(75px);
+                    height: 100%;
+                    padding: 6px 6px 6px 6px;
+                    background-color: #0000004d;
 
-                .unstarred {
-                    position: absolute;
-                    right: 11px;
-                    bottom: 7px;
-                    font-size: rem(16px);
-                    color: #fff;
+                    .board-title {
+                        color: #fff;
+                        font-family: san-francisco-bold, sans-serif;
+                        margin-inline-start: 2px;
+                        margin-top: 2px;
+                    }
+
+                    // &:hover {
+                    .starred {
+                        color: #f1d600;
+                        position: absolute;
+                        right: 11px;
+                        bottom: 7px;
+                        font-size: rem(18px);
+                    }
+
+                    .unstarred {
+                        position: absolute;
+                        right: 11px;
+                        bottom: 7px;
+                        font-size: rem(16px);
+                        color: #fff;
+                    }
                 }
             }
         }
     }
 }
-
-// }

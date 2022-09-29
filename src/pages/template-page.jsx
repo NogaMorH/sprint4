@@ -8,6 +8,7 @@ import { RiStarLine, RiStarSFill } from 'react-icons/ri'
 import { AiOutlineClockCircle } from "react-icons/ai"
 import { AddBoardModal } from "../cmps/template-page/add-board-modal"
 import { MainHeader } from '../cmps/main-header'
+import { Loader } from "../cmps/loader"
 
 export const TemplatePage = () => {
 
@@ -39,7 +40,6 @@ export const TemplatePage = () => {
     }
 
     const toggleAddBoardModal = (ev) => {
-        // console.log('ev:', ev)
         setIsAddBoardModalOpen(!isAddBoardModalOpen)
     }
 
@@ -70,7 +70,7 @@ export const TemplatePage = () => {
         return style
     }
 
-    if (!boards) return <div>Loading...</div>
+    if (!boards) return <Loader />
     return (
         <div className='template-page'>
             <MainHeader />
