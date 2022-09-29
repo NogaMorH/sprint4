@@ -189,9 +189,9 @@ export function SignUp({ setIsLogin }) {
                             sx={{ mt: 3, mb: 2 }}>
                             Sign Up
                         </Button>
-                        <Grid container justifyContent="flex-end">
+                        <Grid container justifyContent="flex-end" style={{ justifyContent: 'center' }}>
                             <Grid item>
-                                <button onClick={() => setIsLogin(true)} variant="body2">
+                                <button onClick={() => setIsLogin(true)} variant="body2" className='link-btn'>
                                     Already have an account? Sign in
                                 </button>
                             </Grid>

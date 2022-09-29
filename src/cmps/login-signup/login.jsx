@@ -3,8 +3,8 @@ import Avatar from '@mui/material/Avatar'
 import Button from '@mui/material/Button'
 import CssBaseline from '@mui/material/CssBaseline'
 import TextField from '@mui/material/TextField'
-import FormControlLabel from '@mui/material/FormControlLabel'
-import Checkbox from '@mui/material/Checkbox'
+// import FormControlLabel from '@mui/material/FormControlLabel'
+// import Checkbox from '@mui/material/Checkbox'
 import Link from '@mui/material/Link'
 import Grid from '@mui/material/Grid'
 import Box from '@mui/material/Box'
@@ -14,7 +14,7 @@ import Container from '@mui/material/Container'
 import { createTheme, ThemeProvider } from '@mui/material/styles'
 import { useDispatch } from 'react-redux'
 import { onLogin } from '../../store/user/user.actions'
-import { ContactSupportOutlined } from '@mui/icons-material'
+// import { ContactSupportOutlined } from '@mui/icons-material'
 import { useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { useEffect } from 'react'
@@ -50,8 +50,7 @@ export const Login = ({ setIsLogin }) => {
                         display: 'flex',
                         flexDirection: 'column',
                         alignItems: 'center',
-                    }}
-                >
+                    }}>
                     <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
                         <LockOutlinedIcon />
                     </Avatar>
@@ -67,8 +66,7 @@ export const Login = ({ setIsLogin }) => {
                             label="Email Address"
                             name="email"
                             autoComplete="email"
-                            autoFocus
-                        />
+                            autoFocus />
                         <TextField
                             margin="normal"
                             required
@@ -77,8 +75,7 @@ export const Login = ({ setIsLogin }) => {
                             label="Password"
                             type="password"
                             id="password"
-                            autoComplete="current-password"
-                        />
+                            autoComplete="current-password" />
                         {/* <FormControlLabel
                             control={<Checkbox value="remember" color="primary" />}
                             label="Remember me"
@@ -87,18 +84,18 @@ export const Login = ({ setIsLogin }) => {
                             type="submit"
                             fullWidth
                             variant="contained"
-                            sx={{ mt: 3, mb: 2 }}
-                        >
+                            sx={{ mt: 3, mb: 2 }}>
                             Sign In
                         </Button>
-                        <Grid container>
+                        <Grid container style={{ justifyContent: 'center' }}>
                             {/* <Grid item xs>
                                 <Link href="#" variant="body2">
                                     Forgot password?
                                 </Link>
                             </Grid> */}
                             <Grid item>
-                                <button onClick={() => setIsLogin(false)} variant="body2">
+                                <button onClick={() => setIsLogin(false)} variant="body2"
+                                    className='link-btn'>
                                     {"Don't have an account? Sign Up"}
                                 </button>
                             </Grid>
