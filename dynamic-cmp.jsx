@@ -42,7 +42,7 @@ export const MembersModal = ({ groupId, taskId, closeModal, className }) => {
 
     const board = useSelector(state => state.boardModule.board)
     const { members } = board
-    let { memberIds } = boardService.getTask(board, groupId, taskId)
+    let memberIds = boardService.getTask(board, groupId, taskId).membersId
     const dispatch = useDispatch()
 
     const toggleMember = (id) => {
