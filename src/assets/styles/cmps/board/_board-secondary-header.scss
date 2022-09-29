@@ -2,8 +2,6 @@
     background: linear-gradient(0deg, #ffffff00 0%, $clr15 19%, $clr15 100%);
 
     .board-secondary-header {
-        display: flex;
-        justify-content: space-between;
         padding-top: 7px;
         padding-bottom: 9px;
         color: $clr8;
@@ -12,6 +10,12 @@
         .header-main-content {
             display: flex;
             align-items: center;
+            justify-content: space-between;
+
+            .header-board-details {
+                display: flex;
+                align-items: center;
+            }
 
             .board-title {
                 font-size: rem(18px);
@@ -48,7 +52,7 @@
                 @include btn-transparent-size;
 
                 .board-menu-dots-icon {
-                    color: #fff
+                    margin-right: 6px;
                 }
             }
         }
@@ -66,6 +70,7 @@
     .board-secondary-header-container {
         padding-top: 7px;
         padding-bottom: 9px;
+        background-color: #6f7477;
         // color: $clr8;
 
         .board-secondary-header {
@@ -76,7 +81,6 @@
             padding-bottom: 9px;
             // color: $clr8;
             align-items: center;
-            background-color: #6f7477;
 
             .header-main-content {
                 justify-content: space-between;
@@ -115,7 +119,9 @@
                     display: none;
                 }
 
-                .board-menu-dots-icon {}
+                .board-menu-dots-icon {
+                    color: #fff;
+                }
 
             }
         }
