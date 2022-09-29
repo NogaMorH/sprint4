@@ -72,6 +72,22 @@ export const MembersModal = ({ groupId, taskId, closeModal, className }) => {
         }
     }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     return (
         <div className={`dynamic-modal members-modal ${className ? className : ''}`}
             onClick={(ev) => ev.stopPropagation()}>
