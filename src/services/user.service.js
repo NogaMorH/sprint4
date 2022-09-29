@@ -66,7 +66,7 @@ async function update(user) {
 
 async function login(userCred) {
     try {
-        const user = await httpService.post(`${AUTH_BASE_URL}/login`, userCred)
+        const user = await httpService.post(`${AUTH_BASE_URL}login`, userCred)
         if (user) {
             socketService.login(user._id)
             return saveLocalUser(user)
