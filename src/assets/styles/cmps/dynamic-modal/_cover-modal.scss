@@ -2,10 +2,10 @@
 
     z-index: 20;
 
-    &.details-pos {
-        top: 160px;
-        right: -210px;
-    }
+    // &.details-pos {
+    //     top: 160px;
+    //     right: -210px;
+    // }
 
     .dynamic-header {
         padding-top: 10px;
@@ -111,6 +111,24 @@
                 cursor: pointer;
                 font-size: 0;
             }
+        }
+    }
+}
+
+@media (min-width: 750px) {
+    .cover-modal-container {
+        &.details-pos {
+            top: 160px;
+            right: -210px;
+        }
+    }
+}
+
+@media (max-width: 750px) {
+    .cover-modal-container {
+        &.details-pos {
+            // bottom: 0;
+            // left: 25px;
         }
     }
 }

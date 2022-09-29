@@ -4,19 +4,14 @@
         margin-bottom: 10px;
     }
 
-    .add-todo-btn {
-        margin-left: 33px;
-    }
-
     .new-todo {
 
         &-textarea {
-            margin-left: 33px;
             height: 20px;
-            width: 93.948%; // 512px
+            width: 93.946%; // 512px
             outline: auto;
             outline-color: $clr18;
-            
+
             &:focus {
                 background-color: #fff;
                 height: 56px;
@@ -29,7 +24,6 @@
             display: flex;
             margin-top: 2px;
             margin-bottom: 9px;
-            margin-left: 33px;
 
             .todo-add-btn {
                 background-color: $clr18;
@@ -50,4 +44,24 @@
             }
         }
     }
+}
+
+@media (min-width: 750px) {
+    .todo-list-container {
+        .add-todo-btn {
+            margin-left: 33px;
+        }
+
+        .new-todo {
+
+            &-textarea,
+            &-buttons {
+                margin-left: 33px;
+            }
+        }
+    }
+}
+
+@media (max-width: 750px) {
+    .todo-list-container {}
 }

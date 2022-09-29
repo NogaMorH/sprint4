@@ -51,3 +51,9 @@
     // background-clip: padding-box;
     width: 8px;
 }
+
+@media (max-width: 750px) {
+    ::-webkit-scrollbar {
+        display: none;
+    }
+}

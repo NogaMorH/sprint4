@@ -9,13 +9,13 @@ const Container = styled.div`
         font-size: 11px;
         color: #5e6c84;
         padding-bottom: 5px;
-        // padding-right: 2px;
+        padding-right: 5px;
     }
 
     progress[value] {
         -webkit-appearance: none;
         appearence: none;
-        width: 93.948%;
+        width: 93.946%;
 
         ::-webkit-progress-bar {
             height: 8px;

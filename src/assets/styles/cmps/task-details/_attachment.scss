@@ -2,7 +2,6 @@
     position: relative;
     display: flex;
     align-items: center;
-    margin-left: 33px;
     margin-bottom: 10px;
     color: $clr23;
     max-width: 512px;
@@ -18,7 +17,7 @@
 
     &-img {
         position: relative;
-        max-width: 112px;
+        width: 112px;
         height: 80px;
         background-color: #091e420a;
         border-radius: 3px;
@@ -100,4 +99,14 @@
             }
         }
     }
+}
+
+@media (min-width: 750px) {
+    .attachment {
+        margin-left: 33px;
+    }
+}
+
+@media (max-width: 750px) {
+    .attachment {}
 }

@@ -30,8 +30,7 @@
         resize: none;
         overflow-y: hidden;
         // min-height: 56px;
-        width: 93.948%; // 512px
-        margin-left: 33px;
+        width: 93.946%; // 512px
         padding-bottom: 10px;
         font-family: inherit;
         font-size: rem(14px);
@@ -75,7 +74,6 @@
         }
 
         .save-btn {
-            margin-left: 33px;
             margin-right: 4px;
             background-color: $clr18;
             color: #fff;
@@ -93,5 +91,22 @@
             }
         }
     }
+}
 
+@media (min-width: 750px) {
+    .description {
+        textarea {
+            margin-left: 33px;
+        }
+
+        &-btn {
+            .save-btn {
+                margin-left: 33px;
+            }
+        }
+    }
+}
+
+@media (max-width: 750px) {
+    .description {}
 }

@@ -140,18 +140,6 @@
             display: flex;
             justify-content: center;
         }
-
-        .close-icon {
-            font-size: 18px;
-            color: #6b778c;
-            padding: 0;
-            background-color: inherit;
-            font-size: 20px;
-
-            &:hover {
-                color: $clr8;
-            }
-        }
     }
 
     .btn-action-container {
@@ -168,5 +156,16 @@
         &:hover {
             background-color: $clr27;
         }
+    }
+}
+
+@mixin close-icon {
+    color: #6b778c;
+    padding: 0;
+    background-color: inherit;
+    font-size: 20px;
+
+    &:hover {
+        color: $clr8;
     }
 }

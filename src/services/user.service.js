@@ -1,5 +1,6 @@
 // import { storageService } from './async-storage.service'
 import { httpService } from './http.service'
+import { socketService } from './socket.service'
 // import { socketService, SOCKET_EVENT_USER_UPDATED, SOCKET_EMIT_USER_WATCH } from './socket.service'
 // import { showSuccessMsg } from '../services/event-bus.service'
 
@@ -67,7 +68,7 @@ async function login(userCred) {
     try {
         const user = await httpService.post(`${AUTH_BASE_URL}/login`, userCred)
         if (user) {
-            // socketService.login(user._id)
+            socketService.login(user._id)
             return saveLocalUser(user)
         } else return Promise.reject('Invalid username or password')
     } catch (err) {
@@ -78,8 +79,10 @@ async function login(userCred) {
 async function signup(userCred) {
     try {
         const user = await httpService.post(`${AUTH_BASE_URL}signup`, userCred)
-        // socketService.login(user._id)
-        return saveLocalUser(user)
+        if (user) {
+            socketService.login(user._id)
+            return saveLocalUser(user)
+        }
     } catch (err) {
         console.log('Signup has failed in user service', err)
     }
@@ -89,6 +92,7 @@ async function logout() {
     try {
         await httpService.post(`${AUTH_BASE_URL}logout`)
         sessionStorage.removeItem('loggedInUser')
+        socketService.logout()
     } catch (err) {
         console.log(err)
     }
