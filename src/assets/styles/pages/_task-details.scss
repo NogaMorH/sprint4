@@ -49,6 +49,7 @@
 
         .task-cover-color {
             height: rem(116px);
+            border-radius: 3px 3px 0 0;
         }
 
         .btn-cover-modal {
@@ -148,7 +149,8 @@
 @media (min-width: 750px) {
     .task-details-container {
         top: 46px;
-        left: calc(100vw / 4.5);
+        left: 50%;
+        transform: translate(-50%, 0);
 
         .task-title {
             &-subtitle {
