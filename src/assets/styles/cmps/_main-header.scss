@@ -1,6 +1,6 @@
 .main-header {
     height: 44px;
-    background-color: #c7b3d4;
+    background-color: #bba9c6;
     height: fit-content;
     position: relative;
 
@@ -51,8 +51,8 @@
     }
 }
 
-@include for-mobile-layout { 
-    .main-header{
+@include for-mobile-layout {
+    .main-header {
         display: none
     }
 }
