@@ -1,5 +1,4 @@
 .members-container {
-    margin-left: 33px;
     margin-bottom: 12px;
 
     .members-div {
@@ -25,4 +24,14 @@
             }
         }
     }
+}
+
+@media (min-width: 750px) {
+    .members-container {
+        margin-left: 33px;
+    }
+}
+
+@media (max-width: 750px) {
+    .members-container {}
 }

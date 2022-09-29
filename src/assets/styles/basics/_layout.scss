@@ -6,24 +6,9 @@
     @include main-layout(16px, 1fr, 8px)
 }
 
-// .task-details-layout {
-//     @include main-layout(minmax(8px, 23px), 1fr, minmax(8px, 16px))
-// }
-
-// MQ task-details
-@media (min-width: 750px) {
-    .task-details-layout {
-        @include main-layout(minmax(8px, 23px), minmax(8px, 768px), minmax(8px, 16px))
-    }
+.task-details-layout {
+    @include main-layout(minmax(8px, 23px), minmax(8px, 768px), minmax(8px, 16px))
 }
-
-@media (max-width: 750px) {
-    .task-details-layout {
-        @include main-layout(minmax(8px, 16px), minmax(8px, 768px), minmax(8px, 16px))
-    }
-}
-
-///////////////////
 
 .template-layout {
     @include main-layout(minmax(100px, 1fr), minmax(auto, 1140px), minmax(100px, 1fr))

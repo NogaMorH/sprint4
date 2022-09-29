@@ -50,7 +50,7 @@ export const MainHeader = () => {
         <header className='full board-layout main-header'>
             <div className='flex header-main-container'>
                 <div className='logo-container'>
-                    <Link to='/' className='logo'>
+                    <Link to='/template' className='logo'>
                         <img src={boardLogo} alt='logo' />
                         Rello
                     </Link>
