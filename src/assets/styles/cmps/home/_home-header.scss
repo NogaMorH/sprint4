@@ -26,4 +26,10 @@
             margin-left: 7px;
         }
     }
+
+    @include avatar-btn;
+
+    .avatar-btn {
+        margin-right: 8px;
+    }
 }

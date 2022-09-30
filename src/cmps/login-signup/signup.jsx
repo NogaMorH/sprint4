@@ -28,7 +28,7 @@ export function SignUp({ setIsLogin }) {
     const navigate = useNavigate()
 
     useEffect(() => {
-        if (user) navigate('/template')
+        if (user) navigate('/')
     }, [user])
 
     const formik = useFormik({

@@ -169,3 +169,15 @@
         color: $clr8;
     }
 }
+
+@mixin avatar-btn {
+    .avatar-btn {
+        background-color: inherit;
+        padding: 0;
+    }
+
+    .avatar {
+        width: 32px;
+        border-radius: 50%;
+    }
+}
