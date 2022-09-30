@@ -96,13 +96,13 @@ export const TaskDetails = () => {
                     <div className="task-details-content">
                         {memberIds && <Members members={boardService.getTaskMembers(board, groupId, taskId)} />}
 
-                        {labelIds && labelIds.length > 0 && <Labels board={board} />}
+                        {labelIds?.length > 0 && <Labels board={board} />}
 
                         {dueDate && <Date dueDate={dueDate} />}
 
                         <Description description={description} />
 
-                        {attachments && <AttachmentList attachments={attachments} task={task} />}
+                        {attachments?.length > 0 && <AttachmentList attachments={attachments} task={task} />}
 
                         {checklists && <ChecklistList checklists={checklists} />}
                     </div>

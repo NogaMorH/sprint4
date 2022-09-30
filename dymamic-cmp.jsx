@@ -114,7 +114,7 @@ export const MembersModal = ({ groupId, taskId, closeModal, className }) => {
                     value={name} onChange={filter} />
                 <div className="members">
                     {members &&
-                        (foundUsers && foundUsers.length > 0
+                        (foundUsers?.length > 0
                             ?
                             <ul className="members-list">
                                 <h6>Board members</h6>
@@ -149,7 +149,7 @@ export const MembersModal = ({ groupId, taskId, closeModal, className }) => {
                         )}
                     {!members && <p>There are no available members in this board.</p>}
                 </div>
-                {foundUsers && foundUsers.length > 0 && <button>Show other Workspace members</button>}
+                {foundUsers?.length > 0 && <button>Show other Workspace members</button>}
             </div>
         </div>
     )

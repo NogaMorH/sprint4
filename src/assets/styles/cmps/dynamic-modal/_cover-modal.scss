@@ -1,11 +1,6 @@
 .cover-modal-container {
-
     z-index: 20;
 
-    // &.details-pos {
-    //     top: 160px;
-    //     right: -210px;
-    // }
 
     .dynamic-header {
         padding-top: 10px;
@@ -25,6 +20,7 @@
         font-weight: 600;
         padding: 0 12px 0 12px;
         font-family: 'san-francisco-medium';
+        text-align: left;
     }
 
     .color-list {
@@ -62,6 +58,7 @@
             font-weight: 600;
             padding: 0 0 0 5px;
             font-family: 'san-francisco-medium';
+            text-align: left;
         }
 
         .img-list {
@@ -74,6 +71,7 @@
 
             .img-preview {
                 cursor: pointer;
+                border-radius: 3px;
             }
 
         }
@@ -82,8 +80,6 @@
     .upload-img-container {
         display: flex;
         padding: 0 12px 12px 12px;
-
-
 
         .img-upload {
             background-color: #f5f6f8;

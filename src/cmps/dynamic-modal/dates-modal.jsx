@@ -29,11 +29,13 @@ export const DatesModal = ({ groupId, taskId, className }) => {
     }, [value])
 
     return (
-        <div className={`dynamic-modal dates-modal ${className ? className : ''}`} onClick={(ev) => ev.stopPropagation()}>
+        <div
+            className={`dynamic-modal dates-modal ${className ? className : ''}`}
+            onClick={(ev) => ev.stopPropagation()}
+        >
             <LocalizationProvider dateAdapter={AdapterDayjs}>
                 <DateTimePicker
                     renderInput={(props) => <TextField {...props} />}
-                    label="DateTimePicker"
                     value={value}
                     onChange={(newValue) => {
                         setValue(newValue)

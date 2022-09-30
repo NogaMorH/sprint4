@@ -1,59 +1,58 @@
 .task-sidebar {
-    display: flex;
-    // flex-direction: column;
-    // width: 168px;
     font-size: rem(14px);
-    gap: 10px;
+    padding-bottom: 40px;
 
-    button {
-        position: relative;
-        // width: 100%;
+    .task-sidebar-btns {
+        display: flex;
+        gap: 10px;
 
-        &:active {
-            color: $clr18;
-            background-color: #e4f0f6;
-        }
-
-        .icon {
-            position: absolute;
-            top: 7.5px;
-            left: 8px;
-            color: $clr8;
+        .sidebar-btn {
+            position: relative;
 
             &:active {
-                color: $clr18; //not working !
+                color: $clr18;
+                background-color: #e4f0f6;
             }
-        }
 
-        .sidebar-cmp {
-            padding-left: 20px;
-            text-transform: capitalize;
+            .icon {
+                position: absolute;
+                top: 7.5px;
+                left: 8px;
+                color: $clr8;
+
+                &:active {
+                    color: $clr18; //not working !
+                }
+            }
+
+            .sidebar-cmp {
+                padding-left: 20px;
+                text-transform: capitalize;
+            }
         }
     }
 }
 
 @media (min-width: 750px) {
     .task-sidebar {
-        flex-direction: column;
-        width: 168px;
-
-        button {
-            width: 100%;
+        .task-sidebar-btns {
+            flex-direction: column;
+            width: 168px;
         }
     }
 }
 
 @media (max-width: 750px) {
     .task-sidebar {
-        flex-direction: row;
-        flex-wrap: wrap;
-        margin-bottom: 20px;
+        .task-sidebar-btns {
+            flex-direction: row;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+        }
 
         .task-sidebar-btns {
-            flex: 1 1 150px;
-
-            button {
-                width: 100%;
+            .sidebar-btn {
+                flex: 1 1 150px;
             }
         }
     }

@@ -6,7 +6,7 @@ import { boardService } from "../../services/board.service"
 import { utilService } from "../../services/util.service"
 import { updateTask } from "../../store/board/board.actions"
 
-export const ChecklistModal = ({ groupId, taskId, closeModal }) => {
+export const ChecklistModal = ({ groupId, taskId, closeModal, className }) => {
 
     const board = useSelector(state => state.boardModule.board)
     const [title, setTitle] = useState('Checklist')
@@ -31,7 +31,10 @@ export const ChecklistModal = ({ groupId, taskId, closeModal }) => {
     }
 
     return (
-        <div className='dynamic-modal checklist-modal' onClick={(ev) => ev.stopPropagation()}>
+        <div
+            className={`dynamic-modal checklist-modal ${className ? className : ''}`}
+            onClick={(ev) => ev.stopPropagation()}
+        >
             <div className="dynamic-header">
                 <h5>Add checklist</h5>
                 <span onClick={closeModal}><IoCloseOutline /></span>
@@ -39,7 +42,16 @@ export const ChecklistModal = ({ groupId, taskId, closeModal }) => {
 
             <div className="dynamic-content">
                 <h6>Title</h6>
-                <input className="dynamic-input" type="text" placeholder="Search members" ref={ref} value={title} onChange={onChange} />
+
+                <input
+                    className="dynamic-input"
+                    type="text"
+                    placeholder="Search members"
+                    ref={ref}
+                    value={title}
+                    onChange={onChange}
+                />
+
                 <button className="add-btn" onClick={addChecklist}>Add</button>
             </div>
         </div>

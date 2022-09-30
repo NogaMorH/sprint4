@@ -1,6 +1,5 @@
 .task-details-container {
     position: absolute;
-    width: 768px;
     background-color: $clr12;
     border-radius: 3px;
     font-family: san-francisco-light, sans-serif;
@@ -22,8 +21,10 @@
         font-family: inherit;
         color: $clr23;
         font-weight: 600;
+        text-align: left;
     }
 
+    .sidebar-btn,
     button {
         border: none;
         color: inherit;
@@ -146,8 +147,15 @@
     }
 }
 
+@media (min-width: 850px) {
+    .task-details-container {
+        width: 768px;
+    }
+}
+
 @media (min-width: 750px) {
     .task-details-container {
+        min-width: 710px;
         top: 46px;
         left: 50%;
         transform: translate(-50%, 0);

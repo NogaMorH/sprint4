@@ -1,10 +1,13 @@
 .labels-modal-container {
-    margin-top: 10px;
 
     .icon-less {
         position: absolute;
         left: -265px;
-        color: $clr20;
+        color: #828b9a;
+
+        &:hover {
+            color: #8890a0;
+        }
     }
 
     .labels-modal {
