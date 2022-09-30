@@ -50,15 +50,18 @@ export const Description = ({ description }) => {
 
     return (
         <div className="description">
+
             <div className="description-header">
                 <span className="description-header-icon"><GrTextAlignFull /></span>
                 <h4>Description</h4>
+
                 {description && !focused &&
                     <button className="edit-btn" onClick={focusRef}>Edit</button>
                 }
             </div>
 
-            <textarea className={description ? "" : "blank"}
+            <textarea
+                className={description ? "" : "blank"}
                 placeholder="Add a more detailed description..."
                 onFocus={onFocus}
                 onBlur={onBlur}

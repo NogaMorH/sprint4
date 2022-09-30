@@ -30,7 +30,6 @@
         resize: none;
         overflow-y: hidden;
         // min-height: 56px;
-        width: 93.946%; // 512px
         padding-bottom: 10px;
         font-family: inherit;
         font-size: rem(14px);
@@ -107,6 +106,11 @@
     }
 }
 
+// only for Demo
 @media (max-width: 750px) {
-    .description {}
+    .description {
+        textarea {
+            width: 343px;
+        }
+    }
 }

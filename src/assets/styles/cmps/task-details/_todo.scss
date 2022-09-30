@@ -11,6 +11,7 @@
 
     input[name=isDone] {
         position: absolute;
+        top: 7px;
 
         &.focused {
             align-self: flex-start;
@@ -19,7 +20,6 @@
     }
 
     .todo {
-        width: 93.946%; 
 
         .line-through {
             text-decoration: line-through;
@@ -28,7 +28,6 @@
         textarea {
             margin-left: 33px;
             height: 20px;
-            width: 100%; // 512px
 
             &:focus {
                 height: 56px;

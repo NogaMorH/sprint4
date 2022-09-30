@@ -25,11 +25,17 @@ export const Labels = ({ board }) => {
     return (
         <div className="labels">
             <h6>Labels</h6>
+
             <ul className="labels-list">
                 {labels.map(label => {
                     const { id, color, title } = label
-                    return <li key={id} onClick={toggleModal}><LabelStyleCmp className='label' color={color} title={title} /></li>
+                    return (
+                        <li key={id} onClick={toggleModal}>
+                            <LabelStyleCmp className='label' color={color} title={title} />
+                        </li>
+                    )
                 })}
+
                 <button className="icon-add" onClick={toggleModal}><BsPlusLg /></button>
             </ul>
 

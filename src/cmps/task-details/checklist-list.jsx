@@ -27,6 +27,7 @@ export const ChecklistList = ({ checklists }) => {
 
     return (
         <div className="checklist-list">
+
             {checklists.map(checklist => (
                 <Checklist key={checklist.id}
                     checklist={checklist}

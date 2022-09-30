@@ -137,6 +137,10 @@
         &-subtitle {
             font-size: rem(14px);
             margin-top: 1.5px;
+
+            span {
+                text-decoration: underline;
+            }
         }
     }
 
@@ -144,6 +148,13 @@
         display: flex;
         justify-content: space-between;
         gap: 16px;
+
+        .task-details-content {
+            .content-info {
+                display: flex;
+                flex-wrap: wrap;
+            }
+        }
     }
 }
 

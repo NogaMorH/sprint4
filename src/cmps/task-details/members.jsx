@@ -22,10 +22,12 @@ export const Members = ({ members }) => {
     return (
         <div className="members-container">
             <h6>Members</h6>
+
             <div className="members-div">
                 {members.map(member => (
                     <img key={member.id} src={member.imgUrl} alt="profile img" />
                 ))}
+
                 <button className="icon-add" onClick={toggleModal}><BsPlusLg /></button>
             </div>
 

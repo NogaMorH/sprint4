@@ -6,7 +6,7 @@ import { ImAttachment } from 'react-icons/im'
 import { DynamicModal } from '../dynamic-modal/dynamic-modal'
 import { useSelector } from 'react-redux'
 
-export const AttachmentList = ({ attachments, closeAttachmentEditModal, task }) => {
+export const AttachmentList = ({ attachments, closeAttachmentEditModal }) => {
 
     const dynamicModal = useSelector(state => state.systemModule.dynamicModal)
     const dispatch = useDispatch()
@@ -55,6 +55,7 @@ export const AttachmentList = ({ attachments, closeAttachmentEditModal, task }) 
 
     return (
         <div className="attachment-list">
+
             <div className="attachment-list-header">
                 <span className='attachment-icon'><ImAttachment /></span>
                 <h4>Attachments</h4>

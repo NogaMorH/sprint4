@@ -5,11 +5,11 @@ const Container = styled.div`
     justify-content: space-between;
     align-items: center;
 
-    span {
+    div {
         font-size: 11px;
+        text-align: center;
         color: #5e6c84;
         padding-bottom: 5px;
-        padding-right: 5px;
     }
 
     progress[value] {
@@ -31,6 +31,13 @@ const Container = styled.div`
             border-radius: 20px;
         }
     }
+
+    // only for Demo
+    @media (max-width: 750px) {
+        progress[value] {
+            width: 310px;
+        }
+    }
 `
 
 export const ChecklistProgressBar = ({ checklist }) => {
@@ -43,9 +50,9 @@ export const ChecklistProgressBar = ({ checklist }) => {
     return (
         <Container color={color}>
             {!max ?
-                <span>{value}%</span>
+                <div>{value}%</div>
                 :
-                <span>{Math.floor((value / max) * 100)}%</span>
+                <div>{Math.floor((value / max) * 100)}%</div>
             }
             <progress value={value} max={max} />
         </Container>

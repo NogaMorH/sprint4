@@ -31,19 +31,27 @@ export const Date = ({ dueDate }) => {
     return (
         <div className="date-container" >
             <h6>Due date</h6>
+
             <div className="date">
                 <input type="checkbox" name="isDone" onChange={toggleIsDone} checked={isDone} />
+
                 <button onClick={toggleModal}>
                     <span>{utilService.getFormatDate(ms)}</span>
                     {isDone ?
-                        <span className="date-label" style={{ backgroundColor: '#61BD4F' }}>complete</span>
+                        <span className="date-label" style={{ backgroundColor: '#61BD4F' }}>
+                            complete
+                        </span>
                         :
                         <div>
                             {Math.sign(getDifference()) === -1 &&
-                                <span className="date-label" style={{ backgroundColor: 'red' }}>overdue</span>
+                                <span className="date-label" style={{ backgroundColor: '#EB5A46' }}>
+                                    overdue
+                                </span>
                             }
                             {getDifference() < 86400000 && getDifference() > 0 &&
-                                <span className="date-label" style={{ backgroundColor: '#F2D600', color: '#172B4D' }}>due soon</span>
+                                <span className="date-label" style={{ backgroundColor: '#F2D600', color: '#172B4D' }}>
+                                    due soon
+                                </span>
                             }
                         </div>
                     }

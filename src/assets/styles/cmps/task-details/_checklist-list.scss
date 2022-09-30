@@ -25,3 +25,24 @@
         }
     }
 }
+
+@media (min-width: 850px) {
+    textarea {
+        width: 512px;
+    }
+}
+
+@media (min-width: 750px) {
+    @media (max-width: 850px) {
+        textarea {
+            width: 466px;
+        }
+    }
+}
+
+// only for Demo
+@media (max-width: 750px) {
+    textarea {
+        width: 310px;
+    }
+}
