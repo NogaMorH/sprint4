@@ -34,7 +34,7 @@ export const Todo = ({ todo, updateTodos, removeTodo }) => {
     }
 
     return (
-        <li className="todo-container">
+        <li className={`todo-container ${!focused && 'not-focused'}`}>
             <input type="checkbox" name="isDone" className={focused ? 'focused' : ''} onChange={handleChange} checked={isDone} />
 
             <div className="todo">
