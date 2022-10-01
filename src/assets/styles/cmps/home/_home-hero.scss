@@ -21,10 +21,6 @@
         }
     }
 
-    // .hero-img {
-    //     max-width: 350px;
-    //     margin-left: 80px;
-    // }
 }
 
 @include for-mobile-layout {
@@ -50,7 +46,7 @@
             }
 
             .btn-primary-home {
-                padding: 0.8125em 7em
+                padding: 0.8125em 5em
             }
         }
 
