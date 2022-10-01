@@ -1,38 +1,35 @@
 .checklist {
 
     &-title {
-        position: relative;
+        display: flex;
+        flex-wrap: wrap;
+        margin-bottom: 5px;
 
         &-icon {
-            position: absolute;
-            top: -4px;
             font-size: rem(20px);
             margin-top: 5px;
             color: $clr14;
         }
 
         textarea {
-            margin-left: 33px;
+            flex: 1 1 60%;
+            margin-left: 13px;
             height: 32px;
+            padding-top: 6px;
             font-size: rem(16px);
             font-family: san-francisco-medium, sans-serif;
             color: $clr8;
 
             &:focus {
+                flex: 1 1 80%;
                 height: 54px;
                 padding: 8px 12px;
             }
         }
 
-        .delete-btn {
-            position: absolute;
-            top: -4px;
-            right: 0;
-        }
-
         &-buttons {
             position: relative;
-            margin-bottom: 5px;
+            margin: 5px 0;
 
             button {
                 margin-left: 33px;
