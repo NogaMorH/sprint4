@@ -40,15 +40,7 @@
         padding-inline-end: 5px;
     }
 
-    .avatar-btn {
-        background-color: inherit;
-        padding: 0;
-    }
-
-    .avatar {
-        width: 32px;
-        border-radius: 50%;
-    }
+    @include avatar-btn;
 }
 
 @include for-mobile-layout {

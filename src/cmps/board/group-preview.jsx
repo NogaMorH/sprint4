@@ -17,6 +17,7 @@ export const GroupPreview = ({ group, index }) => {
     const titleGroupId = useSelector(state => state.systemModule.titleGroupId)
     const [groupTitle, setTitle] = useState(group.title)
     const [isFormAddTaskUp, setFormAddTaskUp] = useState(null)
+    const [isScrollable, setIsScrollable] = useState(false)
 
     const toggleGroupModal = (ev) => {
         ev.stopPropagation()
@@ -60,7 +61,8 @@ export const GroupPreview = ({ group, index }) => {
     return (
         <Draggable draggableId={group.id} index={index}>
             {provided => (
-                <div className='flex column group-preview' {...provided.draggableProps} ref={provided.innerRef}>
+                <div className={`flex column group-preview ${isScrollable ? 'scrollable' : ''}`}
+                    {...provided.draggableProps} ref={provided.innerRef}>
                     <div className='group-title-container' {...provided.dragHandleProps}>
                         {titleGroupId === id
                             ? <textarea name='title' value={groupTitle} className='group-title-edit'
@@ -79,7 +81,7 @@ export const GroupPreview = ({ group, index }) => {
                         openAddForm={openAddForm} setFormAddTaskUp={setFormAddTaskUp} />}
                     {formAdd.groupId === id &&
                         isFormAddTaskUp && <FormAdd groupId={id} />}
-                    <TaskList tasks={tasks} groupId={id} />
+                    <TaskList tasks={tasks} groupId={id} setIsScrollable={setIsScrollable} />
                     {formAdd.groupId === id &&
                         !isFormAddTaskUp && <FormAdd groupId={id} />}
                     {formAdd.groupId !== id && <div className="add-task-container">
