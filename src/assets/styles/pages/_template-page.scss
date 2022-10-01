@@ -95,3 +95,18 @@
         }
     }
 }
+
+@include for-mobile-layout {
+
+    .board-list-title-container {
+        .board-list {
+            .board-preview {
+                width: 12.0625rem;
+
+                &.add-board {
+                    margin-bottom: 2.4375rem;
+                }
+            }
+        }
+    }
+}

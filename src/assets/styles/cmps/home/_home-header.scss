@@ -33,3 +33,33 @@
         margin-right: 8px;
     }
 }
+
+@include for-mobile-layout {
+
+    .home-header {
+        .header-links {
+            .login-link {
+                font-size: 0.9rem;
+            }
+
+            .btn-wide {
+                margin-inline-start: 5px;
+                font-size: 0.9rem;
+                padding: 0.8em em(15px);
+            }
+        }
+
+    }
+}
+
+// background-color: $clr9;
+// color: $clr5;
+// font-family: charlie-text-regular, sans-serif;
+// font-size: em(19.2px);
+// padding: 0.8em em(24px);
+
+// &:hover {
+//     text-decoration: none;
+//     background-color: $clr11;
+// }
+// }
