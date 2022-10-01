@@ -23,7 +23,7 @@
         grid-template-columns: repeat(5, 1fr);
         justify-items: center;
         gap: 9px;
-        margin-bottom: 5px;
+        margin: 5px 0 10px 0;
         cursor: pointer;
     }
 
@@ -34,7 +34,7 @@
 
         .icon-close {
             position: absolute;
-            top: 12px;
+            top: 8px;
             left: 75px;
             font-size: rem(16px);
             color: $clr8;
@@ -88,6 +88,5 @@
                 background-color: rgb(147, 59, 39);
             }
         }
-
     }
 }

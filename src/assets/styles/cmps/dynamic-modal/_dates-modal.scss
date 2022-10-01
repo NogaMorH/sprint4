@@ -1,6 +1,13 @@
 .dates-modal {
     width: 168px;
-    margin-top: 10px;
+
+    input {
+        color: $clr14;
+    }
+
+    svg {
+        color: $clr14;
+    }
 
     button {
         background-color: transparent;

@@ -12,8 +12,11 @@
         position: fixed;
     }
 
-    button {
-        display: inline;
+
+    button,
+    .sidebar-btn {
+        display: flex;
+        justify-content: center;
         padding: 6px 12px;
         color: $clr8;
 
@@ -82,7 +85,12 @@
 }
 
 @media (min-width: 750px) {
-    .dynamic-modal {}
+    .dynamic-modal {
+        &.pos-sidebar {
+            top: 37px;
+            left: 0;
+        }
+    }
 }
 
 @media (max-width: 750px) {

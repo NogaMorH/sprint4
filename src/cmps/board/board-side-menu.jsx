@@ -6,25 +6,36 @@ import { boardService } from "../../services/board.service"
 import { Activities } from "./activities"
 import { BoardBgColorList } from "./board-bg-color-list"
 import { BoardBgImgList } from "./board-bg-img-list"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { faLessThan } from '@fortawesome/free-solid-svg-icons'
 
-export const BoardSideMenu = () => {
-    const [isBgImgListOpen, setBgImgListOpen] = useState(false)
-    const [isBgColorListOpen, setBgColorListOpen] = useState(false)
-
-    const openBgPicker = (type) => {
-        if (type === 'img') setBgImgListOpen(true)
-        else if (type === 'color') setBgColorListOpen(true)
-    }
+export const BoardSideMenu = ({setIsSideMenuOpen}) => {
 
     const board = useSelector(state => state.boardModule.board)
+    const [openModal, setOpenModal] = useState('main')
+    // const [isBgColorListOpen, setBgColorListOpen] = useState(false)
+
+    const openBgPicker = (type) => {
+        // if (type === 'img') setBgImgListOpen(true)
+        // else if (type === 'color') setBgColorListOpen(true)
+        setOpenModal(type)
+    }
+
+
     const { activities } = board
     return (
         <section className="board-side-menu-container">
-            {!isBgImgListOpen && !isBgColorListOpen &&
+            {/* {!isBgImgListOpen && !isBgColorListOpen && */}
+            {openModal !== 'main' &&
+                <span className="icon-less" onClick={() => setOpenModal('main')}>
+                    <FontAwesomeIcon icon={faLessThan} size="2xs" />
+                </span>
+            }
+            <span className="btn-close-menu" onClick={() => setIsSideMenuOpen(false)}><IoCloseOutline /></span>
+            {openModal === 'main' &&
                 <div className="board-side-menu-content">
                     <div className="menu-header">
                         <h3 className="menu-header-title">Menu</h3>
-                        <span className="btn-close-menu"><IoCloseOutline /></span>
                     </div>
                     <div className="menu-main-content">
                         <button className="btn-menu-action">Filter cards</button>
@@ -42,8 +53,8 @@ export const BoardSideMenu = () => {
                         {activities && <Activities />}
                     </div>
                 </div>}
-                {isBgImgListOpen && <BoardBgImgList /> }
-                {isBgColorListOpen && <BoardBgColorList />}
+            {openModal === 'img' && <BoardBgImgList />}
+            {openModal === 'color' && <BoardBgColorList />}
         </section>
     )
 

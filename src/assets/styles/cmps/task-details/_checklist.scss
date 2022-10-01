@@ -1,8 +1,8 @@
 .checklist {
-    
+
     &-title {
         position: relative;
-        
+
         &-icon {
             position: absolute;
             top: -4px;
@@ -10,9 +10,8 @@
             margin-top: 5px;
             color: $clr14;
         }
-        
+
         textarea {
-            width: 93.946%; // 512px
             margin-left: 33px;
             height: 32px;
             font-size: rem(16px);

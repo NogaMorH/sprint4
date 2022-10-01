@@ -11,8 +11,8 @@ export const MembersModal = ({ groupId, taskId, closeModal, className }) => {
     const board = useSelector(state => state.boardModule.board)
     const { members } = board
     let { memberIds } = boardService.getTask(board, groupId, taskId)
-    const [name, setName] = useState('')
     const [foundUsers, setFoundUsers] = useState(members)
+    const [name, setName] = useState('')
     const dispatch = useDispatch()
     const ref = useRef()
 
@@ -48,21 +48,27 @@ export const MembersModal = ({ groupId, taskId, closeModal, className }) => {
     }
 
     return (
-        <div className={`dynamic-modal members-modal ${className ? className : ''}`}
-            onClick={(ev) => ev.stopPropagation()}>
-
+        <div
+            className={`dynamic-modal members-modal ${className ? className : ''}`}
+            onClick={(ev) => ev.stopPropagation()}
+        >
             <div className="dynamic-header">
                 <h5>Members</h5>
                 <span onClick={closeModal}><IoCloseOutline /></span>
             </div>
 
             <div className="dynamic-content">
-                <input className="dynamic-input" type="text" placeholder="Search members" ref={ref}
-                    value={name} onChange={filter} />
+                <input
+                    className="dynamic-input"
+                    type="text"
+                    placeholder="Search members"
+                    ref={ref}
+                    value={name} onChange={filter}
+                />
 
                 <div className="members">
                     {members &&
-                        (foundUsers && foundUsers.length > 0
+                        (foundUsers?.length > 0
                             ?
                             <ul className="members-list">
                                 <h6>Board members</h6>
@@ -77,9 +83,12 @@ export const MembersModal = ({ groupId, taskId, closeModal, className }) => {
                                         <li key={id} onClick={() => toggleMember(id)}>
                                             <img src={imgUrl} title={fullname} alt="user-avatar" />
                                             <span className="fullname">{fullname}</span>
-                                            {memberIds && memberIds.includes(id) && <span className="icon-check">
-                                                <HiCheck />
-                                            </span>}
+
+                                            {memberIds && memberIds.includes(id) &&
+                                                <span className="icon-check">
+                                                    <HiCheck />
+                                                </span>
+                                            }
                                         </li>
                                         // <li key={_id} onClick={() => toggleMember(_id)}>
                                         //     <img src={imgUrl} title={fullname} alt="user-avatar" />
@@ -101,7 +110,7 @@ export const MembersModal = ({ groupId, taskId, closeModal, className }) => {
                     {!members && <p>There are no available members in this board.</p>}
                 </div>
 
-                {foundUsers && foundUsers.length > 0 && <button>Show other Workspace members</button>}
+                {foundUsers?.length > 0 && <button>Show other Workspace members</button>}
             </div>
         </div>
     )

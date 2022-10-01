@@ -10,6 +10,7 @@ import { useSelector } from "react-redux"
 import { useParams } from "react-router-dom"
 import { setDynamicModal } from "../../store/board/board.actions"
 import { DynamicModal } from "../dynamic-modal/dynamic-modal"
+import React from "react"
 
 export const TaskSideBar = () => {
 
@@ -32,32 +33,46 @@ export const TaskSideBar = () => {
 
     return (
         <div className="task-sidebar">
-            {types.map((type, idx) => {
-                return (
-                    <div key={idx} className="task-sidebar-btns">
-                        <button onClick={() => openModal(type)}>
-                            <span className="icon">
-                                {type === 'members' && <HiOutlineUser />}
-                                {type === 'labels' && <AiOutlineTag />}
-                                {type === 'checklist' && <TbCheckbox />}
-                                {type === 'dates' && <MdOutlineWatchLater />}
-                                {type === 'attachment' && <ImAttachment />}
-                                {type === 'cover' && <FiCreditCard />}
-                            </span>
-                            <span className="sidebar-cmp">{type}</span>
-                        </button>
+            <h6>Add to card</h6>
 
-                        {dynamicModal.modalType === type && dynamicModal.fromCmp === 'sidebar' &&
-                            <DynamicModal type={type} groupId={groupId} taskId={taskId} closeModal={closeModal} />
-                        }
-                    </div>
-                )
-            })}
-            {/* Archive button not working for now(and interrupt other buttons) */}
-            {/* <button>
-                <span className="icon"><VscArchive /></span>
-                <span className="sidebar-cmp">Archive</span>
-            </button> */}
+            <div className="task-sidebar-btns">
+
+                {types.map((type, idx) => {
+                    return (
+                        <React.Fragment key={idx}>
+                            <div className="sidebar-btn" onClick={() => openModal(type)}>
+
+                                <span className="icon">
+                                    {type === 'members' && <HiOutlineUser />}
+                                    {type === 'labels' && <AiOutlineTag />}
+                                    {type === 'checklist' && <TbCheckbox />}
+                                    {type === 'dates' && <MdOutlineWatchLater />}
+                                    {type === 'attachment' && <ImAttachment />}
+                                    {type === 'cover' && <FiCreditCard />}
+                                </span>
+
+                                <span className="sidebar-cmp">{type}</span>
+
+                                {dynamicModal.modalType === type && dynamicModal.fromCmp === 'sidebar' &&
+                                    <DynamicModal
+                                        type={type}
+                                        groupId={groupId}
+                                        taskId={taskId}
+                                        closeModal={closeModal}
+                                        className="pos-sidebar"
+                                    />
+                                }
+                            </div>
+                        </React.Fragment>
+                    )
+                })}
+
+                {/* Archive button not working for now(and with this button the amount is odd) */}
+                {/* <button>
+                    <span className="icon"><VscArchive /></span>
+                    <span className="sidebar-cmp">Archive</span>
+                </button> */}
+            </div>
         </div>
     )
 }

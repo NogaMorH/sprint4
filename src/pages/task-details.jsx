@@ -89,20 +89,27 @@ export const TaskDetails = () => {
                 <div className='task-title'>
                     <span className='task-title-icon'><BiCreditCardFront /></span>
                     <input className='task-title-header' type="text" value={taskTitle} onChange={handleTitleChange} />
-                    <div className='task-title-subtitle'>in list {boardService.getGroup(board, groupId).title}</div>
+
+                    <div className='task-title-subtitle'>
+                        in list&nbsp;
+                        <span>{boardService.getGroup(board, groupId).title}</span>
+                    </div>
                 </div>
 
                 <main className='task-details'>
                     <div className="task-details-content">
-                        {memberIds && <Members members={boardService.getTaskMembers(board, groupId, taskId)} />}
 
-                        {labelIds && labelIds.length > 0 && <Labels board={board} />}
+                        <div className="content-info">
+                            {memberIds && <Members members={boardService.getTaskMembers(board, groupId, taskId)} />}
+
+                            {labelIds?.length > 0 && <Labels board={board} />}
+                        </div>
 
                         {dueDate && <Date dueDate={dueDate} />}
 
                         <Description description={description} />
 
-                        {attachments && <AttachmentList attachments={attachments} task={task} />}
+                        {attachments?.length > 0 && <AttachmentList attachments={attachments} task={task} />}
 
                         {checklists && <ChecklistList checklists={checklists} />}
                     </div>

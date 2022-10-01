@@ -1,6 +1,5 @@
 .task-details-container {
     position: absolute;
-    max-width: 768px;
     background-color: $clr12;
     border-radius: 3px;
     font-family: san-francisco-light, sans-serif;
@@ -22,8 +21,10 @@
         font-family: inherit;
         color: $clr23;
         font-weight: 600;
+        text-align: left;
     }
 
+    .sidebar-btn,
     button {
         border: none;
         color: inherit;
@@ -136,6 +137,10 @@
         &-subtitle {
             font-size: rem(14px);
             margin-top: 1.5px;
+
+            span {
+                text-decoration: underline;
+            }
         }
     }
 
@@ -143,11 +148,25 @@
         display: flex;
         justify-content: space-between;
         gap: 16px;
+
+        .task-details-content {
+            .content-info {
+                display: flex;
+                flex-wrap: wrap;
+            }
+        }
+    }
+}
+
+@media (min-width: 850px) {
+    .task-details-container {
+        width: 768px;
     }
 }
 
 @media (min-width: 750px) {
     .task-details-container {
+        min-width: 710px;
         top: 46px;
         left: 50%;
         transform: translate(-50%, 0);

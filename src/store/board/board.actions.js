@@ -27,7 +27,6 @@ export function loadBoards() {
     return async (dispatch) => {
         try {
             const miniBoards = await boardService.query()
-            console.log('miniBoards: from action', miniBoards)
             dispatch({ type: 'SET_BOARDS', miniBoards })
         } catch (err) {
             console.log('Cannot load boards', err)
@@ -50,11 +49,9 @@ export function loadBoard(boardId) {
 }
 
 export function addBoard(board) {
-    // console.log('board from action:', board)
     return async (dispatch) => {
         try {
             const newBoard = await boardService.save(board)
-            // console.log('savedBoard conrolerrrrrrr:', savedBoard)
             dispatch({ type: 'SET_BOARD', newBoard })
         } catch (err) {
             console.log('Cannot add board', err)
@@ -78,11 +75,9 @@ export function removeBoard(boardId) {
 }
 
 export function updateBoard(board) {
-    console.log('board:', board)
     return async (dispatch, getState) => {
         try {
             // const board = getState().boardModule.board
-            // console.log('board from actions:', board)
             const updatedBoard = await boardService.save(board)
             dispatch({ type: 'UPDATE_BOARD', updatedBoard })
         } catch (err) {
@@ -103,7 +98,6 @@ export function setBoardIsStarred(board) {
         try {
             let miniBoards = getState().boardModule.boards
             miniBoards = await boardService.setBoardIsStarred(miniBoards, board)
-            // console.log('board from action:', board)
             dispatch({ type: 'SET_BOARDS', miniBoards })
         } catch (err) {
             console.log('Cannot set board as starred', err)
