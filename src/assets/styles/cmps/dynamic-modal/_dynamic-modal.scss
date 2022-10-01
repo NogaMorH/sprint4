@@ -12,7 +12,6 @@
         position: fixed;
     }
 
-
     button,
     .sidebar-btn {
         display: flex;
@@ -50,6 +49,7 @@
             top: 12px;
             right: 0;
             font-size: rem(19px);
+            cursor: pointer;
 
             &:hover {
                 color: $clr8;
@@ -95,6 +95,9 @@
 
 @media (max-width: 750px) {
     .dynamic-modal {
-        left: calc(100vw / 10);
+        position: fixed;
+        top: 20%;
+        left: 50%;
+        transform: translate(-50%, 0);
     }
 }

@@ -1,7 +1,6 @@
 .task-details-container {
     position: absolute;
     background-color: $clr12;
-    border-radius: 3px;
     font-family: san-francisco-light, sans-serif;
     color: $clr8;
     line-height: 20px;
@@ -170,6 +169,7 @@
         top: 46px;
         left: 50%;
         transform: translate(-50%, 0);
+        border-radius: 3px;
 
         .task-title {
             &-subtitle {

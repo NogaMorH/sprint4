@@ -100,7 +100,7 @@ export const TaskDetails = () => {
                     <div className="task-details-content">
 
                         <div className="content-info">
-                            {memberIds && <Members members={boardService.getTaskMembers(board, groupId, taskId)} />}
+                            {memberIds?.length > 0 && <Members members={boardService.getTaskMembers(board, groupId, taskId)} />}
 
                             {labelIds?.length > 0 && <Labels board={board} />}
                         </div>

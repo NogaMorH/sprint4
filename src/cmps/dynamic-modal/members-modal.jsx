@@ -82,7 +82,7 @@ export const MembersModal = ({ groupId, taskId, closeModal, className }) => {
                                         // temporary - member.id instead of member._id
                                         <li key={id} onClick={() => toggleMember(id)}>
                                             <img src={imgUrl} title={fullName} alt="user-avatar" />
-                                            <span className="fullName">{fullName}</span>
+                                            <span className="fullname">{fullName}</span>
 
                                             {memberIds && memberIds.includes(id) &&
                                                 <span className="icon-check">
