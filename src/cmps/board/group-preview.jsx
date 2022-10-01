@@ -61,7 +61,8 @@ export const GroupPreview = ({ group, index }) => {
     return (
         <Draggable draggableId={group.id} index={index}>
             {provided => (
-                <div className={`flex column group-preview ${isScrollable ? 'scrollable' : ''}`} {...provided.draggableProps} ref={provided.innerRef}>
+                <div className={`flex column group-preview ${isScrollable ? 'scrollable' : ''}`}
+                    {...provided.draggableProps} ref={provided.innerRef}>
                     <div className='group-title-container' {...provided.dragHandleProps}>
                         {titleGroupId === id
                             ? <textarea name='title' value={groupTitle} className='group-title-edit'

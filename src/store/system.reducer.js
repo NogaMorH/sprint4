@@ -1,6 +1,4 @@
 const initialState = {
-  // isLoading: false
-  // isAddFormOpen: false
   formAdd: {
     groupId: null,
     isAddGroup: false

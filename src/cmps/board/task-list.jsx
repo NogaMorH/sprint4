@@ -1,6 +1,6 @@
 import { TaskPreview } from './task-preview'
 import { Droppable } from 'react-beautiful-dnd'
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef } from 'react'
 import { useSelector } from 'react-redux'
 
 
@@ -8,10 +8,15 @@ export const TaskList = ({ tasks, groupId, setIsScrollable }) => {
 
     const ref = useRef()
     const board = useSelector(state => state.boardModule.board)
+    const formAdd = useSelector(state => state.systemModule.formAdd)
 
     useEffect(() => {
         checkScroll()
     }, [board])
+
+    useEffect(() => {
+        if (formAdd?.groupId) checkScroll()
+    }, [formAdd])
 
     const checkScroll = () => {
         setIsScrollable(ref.current.scrollHeight > ref.current.clientHeight)

@@ -46,7 +46,7 @@ export function SignUp({ setIsLogin }) {
             lastName: yup.string()
                 .max(20, "Must be 20 characters or less. Please try again."),
             username: yup.string()
-                .max(10, "Must be 10 characters or less. Please try again.")
+                .max(15, "Must be 15 characters or less. Please try again.")
                 .required("Required"),
             email: yup.string()
                 .email("Invalid email address")
