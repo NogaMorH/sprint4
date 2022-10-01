@@ -188,7 +188,11 @@
 }
 
 @media (max-width: 750px) {
-    .task-details {
-        flex-direction: column;
+    .task-details-container {
+        top: 0;
+
+        .task-details {
+            flex-direction: column;
+        }
     }
 }
