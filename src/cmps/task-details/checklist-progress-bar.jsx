@@ -2,20 +2,17 @@ import styled from 'styled-components'
 
 const Container = styled.div`
     display: flex;
-    justify-content: space-between;
-    align-items: center;
 
     div {
         font-size: 11px;
         text-align: center;
         color: #5e6c84;
-        padding-bottom: 5px;
     }
 
     progress[value] {
         -webkit-appearance: none;
-        appearence: none;
-        width: 93.946%;
+        flex: 1 1 200px;
+        margin: 6px 0 0 9px;
 
         ::-webkit-progress-bar {
             height: 8px;
@@ -29,13 +26,6 @@ const Container = styled.div`
             background-color: ${props => props.color};
             transition-duration: 0.5s;
             border-radius: 20px;
-        }
-    }
-
-    // only for Demo
-    @media (max-width: 750px) {
-        progress[value] {
-            width: 310px;
         }
     }
 `

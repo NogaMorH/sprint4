@@ -7,6 +7,7 @@
     .new-todo {
 
         &-textarea {
+            width: 94%;
             height: 20px;
             outline: auto;
             outline-color: $clr18;
@@ -62,5 +63,11 @@
 }
 
 @media (max-width: 750px) {
-    .todo-list-container {}
+    .todo-list-container {
+        .new-todo {
+            &-textarea {
+                width: 100%;
+            }
+        }
+    }
 }

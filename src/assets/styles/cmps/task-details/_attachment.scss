@@ -4,7 +4,7 @@
     align-items: center;
     margin-bottom: 10px;
     color: $clr23;
-    max-width: 512px;
+    max-width: 100%;
 
     &:hover {
         background-color: rgba(9, 30, 66, 0.04);
@@ -29,8 +29,9 @@
 
         &-icon {
             position: absolute;
-            top: 30px;
-            left: 48px;
+            top: 40%;
+            left: 50%;
+            transform: translate(-50%, 0);
             font-size: rem(18px);
             color: $clr14;
         }
@@ -105,8 +106,4 @@
     .attachment {
         margin-left: 33px;
     }
-}
-
-@media (max-width: 750px) {
-    .attachment {}
 }
