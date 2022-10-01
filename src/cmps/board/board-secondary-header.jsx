@@ -38,7 +38,7 @@ export const BoardSecondaryHeader = ({ board }) => {
                         </span>
                     </div>
                     <button className="btn-transparent btn-open-menu" onClick={() => openBoardMenu()}><HiOutlineDotsHorizontal className="board-menu-dots-icon" /><span className="show-menu-txt">Show menu</span></button>
-                    {isSideMenuOpen && <BoardSideMenu board={board} />}
+                    {isSideMenuOpen && <BoardSideMenu board={board} setIsSideMenuOpen={setIsSideMenuOpen} />}
                 </div>
             </div>
         </header>

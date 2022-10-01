@@ -1,3 +1,5 @@
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { faLessThan } from '@fortawesome/free-solid-svg-icons'
 import { IoCloseOutline } from "react-icons/io5"
 import { useSelector } from "react-redux"
 import { useDispatch } from "react-redux"
@@ -24,20 +26,20 @@ export const BoardBgColorList = () => {
         // setBoard(prevBoard => ({ ...prevBoard, style: { imgUrl, bgColor } }))
     }
 
+
     return (
-        <section className="board-side-menu-container">
-            <div className="board-side-menu-content">
+            <section className="board-side-menu-content">
                 <div className="menu-header">
                     <h3 className="bg-picker-title">Colors</h3>
-                    <span className="btn-close-menu"><IoCloseOutline /></span>
                 </div>
-                <ul className="board-bg-color-list">
-                    {boardService.getBackground('color').map((bgColor, idx) => {
-                        return <li className="board-bg-color-preview" style={{ background: `${bgColor}` }} key={idx} onClick={() => setBoardBg('color', bgColor)}>
-                        </li>
-                    })}
-                </ul>
-            </div>
-        </section>
+                <div className="bg-options-container">
+                    <ul className="board-bg-color-list">
+                        {boardService.getBoardBackground('color').map((bgColor, idx) => {
+                            return <li className="board-bg-color-preview" style={{ background: `${bgColor}` }} key={idx} onClick={() => setBoardBg('color', bgColor)}>
+                            </li>
+                        })}
+                    </ul>
+                </div>
+            </section>
     )
 }
