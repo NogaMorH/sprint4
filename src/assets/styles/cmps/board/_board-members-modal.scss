@@ -1,0 +1,53 @@
+.black-screen {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.board-members-modal {
+    width: 576px;
+    background-color: $clr5;
+    border-radius: 3px;
+    padding-top: 20px;
+    padding-right: 24px;
+    padding-left: 24px;
+    font-family: san-francisco-light, sans-serif;
+    cursor: auto;
+    color: $clr8;
+
+    .modal-title-container {
+        align-items: center;
+        margin-bottom: 16px;
+
+        .modal-title {
+            font-family: san-francisco-regular, sans-serif;
+            font-size: rem(20px);
+            margin: 0;
+            flex-grow: 1;
+        }
+    }
+
+
+    .search-member {
+        width: 100%;
+    }
+
+    .member-input {
+        line-height: lh(20px, 14px);
+        padding: 6px 4px 6px 12px;
+        min-height: 40px;
+        flex-grow: 1;
+        margin-inline-end: 8px;
+        border-radius: 3px;
+
+        &:focus-visible {
+            border: 2px solid $clr18;
+            outline: none;
+        }
+    }
+
+    .member-avatar {
+        width: 32px;
+        height: 32px;
+    }
+}

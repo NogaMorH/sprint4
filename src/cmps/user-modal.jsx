@@ -1,4 +1,3 @@
-import { useEffect } from 'react'
 import { IoCloseOutline } from 'react-icons/io5'
 import { useDispatch } from 'react-redux'
 import { useSelector } from 'react-redux'

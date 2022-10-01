@@ -59,7 +59,8 @@ export const TaskEditModal = ({ task, groupId, closeTaskEditModal, isBadge }) =>
                     })}
                     <form onSubmit={onUpdateTask}>
                         {modalTaskId === id &&
-                            <input name='title' value={taskTitle} className='task-title-edit' onClick={(ev) => ev.stopPropagation()}
+                            <input name='title' value={taskTitle} className='task-title-edit'
+                                onClick={(ev) => ev.stopPropagation()}
                                 onChange={handleChange} onFocus={handleFocus} autoFocus>
                             </input>}
                         <div className='edit-modal-task-preview' >
@@ -69,27 +70,38 @@ export const TaskEditModal = ({ task, groupId, closeTaskEditModal, isBadge }) =>
                             </div>
                         </div>
                     </form>
-                    <button className="btn btn-primary-board edit-modal" onClick={(ev) => onUpdateTask(ev)}>Save</button>
+                    <button className="btn btn-primary-board edit-modal" onClick={(ev) => onUpdateTask(ev)}>
+                        Save
+                    </button>
                 </div>
                 <div className="task-edit-modal-btns">
                     <span className="btn dark-btn"><Link to={`/board/${board._id}/group/${groupId}/task/${task.id}`}>
                         <BiCreditCardFront className="edit-modal-icon" />Open card</Link> </span>
                     <button className="btn dark-btn" onClick={(ev) => onRemoveTask(ev, id)}>
                         <BsArchive className="edit-modal-icon" />Remove task</button>
-                    <button className="btn dark-btn" onClick={(ev) => toggleModal(ev, 'members')}> <AiOutlineUser className="edit-modal-icon" />Change members</button>
-                    <button className="btn dark-btn" onClick={(ev) => toggleModal(ev, 'cover')}><FiCreditCard className="edit-modal-icon" />Change cover</button>
-                    <button className="btn dark-btn"><BsClock className="edit-modal-icon" />Edit dates</button>
+                    <button className="btn dark-btn" onClick={(ev) => toggleModal(ev, 'members')}>
+                        <AiOutlineUser className="edit-modal-icon" />Change members
+                    </button>
+                    <button className="btn dark-btn" onClick={(ev) => toggleModal(ev, 'cover')}>
+                        <FiCreditCard className="edit-modal-icon" />Change cover
+                    </button>
+                    <button className="btn dark-btn"><BsClock className="edit-modal-icon" />
+                        Edit dates
+                    </button>
                 </div>
             </div>
             <div className="modal-container">
                 {dynamicModal.modalType === 'cover' && dynamicModal.fromCmp === 'task edit modal' &&
-                    <DynamicModal type='cover' className="pos-fixed" groupId={groupId} taskId={task.id} closeModal={toggleModal} />
+                    <DynamicModal type='cover' className="pos-fixed" groupId={groupId} taskId={task.id}
+                        closeModal={toggleModal} />
                 }
                 {dynamicModal.modalType === 'members' && dynamicModal.fromCmp === 'task edit modal' &&
-                    <DynamicModal type='members' className="pos-fixed" groupId={groupId} taskId={task.id} closeModal={toggleModal} />
+                    <DynamicModal type='members' className="pos-fixed" groupId={groupId} taskId={task.id}
+                        closeModal={toggleModal} />
                 }
                 {dynamicModal.modalType === 'dates' && dynamicModal.fromCmp === 'task edit modal' &&
-                    <DynamicModal type='dates' className="pos-fixed" groupId={groupId} taskId={task.id} closeModal={toggleModal} />
+                    <DynamicModal type='dates' className="pos-fixed" groupId={groupId} taskId={task.id}
+                        closeModal={toggleModal} />
                 }
             </div>
         </div>

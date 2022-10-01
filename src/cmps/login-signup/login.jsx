@@ -27,7 +27,7 @@ export const Login = ({ setIsLogin }) => {
     const navigate = useNavigate()
 
     useEffect(() => {
-        if (user) navigate('/template')
+        if (user) navigate('/')
     }, [user])
 
     const handleSubmit = (event) => {

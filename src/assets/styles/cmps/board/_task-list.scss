@@ -1,14 +1,14 @@
 .task-list-container {
     flex-grow: 1;
     overflow-y: auto;
-    
+
     .task-list {
         padding: 0 8px;
         min-height: 1px;
     }
 
     &::-webkit-scrollbar {
-        width: 8px;
+        width: 9px;
     }
 
     &::-webkit-scrollbar-thumb {

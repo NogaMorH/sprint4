@@ -1,11 +1,13 @@
-import { useState } from "react"
-import { HiOutlineDotsHorizontal } from "react-icons/hi"
-import { boardService } from "../../services/board.service"
-import { BoardSideMenu } from "./board-side-menu"
+import { useState } from 'react'
+import { HiOutlineDotsHorizontal } from 'react-icons/hi'
+import { BoardSideMenu } from './board-side-menu'
+import { BsPersonPlus } from 'react-icons/bs'
+import { BoardMembersModal } from './board-members-modal'
 
 export const BoardSecondaryHeader = ({ board }) => {
 
     const [isSideMenuOpen, setIsSideMenuOpen] = useState(false)
+    const [isMembersModalOpen, setIsMembersModalOpen] = useState(false)
     if (!board) return
     // const { members } = board
 
@@ -26,7 +28,9 @@ export const BoardSecondaryHeader = ({ board }) => {
                 <div className='header-main-content'>
                     <div className="header-board-details">
                         <span className="board-title">{board.title}</span>
-                        <button className='btn btn-transparent creator'>{board.createdBy ? board.createdBy.fullname : 'Guest'}</button>
+                        <button className='btn btn-transparent creator'>
+                            {board.createdBy ? board.createdBy.fullname : 'Guest'}
+                        </button>
                         <span className='divider'></span>
                         <span className="member-avatars">
                             {board.members && board.members.map((member, idx) => (
@@ -35,7 +39,13 @@ export const BoardSecondaryHeader = ({ board }) => {
                                     style={{ transform: `translate(${getAvatarPosition(idx)}px)` }} />
                             )
                             )}
+                            <button className='btn btn-transparent'
+                                onClick={() => setIsMembersModalOpen(true)}>
+                                <BsPersonPlus />
+                                Share
+                            </button>
                         </span>
+                        {isMembersModalOpen && <BoardMembersModal setIsMembersModalOpen={setIsMembersModalOpen} />}
                     </div>
                     <button className="btn-transparent btn-open-menu" onClick={() => openBoardMenu()}><HiOutlineDotsHorizontal className="board-menu-dots-icon" /><span className="show-menu-txt">Show menu</span></button>
                     {isSideMenuOpen && <BoardSideMenu board={board} setIsSideMenuOpen={setIsSideMenuOpen} />}

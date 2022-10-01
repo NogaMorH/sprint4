@@ -1,7 +1,7 @@
 import { useDispatch } from "react-redux"
 import { boardService } from "../../services/board.service"
 import { updateTask } from "../../store/board/board.actions"
-import { uploadImg } from "../../cloudinary-service"
+import { uploadImg } from "../../services/cloudinary-service"
 import { IoCloseOutline } from "react-icons/io5"
 import { useSelector } from "react-redux"
 

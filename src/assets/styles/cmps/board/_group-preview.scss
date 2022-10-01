@@ -1,5 +1,5 @@
 .group-preview {
-    max-height: 100%;
+    max-height: 98.5%;
     margin-right: 4px;
     width: 272px;
     background-color: #ebecf0;
@@ -8,6 +8,14 @@
 
     &:not(:first-child) {
         margin-left: 4px;
+    }
+
+    &.scrollable {
+        padding-right: 4px;
+
+        .task-list {
+            padding: 0 4px 0 8px;
+        }
     }
 
     .group-title-container {
