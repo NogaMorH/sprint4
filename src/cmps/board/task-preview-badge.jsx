@@ -36,21 +36,24 @@ export const TaskPreviewBadge = ({ task }) => {
     }
 
     const getDateStyle = () => {
-        // const difference = dueDate.ms - new window.Date().getTime()
+        const difference = dueDate.ms - new window.Date().getTime()
+        let backgroundColor
+        let color = '#fff'
 
-        // if (dueDate.isDone) {
-        //     return { backgroundColor: '#61BD4F' }
-        // }
-        // else if (difference === -1) {
-        //     return { backgroundColor: '#EB5A46' }
-        // }
-        // else if (difference < 86400000 && difference > 0) {
-        //     return { backgroundColor: '#F2D600', color: '#172B4D' }
-        // } else {
-        //     return { backgroundColor: '#61BD4F' }
-        // }
+        if (dueDate.isDone) {
+            backgroundColor = '#61BD4F'
+        }
+        else if (Math.sign(difference) === -1) {
+            backgroundColor = '#EB5A46'
+        }
+        else if (difference < 86400000 && difference > 0) {
+            backgroundColor = '#F2D600'
+        } else {
+            backgroundColor = 'transparent'
+            color = '#000'
+        }
 
-        // return { backgroundColor: '#61BD4F' }
+        return { backgroundColor, color }
     }
 
     return (
@@ -58,10 +61,9 @@ export const TaskPreviewBadge = ({ task }) => {
             <div className='task-badges'>
                 {dueDate?.ms &&
                     <span className='task-due-date' style={getDateStyle()}>
-                        <span className='clock-badge'>
-                            <FiClock />
-                        </span>
-                        {getFormatDate(task.dueDate.ms)}
+                        <span className='clock-badge'><FiClock /></span>
+                        {/* <span className='checklist-badge'><TbCheckbox /></span> */}
+                        <span>{getFormatDate(task.dueDate.ms)}</span>
                     </span>
                 }
                 {description &&
