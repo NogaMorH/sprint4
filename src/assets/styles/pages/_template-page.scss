@@ -26,8 +26,8 @@
         }
 
         .board-list {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            // display: grid;
+            // grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
 
             .all-boards {
                 display: flex;
@@ -39,7 +39,7 @@
                 padding: 0;
                 transform: translate(0);
                 height: 6.8rem;
-                width: 13.0625rem;
+                // width: 13.0625rem;
                 margin-right: 0.9375rem;
                 margin-bottom: 2.4375rem;
                 border-radius: 3px;
@@ -91,6 +91,17 @@
                         color: #fff;
                     }
                 }
+            }
+        }
+    }
+}
+
+@media (min-width: 521px) {
+    .template-page {
+        .board-list-container {
+            .board-list {
+                display: grid;
+                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
             }
         }
     }

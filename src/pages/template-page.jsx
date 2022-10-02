@@ -118,8 +118,8 @@ export const TemplatePage = () => {
                             <div className="add-board-title">Create new board</div>
                         </li>
                         {boards.map(board => {
-                            return <Link to={`/board/${board._id}`} key={board._id}>
-                                <li className="board-preview" style={getBoardBg(board)}>
+                            return <li key={board._id} className="board-preview" style={getBoardBg(board)}>
+                                <Link to={`/board/${board._id}`} >
                                     <div className="board-preview-details">
                                         <span className="board-title">{board.title}</span>
                                         {board.isStarred &&
@@ -131,8 +131,9 @@ export const TemplatePage = () => {
                                                 <RiStarLine />
                                             </span>}
                                     </div>
-                                </li>
-                            </Link>
+                                </Link>
+                            </li>
+
                         })}
 
                     </ul>
