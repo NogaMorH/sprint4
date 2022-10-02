@@ -1,9 +1,6 @@
 .template-page {
 
     .board-list-container {
-        // display: flex;
-        // flex-direction: column;
-        // width: 100%;
         margin-top: 40px;
 
         .board-list-title-container {
@@ -26,8 +23,6 @@
         }
 
         .board-list {
-            // display: grid;
-            // grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
 
             .all-boards {
                 display: flex;
@@ -39,7 +34,6 @@
                 padding: 0;
                 transform: translate(0);
                 height: 6.8rem;
-                // width: 13.0625rem;
                 margin-right: 0.9375rem;
                 margin-bottom: 2.4375rem;
                 border-radius: 3px;
