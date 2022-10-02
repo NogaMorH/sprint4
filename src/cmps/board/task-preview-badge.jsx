@@ -4,6 +4,8 @@ import { useSelector } from "react-redux"
 import { FiClock } from 'react-icons/fi'
 import { GrTextAlignFull } from 'react-icons/gr'
 import { ImAttachment } from 'react-icons/im'
+import { TbCheckbox } from 'react-icons/tb'
+
 
 export const TaskPreviewBadge = ({ task }) => {
 
@@ -16,43 +18,24 @@ export const TaskPreviewBadge = ({ task }) => {
         return monthAndDay
     }
 
+    const getTotalTasks = () => {
+        // if (!checklists || !checklists.length) return
+        const checklistLength = checklists.map(currChecklist => {
+            return currChecklist.todos.length
+        })
+        const length = checklistLength.reduce((acc, num) => {
+            return acc + num
+        }, 0)
 
-    // const getDoneChecklistCount = (ev) => {
-    //     ev.stopPropagation()
-    //    const checklistLength =  checklists.map(currChecklist => {
-    //        return currChecklist.todos.length
-    //     })
-    //     const length = checklistLength.reduce((acc, num) => {
-    //         console.log('num:', num)
-    //         console.log('acc:', acc)
-    //         return acc+num
-    //     })
-        
-    //     const check = checklists.checklist[]
-        
-        //  checklists.chcklist.todos.map(todo => {
-            //     if (todo.isDone) return counter++
-            //     else console.log('not done!')
-            
-            //  })
-            
-        //     console.log('length:', length)
-        //     console.log('checklistLength:', checklistLength)
-        //     let doneTasks 
-        //     let counter=0
+        let counter = 0
+        checklists.map(checklist => {
+            checklist.todos.map(todo => {
+                if (todo.isDone) counter++
+            })
+        })
+        return counter + '/' + length
+    }
 
-        //     checklistLengthreduce((counter , todo) => {
-        //     if(todo.isDone) return counter++
-            
-        //  },counter)
-        //  console.log('counter:', counter)
-
-
-        //  let counter = checklists.todos.filter(todo => {
-        //     if(todo.idDone) 
-        
-    
-    
     return (
         <div className="task-badge-container flex">
             <div className='task-badges'>
@@ -75,6 +58,11 @@ export const TaskPreviewBadge = ({ task }) => {
                             <ImAttachment />
                         </span>
                         {attachments.length}
+                    </span>}
+                {checklists?.length > 0 &&
+                    <span className="checklist-count-container">
+                        <span><TbCheckbox className="checklist-badge" /></span>
+                        <span className="checklist-count">{getTotalTasks()}</span>
                     </span>}
             </div>
             <div className="member-avatar">

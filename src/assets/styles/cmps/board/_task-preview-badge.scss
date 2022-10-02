@@ -42,6 +42,18 @@
                 margin-inline-end: 4px;
             }
         }
+
+        .checklist-count-container {
+            display: flex;
+            align-items: center;
+
+            .checklist-badge {
+                font-size: 15px;
+                margin-top: 2px;
+                margin-inline-end: 4px;
+
+            }
+        }
     }
 
     .member-avatar {
@@ -61,7 +73,7 @@
         .member-avatar {
             margin: 2px 0 0px 4px;
         }
-        
+
     }
 
 }
