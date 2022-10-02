@@ -5,11 +5,13 @@ import { Attachment } from './attachment'
 import { ImAttachment } from 'react-icons/im'
 import { DynamicModal } from '../dynamic-modal/dynamic-modal'
 import { useSelector } from 'react-redux'
+import { useMediaQuery } from '@mui/material'
 
 export const AttachmentList = ({ attachments }) => {
 
     const dynamicModal = useSelector(state => state.systemModule.dynamicModal)
     const dispatch = useDispatch()
+    const matches = useMediaQuery('(max-width: 750px)')
     const params = useParams()
     const { groupId, taskId } = params
 
@@ -77,7 +79,10 @@ export const AttachmentList = ({ attachments }) => {
             <button className='add-attachment-btn' onClick={toggleModal}>Add an attachment</button>
 
             {dynamicModal.modalType === 'attachment' && dynamicModal.fromCmp === 'attachment' &&
-                <DynamicModal type='attachment' groupId={groupId} taskId={taskId} closeModal={toggleModal} />
+                <>
+                    {matches && <div className="black-screen"></div>}
+                    <DynamicModal type='attachment' groupId={groupId} taskId={taskId} closeModal={toggleModal} />
+                </>
             }
         </div >
     )
