@@ -7,16 +7,5 @@
         min-height: 1px;
     }
 
-    &::-webkit-scrollbar {
-        width: 9px;
-    }
-
-    &::-webkit-scrollbar-thumb {
-        background-color: #bfc4ce;
-        border: none;
-    }
-
-    &::-webkit-scrollbar-track {
-        background: rgba(205, 204, 204, 0.617);
-    }
+    @include inner-scroll;
 }

@@ -48,6 +48,19 @@
                 }
             }
 
+            .btn-share {
+                background-color: $clr5;
+                font-size: rem(13px);
+
+                .add-member-icon {
+                    font-size: rem(14px);
+                }
+
+                .share {
+                    margin-inline-start: 4px;
+                }
+            }
+
             .btn-open-menu {
                 @include btn-transparent-size;
 

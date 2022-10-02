@@ -14,32 +14,17 @@ export const userService = {
     signup,
     getLoggedinUser,
     saveLocalUser,
-    getUsers,
     getById,
     remove,
-    update
+    update,
+    filterUsers
 }
 
 // window.userService = userService
 
-function getUsers() {
-    try {
-        return httpService.query(USER_BASE_URL)
-    } catch (err) {
-        console.log('Get users from user service has failed:', err)
-    }
-}
-
-// function onUserUpdate(user) {
-//     showSuccessMsg(`This user ${user.fullname} just got updated from socket`)
-// }
-
 async function getById(userId) {
     try {
         const user = await httpService.get(USER_BASE_URL + userId)
-        // socketService.emit(SOCKET_EMIT_USER_WATCH, userId)
-        // socketService.off(SOCKET_EVENT_USER_UPDATED, onUserUpdate)
-        // socketService.on(SOCKET_EVENT_USER_UPDATED, onUserUpdate)
         return user
     } catch (err) {
         console.log('Get by id has failed in user service', err)
@@ -98,6 +83,14 @@ async function logout() {
     }
 }
 
+async function filterUsers(criteria) {
+    try {
+        return await httpService.get(USER_BASE_URL, criteria)
+    } catch (err) {
+        console.log('err:', err)
+    }
+}
+
 function saveLocalUser(user) {
     sessionStorage.setItem(STORAGE_KEY_LOGGEDIN_USER, JSON.stringify(user))
     return user
@@ -106,6 +99,7 @@ function saveLocalUser(user) {
 function getLoggedinUser() {
     return JSON.parse(sessionStorage.getItem(STORAGE_KEY_LOGGEDIN_USER))
 }
+
 
 // ;(async ()=>{
 //     await userService.signup({fullname: 'Puki Norma', username: 'user1', password:'123',score: 10000, isAdmin: false})

@@ -39,18 +39,21 @@ export const BoardSecondaryHeader = ({ board }) => {
                                     style={{ transform: `translate(${getAvatarPosition(idx)}px)` }} />
                             )
                             )}
-                            <button className='btn btn-transparent'
+                            <button className='btn btn-transparent btn-share'
                                 onClick={() => setIsMembersModalOpen(true)}>
-                                <BsPersonPlus />
-                                Share
+                                <BsPersonPlus className='add-member-icon' />
+                                <span className='share'>Share</span>
                             </button>
                         </span>
                         {isMembersModalOpen && <BoardMembersModal setIsMembersModalOpen={setIsMembersModalOpen} />}
                     </div>
-                    <button className="btn-transparent btn-open-menu" onClick={() => openBoardMenu()}><HiOutlineDotsHorizontal className="board-menu-dots-icon" /><span className="show-menu-txt">Show menu</span></button>
+                    <button className="btn-transparent btn-open-menu" onClick={() => openBoardMenu()}>
+                        <HiOutlineDotsHorizontal className="board-menu-dots-icon" />
+                        <span className="show-menu-txt">Show menu</span>
+                    </button>
                     {isSideMenuOpen && <BoardSideMenu board={board} setIsSideMenuOpen={setIsSideMenuOpen} />}
                 </div>
-            </div>
-        </header>
+            </div >
+        </header >
     )
 }
