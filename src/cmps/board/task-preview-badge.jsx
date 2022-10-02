@@ -57,12 +57,14 @@ export const TaskPreviewBadge = ({ task }) => {
                             <ImAttachment />
                         </span>
                         {attachments.length}
-                    </span>}
+                    </span>
+                }
                 {checklists?.length > 0 &&
                     <span className="checklist-count-container">
                         <span><TbCheckbox className="checklist-badge" /></span>
                         <span className="checklist-count">{getTotalTasks()}</span>
-                    </span>}
+                    </span>
+                }
             </div>
             <div className="member-avatar">
                 {memberIds && memberIds.map(memberId => (

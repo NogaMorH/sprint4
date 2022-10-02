@@ -1,3 +1,4 @@
+import { useMediaQuery } from "@mui/material"
 import { BsPlusLg } from "react-icons/bs"
 import { useDispatch } from "react-redux"
 import { useSelector } from "react-redux"
@@ -11,6 +12,7 @@ export const Members = ({ members }) => {
     const params = useParams()
     const { groupId, taskId } = params
     const dispatch = useDispatch()
+    const matches = useMediaQuery('(max-width: 750px)')
 
     const toggleModal = () => {
         if (dynamicModal.modalType === 'members') {
@@ -32,7 +34,10 @@ export const Members = ({ members }) => {
             </div>
 
             {dynamicModal.modalType === 'members' && dynamicModal.fromCmp === 'members' &&
-                <DynamicModal type='members' groupId={groupId} taskId={taskId} closeModal={toggleModal} />
+                <>
+                    {matches && <div className="black-screen"></div>}
+                    <DynamicModal type='members' groupId={groupId} taskId={taskId} closeModal={toggleModal} />
+                </>
             }
         </div>
     )
