@@ -36,11 +36,29 @@ export const TaskPreviewBadge = ({ task }) => {
         return counter + '/' + length
     }
 
+    const getDateStyle = () => {
+        // const difference = dueDate.ms - new window.Date().getTime()
+
+        // if (dueDate.isDone) {
+        //     return { backgroundColor: '#61BD4F' }
+        // }
+        // else if (difference === -1) {
+        //     return { backgroundColor: '#EB5A46' }
+        // }
+        // else if (difference < 86400000 && difference > 0) {
+        //     return { backgroundColor: '#F2D600', color: '#172B4D' }
+        // } else {
+        //     return { backgroundColor: '#61BD4F' }
+        // }
+
+        // return { backgroundColor: '#61BD4F' }
+    }
+
     return (
         <div className="task-badge-container flex">
             <div className='task-badges'>
-                {dueDate && dueDate.ms &&
-                    <span className='task-due-date'>
+                {dueDate?.ms &&
+                    <span className='task-due-date' style={getDateStyle()}>
                         <span className='clock-badge'>
                             <FiClock />
                         </span>
