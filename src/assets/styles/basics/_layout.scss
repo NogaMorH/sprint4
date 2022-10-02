@@ -28,6 +28,12 @@
     @include main-layout(minmax(100px, 1fr), minmax(auto, 1140px), minmax(100px, 1fr))
 }
 
+@media (max-width: 520px) {
+    .template-layout {
+        @include main-layout (minmax(20px, 1fr), minmax(auto, 450px), minmax(20px, 1fr));
+    }
+}
+
 // @include for-narrow-layout {
 //     grid-template-columns: 
 //         minmax(20px, 1fr)

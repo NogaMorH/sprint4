@@ -315,7 +315,6 @@ async function addMembersToBoard(board, users) {
 
 function getMemberImgUrl(board, memberId) {
     const member = board.members.find(member => member._id === memberId)
-    console.log('member:', member)
     const url = member.imgUrl
     return url
 }

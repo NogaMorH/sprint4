@@ -45,6 +45,15 @@
 
 @include for-mobile-layout {
     .main-header {
-        display: none
+        // display: none;
+
+     .logo-container{
+        .logo {
+            margin-inline-start: 20px;
+        }
+    }
+    .header-links{
+        margin-inline-end: 8px;
+    }
     }
 }

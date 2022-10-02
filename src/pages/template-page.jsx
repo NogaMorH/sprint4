@@ -10,6 +10,7 @@ import { AddBoardModal } from "../cmps/template-page/add-board-modal"
 import { MainHeader } from '../cmps/main-header'
 import { Loader } from "../cmps/loader"
 
+
 export const TemplatePage = () => {
 
     const boards = useSelector(state => state.boardModule.boards)
@@ -69,6 +70,7 @@ export const TemplatePage = () => {
         }
         return style
     }
+    // const matches = useMediaQuery('(max-width: 520px)')
 
     if (!boards) return <Loader />
     return (

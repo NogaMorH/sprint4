@@ -94,9 +94,9 @@
                 justify-content: space-between;
 
                 .board-title {
-                    font-size: rem(15px);
+                    font-size: rem(16px);
                     font-weight: 400;
-                    color: #fff;
+                    color: $clr8;
                     // line-height: rem(32px);
                     font-family: san-francisco-medium, sans-serif;
                     margin-inline-end: 15px;
@@ -129,7 +129,7 @@
 
                 .board-menu-dots-icon {
                     font-size: 1.1rem;
-                    color: #fff;
+                    color: $clr8;
                 }
 
             }

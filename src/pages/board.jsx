@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { loadBoard, updateBoardFromSocket } from '../store/board/board.actions'
+import { loadBoard, setMainHeaderHidden, updateBoardFromSocket } from '../store/board/board.actions'
 import { setIsFormAddOpen } from '../store/board/board.actions'
 import { GroupList } from '../cmps/board/group-list'
 import { Outlet, useParams } from 'react-router-dom'
@@ -10,23 +10,34 @@ import { FormAdd } from '../cmps/board/form-add'
 import { BsPlusLg } from 'react-icons/bs'
 import { socketService } from '../services/socket.service'
 import { Loader } from '../cmps/loader'
+import { useMediaQuery } from '@mui/material'
+
 // import { showSuccessMsg } from '../services/event-bus.service.js'
 
 export const Board = () => {
+
     const formAdd = useSelector(state => state.systemModule.formAdd)
+    const isMainHeaderHidden = useSelector(state => state.systemModule.isMainHeaderHidden)
     const board = useSelector(state => state.boardModule.board)
     const dispatch = useDispatch()
     const params = useParams()
+    const matches = useMediaQuery('(max-width: 520px)')
 
     useEffect(() => {
         dispatch(loadBoard(params.boardId))
-    }, [params.boardId])
+        setMainHeaderShown()
+    }, [params.boardId, matches])
 
     useEffect(() => {
         socketService.on('board-updated', (board) => {
             dispatch(updateBoardFromSocket(board))
         })
     }, [])
+
+    const setMainHeaderShown = () => {
+        if (matches) dispatch(setMainHeaderHidden(true))
+        else dispatch(setMainHeaderHidden(false))
+    }
 
     const onAddGroup = () => {
         dispatch(setIsFormAddOpen(null, true))
@@ -46,11 +57,11 @@ export const Board = () => {
         }
         return style
     }
-
+   
     if (!board) return <Loader />
     return (
         <div className='board-layout board-page'>
-            <MainHeader />
+            {!isMainHeaderHidden && <MainHeader />}
             <main className='full board-layout board' style={getBoardBg()}>
                 <BoardSecondaryHeader board={board} />
                 <div className='group-list-container'>

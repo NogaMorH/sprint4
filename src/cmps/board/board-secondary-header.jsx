@@ -4,6 +4,7 @@ import { BoardSideMenu } from './board-side-menu'
 import { BsPersonPlus } from 'react-icons/bs'
 import { BoardMembersModal } from './board-members-modal'
 
+
 export const BoardSecondaryHeader = ({ board }) => {
 
     const [isSideMenuOpen, setIsSideMenuOpen] = useState(false)
