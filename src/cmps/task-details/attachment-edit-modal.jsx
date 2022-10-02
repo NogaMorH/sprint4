@@ -39,6 +39,7 @@ export const AttachmentEditModal = ({ name, closeEditModal, updateName }) => {
 
     return (
         <div className="attachment-edit-modal" ref={wrapperRef} onClick={(ev) => ev.stopPropagation()}>
+
             <div className="attachment-edit-modal-header">
                 <span>Edit attachment</span>
                 <span className='close-icon' onClick={closeEditModal}><IoCloseOutline /></span>
@@ -49,6 +50,7 @@ export const AttachmentEditModal = ({ name, closeEditModal, updateName }) => {
                     Link name <br />
                     <input type="text" value={filedValue} onChange={handleChange} />
                 </label>
+
                 <button className='update-btn' onClick={update}>Update</button>
             </div>
         </div>

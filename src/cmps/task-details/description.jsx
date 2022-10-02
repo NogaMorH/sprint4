@@ -22,10 +22,8 @@ export const Description = ({ description }) => {
     const onBlur = (ev) => {
         if (!ev.relatedTarget || ev.relatedTarget.className === 'save-btn') {
             dispatch(updateTask(groupId, taskId, 'description', updatedDescription))
-            console.log(' Task description saved!')
         } else {
             setDescription(description)
-            console.log('Task description canceled!')
         }
         setFocused(false)
     }

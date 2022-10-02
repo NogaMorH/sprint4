@@ -12,7 +12,7 @@ export const HomeHero = () => {
                     Collaborate, manage projects, and reach new productivity peaks.
                     From high rises to the home office, the way your team works is unique—accomplish it all with Rello.
                 </p>
-                <button className='btn btn-primary-home'><Link to='/template'>Try now</Link></button>
+                <Link to='/template' className='btn-primary-home'>Try now</Link>
             </div>
             <img src={homeHero} alt='' className='hero-img' />
         </section>

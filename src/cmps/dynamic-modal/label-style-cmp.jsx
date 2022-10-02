@@ -38,7 +38,8 @@ const Title = styled.span`
 export const LabelStyleCmp = ({ toggleLabel, inlineStyle, className, ballSize, text, color, title }) => {
 
     return (
-        <LabelContainer style={inlineStyle ? { backgroundColor: `${color}` } : { cursor: 'pointer' }}
+        <LabelContainer
+            style={inlineStyle ? { backgroundColor: `${color}` } : { cursor: 'pointer' }}
             onClick={toggleLabel} className={className} color={color}
         >
             <BgColor className={className} color={color} />

@@ -4,18 +4,12 @@
     align-items: center;
     min-height: 36px;
 
-    &.not-focused {
-        padding-top: 6px;
-    }
-
     &:hover {
         background-color: rgba(9, 30, 66, 0.04);
         border-radius: 3px;
     }
 
     input[name=isDone] {
-        margin-bottom: 10px;
-
         &.focused {
             align-self: flex-start;
             margin-top: 10px;
@@ -23,12 +17,16 @@
     }
 
     .todo {
+        display: flex;
+        flex-wrap: wrap;
+        flex: 1 1 87%;
 
         .line-through {
             text-decoration: line-through;
         }
 
         textarea {
+            flex: 1 1 100%;
             margin-left: 13px;
             height: 20px;
 
@@ -41,8 +39,7 @@
 
         &-buttons {
             position: relative;
-            margin-top: 2px;
-            margin-bottom: 9px;
+            margin: 9px 0;
 
             button {
                 margin-left: 13px;
@@ -57,7 +54,7 @@
             span {
                 position: absolute;
                 top: 3px;
-                left: 95px;
+                left: 75px;
                 font-size: rem(27px);
                 font-weight: 900;
                 color: $clr14;

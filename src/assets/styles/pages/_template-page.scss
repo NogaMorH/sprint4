@@ -26,9 +26,6 @@
         }
 
         .board-list {
-            // display: flex;
-            // flex-wrap: wrap;
-            // justify-content: space-between;
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
 
@@ -41,8 +38,8 @@
                 // margin: 0 2% 2% 0;
                 padding: 0;
                 transform: translate(0);
-                height: 6.125rem;
-                width: 12.0625rem;
+                height: 6.8rem;
+                width: 13.0625rem;
                 margin-right: 0.9375rem;
                 margin-bottom: 2.4375rem;
                 border-radius: 3px;
@@ -93,6 +90,21 @@
                         font-size: rem(16px);
                         color: #fff;
                     }
+                }
+            }
+        }
+    }
+}
+
+@include for-mobile-layout {
+
+    .board-list-title-container {
+        .board-list {
+            .board-preview {
+                width: 12.0625rem;
+
+                &.add-board {
+                    margin-bottom: 2.4375rem;
                 }
             }
         }

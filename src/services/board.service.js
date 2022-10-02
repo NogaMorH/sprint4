@@ -361,7 +361,7 @@ function getBoardBackground(type) {
             "https://images.unsplash.com/photo-1499002238440-d264edd596ec?ixlib=rb-1.2.1&ixid=MnwxM[…]90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80"
         ]
     } else if (type === 'color') {
-        return ['#1f79bf', '#d29033', '#51983a', '#b04632', '#89609e', '#cd5a91']
+        return ['#1f79bf', '#d29033', '#51983a', '#b04632', '#89609e', '#cd5a91', '#4bbf6b', '#2eaecc', '#838c91']
     }
 
 

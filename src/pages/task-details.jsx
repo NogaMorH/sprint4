@@ -100,7 +100,7 @@ export const TaskDetails = () => {
                     <div className="task-details-content">
 
                         <div className="content-info">
-                            {memberIds && <Members members={boardService.getTaskMembers(board, groupId, taskId)} />}
+                            {memberIds?.length > 0 && <Members members={boardService.getTaskMembers(board, groupId, taskId)} />}
 
                             {labelIds?.length > 0 && <Labels board={board} />}
                         </div>
@@ -109,12 +109,12 @@ export const TaskDetails = () => {
 
                         <Description description={description} />
 
-                        {attachments?.length > 0 && <AttachmentList attachments={attachments} task={task} />}
+                        {attachments?.length > 0 && <AttachmentList attachments={attachments} />}
 
                         {checklists && <ChecklistList checklists={checklists} />}
                     </div>
 
-                    <TaskSideBar task={task} />
+                    <TaskSideBar />
                 </main>
             </div>
         </div>

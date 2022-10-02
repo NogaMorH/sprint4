@@ -25,7 +25,7 @@ export const MembersModal = ({ groupId, taskId, closeModal, className }) => {
 
         if (members && keyword !== '') {
             const results = members.filter(member => {
-                return member.fullname.toLowerCase().startsWith(keyword.toLowerCase())
+                return member.fullName.toLowerCase().startsWith(keyword.toLowerCase())
             })
             setFoundUsers(results)
         } else {
@@ -75,14 +75,14 @@ export const MembersModal = ({ groupId, taskId, closeModal, className }) => {
 
                                 {foundUsers.map(member => {
                                     // temporary - member.id instead of member._id
-                                    const { id, fullname, imgUrl } = member
-                                    // const { _id, fullname, imgUrl } = member
+                                    const { id, fullName, imgUrl } = member
+                                    // const { _id, fullName, imgUrl } = member
 
                                     return (
                                         // temporary - member.id instead of member._id
                                         <li key={id} onClick={() => toggleMember(id)}>
-                                            <img src={imgUrl} title={fullname} alt="user-avatar" />
-                                            <span className="fullname">{fullname}</span>
+                                            <img src={imgUrl} title={fullName} alt="user-avatar" />
+                                            <span className="fullname">{fullName}</span>
 
                                             {memberIds && memberIds.includes(id) &&
                                                 <span className="icon-check">
@@ -91,8 +91,8 @@ export const MembersModal = ({ groupId, taskId, closeModal, className }) => {
                                             }
                                         </li>
                                         // <li key={_id} onClick={() => toggleMember(_id)}>
-                                        //     <img src={imgUrl} title={fullname} alt="user-avatar" />
-                                        //     <span className="fullname">{fullname}</span>
+                                        //     <img src={imgUrl} title={fullName} alt="user-avatar" />
+                                        //     <span className="fullName">{fullName}</span>
                                         //     {memberIds && memberIds.includes(_id) && <span className="icon-check">
                                         // <HiCheck />
                                         // </span>}
