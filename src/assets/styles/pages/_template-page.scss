@@ -62,7 +62,7 @@
                     display: flex;
                     flex-direction: column;
                     justify-content: space-between;
-                    height: rem(75px);
+                    // height: rem(75px);
                     height: 100%;
                     padding: 6px 6px 6px 6px;
                     background-color: #0000004d;
@@ -97,14 +97,42 @@
 }
 
 @include for-mobile-layout {
+    .template-page {
+        .board-list-container {
+            .board-list-title-container {
+                .board-list-title {
+                    font-size: rem(20px);
+                }
+            }
 
-    .board-list-title-container {
-        .board-list {
-            .board-preview {
-                width: 12.0625rem;
+            .board-list {
+                .board-preview {
+                    width: 100%;
+                    height: 12rem;
 
-                &.add-board {
-                    margin-bottom: 2.4375rem;
+                    &.add-board {
+                        margin-bottom: 2.4375rem;
+                        font-size: rem(18px);
+
+                    }
+
+                    .board-preview-details {
+                        padding: 10px 10px 10px 10px;
+
+                        .board-title {
+                            font-size: rem(21px);
+                        }
+
+                        .starred {
+                            font-size: rem(20px);
+                        }
+
+                        .unstarred {
+                            font-size: rem(20px);
+
+
+                        }
+                    }
                 }
             }
         }

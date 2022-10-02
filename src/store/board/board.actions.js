@@ -61,6 +61,7 @@ export function updateBoard(board) {
             // const board = getState().boardModule.board
             const updatedBoard = await boardService.save(board)
             dispatch({ type: 'UPDATE_BOARD', updatedBoard })
+            socketService.updateBoard(board._id)
         } catch (err) {
             console.log('Cannot update board', err)
             throw err
@@ -264,6 +265,12 @@ export function clearStore() {
     return (dispatch) => {
         const newBoard = null
         dispatch({ type: 'SET_BOARD', newBoard })
+    }
+}
+
+export function setMainHeaderHidden(boolean) {
+    return (dispatch) => {
+        dispatch({ type: 'SET_MAIN_HEADER_HIDDEN', boolean })
     }
 }
 

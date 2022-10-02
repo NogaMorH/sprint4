@@ -10,7 +10,8 @@ const initialState = {
   dynamicModal: {
     modalType: null,
     fromCmp: null
-  }
+  },
+  isMainHeaderHidden: false
 }
 
 export function systemReducer(state = initialState, action = {}) {
@@ -31,6 +32,8 @@ export function systemReducer(state = initialState, action = {}) {
       return { ...state, dynamicModal: { ...state.dynamicModal, modalType: action.modalType } }
     case 'SET_DYNAMIC_MODAL_FROM_CMP':
       return { ...state, dynamicModal: { ...state.dynamicModal, fromCmp: action.fromCmp } }
+    case 'SET_MAIN_HEADER_HIDDEN':
+      return { ...state, isMainHeaderHidden: action.boolean }
     //   case 'LOADING_START':
     //     return { ...state, isLoading: true }
     //   case 'LOADING_DONE':
