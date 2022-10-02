@@ -13,12 +13,10 @@ export const Todo = ({ todo, updateTodos, removeTodo }) => {
     const onBlur = (ev) => {
         if (!ev.relatedTarget) {
             setTitleField(title)
-            console.log('Checklist title canceled!')
         }
         else if (ev.relatedTarget.className === 'todo-save-btn') {
             todo = { ...todo, title: titleField }
             updateTodos(todo)
-            console.log('Checklist title saved!')
         }
         setFocused(false)
     }
@@ -35,10 +33,17 @@ export const Todo = ({ todo, updateTodos, removeTodo }) => {
 
     return (
         <li className='todo-container'>
-            <input type="checkbox" name="isDone" className={focused ? 'focused' : ''} onChange={handleChange} checked={isDone} />
+            <input
+                type="checkbox"
+                name="isDone"
+                className={focused ? 'focused' : ''}
+                onChange={handleChange}
+                checked={isDone}
+            />
 
             <div className="todo">
-                <textarea className={isDone ? 'line-through' : ''}
+                <textarea
+                    className={isDone ? 'line-through' : ''}
                     value={titleField}
                     onChange={handleChange}
                     onFocus={onFocus}
@@ -53,7 +58,12 @@ export const Todo = ({ todo, updateTodos, removeTodo }) => {
                 }
             </div>
 
-            <button className={`${focused && 'focused'} todo-remove-btn`} onClick={() => removeTodo(id)}><HiOutlineDotsHorizontal /></button>
+            <button
+                className={`${focused && 'focused'} todo-remove-btn`}
+                onClick={() => removeTodo(id)}
+            >
+                <HiOutlineDotsHorizontal />
+            </button>
         </li>
     )
 }

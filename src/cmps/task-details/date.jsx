@@ -37,6 +37,7 @@ export const Date = ({ dueDate }) => {
 
                 <button onClick={toggleModal}>
                     <span>{utilService.getFormatDate(ms)}</span>
+                    
                     {isDone ?
                         <span className="date-label" style={{ backgroundColor: '#61BD4F' }}>
                             complete

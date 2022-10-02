@@ -133,6 +133,7 @@ export const LabelsModal = ({ groupId, taskId, closeModal, className }) => {
                                             <li key={id}>
                                                 <label onClick={() => toggleLabel(id)}>
                                                     <input type="checkbox" checked={isChecked(id)} readOnly />
+                                                    
                                                     <div onClick={(ev) => ev.stopPropagation()}>
                                                         <LabelStyleCmp className="label-modal" color={color} title={title} />
                                                     </div>

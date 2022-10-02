@@ -33,6 +33,7 @@ export const EditLabelModal = ({ label, updateLabels, toggleModal }) => {
 
     return (
         <div className="edit-label-modal">
+            
             <div className="label-container">
                 <LabelStyleCmp className='label-edit' color={updatedColor} title={name} />
             </div>

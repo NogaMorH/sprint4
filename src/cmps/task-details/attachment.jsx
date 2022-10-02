@@ -7,11 +7,11 @@ import { useDispatch } from "react-redux"
 import { AttachmentEditModal } from "./attachment-edit-modal"
 import { utilService } from "../../services/util.service"
 
-export const Attachment = ({ attachment, idx, toggleCover, removeAttachment, updateAttachments, closeAttachmentEditModal, checkURL }) => {
+export const Attachment = ({ attachment, idx, toggleCover, removeAttachment, updateAttachments, checkURL }) => {
 
     const modalAttachmnetIdx = useSelector(state => state.systemModule.modalAttachmnetIdx)
     const dispatch = useDispatch()
-    const { name, url, isCover } = attachment
+    const { name, url, isCover, time } = attachment
 
     const openUrl = () => {
         window.open(url, '_blank')?.focus()
@@ -37,6 +37,7 @@ export const Attachment = ({ attachment, idx, toggleCover, removeAttachment, upd
 
     return (
         <div className="attachment" onClick={openUrl}>
+
             <div className="attachment-img">
                 {checkURL(url) ?
                     <img src={url} alt="attachment" />
@@ -50,20 +51,21 @@ export const Attachment = ({ attachment, idx, toggleCover, removeAttachment, upd
                 <span className='link-icon'><ImArrowUpRight2 /></span>
 
                 <div className="actions">
-                    <span>Added 1 minute ago -</span>
-                    {/* <span>Added {utilService.getFormatDate(Date.now())} - </span> */}
-                    <button className="actions-remove-btn hover-btn"
-                        onClick={(ev) => removeAttachment(ev, idx)}>Delete
+                    <span>Added {utilService.getFormatDate(time)} - </span>
+
+                    <button className="actions-remove-btn hover-btn" onClick={(ev) => removeAttachment(ev, idx)}>
+                        Delete
                     </button>
                     -
-                    <button name='edit-btn' className="actions-edit-btn hover-btn"
-                        onClick={toggleEditModal}>Edit
+                    <button name='edit-btn' className="actions-edit-btn hover-btn" onClick={toggleEditModal}>
+                        Edit
                     </button>
                 </div>
 
                 {checkURL(url) &&
                     <div className="make-cover hover-btn">
                         <span className='make-cover-icon'><FiCreditCard /></span>
+
                         <button className='make-cover-btn' onClick={(ev) => toggleCover(ev, idx)}>
                             {isCover ? 'Remove cover' : 'Make cover'}
                         </button>
@@ -71,7 +73,9 @@ export const Attachment = ({ attachment, idx, toggleCover, removeAttachment, upd
                 }
             </div>
 
-            {modalAttachmnetIdx === idx && <AttachmentEditModal name={name} closeEditModal={closeEditModal} updateName={updateName} />}
+            {modalAttachmnetIdx === idx &&
+                <AttachmentEditModal name={name} closeEditModal={closeEditModal} updateName={updateName} />
+            }
         </div>
     )
 }

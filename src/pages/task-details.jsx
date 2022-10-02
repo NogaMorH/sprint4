@@ -109,12 +109,12 @@ export const TaskDetails = () => {
 
                         <Description description={description} />
 
-                        {attachments?.length > 0 && <AttachmentList attachments={attachments} task={task} />}
+                        {attachments?.length > 0 && <AttachmentList attachments={attachments} />}
 
                         {checklists && <ChecklistList checklists={checklists} />}
                     </div>
 
-                    <TaskSideBar task={task} />
+                    <TaskSideBar />
                 </main>
             </div>
         </div>

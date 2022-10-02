@@ -43,16 +43,19 @@ export const TodoList = ({ todos, updateChecklist }) => {
 
     return (
         <div className="todo-list-container">
+
             <ul className="todo-list">
                 {todos.map(todo => (
                     <Todo key={todo.id} todo={todo} updateTodos={updateTodos} removeTodo={removeTodo} />
                 ))}
             </ul>
+
             {!focused && <button className="add-todo-btn" onClick={onFocus}>Add an item</button>}
 
             {focused &&
                 <div className="new-todo">
-                    <textarea className='new-todo-textarea'
+                    <textarea
+                        className='new-todo-textarea'
                         placeholder="Add an item"
                         value={title}
                         onChange={handleChange}

@@ -15,11 +15,9 @@ export const Checklist = ({ checklist, updateChecklists, removeChecklist }) => {
     const onBlur = (ev) => {
         if (!ev.relatedTarget) {
             setTitleField(title)
-            console.log('Checklist title canceled!')
         }
         else if (ev.relatedTarget.className === 'checklist-title-save-btn') {
             updateChecklist('title', titleField)
-            console.log('Checklist title saved!')
         }
         setFocused(false)
     }
@@ -35,6 +33,7 @@ export const Checklist = ({ checklist, updateChecklists, removeChecklist }) => {
 
     return (
         <div className="checklist">
+
             <div className="checklist-title">
                 <span className="checklist-title-icon"><TbCheckbox /></span>
 

@@ -39,7 +39,7 @@ export const AttachmentModal = ({ groupId, taskId, closeModal, className }) => {
     }
 
     const addAttachment = () => {
-        const attachment = { name, url, isCover: false }
+        const attachment = { name, url, isCover: false, time: Date.now() }
         if (!attachments) attachments = []
         attachments.unshift(attachment)
         dispatch(updateTask(groupId, taskId, 'attachments', attachments))
@@ -51,7 +51,6 @@ export const AttachmentModal = ({ groupId, taskId, closeModal, className }) => {
             className={`dynamic-modal attachment-modal ${className ? className : ''}`}
             onClick={(ev) => ev.stopPropagation()}
         >
-
             <div className="dynamic-header">
                 <h5>Attach from...</h5>
                 <span onClick={closeModal}><IoCloseOutline /></span>

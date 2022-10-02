@@ -6,7 +6,7 @@ import { ImAttachment } from 'react-icons/im'
 import { DynamicModal } from '../dynamic-modal/dynamic-modal'
 import { useSelector } from 'react-redux'
 
-export const AttachmentList = ({ attachments, closeAttachmentEditModal }) => {
+export const AttachmentList = ({ attachments }) => {
 
     const dynamicModal = useSelector(state => state.systemModule.dynamicModal)
     const dispatch = useDispatch()
@@ -69,7 +69,6 @@ export const AttachmentList = ({ attachments, closeAttachmentEditModal }) => {
                         toggleCover={toggleCover}
                         removeAttachment={removeAttachment}
                         updateAttachments={updateAttachments}
-                        closeAttachmentEditModal={closeAttachmentEditModal}
                         checkURL={checkURL}
                     />
                 )
