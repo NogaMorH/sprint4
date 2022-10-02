@@ -18,34 +18,47 @@
             display: flex;
             align-items: center;
             margin-inline-end: 10px;
+            margin-bottom: 4px;
             padding: 5px;
             border-radius: 3px;
             font-size: rem(11px);
+            height: 24px;
 
             .clock-badge {
                 font-size: rem(14px);
                 margin-inline-end: 4px;
-                line-height: 10px;
+                line-height: 1px;
             }
 
-            // .checklist-badge {
-            //     display: none;
-            //     font-size: rem(14px);
-            //     margin-inline-end: 4px;
-            //     line-height: 10px;
-            // }
+            .checklist-badge-empty {
+                display: none;
+                font-size: rem(12px);
+                margin-right: 4.5px;
+                margin-left: 1.5px;
+            }
 
-            // &:hover {
-            //     filter: saturate(99%) brightness(90%);
+            .checklist-badge {
+                display: none;
+                font-size: rem(14.5px);
+                margin-right: 3.5px;
+            }
 
-            //     .clock-badge {
-            //         display: none;
-            //     }
+            &-date {
+                padding-top: 2px;
+            }
 
-            //     .checklist-badge {
-            //         display: flex;
-            //     }
-            // }
+            &:hover {
+                filter: saturate(99%) brightness(90%);
+
+                .clock-badge {
+                    display: none;
+                }
+
+                .checklist-badge,
+                .checklist-badge-empty {
+                    display: flex;
+                }
+            }
         }
 
         .description-badge {

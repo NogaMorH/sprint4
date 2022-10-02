@@ -5,11 +5,15 @@ import { FiClock } from 'react-icons/fi'
 import { GrTextAlignFull } from 'react-icons/gr'
 import { ImAttachment } from 'react-icons/im'
 import { TbCheckbox } from 'react-icons/tb'
+import { FaRegSquare } from 'react-icons/fa'
+import { updateTask } from "../../store/board/board.actions"
+import { useDispatch } from "react-redux"
 
 
-export const TaskPreviewBadge = ({ task }) => {
+export const TaskPreviewBadge = ({ task, groupId }) => {
 
     const board = useSelector(state => state.boardModule.board)
+    const dispatch = useDispatch()
 
     const { title, dueDate, memberIds, description, attachments, id, checklists } = task
 
@@ -49,21 +53,31 @@ export const TaskPreviewBadge = ({ task }) => {
         else if (difference < 86400000 && difference > 0) {
             backgroundColor = '#F2D600'
         } else {
-            backgroundColor = 'transparent'
-            color = '#000'
+            backgroundColor = '#f4f5f7'
+            color = '#5e6c84'
         }
 
         return { backgroundColor, color }
+    }
+
+    const toggleIsDone = (ev) => {
+        ev.stopPropagation()
+        dispatch(updateTask(groupId, task.id, 'dueDate', { ...dueDate, isDone: !dueDate.isDone }))
     }
 
     return (
         <div className="task-badge-container flex">
             <div className='task-badges'>
                 {dueDate?.ms &&
-                    <span className='task-due-date' style={getDateStyle()}>
+                    <span className='task-due-date' style={getDateStyle()} onClick={toggleIsDone}>
                         <span className='clock-badge'><FiClock /></span>
-                        {/* <span className='checklist-badge'><TbCheckbox /></span> */}
-                        <span>{getFormatDate(task.dueDate.ms)}</span>
+
+                        {dueDate.isDone ?
+                            <span className='checklist-badge'><TbCheckbox /></span>
+                            :
+                            <span className='checklist-badge-empty'><FaRegSquare /></span>
+                        }
+                        <span className="task-due-date-date">{getFormatDate(task.dueDate.ms)}</span>
                     </span>
                 }
                 {description &&

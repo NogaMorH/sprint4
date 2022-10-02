@@ -74,29 +74,19 @@ export const MembersModal = ({ groupId, taskId, closeModal, className }) => {
                                 <h6>Board members</h6>
 
                                 {foundUsers.map(member => {
-                                    // temporary - member.id instead of member._id
-                                    const { id, fullName, imgUrl } = member
-                                    // const { _id, fullName, imgUrl } = member
+                                    const { _id, fullName, imgUrl } = member
 
                                     return (
-                                        // temporary - member.id instead of member._id
-                                        <li key={id} onClick={() => toggleMember(id)}>
+                                        <li key={_id} onClick={() => toggleMember(_id)}>
                                             <img src={imgUrl} title={fullName} alt="user-avatar" />
                                             <span className="fullname">{fullName}</span>
 
-                                            {memberIds && memberIds.includes(id) &&
+                                            {memberIds && memberIds.includes(_id) &&
                                                 <span className="icon-check">
                                                     <HiCheck />
                                                 </span>
                                             }
                                         </li>
-                                        // <li key={_id} onClick={() => toggleMember(_id)}>
-                                        //     <img src={imgUrl} title={fullName} alt="user-avatar" />
-                                        //     <span className="fullName">{fullName}</span>
-                                        //     {memberIds && memberIds.includes(_id) && <span className="icon-check">
-                                        // <HiCheck />
-                                        // </span>}
-                                        // </li>
                                     )
                                 })}
                             </ul>

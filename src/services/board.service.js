@@ -332,7 +332,7 @@ function getTask(board, groupId, taskId) {
 
 function getTaskMembers(board, groupId, taskId) {
     const memberIds = getTask(board, groupId, taskId).memberIds
-    return board.members.filter(member => memberIds.includes(member.id))
+    return board.members.filter(member => memberIds.includes(member._id))
 }
 
 function getTaskLabels(board, groupId, taskId) {
