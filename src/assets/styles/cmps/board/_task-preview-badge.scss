@@ -18,11 +18,34 @@
             display: flex;
             align-items: center;
             margin-inline-end: 10px;
+            padding: 5px;
+            border-radius: 3px;
+            font-size: rem(11px);
 
             .clock-badge {
-                font-size: rem(15px);
+                font-size: rem(14px);
                 margin-inline-end: 4px;
+                line-height: 10px;
             }
+
+            // .checklist-badge {
+            //     display: none;
+            //     font-size: rem(14px);
+            //     margin-inline-end: 4px;
+            //     line-height: 10px;
+            // }
+
+            // &:hover {
+            //     filter: saturate(99%) brightness(90%);
+
+            //     .clock-badge {
+            //         display: none;
+            //     }
+
+            //     .checklist-badge {
+            //         display: flex;
+            //     }
+            // }
         }
 
         .description-badge {
@@ -51,7 +74,6 @@
                 font-size: 15px;
                 margin-top: 2px;
                 margin-inline-end: 4px;
-
             }
         }
     }
