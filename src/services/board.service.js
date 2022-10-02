@@ -22,7 +22,6 @@ export const boardService = {
     getBoardById,
     save,
     remove,
-    // updateBoard,
     saveGroup,
     removeGroup,
     duplicateGroup,
@@ -39,7 +38,8 @@ export const boardService = {
     updateBoardLabels,
     setBoardIsStarred,
     getBackground,
-    getBoardBackground
+    getBoardBackground,
+    addMembersToBoard
 }
 // window.cs = boardService
 
@@ -296,8 +296,25 @@ async function updateBoardLabels(board, labels) {
     }
 }
 
+async function addMembersToBoard(board, users) {
+    try {
+        const miniUsers = users.map(user => {
+            delete user.email
+            delete user.createdAt
+            return user
+        })
+        miniUsers.forEach(miniUser => board.members.push(miniUser))
+        await httpService.put(BASE_URL + board._id, board)
+        return { ...board }
+    } catch (err) {
+        console.log('addMembersToBoard in board service has failed:', err)
+        throw err
+    }
+}
+
 function getMemberImgUrl(board, memberId) {
-    const member = board.members.find(member => member.id === memberId)
+    const member = board.members.find(member => member._id === memberId)
+    console.log('member:', member)
     const url = member.imgUrl
     return url
 }

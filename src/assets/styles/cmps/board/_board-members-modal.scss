@@ -33,26 +33,41 @@
         }
     }
 
-    .search-member {
+    .search-member-container {
         width: 100%;
         margin-bottom: 20px;
+
+        .search-member {
+            position: relative;
+            width: 100%;
+            min-height: 40px;
+            outline: 2px solid #dfe1e6;
+            border-radius: 3px;
+
+            &:hover {
+                background-color: $clr29;
+            }
+
+            &:focus-within {
+                outline: 2px solid $clr18;
+                background-color: $clr5;
+            }
+        }
 
         .input-container {
             width: 100%;
             display: flex;
-            position: relative;
+            padding: 6px 4px 6px 12px;
+            height: 100%;
         }
 
         .member-input {
             line-height: lh(20px, 14px);
-            padding: 6px 4px 6px 12px;
-            min-height: 40px;
             flex-grow: 1;
-            border-radius: 3px;
-            border: 2px solid #dfe1e6;
+            border: none;
+            background-color: inherit;
 
             &:focus-visible {
-                border: 2px solid $clr18;
                 outline: none;
             }
         }
@@ -63,28 +78,61 @@
         }
     }
 
+    .selected-users {
+        display: flex;
+        align-items: center;
+        border-radius: 3px;
+
+        .selected-user {
+            padding: 2px 5px;
+            background-color: $clr27;
+            margin: 2px 8px 2px 0;
+            display: flex;
+            align-items: center;
+
+            &-name {
+                padding-inline-end: 4px;
+            }
+
+            .btn-remove-user {
+                background-color: transparent;
+                font-size: rem(16px);
+                padding: 0;
+            }
+        }
+    }
+
     .member-avatar {
         width: 32px;
         height: 32px;
         border-radius: 50%;
     }
 
-    .suggested-user-list {
+    .user-list-container {
         box-shadow: 0 8px 16px -4px #091e4240, 0 0 0 1px #091e4214;
         border-radius: 3px;
-        max-height: 256px;
-        padding: 4px;
-        overflow-y: auto;
         position: absolute;
         background-color: $clr5;
-        top: 105%;
+        top: 115%;
         width: 100%;
+        padding: 4px;
+
+        .msg {
+            color: $clr10;
+            padding: 16px;
+        }
+    }
+
+    .suggested-user-list {
+        max-height: 256px;
+        padding: 4px 4px 4px 0;
+        overflow-y: auto;
 
         .suggested-user {
             align-items: center;
 
             .add-member-btn {
-                padding: 8px 0;
+                padding: 8px 0 8px 4px;
                 width: 100%;
                 height: 100%;
                 background-color: inherit;
