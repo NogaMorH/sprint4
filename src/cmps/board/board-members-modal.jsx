@@ -26,6 +26,10 @@ export const BoardMembersModal = ({ setIsMembersModalOpen }) => {
     useEffect(() => {
         setUsers([])
         setIsUsersModalOpen(false)
+
+        return () => {
+            setSelectedUsers([])
+        }
     }, [])
 
     const closeUsersModal = (ev) => {
@@ -46,6 +50,11 @@ export const BoardMembersModal = ({ setIsMembersModalOpen }) => {
     const onShare = (ev) => {
         ev.preventDefault()
         dispatch(addMembersToBoard(selectedUsers))
+    }
+
+    const isBoardMember = (suggestedUser) => {
+        return board.members.find(member => member._id === suggestedUser._id)
+        // return boardMember ? true : false
     }
 
     return (
@@ -74,7 +83,8 @@ export const BoardMembersModal = ({ setIsMembersModalOpen }) => {
                                         </div>
                                     ))}
                                 </div>)}
-                            <input type='text' placeholder='Search by name' className='member-input' name='text'
+                            <input type='text' placeholder={selectedUsers?.length ? '' : 'Search by name'}
+                                className='member-input' name='text'
                                 onChange={handleChange} value={form.text} />
                         </div>
                         {isUsersModalOpen &&
@@ -83,7 +93,9 @@ export const BoardMembersModal = ({ setIsMembersModalOpen }) => {
                                     ? <ul className='suggested-user-list'>
                                         {users.map(user => (
                                             <li className='flex suggested-user' key={user._id}>
-                                                <button className='btn add-member-btn'
+                                                <button
+                                                    className={`btn add-member-btn ${isBoardMember(user) && 'disabled'}`}
+                                                    disabled={isBoardMember(user)}
                                                     onClick={() => onSelectUser(user)}>
                                                     <img src={user.imgUrl} alt='avatar' className='member-avatar' />
                                                     <span className='suggested-user-name'>{user.fullName}</span>
