@@ -50,7 +50,7 @@ export const TaskPreview = ({ task, groupId, index }) => {
                         <TaskEditModal task={task} groupId={groupId}
                             closeTaskEditModal={(ev) => closeTaskEditModal(ev)} isBadge={isBadge} />
                     }
-                    
+
                     <div className='task-preview'>
                         {cover &&
                             (cover.img ?
@@ -69,7 +69,7 @@ export const TaskPreview = ({ task, groupId, index }) => {
                             </button>
 
                             {isBadge() &&
-                                <TaskPreviewBadge task={task} />
+                                <TaskPreviewBadge task={task} groupId={groupId} />
                             }
                         </div>
                     </div>
