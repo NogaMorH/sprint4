@@ -59,6 +59,7 @@
             display: flex;
             padding: 6px 4px 6px 12px;
             height: 100%;
+            flex-wrap: wrap;
         }
 
         .member-input {
@@ -137,6 +138,10 @@
                 height: 100%;
                 background-color: inherit;
                 border-radius: 3px;
+
+                &.disabled {
+                    cursor: not-allowed;
+                }
 
                 &:hover {
                     background-color: $clr27;

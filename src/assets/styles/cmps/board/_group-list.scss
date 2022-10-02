@@ -34,3 +34,9 @@
 
 
 }
+
+@include for-mobile-layout {
+    .btn-add-group {
+        margin-inline-end: 8px;
+    }
+}
