@@ -14,6 +14,7 @@ import { IoCloseOutline } from 'react-icons/io5'
 import { Labels } from '../cmps/task-details/labels'
 import { FiCreditCard } from 'react-icons/fi'
 import { DynamicModal } from '../cmps/dynamic-modal/dynamic-modal'
+import { useMediaQuery } from '@mui/material'
 
 export const TaskDetails = () => {
 
@@ -22,6 +23,7 @@ export const TaskDetails = () => {
     const [taskTitle, setTaskTitle] = useState('')
     const dispatch = useDispatch()
     const navigate = useNavigate()
+    const matches = useMediaQuery('(max-width: 750px)')
     const params = useParams()
     const { groupId, taskId } = params
     const ref = useRef()
@@ -68,7 +70,10 @@ export const TaskDetails = () => {
 
                 <div className='full task-details-cover'>
                     {dynamicModal.modalType === 'cover' && dynamicModal.fromCmp === 'cover' &&
-                        <DynamicModal type='cover' groupId={groupId} taskId={taskId} closeModal={toggleCoverModal} />
+                        <>
+                            {matches && <div className="black-screen"></div>}
+                            <DynamicModal type='cover' groupId={groupId} taskId={taskId} closeModal={toggleCoverModal} />
+                        </>
                     }
                     <button className="close-task-details" onClick={closeTaskDetails}><IoCloseOutline /> </button>
 

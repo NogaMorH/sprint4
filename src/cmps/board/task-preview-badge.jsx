@@ -19,7 +19,6 @@ export const TaskPreviewBadge = ({ task }) => {
     }
 
     const getTotalTasks = () => {
-        // if (!checklists || !checklists.length) return
         const checklistLength = checklists.map(currChecklist => {
             return currChecklist.todos.length
         })
@@ -36,11 +35,29 @@ export const TaskPreviewBadge = ({ task }) => {
         return counter + '/' + length
     }
 
+    const getDateStyle = () => {
+        // const difference = dueDate.ms - new window.Date().getTime()
+
+        // if (dueDate.isDone) {
+        //     return { backgroundColor: '#61BD4F' }
+        // }
+        // else if (difference === -1) {
+        //     return { backgroundColor: '#EB5A46' }
+        // }
+        // else if (difference < 86400000 && difference > 0) {
+        //     return { backgroundColor: '#F2D600', color: '#172B4D' }
+        // } else {
+        //     return { backgroundColor: '#61BD4F' }
+        // }
+
+        // return { backgroundColor: '#61BD4F' }
+    }
+
     return (
         <div className="task-badge-container flex">
             <div className='task-badges'>
-                {dueDate && dueDate.ms &&
-                    <span className='task-due-date'>
+                {dueDate?.ms &&
+                    <span className='task-due-date' style={getDateStyle()}>
                         <span className='clock-badge'>
                             <FiClock />
                         </span>
@@ -58,12 +75,14 @@ export const TaskPreviewBadge = ({ task }) => {
                             <ImAttachment />
                         </span>
                         {attachments.length}
-                    </span>}
+                    </span>
+                }
                 {checklists?.length > 0 &&
                     <span className="checklist-count-container">
                         <span><TbCheckbox className="checklist-badge" /></span>
                         <span className="checklist-count">{getTotalTasks()}</span>
-                    </span>}
+                    </span>
+                }
             </div>
             <div className="member-avatar">
                 {memberIds && memberIds.map(memberId => (

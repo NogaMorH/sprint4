@@ -6,6 +6,7 @@ import { DynamicModal } from "../dynamic-modal/dynamic-modal"
 import { useDispatch } from "react-redux"
 import { setDynamicModal } from "../../store/board/board.actions"
 import { useSelector } from "react-redux"
+import { useMediaQuery } from "@mui/material"
 
 export const Labels = ({ board }) => {
 
@@ -14,6 +15,7 @@ export const Labels = ({ board }) => {
     const { groupId, taskId } = params
     const labels = boardService.getTaskLabels(board, groupId, taskId)
     const dispatch = useDispatch()
+    const matches = useMediaQuery('(max-width: 750px)')
 
     const toggleModal = () => {
         if (dynamicModal.modalType === 'labels') {
@@ -40,7 +42,10 @@ export const Labels = ({ board }) => {
             </ul>
 
             {dynamicModal.modalType === 'labels' && dynamicModal.fromCmp === 'labels' &&
-                <DynamicModal type='labels' groupId={groupId} taskId={taskId} closeModal={toggleModal} />
+                <>
+                    {matches && <div className="black-screen"></div>}
+                    <DynamicModal type='labels' groupId={groupId} taskId={taskId} closeModal={toggleModal} />
+                </>
             }
         </div>
     )

@@ -11,12 +11,14 @@ import { useParams } from "react-router-dom"
 import { setDynamicModal } from "../../store/board/board.actions"
 import { DynamicModal } from "../dynamic-modal/dynamic-modal"
 import React from "react"
+import { useMediaQuery } from "@mui/material"
 
 export const TaskSideBar = () => {
 
     const dynamicModal = useSelector(state => state.systemModule.dynamicModal)
     const types = ['members', 'labels', 'checklist', 'dates', 'attachment', 'cover']
     const dispatch = useDispatch()
+    const matches = useMediaQuery('(max-width: 750px)')
     const params = useParams()
     const { groupId, taskId } = params
 
@@ -54,13 +56,16 @@ export const TaskSideBar = () => {
                                 <span className="sidebar-cmp">{type}</span>
 
                                 {dynamicModal.modalType === type && dynamicModal.fromCmp === 'sidebar' &&
-                                    <DynamicModal
-                                        type={type}
-                                        groupId={groupId}
-                                        taskId={taskId}
-                                        closeModal={closeModal}
-                                        className="pos-sidebar"
-                                    />
+                                    <>
+                                        {matches && <div className="black-screen"></div>}
+                                        <DynamicModal
+                                            type={type}
+                                            groupId={groupId}
+                                            taskId={taskId}
+                                            closeModal={closeModal}
+                                            className="pos-sidebar"
+                                        />
+                                    </>
                                 }
                             </div>
                         </React.Fragment>

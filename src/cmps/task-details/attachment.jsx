@@ -6,11 +6,13 @@ import { setEditModalAttachmentIdx } from '../../store/board/board.actions'
 import { useDispatch } from "react-redux"
 import { AttachmentEditModal } from "./attachment-edit-modal"
 import { utilService } from "../../services/util.service"
+import { useMediaQuery } from "@mui/material"
 
 export const Attachment = ({ attachment, idx, toggleCover, removeAttachment, updateAttachments, checkURL }) => {
 
     const modalAttachmnetIdx = useSelector(state => state.systemModule.modalAttachmnetIdx)
     const dispatch = useDispatch()
+    const matches = useMediaQuery('(max-width: 750px)')
     const { name, url, isCover, time } = attachment
 
     const openUrl = () => {
@@ -74,7 +76,10 @@ export const Attachment = ({ attachment, idx, toggleCover, removeAttachment, upd
             </div>
 
             {modalAttachmnetIdx === idx &&
-                <AttachmentEditModal name={name} closeEditModal={closeEditModal} updateName={updateName} />
+                <>
+                    {matches && <div className="black-screen"></div>}
+                    <AttachmentEditModal name={name} closeEditModal={closeEditModal} updateName={updateName} />
+                </>
             }
         </div>
     )
