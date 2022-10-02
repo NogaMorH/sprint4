@@ -57,7 +57,6 @@ export function SignUp({ setIsLogin }) {
             // .matches(/[a-zA-Z]/, 'Password can only contain Latin letters.')
         }),
         onSubmit: (values) => {
-            console.log('values:', values)
             dispatch(onSignup(values))
         }
     })

@@ -14,6 +14,7 @@
     font-family: san-francisco-light, sans-serif;
     cursor: auto;
     color: $clr8;
+    position: relative;
 
     .modal-title-container {
         align-items: center;
@@ -25,29 +26,102 @@
             margin: 0;
             flex-grow: 1;
         }
-    }
 
+        .close-icon {
+            @include close-icon;
+            font-size: rem(24px);
+        }
+    }
 
     .search-member {
         width: 100%;
-    }
+        margin-bottom: 20px;
 
-    .member-input {
-        line-height: lh(20px, 14px);
-        padding: 6px 4px 6px 12px;
-        min-height: 40px;
-        flex-grow: 1;
-        margin-inline-end: 8px;
-        border-radius: 3px;
+        .input-container {
+            width: 100%;
+            display: flex;
+            position: relative;
+        }
 
-        &:focus-visible {
-            border: 2px solid $clr18;
-            outline: none;
+        .member-input {
+            line-height: lh(20px, 14px);
+            padding: 6px 4px 6px 12px;
+            min-height: 40px;
+            flex-grow: 1;
+            border-radius: 3px;
+            border: 2px solid #dfe1e6;
+
+            &:focus-visible {
+                border: 2px solid $clr18;
+                outline: none;
+            }
+        }
+
+        .btn-primary-board {
+            font-size: rem(13px);
+            margin-inline-start: 8px;
         }
     }
 
     .member-avatar {
         width: 32px;
         height: 32px;
+        border-radius: 50%;
+    }
+
+    .suggested-user-list {
+        box-shadow: 0 8px 16px -4px #091e4240, 0 0 0 1px #091e4214;
+        border-radius: 3px;
+        max-height: 256px;
+        padding: 4px;
+        overflow-y: auto;
+        position: absolute;
+        background-color: $clr5;
+        top: 105%;
+        width: 100%;
+
+        .suggested-user {
+            align-items: center;
+
+            .add-member-btn {
+                padding: 8px 0;
+                width: 100%;
+                height: 100%;
+                background-color: inherit;
+                border-radius: 3px;
+
+                &:hover {
+                    background-color: $clr27;
+                }
+            }
+
+            .member-avatar {
+                margin-inline-end: 8px;
+            }
+        }
+
+        @include inner-scroll;
+    }
+
+    .member {
+        &:not(:last-child) {
+            margin-bottom: 16px;
+        }
+
+        &:last-child {
+            margin-bottom: 20px;
+        }
+
+        .member-details {
+            margin-inline-start: 12px;
+
+            .full-name {
+                margin-bottom: 4px;
+            }
+
+            .username {
+                font-size: rem(11px);
+            }
+        }
     }
 }
