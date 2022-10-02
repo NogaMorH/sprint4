@@ -19,7 +19,6 @@ export const TaskPreviewBadge = ({ task }) => {
     }
 
     const getTotalTasks = () => {
-        // if (!checklists || !checklists.length) return
         const checklistLength = checklists.map(currChecklist => {
             return currChecklist.todos.length
         })

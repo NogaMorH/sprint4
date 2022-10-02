@@ -45,7 +45,11 @@ export const boardService = {
 
 async function query() {
     try {
-        return await httpService.get(BASE_URL)
+        console.log('query front end service before req:')
+        // return await httpService.get(BASE_URL)
+        const boards = await httpService.get(BASE_URL)
+        console.log('mini boards from front query after req:', boards)
+        return boards
     } catch (err) {
         console.log('Query has failed:', err)
         throw err
@@ -347,8 +351,6 @@ function getBackground(type) {
     } else if (type === 'color') {
         return ['#1f79bf', '#d29033', '#51983a', '#b04632', '#89609e', '#cd5a91']
     }
-
-
 }
 
 function getBoardBackground(type) {
