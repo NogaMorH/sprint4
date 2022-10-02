@@ -305,6 +305,7 @@ async function addMembersToBoard(board, users) {
         })
         miniUsers.forEach(miniUser => board.members.push(miniUser))
         await httpService.put(BASE_URL + board._id, board)
+        socketService.updateBoard(board._id)
         return { ...board }
     } catch (err) {
         console.log('addMembersToBoard in board service has failed:', err)
