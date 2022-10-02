@@ -1,27 +1,6 @@
 import { boardService } from "../../services/board.service.js";
-import { userService } from "../../services/user.service.js";
 import { showSuccessMsg, showErrorMsg } from '../../services/event-bus.service.js'
 import { socketService } from "../../services/socket.service.js";
-
-// Action Creators:
-// export function getActionRemoveBoard(boardId) {
-//     return {
-//         type: 'REMOVE_CAR',
-//         boardId
-//     }
-// }
-// export function getActionAddBoard(board) {
-//     return {
-//         type: 'ADD_CAR',
-//         board
-//     }
-// }
-// export function getActionUpdateBoard(board) {
-//     return {
-//         type: 'UPDATE_CAR',
-//         board
-//     }
-// }
 
 export function loadBoards() {
     return async (dispatch) => {
@@ -224,6 +203,18 @@ export function updateBoardLabels(labels) {
             dispatch({ type: 'UPDATE_BOARD', updatedBoard })
         } catch (err) {
             console.error('Update board labels in board actions has failed:', err)
+        }
+    }
+}
+
+export function addMembersToBoard(users) {
+    return async (dispatch, getState) => {
+        try {
+            const board = getState().boardModule.board
+            const updatedBoard = await boardService.addMembersToBoard(board, users)
+            dispatch({ type: 'UPDATE_BOARD', updatedBoard })
+        } catch (err) {
+            console.log('Add members to board has failed in board actions:', err)
         }
     }
 }

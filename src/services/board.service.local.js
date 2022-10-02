@@ -161,7 +161,7 @@ async function removeTask(board, groupId, taskId) {
 }
 
 function getMemberImgUrl(board, memberId) {
-    const url = board.members.find(member => member.id === memberId).imgUrl
+    const url = board.members.find(member => member._id === memberId).imgUrl
     return url
 }
 
