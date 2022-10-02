@@ -26,7 +26,9 @@ import { socketService } from "../../services/socket.service.js";
 export function loadBoards() {
     return async (dispatch) => {
         try {
+            console.log('load boards action before request:')
             const miniBoards = await boardService.query()
+            console.log('load boards action after request:', miniBoards)
             dispatch({ type: 'SET_BOARDS', miniBoards })
         } catch (err) {
             console.log('Cannot load boards', err)
