@@ -1,5 +1,4 @@
 .task-details-container {
-    position: absolute;
     background-color: $clr12;
     font-family: san-francisco-light, sans-serif;
     color: $clr8;
@@ -164,32 +163,42 @@
 }
 
 @media (min-width: 750px) {
-    .task-details-container {
-        min-width: 710px;
+    .task-details-start {
+        position: absolute;
         top: 46px;
         left: 50%;
         transform: translate(-50%, 0);
-        border-radius: 3px;
 
-        .task-title {
-            &-subtitle {
-                margin-left: 33px;
+        .task-details-container {
+            min-width: 710px;
+            border-radius: 3px;
+
+            .task-title {
+                &-subtitle {
+                    margin-left: 33px;
+                }
+            }
+
+            .task-details {
+                flex-direction: row;
+
+                .task-details-content {
+                    width: 545px;
+                }
             }
         }
 
-        .task-details {
-            flex-direction: row;
-
-            .task-details-content {
-                width: 545px;
-            }
+        .task-details-margin-bottom {
+            height: 46px;
         }
     }
 }
 
 @media (max-width: 750px) {
     .task-details-container {
+        position: absolute;
         top: 0;
+        left: 0;
 
         .task-details {
             flex-direction: column;

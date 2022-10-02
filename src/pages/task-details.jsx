@@ -66,61 +66,64 @@ export const TaskDetails = () => {
 
     return (
         <div className="black-screen" onClick={closeTaskDetails}>
-            <div className="task-details-layout task-details-container" ref={ref} onClick={closeModal}>
+            <div className='task-details-start'>
+                <div className="task-details-layout task-details-container" ref={ref} onClick={closeModal}>
 
-                <div className='full task-details-cover'>
-                    {dynamicModal.modalType === 'cover' && dynamicModal.fromCmp === 'cover' &&
-                        <>
-                            {matches && <div className="black-screen"></div>}
-                            <DynamicModal type='cover' groupId={groupId} taskId={taskId} closeModal={toggleCoverModal} />
-                        </>
-                    }
-                    <button className="close-task-details" onClick={closeTaskDetails}><IoCloseOutline /> </button>
+                    <div className='full task-details-cover'>
+                        {dynamicModal.modalType === 'cover' && dynamicModal.fromCmp === 'cover' &&
+                            <>
+                                {matches && <div className="black-screen"></div>}
+                                <DynamicModal type='cover' groupId={groupId} taskId={taskId} closeModal={toggleCoverModal} />
+                            </>
+                        }
+                        <button className="close-task-details" onClick={closeTaskDetails}><IoCloseOutline /> </button>
 
-                    <button className="btn btn-cover-modal" onClick={toggleCoverModal}>
-                        <span className='cover-modal-icon'><FiCreditCard /></span>
-                        Cover
-                    </button>
+                        <button className="btn btn-cover-modal" onClick={toggleCoverModal}>
+                            <span className='cover-modal-icon'><FiCreditCard /></span>
+                            Cover
+                        </button>
 
-                    {cover &&
-                        (cover.img ?
-                            <img className='task-cover-img' src={cover.img} alt="cover" />
-                            :
-                            <div className='task-cover-color' style={{ background: `${cover.color}` }}></div>
-                        )
-                    }
-                </div>
-
-                <div className='task-title'>
-                    <span className='task-title-icon'><BiCreditCardFront /></span>
-                    <input className='task-title-header' type="text" value={taskTitle} onChange={handleTitleChange} />
-
-                    <div className='task-title-subtitle'>
-                        in list&nbsp;
-                        <span>{boardService.getGroup(board, groupId).title}</span>
+                        {cover &&
+                            (cover.img ?
+                                <img className='task-cover-img' src={cover.img} alt="cover" />
+                                :
+                                <div className='task-cover-color' style={{ background: `${cover.color}` }}></div>
+                            )
+                        }
                     </div>
-                </div>
 
-                <main className='task-details'>
-                    <div className="task-details-content">
+                    <div className='task-title'>
+                        <span className='task-title-icon'><BiCreditCardFront /></span>
+                        <input className='task-title-header' type="text" value={taskTitle} onChange={handleTitleChange} />
 
-                        <div className="content-info">
-                            {memberIds?.length > 0 && <Members members={boardService.getTaskMembers(board, groupId, taskId)} />}
+                        <div className='task-title-subtitle'>
+                            in list&nbsp;
+                            <span>{boardService.getGroup(board, groupId).title}</span>
+                        </div>
+                    </div>
 
-                            {labelIds?.length > 0 && <Labels board={board} />}
+                    <main className='task-details'>
+                        <div className="task-details-content">
+
+                            <div className="content-info">
+                                {memberIds?.length > 0 && <Members members={boardService.getTaskMembers(board, groupId, taskId)} />}
+
+                                {labelIds?.length > 0 && <Labels board={board} />}
+                            </div>
+
+                            {dueDate && <Date dueDate={dueDate} />}
+
+                            <Description description={description} />
+
+                            {attachments?.length > 0 && <AttachmentList attachments={attachments} />}
+
+                            {checklists && <ChecklistList checklists={checklists} />}
                         </div>
 
-                        {dueDate && <Date dueDate={dueDate} />}
-
-                        <Description description={description} />
-
-                        {attachments?.length > 0 && <AttachmentList attachments={attachments} />}
-
-                        {checklists && <ChecklistList checklists={checklists} />}
-                    </div>
-
-                    <TaskSideBar />
-                </main>
+                        <TaskSideBar />
+                    </main>
+                </div>
+                <div className='task-details-margin-bottom'></div>
             </div>
         </div>
     )
