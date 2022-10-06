@@ -29,7 +29,6 @@ function createSocketService() {
       socket.emit(SOCKET_EMIT_UPDATE_BOARD, boardId)
     },
     async setBoard(boardId) {
-      console.log('boardId:', boardId)
       if (!socket) await socketService.setup()
       socket.emit(SOCKET_EMIT_SET_BOARD, boardId)
     },

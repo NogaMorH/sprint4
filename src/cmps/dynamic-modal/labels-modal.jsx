@@ -18,10 +18,9 @@ export const LabelsModal = ({ groupId, taskId, closeModal, className }) => {
     const { labels } = board
     let { labelIds } = boardService.getTask(board, groupId, taskId)
     const [foundLabels, setFoundLabels] = useState(labels)
-    const [field, setField] = useState('')
+    const [searchField, setSearchField] = useState('')
     const [currLabel, setCurrLabel] = useState('')
     const [openModal, setOpenModal] = useState('main')
-
     const dispatch = useDispatch()
     const ref = useRef()
 
@@ -40,7 +39,7 @@ export const LabelsModal = ({ groupId, taskId, closeModal, className }) => {
         } else {
             setFoundLabels(labels)
         }
-        setField(keyword)
+        setSearchField(keyword)
     }
 
     const toggleModal = (type, label) => {
@@ -52,11 +51,6 @@ export const LabelsModal = ({ groupId, taskId, closeModal, className }) => {
         }
         setCurrLabel(label)
         setOpenModal(type)
-    }
-
-    const isChecked = (id) => {
-        if (!labelIds) return false
-        return labelIds.includes(id)
     }
 
     const toggleLabel = (id) => {
@@ -77,6 +71,7 @@ export const LabelsModal = ({ groupId, taskId, closeModal, className }) => {
 
         if (action === 'delete') {
             labels.splice(idx, 1)
+            setFoundLabels(labels)
         }
         else if (!label.id) {
             label.id = utilService.makeId()
@@ -116,7 +111,7 @@ export const LabelsModal = ({ groupId, taskId, closeModal, className }) => {
                             type="text"
                             placeholder="Search labels..."
                             ref={ref}
-                            value={field}
+                            value={searchField}
                             onChange={filter}
                         />
 
@@ -132,8 +127,8 @@ export const LabelsModal = ({ groupId, taskId, closeModal, className }) => {
                                         return (
                                             <li key={id}>
                                                 <label onClick={() => toggleLabel(id)}>
-                                                    <input type="checkbox" checked={isChecked(id)} readOnly />
-                                                    
+                                                    <input type="checkbox" checked={labelIds.includes(id)} readOnly />
+
                                                     <div onClick={(ev) => ev.stopPropagation()}>
                                                         <LabelStyleCmp className="label-modal" color={color} title={title} />
                                                     </div>
