@@ -10,10 +10,9 @@ import { useMediaQuery } from '@mui/material'
 export const AttachmentList = ({ attachments }) => {
 
     const dynamicModal = useSelector(state => state.systemModule.dynamicModal)
+    const { groupId, taskId } = useParams()
     const dispatch = useDispatch()
     const matches = useMediaQuery('(max-width: 750px)')
-    const params = useParams()
-    const { groupId, taskId } = params
 
     const checkURL = (url) => {
         return (url.match(/\.(jpeg|jpg|gif|png)$/) != null)
@@ -37,6 +36,13 @@ export const AttachmentList = ({ attachments }) => {
         }
     }
 
+    const toggleModal = () => {
+        if (dynamicModal.modalType === 'attachment') {
+            return dispatch(setDynamicModal({ modalType: null, fromCmp: null }))
+        }
+        dispatch(setDynamicModal({ modalType: 'attachment', fromCmp: 'attachment' }))
+    }
+
     const removeAttachment = (ev, idx) => {
         ev.stopPropagation()
         const updatedAttachments = attachments.filter((attachment, index) => index !== idx)
@@ -48,18 +54,11 @@ export const AttachmentList = ({ attachments }) => {
         dispatch(updateTask(groupId, taskId, 'attachments', attachments))
     }
 
-    const toggleModal = () => {
-        if (dynamicModal.modalType === 'attachment') {
-            return dispatch(setDynamicModal({ modalType: null, fromCmp: null }))
-        }
-        dispatch(setDynamicModal({ modalType: 'attachment', fromCmp: 'attachment' }))
-    }
-
     return (
         <div className="attachment-list">
 
             <div className="attachment-list-header">
-                <span className='attachment-icon'><ImAttachment /></span>
+                <ImAttachment className="attachment-icon" />
                 <h4>Attachments</h4>
             </div>
 
@@ -76,12 +75,12 @@ export const AttachmentList = ({ attachments }) => {
                 )
             })}
 
-            <button className='add-attachment-btn' onClick={toggleModal}>Add an attachment</button>
+            <button className="add-attachment-btn" onClick={toggleModal}>Add an attachment</button>
 
             {dynamicModal.modalType === 'attachment' && dynamicModal.fromCmp === 'attachment' &&
                 <>
-                    {matches && <div className="black-screen"></div>}
                     <DynamicModal type='attachment' groupId={groupId} taskId={taskId} closeModal={toggleModal} />
+                    {matches && <div className="black-screen" />}
                 </>
             }
         </div >

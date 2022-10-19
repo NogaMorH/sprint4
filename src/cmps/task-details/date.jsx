@@ -9,8 +9,7 @@ export const Date = ({ dueDate }) => {
 
     const { ms, isDone } = dueDate
     const dynamicModal = useSelector(state => state.systemModule.dynamicModal)
-    const params = useParams()
-    const { groupId, taskId } = params
+    const { groupId, taskId } = useParams()
     const dispatch = useDispatch()
 
     const toggleModal = () => {
@@ -37,7 +36,7 @@ export const Date = ({ dueDate }) => {
 
                 <button onClick={toggleModal}>
                     <span>{utilService.getFormatDate(ms)}</span>
-                    
+
                     {isDone ?
                         <span className="date-label" style={{ backgroundColor: '#61BD4F' }}>
                             complete

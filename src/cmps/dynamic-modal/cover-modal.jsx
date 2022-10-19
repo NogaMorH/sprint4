@@ -45,7 +45,7 @@ export const CoverModal = ({ taskId, groupId, closeModal, className }) => {
     }
 
     return (
-        <section className={`dynamic-modal cover-modal-container ${className ? className : 'details-pos'}`} onClick={(ev) => ev.stopPropagation()}>
+        <section className={`dynamic-modal cover-modal-container ${className ? className : "details-pos"}`} onClick={(ev) => ev.stopPropagation()}>
 
             <div className="dynamic-header">
                 <h4>Cover</h4>

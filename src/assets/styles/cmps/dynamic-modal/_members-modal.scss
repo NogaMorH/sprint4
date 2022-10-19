@@ -1,60 +1,55 @@
 .members-modal {
+    .member-list {
+        color: $clr8;
 
-    .members {
-        margin: 0;
+        li {
+            position: relative;
+            display: flex;
+            align-items: center;
+            height: 40px;
+            border-radius: 3px;
+            padding: 4px 28px 4px 4px;
+            margin-bottom: 2px;
+            white-space: nowrap;
+            cursor: pointer;
 
-        &-list {
-            color: $clr8;
+            &:hover {
+                background-color: #091e420a;
+            }
 
-            li {
-                position: relative;
-                display: flex;
-                align-items: center;
-                height: 40px;
-                border-radius: 3px;
-                padding: 4px 28px 4px 4px;
-                margin-bottom: 2px;
-                white-space: nowrap;
-                cursor: pointer;
+            &:active {
+                background-color: #e4f0f6;
+            }
 
-                &:hover {
-                    background-color: #091e420a;
-                }
+            img {
+                width: 32px;
+                height: 32px;
+                object-fit: cover;
+                border-radius: 50%;
+            }
 
-                &:active {
-                    background-color: #e4f0f6;
-                }
+            .fullname {
+                color: #091e42;
+                padding-left: 8px;
+            }
 
-                img {
-                    width: 32px;
-                    height: 32px;
-                    object-fit: cover;
-                    border-radius: 50%;
-                }
-
-                .fullname {
-                    color: #091e42;
-                    padding-left: 8px;
-                }
-
-                .icon-check {
-                    position: absolute;
-                    top: 2px;
-                    right: 0;
-                    padding: 11px;
-                    color: $clr14;
-                }
+            .icon-check {
+                position: absolute;
+                top: 2px;
+                right: 0;
+                padding: 11px;
+                color: $clr14;
             }
         }
+    }
 
-        p {
-            text-align: center;
-            padding: 24px 6px;
-            margin: 0;
-            color: $clr23;
-            background-color: #091e420a;
-            border-radius: 3px;
-        }
+    p {
+        text-align: center;
+        padding: 24px 6px;
+        margin: 0;
+        color: $clr23;
+        background-color: #091e420a;
+        border-radius: 3px;
     }
 
     button {

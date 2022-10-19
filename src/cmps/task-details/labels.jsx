@@ -11,8 +11,7 @@ import { useMediaQuery } from "@mui/material"
 export const Labels = ({ board }) => {
 
     const dynamicModal = useSelector(state => state.systemModule.dynamicModal)
-    const params = useParams()
-    const { groupId, taskId } = params
+    const { groupId, taskId } = useParams()
     const labels = boardService.getTaskLabels(board, groupId, taskId)
     const dispatch = useDispatch()
     const matches = useMediaQuery('(max-width: 750px)')
@@ -31,9 +30,10 @@ export const Labels = ({ board }) => {
             <ul className="labels-list">
                 {labels.map(label => {
                     const { id, color, title } = label
+
                     return (
                         <li key={id} onClick={toggleModal}>
-                            <LabelStyleCmp className='label' color={color} title={title} />
+                            <LabelStyleCmp className="label" color={color} title={title} />
                         </li>
                     )
                 })}
@@ -43,8 +43,8 @@ export const Labels = ({ board }) => {
 
             {dynamicModal.modalType === 'labels' && dynamicModal.fromCmp === 'labels' &&
                 <>
-                    {matches && <div className="black-screen"></div>}
                     <DynamicModal type='labels' groupId={groupId} taskId={taskId} closeModal={toggleModal} />
+                    {matches && <div className="black-screen" />}
                 </>
             }
         </div>

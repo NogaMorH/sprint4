@@ -66,39 +66,38 @@ export const MembersModal = ({ groupId, taskId, closeModal, className }) => {
                     value={name} onChange={filter}
                 />
 
-                <div className="members">
-                    {members &&
-                        (foundUsers?.length > 0
-                            ?
-                            <ul className="members-list">
-                                <h6>Board members</h6>
+                {members &&
+                    (foundUsers?.length > 0
+                        ?
+                        <ul className="member-list">
+                            <h6>Board members</h6>
 
-                                {foundUsers.map(member => {
-                                    const { _id, fullName, imgUrl } = member
+                            {foundUsers.map(member => {
+                                const { _id, fullName, imgUrl } = member
 
-                                    return (
-                                        <li key={_id} onClick={() => toggleMember(_id)}>
-                                            <img src={imgUrl} title={fullName} alt="user-avatar" />
-                                            <span className="fullname">{fullName}</span>
+                                return (
+                                    <li key={_id} onClick={() => toggleMember(_id)}>
+                                        <img src={imgUrl} title={fullName} alt="user-avatar" />
+                                        <span className="fullname">{fullName}</span>
 
-                                            {memberIds && memberIds.includes(_id) &&
-                                                <span className="icon-check">
-                                                    <HiCheck />
-                                                </span>
-                                            }
-                                        </li>
-                                    )
-                                })}
-                            </ul>
-                            :
-                            <p>
-                                Looks like that person isn't a member yet. Enter their email address to add them to
-                                the card and board.
-                            </p>
-                        )}
+                                        {memberIds && memberIds.includes(_id) &&
+                                            <span className="icon-check">
+                                                <HiCheck />
+                                            </span>
+                                        }
+                                    </li>
+                                )
+                            })}
+                        </ul>
+                        :
+                        <p>
+                            Looks like that person isn't a member yet. Enter their email address to add them to
+                            the card and board.
+                        </p>
+                    )
+                }
 
-                    {!members && <p>There are no available members in this board.</p>}
-                </div>
+                {!members && <p>There are no available members in this board.</p>}
 
                 {foundUsers?.length > 0 && <button>Show other Workspace members</button>}
             </div>

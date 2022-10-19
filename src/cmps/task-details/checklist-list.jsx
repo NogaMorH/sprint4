@@ -5,9 +5,8 @@ import { Checklist } from "./checklist"
 
 export const ChecklistList = ({ checklists }) => {
 
+    const { groupId, taskId } = useParams()
     const dispatch = useDispatch()
-    const params = useParams()
-    const { groupId, taskId } = params
 
     const updateChecklists = (checklist) => {
         const updatedChecklists = checklists.map(currChecklist => {

@@ -77,8 +77,8 @@ export const Attachment = ({ attachment, idx, toggleCover, removeAttachment, upd
 
             {modalAttachmnetIdx === idx &&
                 <>
-                    {matches && <div className="black-screen"></div>}
                     <AttachmentEditModal name={name} closeEditModal={closeEditModal} updateName={updateName} />
+                    {matches && <div className="black-screen" />}
                 </>
             }
         </div>

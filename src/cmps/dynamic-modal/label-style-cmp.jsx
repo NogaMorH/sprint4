@@ -12,7 +12,7 @@ const BgColor = styled.div`
     position: absolute;
     height: 32px;
     border-radius: 3px;
-    background-color: ${p => p.color};
+    background-color: ${props => props.color};
     opacity: 0.3;
     width: 100%;
 
@@ -27,7 +27,7 @@ const Color = styled.div`
     border-radius: 50%;
     margin-left: 8px;
     background-color: yellow;
-    background-color: ${p => p.color};
+    background-color: ${props => props.color};
 `
 
 const Title = styled.span`
@@ -52,7 +52,7 @@ export const LabelStyleCmp = ({ toggleLabel, inlineStyle, className, ballSize, t
 const ColorPicker = styled.div`
     width: 48.8px;
     height: 28px;
-    background-color: ${p => p.color};
+    background-color: ${props => props.color};
     border-radius: 3px;
     
     &:hover {

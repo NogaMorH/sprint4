@@ -19,8 +19,7 @@ export const TaskSideBar = () => {
     const types = ['members', 'labels', 'checklist', 'dates', 'attachment', 'cover']
     const dispatch = useDispatch()
     const matches = useMediaQuery('(max-width: 750px)')
-    const params = useParams()
-    const { groupId, taskId } = params
+    const { groupId, taskId } = useParams()
 
     const openModal = (modalType) => {
         if (dynamicModal.modalType === modalType) {
@@ -57,7 +56,6 @@ export const TaskSideBar = () => {
 
                                 {dynamicModal.modalType === type && dynamicModal.fromCmp === 'sidebar' &&
                                     <>
-                                        {matches && <div className="black-screen"></div>}
                                         <DynamicModal
                                             type={type}
                                             groupId={groupId}
@@ -65,6 +63,7 @@ export const TaskSideBar = () => {
                                             closeModal={closeModal}
                                             className="pos-sidebar"
                                         />
+                                        {matches && <div className="black-screen" />}
                                     </>
                                 }
                             </div>

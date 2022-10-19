@@ -9,8 +9,7 @@ import { DynamicModal } from "../dynamic-modal/dynamic-modal"
 export const Members = ({ members }) => {
 
     const dynamicModal = useSelector(state => state.systemModule.dynamicModal)
-    const params = useParams()
-    const { groupId, taskId } = params
+    const { groupId, taskId } = useParams()
     const dispatch = useDispatch()
     const matches = useMediaQuery('(max-width: 750px)')
 
@@ -25,7 +24,7 @@ export const Members = ({ members }) => {
         <div className="members-container">
             <h6>Members</h6>
 
-            <div className="members-div">
+            <div className="members">
                 {members.map(member => (
                     <img key={member._id} src={member.imgUrl} alt="profile img" />
                 ))}
@@ -35,8 +34,8 @@ export const Members = ({ members }) => {
 
             {dynamicModal.modalType === 'members' && dynamicModal.fromCmp === 'members' &&
                 <>
-                    {matches && <div className="black-screen"></div>}
                     <DynamicModal type='members' groupId={groupId} taskId={taskId} closeModal={toggleModal} />
+                    {matches && <div className="black-screen" />}
                 </>
             }
         </div>

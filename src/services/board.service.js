@@ -45,10 +45,8 @@ export const boardService = {
 
 async function query() {
     try {
-        console.log('query front end service before req:')
         // return await httpService.get(BASE_URL)
         const boards = await httpService.get(BASE_URL)
-        console.log('mini boards from front query after req:', boards)
         return boards
     } catch (err) {
         console.log('Query has failed:', err)

@@ -8,10 +8,9 @@ export const Description = ({ description }) => {
 
     const [updatedDescription, setDescription] = useState(description)
     const [focused, setFocused] = useState(false)
-    const dispatch = useDispatch()
+    const { groupId, taskId } = useParams()
     const ref = useRef(null)
-    const params = useParams()
-    const { groupId, taskId } = params
+    const dispatch = useDispatch()
 
     useEffect(() => {
         handleTextHeight(ref.current)
@@ -50,7 +49,7 @@ export const Description = ({ description }) => {
         <div className="description">
 
             <div className="description-header">
-                <span className="description-header-icon"><GrTextAlignFull /></span>
+                <GrTextAlignFull className="description-header-icon" />
                 <h4>Description</h4>
 
                 {description && !focused &&

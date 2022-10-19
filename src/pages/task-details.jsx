@@ -10,22 +10,18 @@ import { Description } from '../cmps/task-details/description'
 import { AttachmentList } from '../cmps/task-details/attachment-list'
 import { ChecklistList } from '../cmps/task-details/checklist-list'
 import { BiCreditCardFront } from 'react-icons/bi'
-import { IoCloseOutline } from 'react-icons/io5'
 import { Labels } from '../cmps/task-details/labels'
-import { FiCreditCard } from 'react-icons/fi'
-import { DynamicModal } from '../cmps/dynamic-modal/dynamic-modal'
-import { useMediaQuery } from '@mui/material'
+import { Loader } from "../cmps/loader"
+import { Cover } from '../cmps/task-details/cover'
 
 export const TaskDetails = () => {
 
     const board = useSelector(state => state.boardModule.board)
     const dynamicModal = useSelector(state => state.systemModule.dynamicModal)
     const [taskTitle, setTaskTitle] = useState('')
+    const { groupId, taskId } = useParams()
     const dispatch = useDispatch()
     const navigate = useNavigate()
-    const matches = useMediaQuery('(max-width: 750px)')
-    const params = useParams()
-    const { groupId, taskId } = params
     const ref = useRef()
 
     useEffect(() => {
@@ -49,60 +45,32 @@ export const TaskDetails = () => {
         }
     }
 
-    const toggleCoverModal = () => {
-        if (dynamicModal.modalType === 'cover') {
-            return dispatch(setDynamicModal({ modalType: null, fromCmp: null }))
-        }
-        dispatch(setDynamicModal({ modalType: 'cover', fromCmp: 'cover' }))
-    }
-
     const handleTitleChange = ({ target }) => {
         setTaskTitle(target.value)
     }
 
-    if (!board) return <div>Loading...</div>
+    if (!board) return <Loader />
     const task = boardService.getTask(board, groupId, taskId)
     const { title, dueDate, memberIds, attachments, checklists, description, cover, labelIds } = task
 
     return (
         <div className="black-screen" onClick={closeTaskDetails}>
-            <div className='task-details-start'>
+            <div className="task-details-wrapper">
                 <div className="task-details-layout task-details-container" ref={ref} onClick={closeModal}>
 
-                    <div className='full task-details-cover'>
-                        {dynamicModal.modalType === 'cover' && dynamicModal.fromCmp === 'cover' &&
-                            <>
-                                {matches && <div className="black-screen"></div>}
-                                <DynamicModal type='cover' groupId={groupId} taskId={taskId} closeModal={toggleCoverModal} />
-                            </>
-                        }
-                        <button className="close-task-details" onClick={closeTaskDetails}><IoCloseOutline /> </button>
+                    <Cover cover={cover} />
 
-                        <button className="btn btn-cover-modal" onClick={toggleCoverModal}>
-                            <span className='cover-modal-icon'><FiCreditCard /></span>
-                            Cover
-                        </button>
+                    <div className="task-title">
+                        <BiCreditCardFront className="task-title-icon" />
+                        <input className="task-title-header" type="text" value={taskTitle} onChange={handleTitleChange} />
 
-                        {cover &&
-                            (cover.img ?
-                                <img className='task-cover-img' src={cover.img} alt="cover" />
-                                :
-                                <div className='task-cover-color' style={{ background: `${cover.color}` }}></div>
-                            )
-                        }
-                    </div>
-
-                    <div className='task-title'>
-                        <span className='task-title-icon'><BiCreditCardFront /></span>
-                        <input className='task-title-header' type="text" value={taskTitle} onChange={handleTitleChange} />
-
-                        <div className='task-title-subtitle'>
+                        <div className="task-title-subtitle">
                             in list&nbsp;
                             <span>{boardService.getGroup(board, groupId).title}</span>
                         </div>
                     </div>
 
-                    <main className='task-details'>
+                    <main className="task-details">
                         <div className="task-details-content">
 
                             <div className="content-info">
@@ -123,7 +91,8 @@ export const TaskDetails = () => {
                         <TaskSideBar />
                     </main>
                 </div>
-                <div className='task-details-margin-bottom'></div>
+
+                <div className="task-details-margin-bottom" />
             </div>
         </div>
     )

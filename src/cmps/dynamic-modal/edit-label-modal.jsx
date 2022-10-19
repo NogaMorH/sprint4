@@ -33,9 +33,9 @@ export const EditLabelModal = ({ label, updateLabels, toggleModal }) => {
 
     return (
         <div className="edit-label-modal">
-            
+
             <div className="label-container">
-                <LabelStyleCmp className='label-edit' color={updatedColor} title={name} />
+                <LabelStyleCmp className="label-edit" color={updatedColor} title={name} />
             </div>
 
             <div className="dynamic-content">
@@ -55,7 +55,7 @@ export const EditLabelModal = ({ label, updateLabels, toggleModal }) => {
                 </ul>
 
                 <div className={`remove-btn ${updatedColor === '#DFE1E6' && 'disable'}`}>
-                    <span className='icon-close'><IoCloseOutline /></span>
+                    <span className="icon-close"><IoCloseOutline /></span>
                     <button onClick={removeColor}>Remove color</button>
                 </div>
 
@@ -65,7 +65,7 @@ export const EditLabelModal = ({ label, updateLabels, toggleModal }) => {
                     </button>
 
                     {id &&
-                        <button className='edit-delete-btn' onClick={() => toggleModal('delete', label)}>
+                        <button className="edit-delete-btn" onClick={() => toggleModal('delete', label)}>
                             Delete
                         </button>
                     }
