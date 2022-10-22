@@ -1,5 +1,5 @@
-import { useDispatch } from "react-redux"
 import { useParams } from "react-router-dom"
+import { useDispatch } from "react-redux"
 import { updateTask } from "../../store/board/board.actions"
 import { Checklist } from "./checklist"
 

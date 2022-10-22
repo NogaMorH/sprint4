@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react"
-import { useDispatch } from "react-redux"
 import { useParams } from "react-router-dom"
+import { useDispatch } from "react-redux"
 import { updateTask } from "../../store/board/board.actions"
 import { GrTextAlignFull } from 'react-icons/gr'
 
@@ -27,6 +27,10 @@ export const Description = ({ description }) => {
         setFocused(false)
     }
 
+    const focusRef = () => {
+        ref.current.focus()
+    }
+
     const handleChange = ({ target }) => {
         setDescription(target.value)
     }
@@ -39,10 +43,6 @@ export const Description = ({ description }) => {
             ev.style.height = 'inherit'
             ev.style.height = `${ev.scrollHeight}px`
         }
-    }
-
-    const focusRef = () => {
-        ref.current.focus()
     }
 
     return (

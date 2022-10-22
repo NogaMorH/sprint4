@@ -1,22 +1,16 @@
 import { useDispatch } from 'react-redux'
 import { useParams } from 'react-router-dom'
-import { setDynamicModal, updateTask } from '../../store/board/board.actions'
 import { Attachment } from './attachment'
-import { ImAttachment } from 'react-icons/im'
+import { setDynamicModal, updateTask } from '../../store/board/board.actions'
 import { DynamicModal } from '../dynamic-modal/dynamic-modal'
-import { useSelector } from 'react-redux'
 import { useMediaQuery } from '@mui/material'
+import { ImAttachment } from 'react-icons/im'
 
-export const AttachmentList = ({ attachments }) => {
+export const AttachmentList = ({ attachments, dynamicModal }) => {
 
-    const dynamicModal = useSelector(state => state.systemModule.dynamicModal)
     const { groupId, taskId } = useParams()
     const dispatch = useDispatch()
     const matches = useMediaQuery('(max-width: 750px)')
-
-    const checkURL = (url) => {
-        return (url.match(/\.(jpeg|jpg|gif|png)$/) != null)
-    }
 
     const toggleCover = (ev, idx) => {
         ev.stopPropagation()
@@ -36,11 +30,13 @@ export const AttachmentList = ({ attachments }) => {
         }
     }
 
-    const toggleModal = () => {
-        if (dynamicModal.modalType === 'attachment') {
+    const toggleModal = (modalType, ev) => {
+        if (ev) ev.stopPropagation()
+
+        if (dynamicModal.modalType === modalType) {
             return dispatch(setDynamicModal({ modalType: null, fromCmp: null }))
         }
-        dispatch(setDynamicModal({ modalType: 'attachment', fromCmp: 'attachment' }))
+        dispatch(setDynamicModal({ modalType, fromCmp: 'attachment' }))
     }
 
     const removeAttachment = (ev, idx) => {
@@ -68,16 +64,18 @@ export const AttachmentList = ({ attachments }) => {
                         attachment={attachment}
                         idx={idx}
                         toggleCover={toggleCover}
+                        toggleModal={toggleModal}
                         removeAttachment={removeAttachment}
                         updateAttachments={updateAttachments}
-                        checkURL={checkURL}
                     />
                 )
             })}
 
-            <button className="add-attachment-btn" onClick={toggleModal}>Add an attachment</button>
+            <button className="add-attachment-btn" onClick={() => toggleModal('attachment-add')}>
+                Add an attachment
+            </button>
 
-            {dynamicModal.modalType === 'attachment' && dynamicModal.fromCmp === 'attachment' &&
+            {dynamicModal.modalType === 'attachment-add' && dynamicModal.fromCmp === 'attachment' &&
                 <>
                     <DynamicModal type='attachment' groupId={groupId} taskId={taskId} closeModal={toggleModal} />
                     {matches && <div className="black-screen" />}

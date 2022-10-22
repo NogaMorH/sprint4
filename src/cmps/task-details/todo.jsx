@@ -23,6 +23,7 @@ export const Todo = ({ todo, updateTodos, removeTodo }) => {
 
     const handleChange = ({ target }) => {
         let { name, value } = target
+
         if (name === 'isDone') {
             todo = { ...todo, isDone: !isDone }
             updateTodos(todo)
@@ -32,18 +33,18 @@ export const Todo = ({ todo, updateTodos, removeTodo }) => {
     }
 
     return (
-        <li className='todo-container'>
+        <li className="todo-container">
             <input
                 type="checkbox"
                 name="isDone"
-                className={focused ? 'focused' : ''}
+                className={focused ? "focused" : ""}
                 onChange={handleChange}
                 checked={isDone}
             />
 
             <div className="todo">
                 <textarea
-                    className={isDone ? 'line-through' : ''}
+                    className={isDone ? "line-through" : ""}
                     value={titleField}
                     onChange={handleChange}
                     onFocus={onFocus}
@@ -53,7 +54,7 @@ export const Todo = ({ todo, updateTodos, removeTodo }) => {
                 {focused &&
                     <div className="todo-buttons">
                         <button className="todo-save-btn">Save</button>
-                        <span><IoCloseOutline /></span>
+                        <IoCloseOutline className="close-icon" />
                     </div>
                 }
             </div>

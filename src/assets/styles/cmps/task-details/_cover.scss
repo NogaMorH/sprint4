@@ -25,28 +25,4 @@
             color: #172b4d;
         }
     }
-
-    .close-task-details {
-        align-items: center;
-        border: none;
-        border-radius: 50%;
-        color: #42526f;
-        display: flex;
-        height: 40px;
-        justify-content: center;
-        margin: 4px;
-        padding: 4px;
-        position: absolute;
-        font-size: 24px;
-        right: 0;
-        top: 0;
-        width: 40px;
-        z-index: 2;
-        background: none;
-
-        &:hover {
-            color: #42526f;
-            background-color: #e1e4e9;
-        }
-    }
 }

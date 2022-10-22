@@ -53,7 +53,7 @@ export const AttachmentModal = ({ groupId, taskId, closeModal, className }) => {
         >
             <div className="dynamic-header">
                 <h5>Attach from...</h5>
-                <span><IoCloseOutline onClick={closeModal} /></span>
+                <IoCloseOutline className="icon-close" onClick={closeModal} />
             </div>
 
             <button className="attach-file">

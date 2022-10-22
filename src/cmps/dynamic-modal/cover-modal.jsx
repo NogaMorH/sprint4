@@ -49,7 +49,7 @@ export const CoverModal = ({ taskId, groupId, closeModal, className }) => {
 
             <div className="dynamic-header">
                 <h4>Cover</h4>
-                <span onClick={closeModal}><IoCloseOutline className="btn-close-cover-modal" /></span>
+                <IoCloseOutline className="icon-close btn-close-cover-modal" onClick={closeModal} />
             </div>
 
             <div className="cover-modal-color-container">

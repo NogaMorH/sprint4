@@ -1,14 +1,12 @@
-import { useDispatch } from "react-redux"
-import { useSelector } from "react-redux"
 import { useParams } from "react-router-dom"
+import { useDispatch } from "react-redux"
 import { utilService } from "../../services/util.service"
 import { setDynamicModal, updateTask } from "../../store/board/board.actions"
 import { DynamicModal } from "../dynamic-modal/dynamic-modal"
 
-export const Date = ({ dueDate }) => {
+export const Date = ({ dueDate, dynamicModal }) => {
 
     const { ms, isDone } = dueDate
-    const dynamicModal = useSelector(state => state.systemModule.dynamicModal)
     const { groupId, taskId } = useParams()
     const dispatch = useDispatch()
 

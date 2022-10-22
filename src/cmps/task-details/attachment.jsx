@@ -1,35 +1,20 @@
 import { useSelector } from "react-redux"
-import { GrAttachment } from 'react-icons/gr'
-import { ImArrowUpRight2 } from 'react-icons/im'
-import { FiCreditCard } from 'react-icons/fi'
-import { setEditModalAttachmentIdx } from '../../store/board/board.actions'
-import { useDispatch } from "react-redux"
 import { AttachmentEditModal } from "./attachment-edit-modal"
 import { utilService } from "../../services/util.service"
 import { useMediaQuery } from "@mui/material"
 
-export const Attachment = ({ attachment, idx, toggleCover, removeAttachment, updateAttachments, checkURL }) => {
+import { GrAttachment } from 'react-icons/gr'
+import { ImArrowUpRight2 } from 'react-icons/im'
+import { FiCreditCard } from 'react-icons/fi'
 
-    const modalAttachmnetIdx = useSelector(state => state.systemModule.modalAttachmnetIdx)
-    const dispatch = useDispatch()
-    const matches = useMediaQuery('(max-width: 750px)')
+export const Attachment = ({ attachment, idx, toggleCover, toggleModal, removeAttachment, updateAttachments }) => {
+
+    const dynamicModal = useSelector(state => state.systemModule.dynamicModal)
     const { name, url, isCover, time } = attachment
+    const matches = useMediaQuery('(max-width: 750px)')
 
     const openUrl = () => {
         window.open(url, '_blank')?.focus()
-    }
-
-    const toggleEditModal = (ev) => {
-        ev.stopPropagation()
-
-        if (modalAttachmnetIdx === idx) {
-            return closeEditModal()
-        }
-        dispatch(setEditModalAttachmentIdx(idx))
-    }
-
-    const closeEditModal = () => {
-        dispatch(setEditModalAttachmentIdx(null))
     }
 
     const updateName = (value) => {
@@ -41,16 +26,16 @@ export const Attachment = ({ attachment, idx, toggleCover, removeAttachment, upd
         <div className="attachment" onClick={openUrl}>
 
             <div className="attachment-img">
-                {checkURL(url) ?
+                {utilService.checkURL(url) ?
                     <img src={url} alt="attachment" />
                     :
-                    <span className='attachment-img-icon'><GrAttachment /></span>
+                    <GrAttachment className="attachment-img-icon" />
                 }
             </div>
 
             <div className="attachment-info">
                 <h5 className="name">{name}</h5>
-                <span className='link-icon'><ImArrowUpRight2 /></span>
+                <ImArrowUpRight2 className="link-icon" />
 
                 <div className="actions">
                     <span>Added {utilService.getFormatDate(time)} - </span>
@@ -59,25 +44,29 @@ export const Attachment = ({ attachment, idx, toggleCover, removeAttachment, upd
                         Delete
                     </button>
                     -
-                    <button name='edit-btn' className="actions-edit-btn hover-btn" onClick={toggleEditModal}>
+                    <button
+                        name="edit-btn"
+                        className="actions-edit-btn hover-btn"
+                        onClick={(ev) => toggleModal('attachment-edit-' + idx, ev)}
+                    >
                         Edit
                     </button>
                 </div>
 
-                {checkURL(url) &&
+                {utilService.checkURL(url) &&
                     <div className="make-cover hover-btn">
-                        <span className='make-cover-icon'><FiCreditCard /></span>
+                        <FiCreditCard className="make-cover-icon" />
 
-                        <button className='make-cover-btn' onClick={(ev) => toggleCover(ev, idx)}>
+                        <button className="make-cover-btn" onClick={(ev) => toggleCover(ev, idx)}>
                             {isCover ? 'Remove cover' : 'Make cover'}
                         </button>
                     </div>
                 }
             </div>
 
-            {modalAttachmnetIdx === idx &&
+            {dynamicModal.modalType === 'attachment-edit-' + idx && dynamicModal.fromCmp === 'attachment' &&
                 <>
-                    <AttachmentEditModal name={name} closeEditModal={closeEditModal} updateName={updateName} />
+                    <AttachmentEditModal name={name} updateName={updateName} idx={idx} toggleModal={toggleModal} />
                     {matches && <div className="black-screen" />}
                 </>
             }

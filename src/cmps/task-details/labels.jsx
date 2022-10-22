@@ -1,16 +1,14 @@
 import { useParams } from "react-router-dom"
-import { boardService } from "../../services/board.service"
-import { LabelStyleCmp } from "../dynamic-modal/label-style-cmp"
-import { BsPlusLg } from 'react-icons/bs'
-import { DynamicModal } from "../dynamic-modal/dynamic-modal"
 import { useDispatch } from "react-redux"
+import { boardService } from "../../services/board.service"
 import { setDynamicModal } from "../../store/board/board.actions"
-import { useSelector } from "react-redux"
+import { DynamicModal } from "../dynamic-modal/dynamic-modal"
+import { LabelStyleCmp } from "../dynamic-modal/label-style-cmp"
 import { useMediaQuery } from "@mui/material"
+import { BsPlusLg } from 'react-icons/bs'
 
-export const Labels = ({ board }) => {
+export const Labels = ({ board, dynamicModal }) => {
 
-    const dynamicModal = useSelector(state => state.systemModule.dynamicModal)
     const { groupId, taskId } = useParams()
     const labels = boardService.getTaskLabels(board, groupId, taskId)
     const dispatch = useDispatch()

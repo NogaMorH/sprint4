@@ -1,14 +1,12 @@
-import { useMediaQuery } from "@mui/material"
-import { BsPlusLg } from "react-icons/bs"
-import { useDispatch } from "react-redux"
-import { useSelector } from "react-redux"
 import { useParams } from "react-router-dom"
+import { useDispatch } from "react-redux"
 import { setDynamicModal } from "../../store/board/board.actions"
 import { DynamicModal } from "../dynamic-modal/dynamic-modal"
+import { useMediaQuery } from "@mui/material"
+import { BsPlusLg } from "react-icons/bs"
 
-export const Members = ({ members }) => {
+export const Members = ({ members, dynamicModal }) => {
 
-    const dynamicModal = useSelector(state => state.systemModule.dynamicModal)
     const { groupId, taskId } = useParams()
     const dispatch = useDispatch()
     const matches = useMediaQuery('(max-width: 750px)')

@@ -90,9 +90,7 @@ export const LabelsModal = ({ groupId, taskId, closeModal, className }) => {
         >
             <div className="dynamic-header">
                 {openModal !== 'main' &&
-                    <span className="icon-less" onClick={() => setOpenModal('main')}>
-                        <FontAwesomeIcon icon={faLessThan} size="2xs" />
-                    </span>
+                    <FontAwesomeIcon className="icon-less" icon={faLessThan} size="2xs" onClick={() => setOpenModal('main')} />
                 }
                 <h5>{
                     openModal === 'main' && 'Labels' ||
@@ -100,7 +98,7 @@ export const LabelsModal = ({ groupId, taskId, closeModal, className }) => {
                     openModal === 'edit' && currLabel && 'Edit label' ||
                     openModal === 'delete' && 'Delete label'}
                 </h5>
-                <span onClick={closeModal}><IoCloseOutline /></span>
+                <IoCloseOutline className="icon-close" onClick={closeModal} />
             </div>
 
             {openModal === 'main' &&

@@ -1,0 +1,40 @@
+.task-title {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-top: 10px;
+    margin-bottom: 15px;
+
+    &-icon {
+        position: absolute;
+        font-size: 21px;
+        color: $clr14;
+        margin-top: 10px;
+    }
+
+    &-header {
+        width: 92%; // 672px
+        background-color: transparent;
+        border: none;
+        font-size: rem(20px);
+        font-family: san-francisco-medium, sans-serif;
+        padding: 4px 8px;
+        color: $clr8;
+        outline-color: $clr18;
+        margin-top: 5px;
+        margin-left: 25px;
+
+        &:focus {
+            background-color: white;
+        }
+    }
+
+    &-subtitle {
+        font-size: rem(14px);
+        margin-top: 1.5px;
+
+        span {
+            text-decoration: underline;
+        }
+    }
+}

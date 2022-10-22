@@ -21,6 +21,7 @@ export const TodoList = ({ todos, updateChecklist }) => {
 
     const onBlur = (ev) => {
         setFocused(false)
+        
         if (ev.relatedTarget?.className === 'todo-add-btn') {
             addTodo()
             setTitle('')
@@ -55,7 +56,7 @@ export const TodoList = ({ todos, updateChecklist }) => {
             {focused &&
                 <div className="new-todo">
                     <textarea
-                        className='new-todo-textarea'
+                        className="new-todo-textarea"
                         placeholder="Add an item"
                         value={title}
                         onChange={handleChange}

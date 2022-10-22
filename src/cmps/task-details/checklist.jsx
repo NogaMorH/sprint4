@@ -1,8 +1,9 @@
-import { TodoList } from "./todo-list"
-import { TbCheckbox } from 'react-icons/tb'
-import { IoCloseOutline } from 'react-icons/io5'
 import { useState } from "react"
 import { ChecklistProgressBar } from "./checklist-progress-bar"
+import { TodoList } from "./todo-list"
+
+import { TbCheckbox } from 'react-icons/tb'
+import { IoCloseOutline } from 'react-icons/io5'
 
 export const Checklist = ({ checklist, updateChecklists, removeChecklist }) => {
 
@@ -35,7 +36,7 @@ export const Checklist = ({ checklist, updateChecklists, removeChecklist }) => {
         <div className="checklist">
 
             <div className="checklist-title">
-                <span className="checklist-title-icon"><TbCheckbox /></span>
+                <TbCheckbox className="checklist-title-icon" />
 
                 <textarea className="checklist-title-textarea"
                     value={titleField}
@@ -44,12 +45,13 @@ export const Checklist = ({ checklist, updateChecklists, removeChecklist }) => {
                     onBlur={onBlur}
                 />
 
-                {!focused && <button className="delete-btn" onClick={() => removeChecklist(checklist.id)}>Delete</button>}
-
+                {!focused &&
+                    <button className="delete-btn" onClick={() => removeChecklist(checklist.id)}>Delete</button>
+                }
                 {focused &&
                     <div className="checklist-title-buttons">
                         <button className="checklist-title-save-btn">Save</button>
-                        <span><IoCloseOutline /></span>
+                        <IoCloseOutline className="close-icon" />
                     </div>
                 }
             </div>

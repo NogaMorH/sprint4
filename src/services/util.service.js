@@ -5,7 +5,8 @@ export const utilService = {
     delay,
     formatMonthDay,
     formatAMPM,
-    getFormatDate
+    getFormatDate,
+    checkURL
 }
 
 function makeId(length = 6) {
@@ -64,4 +65,8 @@ function getFormatDate(ms) {
     const monthAndDay = formatMonthDay(ms)
     const time = formatAMPM(ms)
     return monthAndDay + ' at ' + time
+}
+
+function checkURL(url) {
+    return (url.match(/\.(jpeg|jpg|gif|png)$/) != null)
 }
