@@ -21,7 +21,7 @@ export const TodoList = ({ todos, updateChecklist }) => {
 
     const onBlur = (ev) => {
         setFocused(false)
-        
+
         if (ev.relatedTarget?.className === 'todo-add-btn') {
             addTodo()
             setTitle('')

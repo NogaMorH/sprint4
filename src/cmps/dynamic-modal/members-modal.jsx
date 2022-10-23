@@ -1,10 +1,11 @@
 import { useEffect, useRef, useState } from "react"
-import { IoCloseOutline } from 'react-icons/io5'
 import { useSelector } from "react-redux"
-import { boardService } from "../../services/board.service"
-import { HiCheck } from 'react-icons/hi'
 import { useDispatch } from "react-redux"
+import { boardService } from "../../services/board.service"
 import { updateTask } from "../../store/board/board.actions"
+
+import { IoCloseOutline } from 'react-icons/io5'
+import { HiCheck } from 'react-icons/hi'
 
 export const MembersModal = ({ groupId, taskId, closeModal, className }) => {
 
@@ -27,10 +28,12 @@ export const MembersModal = ({ groupId, taskId, closeModal, className }) => {
             const results = members.filter(member => {
                 return member.fullName.toLowerCase().startsWith(keyword.toLowerCase())
             })
+
             setFoundUsers(results)
         } else {
             setFoundUsers(members)
         }
+
         setName(keyword)
     }
 
@@ -44,6 +47,7 @@ export const MembersModal = ({ groupId, taskId, closeModal, className }) => {
         } else {
             memberIds.push(id)
         }
+
         dispatch(updateTask(groupId, taskId, 'memberIds', memberIds))
     }
 
@@ -81,9 +85,7 @@ export const MembersModal = ({ groupId, taskId, closeModal, className }) => {
                                         <span className="fullname">{fullName}</span>
 
                                         {memberIds && memberIds.includes(_id) &&
-                                            <span className="icon-check">
-                                                <HiCheck />
-                                            </span>
+                                            <HiCheck className="icon-check" />
                                         }
                                     </li>
                                 )
@@ -91,8 +93,8 @@ export const MembersModal = ({ groupId, taskId, closeModal, className }) => {
                         </ul>
                         :
                         <p>
-                            Looks like that person isn't a member yet. Enter their email address to add them to
-                            the card and board.
+                            Looks like that person isn't a member yet.
+                            Enter their email address to add them to the card and board.
                         </p>
                     )
                 }

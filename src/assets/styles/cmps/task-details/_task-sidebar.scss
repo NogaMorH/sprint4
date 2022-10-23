@@ -2,7 +2,7 @@
     font-size: rem(14px);
     padding-bottom: 40px;
 
-    .task-sidebar-btns {
+    .sidebar-btn-list {
         display: flex;
         gap: 10px;
 
@@ -16,7 +16,7 @@
 
             .icon {
                 position: absolute;
-                top: 7.5px;
+                top: 8px;
                 left: 8px;
                 color: $clr8;
 
@@ -35,7 +35,7 @@
 
 @media (min-width: 750px) {
     .task-sidebar {
-        .task-sidebar-btns {
+        .sidebar-btn-list {
             flex-direction: column;
             width: 168px;
         }
@@ -44,13 +44,13 @@
 
 @media (max-width: 750px) {
     .task-sidebar {
-        .task-sidebar-btns {
+        .sidebar-btn-list {
             flex-direction: row;
             flex-wrap: wrap;
             margin-bottom: 20px;
         }
 
-        .task-sidebar-btns {
+        .sidebar-btn-list {
             .sidebar-btn {
                 flex: 1 1 150px;
             }

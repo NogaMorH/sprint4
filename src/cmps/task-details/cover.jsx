@@ -15,25 +15,31 @@ export const Cover = ({ cover, dynamicModal }) => {
         if (dynamicModal.modalType === 'cover') {
             return dispatch(setDynamicModal({ modalType: null, fromCmp: null }))
         }
+
         dispatch(setDynamicModal({ modalType: 'cover', fromCmp: 'cover' }))
     }
 
     return (
         <div className="full cover">
-            {cover.img ?
-                <img className="cover-img" src={cover.img} alt="cover img" />
-                :
-                <div className="cover-color" style={{ background: `${cover.color}` }} />
-            }
-            <button className="cover-btn" onClick={toggleCoverModal}>
-                <FiCreditCard className="cover-btn-icon" />
-                Cover
-            </button>
-
-            {dynamicModal.modalType === 'cover' && dynamicModal.fromCmp === 'cover' &&
+            {Object.keys(cover).length !== 0 &&
                 <>
-                    <DynamicModal type='cover' groupId={groupId} taskId={taskId} closeModal={toggleCoverModal} />
-                    {matches && <div className="black-screen" />}
+                    {cover.img ?
+                        <img className="cover-img" src={cover.img} alt="cover img" />
+                        :
+                        <div className="cover-color" style={{ background: `${cover.color}` }} />
+                    }
+
+                    <button className="cover-btn" onClick={toggleCoverModal}>
+                        <FiCreditCard className="cover-btn-icon" />
+                        Cover
+                    </button>
+
+                    {dynamicModal.modalType === 'cover' && dynamicModal.fromCmp === 'cover' &&
+                        <>
+                            <DynamicModal type='cover' groupId={groupId} taskId={taskId} closeModal={toggleCoverModal} />
+                            {matches && <div className="black-screen" />}
+                        </>
+                    }
                 </>
             }
         </div>

@@ -1,10 +1,10 @@
 import { useEffect, useRef, useState } from "react"
-import { IoCloseOutline } from "react-icons/io5"
-import { useDispatch } from "react-redux"
 import { useSelector } from "react-redux"
+import { useDispatch } from "react-redux"
 import { boardService } from "../../services/board.service"
 import { utilService } from "../../services/util.service"
 import { updateTask } from "../../store/board/board.actions"
+import { IoCloseOutline } from "react-icons/io5"
 
 export const ChecklistModal = ({ groupId, taskId, closeModal, className }) => {
 

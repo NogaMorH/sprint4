@@ -9,11 +9,11 @@ export const Description = ({ description }) => {
     const [updatedDescription, setDescription] = useState(description)
     const [focused, setFocused] = useState(false)
     const { groupId, taskId } = useParams()
-    const ref = useRef(null)
     const dispatch = useDispatch()
+    const ref = useRef(null)
 
     useEffect(() => {
-        handleTextHeight(ref.current)
+        handleTexteareaHeight(ref.current)
     }, [])
 
     const onFocus = () => setFocused(true)
@@ -35,7 +35,7 @@ export const Description = ({ description }) => {
         setDescription(target.value)
     }
 
-    const handleTextHeight = (ev) => {
+    const handleTexteareaHeight = (ev) => {
         if (ev.target) {
             ev.target.style.height = 'inherit'
             ev.target.style.height = `${ev.target.scrollHeight}px`
@@ -64,7 +64,7 @@ export const Description = ({ description }) => {
                 onBlur={onBlur}
                 value={updatedDescription}
                 onChange={handleChange}
-                onKeyDown={handleTextHeight}
+                onKeyDown={handleTexteareaHeight}
                 ref={ref}
             />
 

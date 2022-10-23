@@ -3,6 +3,8 @@ import { useNavigate, useParams } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { boardService } from '../services/board.service'
 import { setDynamicModal } from '../store/board/board.actions'
+import { IoCloseOutline } from 'react-icons/io5'
+
 import { Loader } from "../cmps/loader"
 import { Cover } from '../cmps/task-details/cover'
 import { TaskTitle } from '../cmps/task-details/task-title'
@@ -13,7 +15,6 @@ import { Description } from '../cmps/task-details/description'
 import { AttachmentList } from '../cmps/task-details/attachment-list'
 import { ChecklistList } from '../cmps/task-details/checklist-list'
 import { TaskSideBar } from '../cmps/task-details/task-sidebar'
-import { IoCloseOutline } from 'react-icons/io5'
 
 export const TaskDetails = () => {
 
@@ -46,7 +47,7 @@ export const TaskDetails = () => {
             <div className="task-details-wrapper">
                 <div className="task-details-layout task-details-container" ref={ref} onClick={closeModal}>
 
-                    <button className="close-task-details" onClick={closeTaskDetails}>
+                    <button className="close-btn" onClick={closeTaskDetails}>
                         <IoCloseOutline />
                     </button>
 
@@ -64,7 +65,10 @@ export const TaskDetails = () => {
                                         dynamicModal={dynamicModal}
                                     />
                                 }
-                                {labelIds?.length > 0 && <Labels board={board} dynamicModal={dynamicModal} />}
+
+                                {labelIds?.length > 0 &&
+                                    <Labels board={board} dynamicModal={dynamicModal} />
+                                }
                             </div>
 
                             {dueDate && <Date dueDate={dueDate} dynamicModal={dynamicModal} />}

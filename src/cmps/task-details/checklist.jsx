@@ -46,8 +46,11 @@ export const Checklist = ({ checklist, updateChecklists, removeChecklist }) => {
                 />
 
                 {!focused &&
-                    <button className="delete-btn" onClick={() => removeChecklist(checklist.id)}>Delete</button>
+                    <button className="delete-btn" onClick={() => removeChecklist(checklist.id)}>
+                        Delete
+                    </button>
                 }
+
                 {focused &&
                     <div className="checklist-title-buttons">
                         <button className="checklist-title-save-btn">Save</button>

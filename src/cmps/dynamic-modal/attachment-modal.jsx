@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react"
 import { useRef } from "react"
-import { IoCloseOutline } from "react-icons/io5"
 import { useDispatch } from "react-redux"
 import { useSelector } from "react-redux"
 import { boardService } from "../../services/board.service"
 import { updateTask } from "../../store/board/board.actions"
+import { IoCloseOutline } from "react-icons/io5"
 
 export const AttachmentModal = ({ groupId, taskId, closeModal, className }) => {
 
@@ -26,6 +26,7 @@ export const AttachmentModal = ({ groupId, taskId, closeModal, className }) => {
 
     const onChange = ({ target }) => {
         setIsFile(false)
+
         if (target.files) {
             setUrl(URL.createObjectURL(target.files[0]))
             setName(target.files[0].name)

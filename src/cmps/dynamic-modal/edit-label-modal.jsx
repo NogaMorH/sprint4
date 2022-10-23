@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
-import { IoCloseOutline } from 'react-icons/io5'
 import { ColorPickerStyleCmp, LabelStyleCmp } from './label-style-cmp'
+import { IoCloseOutline } from 'react-icons/io5'
 
 export const EditLabelModal = ({ label, updateLabels, toggleModal }) => {
 
@@ -55,7 +55,7 @@ export const EditLabelModal = ({ label, updateLabels, toggleModal }) => {
                 </ul>
 
                 <div className={`remove-btn ${updatedColor === '#DFE1E6' && 'disable'}`}>
-                    <span className="icon-close"><IoCloseOutline /></span>
+                    <IoCloseOutline className="icon-close"/>
                     <button onClick={removeColor}>Remove color</button>
                 </div>
 

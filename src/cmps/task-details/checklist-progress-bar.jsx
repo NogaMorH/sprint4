@@ -44,6 +44,7 @@ export const ChecklistProgressBar = ({ checklist }) => {
                 :
                 <div>{Math.floor((value / max) * 100)}%</div>
             }
+
             <progress value={value} max={max} />
         </Container>
     )

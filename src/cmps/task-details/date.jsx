@@ -46,6 +46,7 @@ export const Date = ({ dueDate, dynamicModal }) => {
                                     overdue
                                 </span>
                             }
+
                             {getDifference() < 86400000 && getDifference() > 0 &&
                                 <span className="date-label" style={{ backgroundColor: '#F2D600', color: '#172B4D' }}>
                                     due soon

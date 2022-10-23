@@ -1,16 +1,17 @@
+import { useEffect, useRef, useState } from "react"
 import { useSelector } from "react-redux"
+import { useDispatch } from "react-redux"
+import { boardService } from "../../services/board.service"
+import { utilService } from "../../services/util.service"
+import { updateBoardLabels, updateTask } from "../../store/board/board.actions"
+import { LabelStyleCmp } from "./label-style-cmp"
+import { EditLabelModal } from "./edit-label-modal"
+import { DeleteLabelModal } from "./delete-label-modal"
+
+import { faLessThan } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { IoCloseOutline } from 'react-icons/io5'
 import { BiPencil } from 'react-icons/bi'
-import { useEffect, useRef, useState } from "react"
-import { useDispatch } from "react-redux"
-import { LabelStyleCmp } from "./label-style-cmp"
-import { boardService } from "../../services/board.service"
-import { updateBoardLabels, updateTask } from "../../store/board/board.actions"
-import { EditLabelModal } from "./edit-label-modal"
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faLessThan } from '@fortawesome/free-solid-svg-icons'
-import { DeleteLabelModal } from "./delete-label-modal"
-import { utilService } from "../../services/util.service"
 
 export const LabelsModal = ({ groupId, taskId, closeModal, className }) => {
 
@@ -35,10 +36,12 @@ export const LabelsModal = ({ groupId, taskId, closeModal, className }) => {
             const results = labels.filter(label => {
                 return label.title.toLowerCase().startsWith(keyword.toLowerCase())
             })
+
             setFoundLabels(results)
         } else {
             setFoundLabels(labels)
         }
+
         setSearchField(keyword)
     }
 
@@ -49,6 +52,7 @@ export const LabelsModal = ({ groupId, taskId, closeModal, className }) => {
                 label = { color: '#7BC86C', title: '' }
             }
         }
+
         setCurrLabel(label)
         setOpenModal(type)
     }
@@ -63,6 +67,7 @@ export const LabelsModal = ({ groupId, taskId, closeModal, className }) => {
         } else {
             labelIds.push(id)
         }
+
         dispatch(updateTask(groupId, taskId, 'labelIds', labelIds))
     }
 
@@ -71,7 +76,9 @@ export const LabelsModal = ({ groupId, taskId, closeModal, className }) => {
 
         if (action === 'delete') {
             labels.splice(idx, 1)
+            labelIds.splice(idx, 1)
             setFoundLabels(labels)
+            dispatch(updateTask(groupId, taskId, 'labelIds', labelIds))
         }
         else if (!label.id) {
             label.id = utilService.makeId()
@@ -79,6 +86,7 @@ export const LabelsModal = ({ groupId, taskId, closeModal, className }) => {
         } else {
             labels.splice(idx, 1, label)
         }
+
         dispatch(updateBoardLabels(labels))
         setOpenModal('main')
     }
@@ -92,59 +100,61 @@ export const LabelsModal = ({ groupId, taskId, closeModal, className }) => {
                 {openModal !== 'main' &&
                     <FontAwesomeIcon className="icon-less" icon={faLessThan} size="2xs" onClick={() => setOpenModal('main')} />
                 }
-                <h5>{
-                    openModal === 'main' && 'Labels' ||
-                    openModal === 'edit' && 'Create label' ||
-                    openModal === 'edit' && currLabel && 'Edit label' ||
-                    openModal === 'delete' && 'Delete label'}
+
+                <h5>
+                    {
+                        openModal === 'main' && 'Labels' ||
+                        openModal === 'edit' && 'Create label' ||
+                        openModal === 'edit' && currLabel && 'Edit label' ||
+                        openModal === 'delete' && 'Delete label'
+                    }
                 </h5>
+
                 <IoCloseOutline className="icon-close" onClick={closeModal} />
             </div>
 
             {openModal === 'main' &&
                 <div className="dynamic-content">
-                    <div>
-                        <input
-                            className="dynamic-input"
-                            type="text"
-                            placeholder="Search labels..."
-                            ref={ref}
-                            value={searchField}
-                            onChange={filter}
-                        />
+                    <input
+                        className="dynamic-input"
+                        type="text"
+                        placeholder="Search labels..."
+                        ref={ref}
+                        value={searchField}
+                        onChange={filter}
+                    />
 
-                        <div className="labels-modal">
-                            <h6>Labels</h6>
+                    <div className="labels-modal">
+                        <h6>Labels</h6>
 
-                            <ul className="labels-modal-list">
-                                {foundLabels?.length > 0
-                                    ?
-                                    foundLabels.map(label => {
-                                        const { id, color, title } = label
+                        <ul className="labels-modal-list">
+                            {foundLabels?.length > 0
+                                ?
+                                foundLabels.map(label => {
+                                    const { id, color, title } = label
 
-                                        return (
-                                            <li key={id}>
-                                                <label onClick={() => toggleLabel(id)}>
-                                                    <input type="checkbox" checked={labelIds.includes(id)} readOnly />
+                                    return (
+                                        <li key={id}>
+                                            <label onClick={() => toggleLabel(id)}>
+                                                <input type="checkbox" checked={labelIds.includes(id) || false} readOnly />
 
-                                                    <div onClick={(ev) => ev.stopPropagation()}>
-                                                        <LabelStyleCmp className="label-modal" color={color} title={title} />
-                                                    </div>
-                                                </label>
+                                                <div onClick={(ev) => ev.stopPropagation()}>
+                                                    <LabelStyleCmp className="label-modal" color={color} title={title} />
+                                                </div>
+                                            </label>
 
-                                                <button className="icon-pencil" onClick={() => toggleModal('edit', label)}>
-                                                    <BiPencil />
-                                                </button>
-                                            </li>
-                                        )
-                                    })
-                                    :
-                                    <div></div>
-                                }
-                            </ul>
+                                            <button className="icon-pencil" onClick={() => toggleModal('edit', label)}>
+                                                <BiPencil />
+                                            </button>
+                                        </li>
+                                    )
+                                })
+                                :
+                                <div />
+                            }
+                        </ul>
 
-                            <button onClick={() => toggleModal('edit')}>Create a new label</button>
-                        </div>
+                        <button onClick={() => toggleModal('edit')}>Create a new label</button>
                     </div>
                 </div>
             }
@@ -152,6 +162,7 @@ export const LabelsModal = ({ groupId, taskId, closeModal, className }) => {
             {openModal === 'edit' &&
                 <EditLabelModal label={currLabel} updateLabels={updateLabels} toggleModal={toggleModal} />
             }
+
             {openModal === 'delete' &&
                 <DeleteLabelModal label={currLabel} updateLabels={updateLabels} />
             }

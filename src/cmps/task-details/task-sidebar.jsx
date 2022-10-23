@@ -16,14 +16,15 @@ import { VscArchive } from "react-icons/vsc"
 export const TaskSideBar = ({ dynamicModal }) => {
 
     const types = ['members', 'labels', 'checklist', 'dates', 'attachment', 'cover']
+    const { groupId, taskId } = useParams()
     const dispatch = useDispatch()
     const matches = useMediaQuery('(max-width: 750px)')
-    const { groupId, taskId } = useParams()
 
     const openModal = (modalType) => {
         if (dynamicModal.modalType === modalType) {
             return closeModal()
         }
+
         dispatch(setDynamicModal({ modalType, fromCmp: 'sidebar' }))
     }
 
@@ -35,38 +36,34 @@ export const TaskSideBar = ({ dynamicModal }) => {
         <div className="task-sidebar">
             <h6>Add to card</h6>
 
-            <div className="task-sidebar-btns">
+            <div className="sidebar-btn-list">
 
                 {types.map((type, idx) => {
                     return (
-                        <React.Fragment key={idx}>
-                            <div className="sidebar-btn" onClick={() => openModal(type)}>
+                        <div key={idx} className="sidebar-btn" onClick={() => openModal(type)}>
 
-                                <span className="icon">
-                                    {type === 'members' && <HiOutlineUser />}
-                                    {type === 'labels' && <AiOutlineTag />}
-                                    {type === 'checklist' && <TbCheckbox />}
-                                    {type === 'dates' && <MdOutlineWatchLater />}
-                                    {type === 'attachment' && <ImAttachment />}
-                                    {type === 'cover' && <FiCreditCard />}
-                                </span>
+                            {type === 'members' && <HiOutlineUser className="icon" />}
+                            {type === 'labels' && <AiOutlineTag className="icon" />}
+                            {type === 'checklist' && <TbCheckbox className="icon" />}
+                            {type === 'dates' && <MdOutlineWatchLater className="icon" />}
+                            {type === 'attachment' && <ImAttachment className="icon" />}
+                            {type === 'cover' && <FiCreditCard className="icon" />}
 
-                                <span className="sidebar-cmp">{type}</span>
+                            <span className="sidebar-cmp">{type}</span>
 
-                                {dynamicModal.modalType === type && dynamicModal.fromCmp === 'sidebar' &&
-                                    <>
-                                        <DynamicModal
-                                            type={type}
-                                            groupId={groupId}
-                                            taskId={taskId}
-                                            closeModal={closeModal}
-                                            className="pos-sidebar"
-                                        />
-                                        {matches && <div className="black-screen" />}
-                                    </>
-                                }
-                            </div>
-                        </React.Fragment>
+                            {dynamicModal.modalType === type && dynamicModal.fromCmp === 'sidebar' &&
+                                <>
+                                    <DynamicModal
+                                        type={type}
+                                        groupId={groupId}
+                                        taskId={taskId}
+                                        closeModal={closeModal}
+                                        className="pos-sidebar"
+                                    />
+                                    {matches && <div className="black-screen" />}
+                                </>
+                            }
+                        </div>
                     )
                 })}
 
