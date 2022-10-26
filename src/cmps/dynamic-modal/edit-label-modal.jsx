@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
-import { ColorPickerStyleCmp, LabelStyleCmp } from './label-style-cmp'
+import { LabelStyleCmp } from './label-style-cmp'
 import { IoCloseOutline } from 'react-icons/io5'
 
 export const EditLabelModal = ({ label, updateLabels, toggleModal }) => {
@@ -43,19 +43,21 @@ export const EditLabelModal = ({ label, updateLabels, toggleModal }) => {
                 <input className="dynamic-input" type="text" ref={ref} value={name} onChange={onChange} />
 
                 <h6>Select a color</h6>
-                <ul className="color-palette">
 
+                <div className="color-palette">
                     {colorPalette.map((color, idx) => {
                         return (
-                            <li key={idx} onClick={() => changeColor(color)}>
-                                <ColorPickerStyleCmp color={color} />
-                            </li>
+                            <div key={idx}
+                                className="color"
+                                style={{ background: `${color}` }}
+                                onClick={() => changeColor(color)}
+                            />
                         )
                     })}
-                </ul>
+                </div>
 
                 <div className={`remove-btn ${updatedColor === '#DFE1E6' && 'disable'}`}>
-                    <IoCloseOutline className="icon-close"/>
+                    <IoCloseOutline className="icon-close" />
                     <button onClick={removeColor}>Remove color</button>
                 </div>
 

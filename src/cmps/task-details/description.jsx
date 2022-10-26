@@ -24,6 +24,7 @@ export const Description = ({ description }) => {
         } else {
             setDescription(description)
         }
+
         setFocused(false)
     }
 

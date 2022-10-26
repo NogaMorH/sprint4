@@ -18,6 +18,7 @@ export const Labels = ({ board, dynamicModal }) => {
         if (dynamicModal.modalType === 'labels') {
             return dispatch(setDynamicModal({ modalType: null, fromCmp: null }))
         }
+
         dispatch(setDynamicModal({ modalType: 'labels', fromCmp: 'labels' }))
     }
 

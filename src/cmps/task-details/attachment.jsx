@@ -18,7 +18,7 @@ export const Attachment = ({ attachment, idx, toggleCover, toggleModal, removeAt
     }
 
     const updateName = (value) => {
-        attachment = { ...attachment, name: value }
+        attachment.name = value
         updateAttachments(attachment, idx)
     }
 

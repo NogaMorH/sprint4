@@ -14,6 +14,7 @@ export const Date = ({ dueDate, dynamicModal }) => {
         if (dynamicModal.modalType === 'dates') {
             return dispatch(setDynamicModal({ modalType: null, fromCmp: null }))
         }
+
         dispatch(setDynamicModal({ modalType: 'dates', fromCmp: 'date' }))
     }
 

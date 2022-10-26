@@ -14,6 +14,7 @@ export const TodoList = ({ todos, updateChecklist }) => {
             }
             return currTodo
         })
+
         updateChecklist('todos', updatedTodos)
     }
 

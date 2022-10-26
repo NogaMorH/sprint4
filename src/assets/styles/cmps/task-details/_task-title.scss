@@ -2,8 +2,7 @@
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    margin-top: 10px;
-    margin-bottom: 15px;
+    margin: 10px 0 15px;
 
     &-icon {
         position: absolute;
@@ -13,7 +12,7 @@
     }
 
     &-header {
-        width: 92%; // 672px
+        width: 92%;
         background-color: transparent;
         border: none;
         font-size: rem(20px);
@@ -21,8 +20,7 @@
         padding: 4px 8px;
         color: $clr8;
         outline-color: $clr18;
-        margin-top: 5px;
-        margin-left: 25px;
+        margin: 5px 0 0 25px;
 
         &:focus {
             background-color: white;
@@ -35,6 +33,14 @@
 
         span {
             text-decoration: underline;
+        }
+    }
+}
+
+@media (max-width: 750px) {
+    .task-title {
+        &-header {
+            width: 85%;
         }
     }
 }

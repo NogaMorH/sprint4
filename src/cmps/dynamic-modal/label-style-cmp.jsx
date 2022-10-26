@@ -48,21 +48,3 @@ export const LabelStyleCmp = ({ toggleLabel, inlineStyle, className, ballSize, t
         </LabelContainer >
     )
 }
-
-const ColorPicker = styled.div`
-    width: 48.8px;
-    height: 28px;
-    background-color: ${props => props.color};
-    border-radius: 3px;
-    
-    &:hover {
-        filter: saturate(99%) brightness(90%);
-    }
-`
-
-export const ColorPickerStyleCmp = ({ color }) => {
-
-    return (
-        <ColorPicker color={color} />
-    )
-}

@@ -20,6 +20,7 @@ export const Checklist = ({ checklist, updateChecklists, removeChecklist }) => {
         else if (ev.relatedTarget.className === 'checklist-title-save-btn') {
             updateChecklist('title', titleField)
         }
+
         setFocused(false)
     }
 

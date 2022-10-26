@@ -5,6 +5,7 @@
         left: 2px;
         top: 16px;
         color: #828b9a;
+        cursor: pointer;
 
         &:hover {
             color: #8890a0;
@@ -28,6 +29,7 @@
 
                     input[type=checkbox] {
                         margin-right: 10px;
+                        cursor: pointer;
                     }
 
                     .label-modal {

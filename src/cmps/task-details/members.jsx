@@ -15,6 +15,7 @@ export const Members = ({ members, dynamicModal }) => {
         if (dynamicModal.modalType === 'members') {
             return dispatch(setDynamicModal({ modalType: null, fromCmp: null }))
         }
+
         dispatch(setDynamicModal({ modalType: 'members', fromCmp: 'members' }))
     }
 

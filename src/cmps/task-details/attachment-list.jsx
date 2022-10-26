@@ -5,12 +5,9 @@ import { setDynamicModal, updateTask } from '../../store/board/board.actions'
 import { DynamicModal } from '../dynamic-modal/dynamic-modal'
 import { useMediaQuery } from '@mui/material'
 import { ImAttachment } from 'react-icons/im'
-import { boardService } from '../../services/board.service'
-import { useSelector } from 'react-redux'
 
 export const AttachmentList = ({ attachments, dynamicModal }) => {
 
-    const board = useSelector(state => state.boardModule.board)
     const { groupId, taskId } = useParams()
     const dispatch = useDispatch()
     const matches = useMediaQuery('(max-width: 750px)')
@@ -28,7 +25,7 @@ export const AttachmentList = ({ attachments, dynamicModal }) => {
         if (attachment.isCover) {
             dispatch(updateTask(groupId, taskId, 'cover', { img: attachment.url }))
         } else {
-            dispatch(updateTask(groupId, taskId, 'cover', {}))
+            dispatch(updateTask(groupId, taskId, 'cover', null))
         }
 
         dispatch(updateTask(groupId, taskId, 'attachments', attachments))
@@ -48,7 +45,9 @@ export const AttachmentList = ({ attachments, dynamicModal }) => {
         ev.stopPropagation()
         const updatedAttachments = attachments.filter((attachment, index) => index !== idx)
         dispatch(updateTask(groupId, taskId, 'attachments', updatedAttachments))
-        delete boardService.getTask(board, groupId, taskId).cover
+
+        const { isCover } = attachments[idx]
+        if (isCover) dispatch(updateTask(groupId, taskId, 'cover', null))
     }
 
     const updateAttachments = (attachment, idx) => {
