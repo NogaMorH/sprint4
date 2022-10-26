@@ -1,9 +1,9 @@
-export const DeleteLabelModal = ({ label, updateLabels }) => {
+export const DeleteLabelModal = ({ id, removeLabel }) => {
 
     return (
         <div className="delete-label-modal dynamic-content">
             <p>This will remove this label from all cards. There is no undo.</p>
-            <button onClick={() => updateLabels(label, 'delete')}>Delete</button>
+            <button onClick={() => removeLabel(id)}>Delete</button>
         </div>
     )
 }

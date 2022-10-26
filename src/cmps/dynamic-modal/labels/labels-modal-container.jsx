@@ -15,7 +15,7 @@ import { MainLabelModal } from "./main-label-modal"
 export const LabelsModalContainer = ({ groupId, taskId, closeModal, className }) => {
 
     const board = useSelector(state => state.boardModule.board)
-    const { labels } = board
+    let { labels } = board
     let { labelIds } = boardService.getTask(board, groupId, taskId)
 
     const [foundLabels, setFoundLabels] = useState(labels)
@@ -52,23 +52,28 @@ export const LabelsModalContainer = ({ groupId, taskId, closeModal, className })
         setOpenModal(type)
     }
 
-    const updateLabels = (label, action) => {
+    const updateLabels = (label) => {
         const idx = labels.indexOf(label)
 
-        if (action === 'delete') {
-            labels.splice(idx, 1)
-            labelIds.splice(idx, 1)
-            setFoundLabels(labels)
-            dispatch(updateTask(groupId, taskId, 'labelIds', labelIds))
-        }
-        else if (!label.id) {
+        if (!label.id) {
             label.id = utilService.makeId()
             labels.push(label)
+            setFoundLabels(labels)
         } else {
             labels.splice(idx, 1, label)
         }
 
         dispatch(updateBoardLabels(labels))
+        setOpenModal('main')
+    }
+
+    const removeLabel = (id) => {
+        labels = labels.filter(label => label.id !== id)
+        labelIds = labelIds.filter(labelId => labelId !== id)
+
+        setFoundLabels(labels)
+        dispatch(updateBoardLabels(labels))
+        dispatch(updateTask(groupId, taskId, 'labelIds', labelIds))
         setOpenModal('main')
     }
 
@@ -111,7 +116,7 @@ export const LabelsModalContainer = ({ groupId, taskId, closeModal, className })
             }
 
             {openModal === 'delete' &&
-                <DeleteLabelModal label={currLabel} updateLabels={updateLabels} />
+                <DeleteLabelModal id={currLabel.id} removeLabel={removeLabel} />
             }
         </div>
     )
