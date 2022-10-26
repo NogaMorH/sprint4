@@ -1,33 +1,28 @@
-import { useEffect, useRef, useState } from "react"
+import { useState } from "react"
 import { useSelector } from "react-redux"
 import { useDispatch } from "react-redux"
-import { boardService } from "../../services/board.service"
-import { utilService } from "../../services/util.service"
-import { updateBoardLabels, updateTask } from "../../store/board/board.actions"
-import { LabelStyleCmp } from "./label-style-cmp"
+import { boardService } from "../../../services/board.service"
+import { utilService } from "../../../services/util.service"
+import { updateBoardLabels, updateTask } from "../../../store/board/board.actions"
 import { EditLabelModal } from "./edit-label-modal"
-import { DeleteLabelModal } from "./delete-label-modal"
+import { DeleteLabelModal } from "../delete-label-modal"
 
 import { faLessThan } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { IoCloseOutline } from 'react-icons/io5'
-import { BiPencil } from 'react-icons/bi'
+import { MainLabelModal } from "./main-label-modal"
 
-export const LabelsModal = ({ groupId, taskId, closeModal, className }) => {
+export const LabelsModalContainer = ({ groupId, taskId, closeModal, className }) => {
 
     const board = useSelector(state => state.boardModule.board)
     const { labels } = board
     let { labelIds } = boardService.getTask(board, groupId, taskId)
+
     const [foundLabels, setFoundLabels] = useState(labels)
     const [searchField, setSearchField] = useState('')
     const [currLabel, setCurrLabel] = useState('')
     const [openModal, setOpenModal] = useState('main')
     const dispatch = useDispatch()
-    const ref = useRef()
-
-    useEffect(() => {
-        ref.current.focus()
-    }, [])
 
     const filter = ({ target }) => {
         const keyword = target.value
@@ -55,20 +50,6 @@ export const LabelsModal = ({ groupId, taskId, closeModal, className }) => {
 
         setCurrLabel(label)
         setOpenModal(type)
-    }
-
-    const toggleLabel = (id) => {
-        if (!labelIds) {
-            labelIds = [id]
-        }
-        else if (labelIds.includes(id)) {
-            const idx = labelIds.indexOf(id)
-            labelIds.splice(idx, 1)
-        } else {
-            labelIds.push(id)
-        }
-
-        dispatch(updateTask(groupId, taskId, 'labelIds', labelIds))
     }
 
     const updateLabels = (label, action) => {
@@ -114,49 +95,15 @@ export const LabelsModal = ({ groupId, taskId, closeModal, className }) => {
             </div>
 
             {openModal === 'main' &&
-                <div className="dynamic-content">
-                    <input
-                        className="dynamic-input"
-                        type="text"
-                        placeholder="Search labels..."
-                        ref={ref}
-                        value={searchField}
-                        onChange={filter}
-                    />
-
-                    <div className="labels-modal">
-                        <h6>Labels</h6>
-
-                        <ul className="labels-modal-list">
-                            {foundLabels?.length > 0
-                                ?
-                                foundLabels.map(label => {
-                                    const { id, color, title } = label
-
-                                    return (
-                                        <li key={id}>
-                                            <label onClick={() => toggleLabel(id)}>
-                                                <input type="checkbox" checked={labelIds.includes(id) || false} readOnly />
-
-                                                <div onClick={(ev) => ev.stopPropagation()}>
-                                                    <LabelStyleCmp className="label-modal" color={color} title={title} />
-                                                </div>
-                                            </label>
-
-                                            <button className="icon-pencil" onClick={() => toggleModal('edit', label)}>
-                                                <BiPencil />
-                                            </button>
-                                        </li>
-                                    )
-                                })
-                                :
-                                <div />
-                            }
-                        </ul>
-
-                        <button onClick={() => toggleModal('edit')}>Create a new label</button>
-                    </div>
-                </div>
+                <MainLabelModal
+                    foundLabels={foundLabels}
+                    searchField={searchField}
+                    labelIds={labelIds}
+                    groupId={groupId}
+                    taskId={taskId}
+                    filter={filter}
+                    toggleModal={toggleModal}
+                />
             }
 
             {openModal === 'edit' &&

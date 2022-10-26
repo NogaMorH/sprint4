@@ -1,14 +1,15 @@
 import { useDispatch, useSelector } from 'react-redux'
-import { BiPencil } from 'react-icons/bi'
 import { useNavigate } from 'react-router-dom'
 import { setModalTaskId } from '../../store/board/board.actions'
 import { TaskEditModal } from './task-edit-modal'
+import { BiPencil } from 'react-icons/bi'
 
 import { Draggable } from 'react-beautiful-dnd'
 import { TaskPreviewBadge } from './task-preview-badge'
 import { TaskPreviewLabels } from './task-preview-labels'
 
 export const TaskPreview = ({ task, groupId, index }) => {
+
     const board = useSelector(state => state.boardModule.board)
     const modalTaskId = useSelector(state => state.systemModule.modalTaskId)
     const dispatch = useDispatch()
@@ -40,15 +41,17 @@ export const TaskPreview = ({ task, groupId, index }) => {
     return (
         <Draggable key={id} draggableId={id} index={index} isDragDisabled={modalTaskId !== null}>
             {(provided) => (
+
                 <section className='task-preview-container'
                     onClick={openTaskDetails}
                     {...provided.draggableProps}
                     {...provided.dragHandleProps}
-                    ref={provided.innerRef}>
-
+                    ref={provided.innerRef}
+                >
                     {modalTaskId === id &&
                         <TaskEditModal task={task} groupId={groupId}
-                            closeTaskEditModal={(ev) => closeTaskEditModal(ev)} isBadge={isBadge} />
+                            closeTaskEditModal={(ev) => closeTaskEditModal(ev)} isBadge={isBadge}
+                        />
                     }
 
                     <div className='task-preview'>
@@ -56,15 +59,18 @@ export const TaskPreview = ({ task, groupId, index }) => {
                             (cover.img ?
                                 <img className='task-cover-img' src={cover.img} alt="cover" />
                                 :
-                                <div className='task-cover-color' style={{ background: `${cover.color}` }}></div>
+                                <div className='task-cover-color' style={{ background: `${cover.color}` }} />
                             )
                         }
+
                         <div className="task-preview-details">
-                            {labelIds && <TaskPreviewLabels groupId={groupId} taskId={task.id} />}
+                            {labelIds && <TaskPreviewLabels board={board} groupId={groupId} taskId={task.id} />}
 
                             <div className="task-title">{title}</div>
+
                             <button className={cover ? 'btn task-edit-icon on-cover' : 'btn task-edit-icon'}
-                                onClick={openTaskEditModal}>
+                                onClick={openTaskEditModal}
+                            >
                                 <BiPencil />
                             </button>
 

@@ -1,11 +1,9 @@
 import { useState } from "react"
-import { useSelector } from "react-redux"
 import { boardService } from "../../services/board.service"
-import { LabelStyleCmp } from "../dynamic-modal/label-style-cmp"
+import { LabelStyleCmp } from "../dynamic-modal/labels/label-style-cmp"
 
-export const TaskPreviewLabels = ({ groupId, taskId }) => {
+export const TaskPreviewLabels = ({ board, groupId, taskId }) => {
 
-    const board = useSelector(state => state.boardModule.board)
     const labels = boardService.getTaskLabels(board, groupId, taskId)
     const [isLabelOpen, setIsLabelOpen] = useState(false)
 
@@ -19,6 +17,7 @@ export const TaskPreviewLabels = ({ groupId, taskId }) => {
             <ul className="labels-list">
                 {labels.map(label => {
                     const { id, color, title } = label
+
                     return <li key={id}>
                         <LabelStyleCmp toggleLabel={toggleLabel}
                             inlineStyle={!isLabelOpen}

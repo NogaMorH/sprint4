@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux"
 import { boardService } from "../../services/board.service"
 import { setDynamicModal } from "../../store/board/board.actions"
 import { DynamicModal } from "../dynamic-modal/dynamic-modal"
-import { LabelStyleCmp } from "../dynamic-modal/label-style-cmp"
+import { LabelStyleCmp } from "../dynamic-modal/labels/label-style-cmp"
 import { useMediaQuery } from "@mui/material"
 import { BsPlusLg } from 'react-icons/bs'
 

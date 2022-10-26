@@ -1,0 +1,19 @@
+.labels-modal-container {
+
+    .icon-less {
+        position: absolute;
+        left: 2px;
+        top: 16px;
+        color: #828b9a;
+        cursor: pointer;
+
+        &:hover {
+            color: #8890a0;
+        }
+    }
+
+    button {
+        width: 100%;
+        margin: 4px 0;
+    }
+}

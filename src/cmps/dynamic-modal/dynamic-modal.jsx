@@ -2,7 +2,7 @@ import { CoverModal } from "./cover-modal"
 import { AttachmentModal } from "./attachment-modal"
 import { ChecklistModal } from "./checklist-modal"
 import { DatesModal } from "./dates-modal"
-import { LabelsModal } from "./labels-modal"
+import { LabelsModalContainer } from "./labels/labels-modal-container"
 import { MembersModal } from "./members-modal"
 
 export const DynamicModal = ({ type, groupId, taskId, closeModal, className }) => {
@@ -12,7 +12,7 @@ export const DynamicModal = ({ type, groupId, taskId, closeModal, className }) =
             case 'members':
                 return MembersModal
             case 'labels':
-                return LabelsModal
+                return LabelsModalContainer
             case 'checklist':
                 return ChecklistModal
             case 'dates':

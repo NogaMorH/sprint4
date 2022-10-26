@@ -1,4 +1,5 @@
 .task-preview-labels {
+
     .labels-list {
 
         li {
@@ -41,7 +42,7 @@
 @include for-mobile-layout {
     .task-preview-labels {
         .labels-list {
-            li {
+            >* {
                 .label-close {
                     transition-duration: 0.3s;
                     border-radius: 3px;
