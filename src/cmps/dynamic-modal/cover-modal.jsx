@@ -78,7 +78,7 @@ export const CoverModal = ({ taskId, groupId, closeModal, className }) => {
                 <h6>Attachments</h6>
 
                 <div className="img-list">
-                    {attachments.map((attachment, idx) => {
+                    {attachments?.map((attachment, idx) => {
                         const { url } = attachment
 
                         if (!utilService.checkURL(url)) return
