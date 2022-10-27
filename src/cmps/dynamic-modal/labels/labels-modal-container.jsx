@@ -5,7 +5,7 @@ import { boardService } from "../../../services/board.service"
 import { utilService } from "../../../services/util.service"
 import { updateBoardLabels, updateTask } from "../../../store/board/board.actions"
 import { EditLabelModal } from "./edit-label-modal"
-import { DeleteLabelModal } from "../delete-label-modal"
+import { DeleteLabelModal } from "./delete-label-modal"
 
 import { faLessThan } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -53,7 +53,7 @@ export const LabelsModalContainer = ({ groupId, taskId, closeModal, className })
     }
 
     const updateLabels = (label) => {
-        const idx = labels.indexOf(label)
+        const idx = labels.findIndex(currLabel => currLabel.id === label.id)
 
         if (!label.id) {
             label.id = utilService.makeId()
@@ -68,12 +68,12 @@ export const LabelsModalContainer = ({ groupId, taskId, closeModal, className })
     }
 
     const removeLabel = (id) => {
-        labels = labels.filter(label => label.id !== id)
-        labelIds = labelIds.filter(labelId => labelId !== id)
+        const updatedLabels = labels.filter(label => label.id !== id)
+        const updatedLabelIds = labelIds.filter(labelId => labelId !== id)
 
-        setFoundLabels(labels)
-        dispatch(updateBoardLabels(labels))
-        dispatch(updateTask(groupId, taskId, 'labelIds', labelIds))
+        setFoundLabels(updatedLabels)
+        dispatch(updateBoardLabels(updatedLabels))
+        dispatch(updateTask(groupId, taskId, 'labelIds', updatedLabelIds))
         setOpenModal('main')
     }
 

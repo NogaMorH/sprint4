@@ -23,7 +23,7 @@ export const MainLabelModal = ({ foundLabels, searchField, labelIds, groupId, ta
         } else {
             labelIds.push(id)
         }
-
+        
         dispatch(updateTask(groupId, taskId, 'labelIds', labelIds))
     }
 
