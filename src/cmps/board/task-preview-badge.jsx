@@ -1,4 +1,5 @@
 import { useDispatch } from "react-redux"
+import { useSelector } from "react-redux"
 import { boardService } from "../../services/board.service"
 import { utilService } from "../../services/util.service"
 import { updateTask } from "../../store/board/board.actions"
@@ -9,9 +10,9 @@ import { ImAttachment } from 'react-icons/im'
 import { TbCheckbox } from 'react-icons/tb'
 import { FaRegSquare } from 'react-icons/fa'
 
+export const TaskPreviewBadge = ({ task, groupId }) => {
 
-export const TaskPreviewBadge = ({ board, task, groupId }) => {
-
+    const board = useSelector(state => state.boardModule.board)
     const { dueDate, memberIds, description, attachments, checklists } = task
     const dispatch = useDispatch()
 

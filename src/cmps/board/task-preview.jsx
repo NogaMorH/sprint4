@@ -81,7 +81,7 @@ export const TaskPreview = ({ task, groupId, index }) => {
                             <div className="task-title">{title}</div>
 
                             {isBadge() &&
-                                <TaskPreviewBadge board={board} task={task} groupId={groupId} />
+                                <TaskPreviewBadge task={task} groupId={groupId} />
                             }
                         </div>
                     </div>
