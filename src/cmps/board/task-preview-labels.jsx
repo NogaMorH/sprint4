@@ -21,7 +21,7 @@ export const TaskPreviewLabels = ({ board, groupId, taskId }) => {
                     return <li key={id}>
                         <LabelStyleCmp toggleLabel={toggleLabel}
                             inlineStyle={!isLabelOpen}
-                            className={isLabelOpen ? 'label-open' : 'label-close'}
+                            className={isLabelOpen ? "label-open" : "label-close"}
                             ballSize='ball-size' text='text' color={color} title={title}
                         />
                     </li>

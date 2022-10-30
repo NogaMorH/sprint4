@@ -2,6 +2,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    flex-wrap: wrap;
 
     .task-badges {
         max-width: 100%;
@@ -13,28 +14,25 @@
         color: $clr23;
         display: flex;
 
-        .task-due-date {
-            margin-inline-end: 5px;
+        .task-date {
             display: flex;
             align-items: center;
-            margin-inline-end: 10px;
-            margin-bottom: 4px;
+            height: 24px;
+            margin: 0 10px 4px 0;
             padding: 5px;
             border-radius: 3px;
             font-size: rem(11px);
-            height: 24px;
 
             .clock-badge {
                 font-size: rem(14px);
-                margin-inline-end: 4px;
+                margin-right: 4px;
                 line-height: 1px;
             }
 
             .checklist-badge-empty {
                 display: none;
                 font-size: rem(12px);
-                margin-right: 4.5px;
-                margin-left: 1.5px;
+                margin: 0 4.5px 0 1.5px;
             }
 
             .checklist-badge {
@@ -43,7 +41,7 @@
                 margin-right: 3.5px;
             }
 
-            &-date {
+            &-time {
                 padding-top: 2px;
             }
 
@@ -63,19 +61,19 @@
 
         .description-badge {
             font-size: 12px;
-            margin-inline-end: 10px;
+            margin-right: 10px;
         }
 
         .task-attachment {
-            margin-inline-end: 10px;
-            font-size: rem(12px);
             display: flex;
             align-items: center;
+            margin-right: 10px;
+            font-size: rem(11.5px);
 
             .attachment-badge {
                 color: $clr23;
-                font-size: rem(13px);
-                margin-inline-end: 4px;
+                font-size: rem(12px);
+                margin-right: 4px;
             }
         }
 
@@ -84,14 +82,17 @@
             align-items: center;
 
             .checklist-badge {
-                font-size: 15px;
-                margin-top: 2px;
-                margin-inline-end: 4px;
+                font-size: 14px;
+            }
+
+            .checklist-count {
+                font-size: rem(11.5px);
+                margin-left: 4px;
             }
         }
     }
 
-    .member-avatar {
+    .member-avatar-list {
 
         img {
             width: rem(28px);
@@ -108,7 +109,5 @@
         .member-avatar {
             margin: 2px 0 0px 4px;
         }
-
     }
-
 }

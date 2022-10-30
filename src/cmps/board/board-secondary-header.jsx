@@ -18,7 +18,6 @@ export const BoardSecondaryHeader = ({ board }) => {
     }
 
     const openBoardMenu = (isOpen) => {
-        console.log('isSideMenuOpen:', isSideMenuOpen)
         //TODO: send true from btn and send is open to local state
         setIsSideMenuOpen(!isSideMenuOpen)
     }

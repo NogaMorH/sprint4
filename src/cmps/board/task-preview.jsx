@@ -1,10 +1,11 @@
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { setModalTaskId } from '../../store/board/board.actions'
-import { TaskEditModal } from './task-edit-modal'
 import { BiPencil } from 'react-icons/bi'
 
+import { Loader } from '../loader'
 import { Draggable } from 'react-beautiful-dnd'
+import { TaskEditModal } from './task-edit-modal'
 import { TaskPreviewBadge } from './task-preview-badge'
 import { TaskPreviewLabels } from './task-preview-labels'
 
@@ -12,10 +13,9 @@ export const TaskPreview = ({ task, groupId, index }) => {
 
     const board = useSelector(state => state.boardModule.board)
     const modalTaskId = useSelector(state => state.systemModule.modalTaskId)
+    const { cover, title, dueDate, labelIds, memberIds, description, attachments, id } = task
     const dispatch = useDispatch()
     const navigate = useNavigate()
-
-    const { title, dueDate, labelIds, memberIds, description, attachments, id } = task
 
     const openTaskEditModal = (ev) => {
         ev.stopPropagation()
@@ -35,47 +35,53 @@ export const TaskPreview = ({ task, groupId, index }) => {
         if (dueDate || description || memberIds || attachments) return true
         else return false
     }
-    const { cover } = task
 
-    if (!task) return <div>Loading...</div>
+    if (!task) return <Loader />
     return (
         <Draggable key={id} draggableId={id} index={index} isDragDisabled={modalTaskId !== null}>
             {(provided) => (
 
-                <section className='task-preview-container'
+                <section
+                    className="task-preview-container"
                     onClick={openTaskDetails}
                     {...provided.draggableProps}
                     {...provided.dragHandleProps}
                     ref={provided.innerRef}
                 >
                     {modalTaskId === id &&
-                        <TaskEditModal task={task} groupId={groupId}
-                            closeTaskEditModal={(ev) => closeTaskEditModal(ev)} isBadge={isBadge}
+                        <TaskEditModal
+                            task={task}
+                            groupId={groupId}
+                            closeTaskEditModal={(ev) => closeTaskEditModal(ev)}
+                            isBadge={isBadge}
                         />
                     }
 
-                    <div className='task-preview'>
+                    <div className="task-preview">
                         {cover &&
                             (cover.img ?
-                                <img className='task-cover-img' src={cover.img} alt="cover" />
+                                <img className="task-cover-img" src={cover.img} alt="cover" />
                                 :
-                                <div className='task-cover-color' style={{ background: `${cover.color}` }} />
+                                <div className="task-cover-color" style={{ background: `${cover.color}` }} />
                             )
                         }
 
                         <div className="task-preview-details">
-                            {labelIds && <TaskPreviewLabels board={board} groupId={groupId} taskId={task.id} />}
-
-                            <div className="task-title">{title}</div>
-
-                            <button className={cover ? 'btn task-edit-icon on-cover' : 'btn task-edit-icon'}
+                            <button
+                                className={cover ? "btn task-edit-icon on-cover" : "btn task-edit-icon"}
                                 onClick={openTaskEditModal}
                             >
                                 <BiPencil />
                             </button>
 
+                            {labelIds &&
+                                <TaskPreviewLabels board={board} groupId={groupId} taskId={task.id} />
+                            }
+
+                            <div className="task-title">{title}</div>
+
                             {isBadge() &&
-                                <TaskPreviewBadge task={task} groupId={groupId} />
+                                <TaskPreviewBadge board={board} task={task} groupId={groupId} />
                             }
                         </div>
                     </div>

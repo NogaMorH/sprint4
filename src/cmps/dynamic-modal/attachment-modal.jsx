@@ -64,6 +64,7 @@ export const AttachmentModal = ({ groupId, taskId, closeModal, className }) => {
 
             <div className="dynamic-content attach-link">
                 <h6>Attach a link</h6>
+
                 <input
                     name="url"
                     className="dynamic-input"
@@ -74,14 +75,19 @@ export const AttachmentModal = ({ groupId, taskId, closeModal, className }) => {
                     onChange={onChange}
                 />
 
-                <h6>Link name (optional)</h6>
-                <input
-                    name="name"
-                    className="dynamic-input"
-                    type="text"
-                    value={name}
-                    onChange={onChange}
-                />
+                {url &&
+                    <>
+                        <h6>Link name (optional)</h6>
+
+                        <input
+                            name="name"
+                            className="dynamic-input"
+                            type="text"
+                            value={name}
+                            onChange={onChange}
+                        />
+                    </>
+                }
 
                 <button className="attach-btn" onClick={addAttachment}>Attach</button>
             </div>

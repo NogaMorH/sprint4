@@ -14,6 +14,7 @@ import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker'
 export const DatesModal = ({ groupId, taskId, className }) => {
 
     const board = useSelector(state => state.boardModule.board)
+    const dispatch = useDispatch()
     const task = boardService.getTask(board, groupId, taskId)
     const ms = task.dueDate ? task.dueDate.ms : new Date().getTime()
     const date = new Date(ms)
@@ -23,7 +24,6 @@ export const DatesModal = ({ groupId, taskId, className }) => {
         .set('hour', date.getHours()).set('minute', date.getMinutes())
 
     const [value, setValue] = React.useState(cloneDayjs)
-    const dispatch = useDispatch()
 
     useEffect(() => {
         dispatch(updateTask(groupId, taskId, 'dueDate', { ...task.dueDate, ms: new Date(value).getTime() }))

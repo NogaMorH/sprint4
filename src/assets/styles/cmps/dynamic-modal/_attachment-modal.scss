@@ -38,8 +38,12 @@
         margin: 12px;
 
         h6 {
-            margin: 10px 0 0;
             font-family: san-francisco-medium, sans-serif;
+            margin: 0;
+        }
+
+        h6:first-child {
+            margin-top: 10px;
         }
 
         .attach-btn {

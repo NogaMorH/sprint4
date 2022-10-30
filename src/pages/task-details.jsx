@@ -12,8 +12,8 @@ import { Members } from '../cmps/task-details/members'
 import { Labels } from '../cmps/task-details/labels'
 import { Date } from '../cmps/task-details/date'
 import { Description } from '../cmps/task-details/description'
-import { AttachmentList } from '../cmps/task-details/attachment-list'
-import { ChecklistList } from '../cmps/task-details/checklist-list'
+import { AttachmentList } from '../cmps/task-details/attachment/attachment-list'
+import { ChecklistList } from '../cmps/task-details/checklist/checklist-list'
 import { TaskSideBar } from '../cmps/task-details/task-sidebar'
 
 export const TaskDetails = () => {
