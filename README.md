@@ -2,7 +2,7 @@
 
 Task and project management board app inspired by trello.com, [here is my project link](https://rello.onrender.com/ "Rello link").
 
-![Main board image] (readme-imgs/Rello-board-img.png "Board main page")
+![Main board image](src/assets/img/readme-imgs/Rello-board-img.png "Board main page")
 ___
 
 ### Table of Contents
@@ -72,32 +72,32 @@ That's it! The App should be opened automatically, enjoy!
 
 The landing page in which the user can signup/ login or press the try now button to start demo if he is limited with time.
 
-![Homepage image](readme-imgs/Rello-home-img.png "Home page")
+![Homepage image](src/assets/img/readme-imgs/Rello-home-img.png "Home page")
 
 ### Workspace
 
 Here users can create a new empty board, navigate between their boards and pin / unpin boards to the starred board list.
 
-![Template page](readme-imgs/Rello-template-page-img.png "Template page")
+![Template page image](src/assets/img/readme-imgs/Rello-template-page-img.png "Template page")
 
 ### Board
 
 All the functionality that you have in Trello. D&D, live-updates, editing groups and tasks to the deepest level, side menu and much more!
 
-![Board image](readme-imgs/Rello-board-img.png "Board page")
+![Board image](src/assets/img/readme-imgs/Rello-board-img.png "Board page")
 
 ### Task details
 
 In task details users can watch and edit tasks and get live updates. Every button on the right menu opens a dynamic modal which fits the content accordingly to the pressed button.
 
-![Task details](readme-imgs/Task-details-img.png "Task details")
+![Task details](src/assets/img/readme-imgs/Task-details-img.png "Task details")
 
 ### Some mobile!
 
 Just a taste of the mobile expirience, We used different mixins, conditional rendering, and the "mobile first" approach. 
 The layout we have built from the very first moment enabled us to make the website responsive without a lot of effort.
 
-<img src="readme-imgs/mobile-home-page" width="25%" style="float: left"/><img src="readme-imgs/mobile-signin.png" width="25%" style="float: left;"/><img src="readme-imgs/mobile-board.png" width="25%" style="float: left;"/><img src="readme-imgs/mobile-task-details.png" width="25%" style="float: left;"/>
+<img src="src/assets/img/readme-imgs/mobile-home-page.png" width="25%" style="float: left"/><img src="src/assets/img/readme-imgs/mobile-signin.png" width="25%" style="float: left;"/><img src="src/assets/img/readme-imgs/mobile-board.png" width="25%" style="float: left;"/><img src="src/assets/img/readme-imgs/mobile-task-details.png" width="25%" style="float: left;"/>
 
 ### Authors
  - [Kfir Azulay](https://github.com/kfirazu)
