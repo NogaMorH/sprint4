@@ -43,7 +43,7 @@ Head to the repository on top and clone the project or download the files.
 ```
 git clone https://github.com/NogaMorH/Rello.git
 ```
-Also, clone the frontend folder [here[(https://github.com/NogaMorH/sprint4)
+Also, clone the frontend folder [here](https://github.com/NogaMorH/sprint4)
 
 Enter the backend folder and make sure you have node_modules installed. After that we will initiate the server with 'npm start':
 
