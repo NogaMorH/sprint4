@@ -5,12 +5,12 @@ Task and project management board app inspired by trello.com, [here is my projec
 ![Main board image] (readme-imgs/Rello-board-img.png "Board main page")
 ___
 
-### Table of contents
--[Trello description](#trello-description)
--[Application Features](#application-features)
--[Technologies](#technologies)
--[Getting started](#getting-started)
--[Showcase](#showcase)
+### Table of Contents
+- [Monday Description](#monday-description)
+- [Application Features](#application-features)
+- [Technologies](#technologies)
+- [Getting started](#getting-started)
+- [Showcase](#showcase)
 
 ## Trello Description
 
