@@ -100,9 +100,9 @@ The layout we have built from the very first moment enabled us to make the websi
 <img src="readme-imgs/mobile-home-page" width="25%" style="float: left"/><img src="readme-imgs/mobile-signin.png" width="25%" style="float: left;"/><img src="readme-imgs/mobile-board.png" width="25%" style="float: left;"/><img src="readme-imgs/mobile-task-details.png" width="25%" style="float: left;"/>
 
 ### Authors
--[Kfir Azulay] (https://github.com/kfirazu)
--[Noga Mor Havilio] (https://github.com/NogaMorH)
--[Rebecca Krukover] (https://github.com/Rebecca-Kruk)
+ - [Kfir Azulay] (https://github.com/kfirazu)
+ - [Noga Mor Havilio](https://github.com/NogaMorH)
+ - [Rebecca Krukover] (https://github.com/Rebecca-Kruk)
 
 
 
