@@ -6,7 +6,7 @@ Task and project management board app inspired by trello.com, [here is my projec
 ___
 
 ### Table of Contents
-- [Monday Description](#monday-description)
+- [Trello Description](#trello-description)
 - [Application Features](#application-features)
 - [Technologies](#technologies)
 - [Getting started](#getting-started)
