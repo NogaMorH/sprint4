@@ -34,16 +34,16 @@ Of course that we included all the small nuances Trello has. You are not suppose
 The technology stack we used was MERN - MongoDB, Express, React, Node.js.
 The app uses webSockets to update the board in real time. The API calls to the backend are done with Rest API method.
 
-We have used many third side libraries for many goals, such as D&D and more. The layout and pixel-perfect were made with Sass(functons, mixins, variables).
+We have used many third side libraries for many goals, such as D&D and more. The layout and pixel-perfect were made with Sass(functions, mixins, variables).
 
 ## Getting started
 
 Head to the repository on top and clone the project or download the files.
 
 ```
-git clone https://github.com/NogaMorH/Rello.git
+git clone https://github.com/NogaMorH/sprint4.git
 ```
-Also, clone the frontend folder [here](https://github.com/NogaMorH/sprint4)
+Also, clone the backend folder [here](https://github.com/NogaMorH/Rello.git)
 
 Enter the backend folder and make sure you have node_modules installed. After that we will initiate the server with 'npm start':
 
